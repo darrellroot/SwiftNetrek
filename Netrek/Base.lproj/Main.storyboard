@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11134" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11134"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -655,6 +656,38 @@
                                     </items>
                                 </menu>
                             </menuItem>
+                            <menuItem title="Metaserver" id="Xsj-MF-FQw">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Metaserver" id="FBn-sB-5LG" userLabel="Metaserver">
+                                    <items>
+                                        <menuItem title="Refresh Metaserver" id="ML3-PD-Sms">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="refreshMetaserverMenu:" target="Voe-Tx-rLC" id="1Xm-Id-ApN"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Use Test Server" id="e2L-Cu-J2f">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Servers" id="ynS-JN-hrX">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Servers" id="fh8-Tz-54x">
+                                    <items>
+                                        <menuItem title="Item 1" id="c5O-24-rGO">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="Item 2" id="XvZ-TD-bEu">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="Item 3" id="C6m-Y2-niB">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
                             <menuItem title="Help" id="wpr-3q-Mcd">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
@@ -673,7 +706,11 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Netrek" customModuleProvider="target">
+                    <connections>
+                        <outlet property="serverMenu" destination="fh8-Tz-54x" id="NRY-WO-pko"/>
+                    </connections>
+                </customObject>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -686,32 +723,55 @@
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+                        <rect key="contentRect" x="196" y="240" width="800" height="500"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <value key="minSize" type="size" width="800" height="500"/>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
                         </connections>
                     </window>
                     <connections>
-                        <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
+                        <segue destination="Yf6-2s-0ES" kind="relationship" relationship="window.shadowedContentViewController" id="Jxm-GJ-sYn"/>
                     </connections>
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="250"/>
+            <point key="canvasLocation" x="75" y="425"/>
         </scene>
         <!--View Controller-->
-        <scene sceneID="hIz-AP-VOD">
+        <scene sceneID="ge4-9L-QeV">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                <viewController id="Yf6-2s-0ES" sceneMemberID="viewController">
+                    <view key="view" id="Zma-0P-ZGo">
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="500"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="Txd-na-oXg">
+                                <rect key="frame" x="0.0" y="0.0" width="500" height="500"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Txd-na-oXg" secondAttribute="height" multiplier="1:1" id="a7A-Mc-vPh"/>
+                                </constraints>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="f7o-8z-t1V">
+                                <rect key="frame" x="500" y="0.0" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="f7o-8z-t1V" secondAttribute="height" multiplier="1:1" id="X9k-mW-1h0"/>
+                                </constraints>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="f7o-8z-t1V" firstAttribute="leading" secondItem="Txd-na-oXg" secondAttribute="trailing" id="5fK-vZ-ghD"/>
+                            <constraint firstItem="Txd-na-oXg" firstAttribute="top" secondItem="Zma-0P-ZGo" secondAttribute="top" id="6K6-Rq-9BE"/>
+                            <constraint firstItem="Txd-na-oXg" firstAttribute="leading" secondItem="Zma-0P-ZGo" secondAttribute="leading" id="9QO-Vz-L5f"/>
+                            <constraint firstAttribute="trailing" secondItem="f7o-8z-t1V" secondAttribute="trailing" id="Wi2-l3-iYE"/>
+                            <constraint firstAttribute="bottom" secondItem="f7o-8z-t1V" secondAttribute="bottom" id="Zcc-aQ-C2s"/>
+                            <constraint firstAttribute="bottom" secondItem="Txd-na-oXg" secondAttribute="bottom" id="qYA-sb-1Dg"/>
+                        </constraints>
                     </view>
                 </viewController>
-                <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="Ngl-3X-Tsl" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="655"/>
+            <point key="canvasLocation" x="-100" y="965"/>
         </scene>
     </scenes>
 </document>
