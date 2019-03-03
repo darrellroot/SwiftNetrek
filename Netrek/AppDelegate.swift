@@ -12,7 +12,13 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     var metaServer: MetaServer?
-
+    var reader: TcpReader?
+    var gameState: GameState = .noServerSelected
+    let universe = Universe()
+    
+    // The following are initialized by the child controllers via the appdelegate
+    var messageViewController: MessageViewController?
+    
     @IBOutlet weak var serverMenu: NSMenu!
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -27,7 +33,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to tear down your application
     }
     
-    @IBAction func refreshMetaserverMenu(_ sender: NSMenuItem) {
+    @IBAction func refreshMetaserverMenu(_ sender: Any) {
         metaServer?.update()
     }
     public func metaserverUpdated() {
@@ -45,8 +51,50 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @objc func startGame(sender: NSMenuItem) {
         let tag = sender.tag
         if let server = metaServer?.servers[safe: tag] {
+            self.newGameState(.serverSelected)
             print("starting game server \(server.description)")
+            //if let reader = TcpReader(hostname: "metaserver.netrek.org", port: 3521, delegate: self) {
+            if let reader = TcpReader(hostname: server.hostname, port: server.port, delegate: self) {
+                self.reader = reader
+            } else {
+                debugPrint("AppDelegate failed to start reader")
+            }
         }
+    }
+    public func newGameState(_ newState: GameState ) {
+        switch newState {
+        case .noServerSelected:
+            debugPrint("AppDelegate GameState \(newState) we may have been ghostbusted!  Resetting.  Try again")
+            reader = nil
+            self.refreshMetaserverMenu(self)
+            break
+        case .serverSelected:
+            // no need to do anything here, handled in the menu function
+            break
+        case .serverConnected:
+            guard let reader = reader else {
+                self.newGameState(.noServerSelected)
+                return
+            }
+            let cpPacket = MakePacket.cpPacket()
+            reader.send(content: cpPacket)
+            break
+        case .serverSlotFound:
+            break
+        case .loginAccepted:
+            break
+        case .outfitAccepted:
+            break
+        case .gameActive:
+            break
+        }
+    }
+}
+
+extension AppDelegate: NetworkDelegate {
+    func gotData(data: Data, from: String, port: Int) {
+        PacketAnalyzer.analyze(data: data)
+        //debugPrint(String(data: data, encoding: .utf8))
     }
 }
 

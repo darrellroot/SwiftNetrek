@@ -714,13 +714,13 @@
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="0.0"/>
+            <point key="canvasLocation" x="-6" y="-73"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="Netrek" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="800" height="500"/>
@@ -736,42 +736,84 @@
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="425"/>
+            <point key="canvasLocation" x="55" y="292"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="ge4-9L-QeV">
             <objects>
                 <viewController id="Yf6-2s-0ES" sceneMemberID="viewController">
                     <view key="view" id="Zma-0P-ZGo">
-                        <rect key="frame" x="0.0" y="0.0" width="800" height="500"/>
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="533"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="Txd-na-oXg">
-                                <rect key="frame" x="0.0" y="0.0" width="500" height="500"/>
+                                <rect key="frame" x="0.0" y="0.0" width="533" height="533"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Txd-na-oXg" secondAttribute="height" multiplier="1:1" id="a7A-Mc-vPh"/>
                                 </constraints>
                             </customView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="f7o-8z-t1V">
-                                <rect key="frame" x="500" y="0.0" width="300" height="300"/>
+                                <rect key="frame" x="533" y="0.0" width="267" height="267"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="f7o-8z-t1V" secondAttribute="height" multiplier="1:1" id="X9k-mW-1h0"/>
                                 </constraints>
                             </customView>
+                            <containerView translatesAutoresizingMaskIntoConstraints="NO" id="0Ew-YM-Th3">
+                                <rect key="frame" x="533" y="267" width="267" height="266"/>
+                                <connections>
+                                    <segue destination="1yz-XC-MLA" kind="embed" id="AAa-T3-ir2"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="f7o-8z-t1V" firstAttribute="leading" secondItem="Txd-na-oXg" secondAttribute="trailing" id="5fK-vZ-ghD"/>
                             <constraint firstItem="Txd-na-oXg" firstAttribute="top" secondItem="Zma-0P-ZGo" secondAttribute="top" id="6K6-Rq-9BE"/>
                             <constraint firstItem="Txd-na-oXg" firstAttribute="leading" secondItem="Zma-0P-ZGo" secondAttribute="leading" id="9QO-Vz-L5f"/>
+                            <constraint firstItem="0Ew-YM-Th3" firstAttribute="leading" secondItem="Txd-na-oXg" secondAttribute="trailing" id="O9M-cf-6Cw"/>
+                            <constraint firstItem="f7o-8z-t1V" firstAttribute="top" secondItem="0Ew-YM-Th3" secondAttribute="bottom" id="Q4g-Ks-UcL"/>
+                            <constraint firstAttribute="trailing" secondItem="0Ew-YM-Th3" secondAttribute="trailing" id="RXL-3P-YiC"/>
                             <constraint firstAttribute="trailing" secondItem="f7o-8z-t1V" secondAttribute="trailing" id="Wi2-l3-iYE"/>
                             <constraint firstAttribute="bottom" secondItem="f7o-8z-t1V" secondAttribute="bottom" id="Zcc-aQ-C2s"/>
                             <constraint firstAttribute="bottom" secondItem="Txd-na-oXg" secondAttribute="bottom" id="qYA-sb-1Dg"/>
+                            <constraint firstItem="0Ew-YM-Th3" firstAttribute="top" secondItem="Zma-0P-ZGo" secondAttribute="top" id="zb1-LG-6zC"/>
                         </constraints>
                     </view>
                 </viewController>
                 <customObject id="Ngl-3X-Tsl" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-100" y="965"/>
+            <point key="canvasLocation" x="-238" y="1025"/>
+        </scene>
+        <!--Message View Controller-->
+        <scene sceneID="tjC-8G-zwd">
+            <objects>
+                <viewController id="1yz-XC-MLA" customClass="MessageViewController" customModule="Netrek" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="mgb-el-VHX">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="68"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="lQy-mh-8hd">
+                                <rect key="frame" x="0.0" y="50" width="450" height="18"/>
+                                <textFieldCell key="cell" selectable="YES" borderStyle="border" title="Multiline Label" id="8j3-dl-RFp">
+                                    <font key="font" metaFont="system" size="11"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="lQy-mh-8hd" secondAttribute="trailing" id="4Qs-0s-nuV"/>
+                            <constraint firstAttribute="bottom" secondItem="lQy-mh-8hd" secondAttribute="bottom" constant="50" id="NKY-I0-Hw9"/>
+                            <constraint firstItem="lQy-mh-8hd" firstAttribute="leading" secondItem="mgb-el-VHX" secondAttribute="leading" id="SbU-mV-bze"/>
+                            <constraint firstItem="lQy-mh-8hd" firstAttribute="top" secondItem="mgb-el-VHX" secondAttribute="top" id="s2s-16-1aC"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="messagesLabel" destination="lQy-mh-8hd" id="CPP-0t-12x"/>
+                    </connections>
+                </viewController>
+                <customObject id="nPL-ll-a1w" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="477" y="876"/>
         </scene>
     </scenes>
 </document>
