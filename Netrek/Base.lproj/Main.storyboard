@@ -794,7 +794,7 @@
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="lQy-mh-8hd">
                                 <rect key="frame" x="0.0" y="50" width="450" height="18"/>
                                 <textFieldCell key="cell" selectable="YES" borderStyle="border" title="Multiline Label" id="8j3-dl-RFp">
-                                    <font key="font" metaFont="system" size="11"/>
+                                    <font key="font" size="11" name="Courier"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>

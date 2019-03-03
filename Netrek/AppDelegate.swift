@@ -11,11 +11,14 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
+    
     var metaServer: MetaServer?
     var reader: TcpReader?
     var gameState: GameState = .noServerSelected
     let universe = Universe()
-    
+    var analyzer: PacketAnalyzer?
+    let timerInterval = 1.0 / Double(UPDATE_RATE)
+    var timer: Timer?
     // The following are initialized by the child controllers via the appdelegate
     var messageViewController: MessageViewController?
     
@@ -26,6 +29,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         metaServer = MetaServer(hostname: "metaserver.netrek.org", port: 3521)
         if let metaServer = metaServer {
             metaServer.update()
+        }
+        timer = Timer(timeInterval: 1.0 / Double(UPDATE_RATE) , target: self, selector: #selector(timerFired), userInfo: nil, repeats: true)
+        timer?.tolerance = timerInterval / 10.0
+        if let timer = timer {
+            RunLoop.current.add(timer, forMode: RunLoop.Mode.common)
         }
     }
 
@@ -69,9 +77,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.refreshMetaserverMenu(self)
             break
         case .serverSelected:
+            self.analyzer = PacketAnalyzer()
             // no need to do anything here, handled in the menu function
             break
         case .serverConnected:
+            debugPrint("AppDelegate.newGameState: .serverConnected")
+
             guard let reader = reader else {
                 self.newGameState(.noServerSelected)
                 return
@@ -80,6 +91,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             reader.send(content: cpPacket)
             break
         case .serverSlotFound:
+            debugPrint("AppDelegate.newGameState: .serverSlotFound")
+            let cpLogin = MakePacket.cpLogin(name: "guest", password: "", login: "")
+            if let reader = reader {
+                DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 10.0) {
+                    reader.send(content: cpLogin)
+                }
+            } else {
+                debugPrint("ERROR: AppDelegate.newGameState.serverSlot found: no reader")
+            }
+            //TODO what do we do if we cant find reader
             break
         case .loginAccepted:
             break
@@ -89,11 +110,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             break
         }
     }
+    @objc func timerFired() {
+        //debugPrint("AppDelegate.timerFired \(Date())")
+        reader?.receive()
+    }
 }
 
 extension AppDelegate: NetworkDelegate {
     func gotData(data: Data, from: String, port: Int) {
-        PacketAnalyzer.analyze(data: data)
+        debugPrint("appdelegate got data \(data.count) bytes")
+        if data.count > 0 {
+            analyzer?.analyze(incomingData: data)
+        }
         //debugPrint(String(data: data, encoding: .utf8))
     }
 }

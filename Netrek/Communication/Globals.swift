@@ -10,6 +10,9 @@ import Foundation
 
 // packet type globals
 
+let UPDATE_RATE = 10  // number of attempts to update per second
+let NAME_LEN = 16
+let MAXPLANETS = 40
 let MAXPLAYERS = 32
 
 let SOCKVERSION: UInt8 = 4
