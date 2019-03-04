@@ -8,34 +8,6 @@
 
 import Foundation
 
-struct CP_PACKET {
-    let type: UInt8 = 27
-    let version: UInt8 = SOCKVERSION
-    let udp_version: UInt8 = UDPVERSION
-    let pad: UInt8 = 0
-    //TODO: presumably we have to do something with this port
-    let port: UInt32 = UInt32(32800).bigEndian
-    
-    var size: Int {
-        return 8
-    }
-}
-/*struct CP_LOGIN {
-    let type: UInt8 = 8
-    let query: UInt8 = 1 // 0 means something
-    let pad: UInt8 = 0
-    let pad2: UInt8 = 0
-    var name: [UInt8] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]  // 16 UInt8 = NAME_LEN
-    var password: [UInt8] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]  // 16 UInt8
-    var login: [UInt8] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]  // 16 UInt8
-
-    //var name = Data(count: NAME_LEN)
-    //var password = Data(count: NAME_LEN)
-    //var login = Data(count: NAME_LEN)
-    var size: Int {
-        return 52
-    }
-}*/
 class MakePacket {
     
     static func make16Tuple(string: String) -> (UInt8,UInt8,UInt8,UInt8,UInt8,UInt8,UInt8,UInt8,UInt8,UInt8,UInt8,UInt8,UInt8,UInt8,UInt8,UInt8) {

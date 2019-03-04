@@ -156,7 +156,7 @@ class PacketAnalyzer {
             if let messageStringWithNulls = String(data: messageData, encoding: .utf8) {
                 var messageString = messageStringWithNulls.filter { $0 != "\0" }
                 messageString.append("\n")
-            appDelegate.messageViewController?.gotMessage(message: messageString)
+                appDelegate.messageViewController?.gotMessage(messageString)
                 debugPrint(messageString)
             } else {
                 debugPrint("PacketAnalyzer unable to decode message type 11")
@@ -201,8 +201,26 @@ class PacketAnalyzer {
         case 13:
             // SP_QUEUE
             let queue = data.subdata(in: (2..<3)).to(type: UInt16.self)
-        appDelegate.messageViewController?.gotMessage(message: "Connected to server. Wait queue position \(queue)")
+            appDelegate.messageViewController?.gotMessage("Connected to server. Wait queue position \(queue)")
 
+        case 17:
+            // SP_LOGIN
+            let accept = Int(data[1])
+            let paradise1 = Int(data[2])
+            let paradise2 = Int(data[3])
+            let flags = data.subdata(in: (4..<8)).to(type: UInt32.self)
+            let keymap = data.subdata(in: (8..<96))
+            
+            if paradise1 == 69 && paradise2 == 42 {
+                appDelegate.messageViewController?.gotMessage("paradise server not supported")
+                appDelegate.newGameState(.noServerSelected)
+            }
+            if accept == 0 {   // login failed
+                appDelegate.messageViewController?.gotMessage("login failed")
+                appDelegate.newGameState(.noServerSelected)
+            } else {
+                appDelegate.messageViewController?.gotMessage("login successful")
+            }
         case 18:
             //SP_FLAGS
             let playerID = Int(data[1])

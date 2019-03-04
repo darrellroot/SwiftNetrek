@@ -47,6 +47,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     public func metaserverUpdated() {
         debugPrint("AppDelegate.metaserverUpdated")
         if let metaServer = metaServer {
+            messageViewController?.gotMessage("Server list updated from metaserver")
             serverMenu.removeAllItems()
             for (index,server) in metaServer.servers.enumerated() {
                 let newItem = NSMenuItem(title: server.description, action: #selector(self.startGame), keyEquivalent: "")
@@ -59,11 +60,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @objc func startGame(sender: NSMenuItem) {
         let tag = sender.tag
         if let server = metaServer?.servers[safe: tag] {
-            self.newGameState(.serverSelected)
             print("starting game server \(server.description)")
             //if let reader = TcpReader(hostname: "metaserver.netrek.org", port: 3521, delegate: self) {
             if let reader = TcpReader(hostname: server.hostname, port: server.port, delegate: self) {
                 self.reader = reader
+                self.newGameState(.serverSelected)
             } else {
                 debugPrint("AppDelegate failed to start reader")
             }
@@ -72,15 +73,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     public func newGameState(_ newState: GameState ) {
         switch newState {
         case .noServerSelected:
+            self.gameState = newState
+            self.messageViewController?.gotMessage("Game State: No Server Selected\n")
             debugPrint("AppDelegate GameState \(newState) we may have been ghostbusted!  Resetting.  Try again")
-            reader = nil
+            self.reader = nil
             self.refreshMetaserverMenu(self)
             break
         case .serverSelected:
+            self.gameState = newState
+            self.messageViewController?.gotMessage("Game State: Server Selected\n")
             self.analyzer = PacketAnalyzer()
             // no need to do anything here, handled in the menu function
             break
         case .serverConnected:
+            self.gameState = newState
+            self.messageViewController?.gotMessage("Game State: Server Connected\n")
+
             debugPrint("AppDelegate.newGameState: .serverConnected")
 
             guard let reader = reader else {
@@ -91,28 +99,44 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             reader.send(content: cpPacket)
             break
         case .serverSlotFound:
+            self.gameState = newState
+            self.messageViewController?.gotMessage("Game State: Server Slot Found\n")
+
             debugPrint("AppDelegate.newGameState: .serverSlotFound")
             let cpLogin = MakePacket.cpLogin(name: "guest", password: "", login: "")
             if let reader = reader {
-                DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 10.0) {
-                    reader.send(content: cpLogin)
-                }
+                reader.send(content: cpLogin)
             } else {
-                debugPrint("ERROR: AppDelegate.newGameState.serverSlot found: no reader")
+                self.messageViewController?.gotMessage("ERROR: AppDelegate.newGameState.serverSlot found: no reader")
+                self.newGameState(.noServerSelected)
             }
-            //TODO what do we do if we cant find reader
-            break
         case .loginAccepted:
-            break
+            self.gameState = newState
         case .outfitAccepted:
-            break
+            self.gameState = newState
         case .gameActive:
-            break
+            self.gameState = newState
         }
     }
     @objc func timerFired() {
         //debugPrint("AppDelegate.timerFired \(Date())")
-        reader?.receive()
+        switch self.gameState {
+            
+        case .noServerSelected:
+            break
+        case .serverSelected:
+            reader?.receive()
+        case .serverConnected:
+            reader?.receive()
+        case .serverSlotFound:
+            reader?.receive()
+        case .loginAccepted:
+            reader?.receive()
+        case .outfitAccepted:
+            reader?.receive()
+        case .gameActive:
+            reader?.receive()
+        }
     }
 }
 

@@ -19,13 +19,15 @@ class MessageViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        debugPrint("MessageViewController loading")
         appDelegate.messageViewController = self
         for _ in 0 ..< maxMessages {
-            self.gotMessage(message: "\n")
+            self.gotMessage("\n")
         }
     }
 
-    public func gotMessage(message:String) {
+    public func gotMessage(_ message: String) {
+        debugPrint("MessageViewController.gotMessage \(message)")
         messages.append(message)
         if messages.count > maxMessages {
             messages.remove(at: 0)
@@ -34,11 +36,13 @@ class MessageViewController: NSViewController {
     }
     
     func update() {
+        debugPrint("MessageViewController.update")
         var totalMessage: String = ""
         for message in messages {
             totalMessage.append(message)
             DispatchQueue.main.async {
                 self.messagesLabel.stringValue = totalMessage
+                self.view.needsDisplay = true
             }
         }
     }

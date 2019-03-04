@@ -28,6 +28,7 @@
 		2F75019A222C33D6002040A7 /* Planet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F750199222C33D6002040A7 /* Planet.swift */; };
 		2F7501A0222C8E59002040A7 /* Tuple16.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F75019F222C8E59002040A7 /* Tuple16.swift */; };
 		2F7501A2222C930B002040A7 /* packets-extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7501A1222C930B002040A7 /* packets-extensions.swift */; };
+		2F7501A4222CA33C002040A7 /* packets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7501A3222CA33C002040A7 /* packets.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		2F75019C222C8992002040A7 /* Netrek-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Netrek-Bridging-Header.h"; sourceTree = "<group>"; };
 		2F75019F222C8E59002040A7 /* Tuple16.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tuple16.swift; sourceTree = "<group>"; };
 		2F7501A1222C930B002040A7 /* packets-extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "packets-extensions.swift"; sourceTree = "<group>"; };
+		2F7501A3222CA33C002040A7 /* packets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = packets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				2F75019B222C87DE002040A7 /* packets.h */,
+				2F7501A3222CA33C002040A7 /* packets.swift */,
 				2F75016B2229FA22002040A7 /* MetaServerEntry.swift */,
 				2F75016D2229FFE8002040A7 /* MetaServer.swift */,
 				2F75019F222C8E59002040A7 /* Tuple16.swift */,
@@ -261,6 +264,7 @@
 				2F75015B22299E55002040A7 /* ViewController.swift in Sources */,
 				2F750179222A4461002040A7 /* TcpReader.swift in Sources */,
 				2F75015922299E55002040A7 /* AppDelegate.swift in Sources */,
+				2F7501A4222CA33C002040A7 /* packets.swift in Sources */,
 				2F750198222B66AF002040A7 /* Data-extensions.swift in Sources */,
 				2F750180222AEC8B002040A7 /* MakePacket.swift in Sources */,
 				2F750183222AF698002040A7 /* GameState.swift in Sources */,
