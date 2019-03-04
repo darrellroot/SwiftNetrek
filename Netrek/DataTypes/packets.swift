@@ -28,6 +28,22 @@ import Foundation
  }*/
 
 
+struct CP_OUTFIT {
+    let type: UInt8 = 9
+    var team: UInt8 = 0
+    var ship: UInt8 = 0
+    let pad1: UInt8 = 0
+    init(team: Team, ship: ShipType) {
+        //self.team = UInt8(team.rawValue)
+        self.ship = UInt8(ship.rawValue)
+    }
+    var size: Int {
+        get {
+            return 4
+        }
+    }
+}
+
 struct CP_PACKET {
     let type: UInt8 = 27
     let version: UInt8 = SOCKVERSION

@@ -68,11 +68,13 @@ class PacketAnalyzer {
                 return
             }
             guard let packetLength = PACKET_SIZES[safe: Int(packetType)] else {
-                debugPrint("Warning: PacketAnalyzer.analyze received invalid packet type \(packetType)")
+                debugPrint("Warning: PacketAnalyzer.analyze received invalid packet type \(packetType) dumping data")
+                printData(data, success: false)
                 return
             }
             guard packetLength > 0 else {
                 debugPrint("PacketAnalyzer invalid packet length \(packetLength) type \(packetType)")
+                printData(data, success: false)
                 return
             }
             guard data.count >= packetLength else {
@@ -87,6 +89,14 @@ class PacketAnalyzer {
         } while data.count > 0
     }
 
+    func printData(_ data: Data, success: Bool) {
+        var dumpString = "\(success) "
+        for byte in data {
+            let addString = String(format:"%x ",byte)
+            dumpString += addString
+        }
+        debugPrint(dumpString)
+    }
     func analyzeOnePacket(data: Data) {
         guard data.count > 0 else {
             debugPrint("PacketAnalyer.analyzeOnePacket data length 0")
@@ -95,14 +105,17 @@ class PacketAnalyzer {
         let packetType: UInt8 = data[0]
         guard let packetLength = PACKET_SIZES[safe: Int(packetType)] else {
             debugPrint("Warning: PacketAnalyzer.analyzeOnePacket received invalid packet type \(packetType)")
+            printData(data, success: false)
             return
         }
         guard packetLength > 0 else {
             debugPrint("PacketAnalyzer.analyzeOnePacket invalid packet length \(packetLength) type \(packetType)")
+            printData(data, success: false)
             return
         }
         guard packetLength == data.count else {
             debugPrint("PacketAnalyzer.analyeOnePacket unexpected data length \(data.count) expected \(packetLength) type \(packetType)")
+            printData(data, success: false)
             return
         }
         switch packetType {
@@ -114,11 +127,14 @@ class PacketAnalyzer {
             let team = Int(data[3])
             guard let player = universe.players[safe: playerID] else {
                 debugPrint("PacketAnalyzer type 2 invalid player id \(playerID)")
+                printData(data, success: false)
                 return
             }
             player.ship = shipType
             player.team = team
-            debugPrint(player)
+            printData(data, success: true)
+
+            //debugPrint(player)
         
         case 3:
             // SP_KILLS
@@ -127,10 +143,12 @@ class PacketAnalyzer {
             let kills: Double = Double(killsInt) / 100.0
             guard let player = universe.players[safe: playerID] else {
                 debugPrint("PacketAnalyzer type 2 invalid player id \(playerID)")
+                printData(data, success: false)
                 return
             }
             player.kills = kills
-            debugPrint(player)
+            printData(data, success: true)
+            //debugPrint(player)
 
         case 4:
             // SP_PLAYER py-struct
@@ -141,13 +159,17 @@ class PacketAnalyzer {
             let locationY = data.subdata(in: (4..<8)).to(type: UInt32.self)
             guard let player = universe.players[safe: playerID] else {
                 debugPrint("PacketAnalyzer type 4 invalid player id \(playerID)")
+                printData(data, success: false)
+
                 return
             }
             player.direction = direction
             player.speed = speed
             player.locationX = Int(locationX)
             player.locationY = Int(locationY)
-            debugPrint(player)
+            //debugPrint(player)
+            printData(data, success: true)
+
 
         case 11:
             // message
@@ -157,9 +179,12 @@ class PacketAnalyzer {
                 var messageString = messageStringWithNulls.filter { $0 != "\0" }
                 messageString.append("\n")
                 appDelegate.messageViewController?.gotMessage(messageString)
-                debugPrint(messageString)
+                //debugPrint(messageString)
+                printData(data, success: true)
             } else {
                 debugPrint("PacketAnalyzer unable to decode message type 11")
+                printData(data, success: false)
+
             }
         case 12:
             // My information
@@ -180,6 +205,7 @@ class PacketAnalyzer {
             debugPrint("I am player \(myPlayerID) damage \(damage) fuel \(fuel) \(engineTemp)\n")
             guard let me = universe.players[safe: myPlayerID] else {
                 debugPrint("PacketAnalyzer cannot find myPlayerID \(myPlayerID)")
+                printData(data, success: false)
                 return
             }
             universe.me = me
@@ -197,11 +223,15 @@ class PacketAnalyzer {
             // whydead
             // whodead
             appDelegate.newGameState(.serverSlotFound)
-            debugPrint(me.description)
+            //debugPrint(me.description)
+            printData(data, success: true)
+
         case 13:
             // SP_QUEUE
             let queue = data.subdata(in: (2..<3)).to(type: UInt16.self)
             appDelegate.messageViewController?.gotMessage("Connected to server. Wait queue position \(queue)")
+            printData(data, success: true)
+
 
         case 17:
             // SP_LOGIN
@@ -219,8 +249,10 @@ class PacketAnalyzer {
                 appDelegate.messageViewController?.gotMessage("login failed")
                 appDelegate.newGameState(.noServerSelected)
             } else {
-                appDelegate.messageViewController?.gotMessage("login successful")
+                appDelegate.newGameState(.loginAccepted)
             }
+            printData(data, success: true)
+
         case 18:
             //SP_FLAGS
             let playerID = Int(data[1])
@@ -229,11 +261,14 @@ class PacketAnalyzer {
 
             guard let player = universe.players[safe: playerID] else {
                 debugPrint("PacketAnalyzer type 18 invalid player id \(playerID)")
+                printData(data, success: false)
+
                 return
             }
             player.tractor = tractor
             player.flags = flags
-            debugPrint(player)
+            //debugPrint(player)
+            printData(data, success: true)
 
         case 20:
             // SP_PSTATUS
@@ -241,10 +276,14 @@ class PacketAnalyzer {
             let status = Int(data[2])
             guard let player = universe.players[safe: playerID] else {
                 debugPrint("PacketAnalyzer type 20 invalid player id \(playerID)")
+                printData(data, success: false)
+
                 return
             }
             player.status = Int(status)
-            debugPrint(player)
+            //debugPrint(player)
+            printData(data, success: true)
+
 
         case 22:
             let playerID = Int(data[1])
@@ -252,11 +291,15 @@ class PacketAnalyzer {
             let hostile = Int(data[3])
             guard let player = universe.players[safe: playerID] else {
                 debugPrint("PacketAnalyzer type 22 invalid player id \(playerID)")
+                printData(data, success: false)
+
                 return
             }
             player.war = war
             player.hostile = hostile
-            debugPrint(player)
+            //debugPrint(player)
+            printData(data, success: true)
+
             
         case 24:
             //plyr_long_spacket SP_PL_LOGIN
@@ -280,15 +323,18 @@ class PacketAnalyzer {
             }
             guard let player = universe.players[safe: playerID] else {
                 debugPrint("PacketAnalyzer type 24 invalid player id \(playerID)")
+                printData(data, success: false)
+
                 return
             }
             player.rank = rank
             player.name = name
             //monitor
             player.login = login
-            
+            printData(data, success: true)
+
             //debugPrint("PacketAnalyzer: received packet type 24: player login")
-            debugPrint(player)
+            //debugPrint(player)
         case 26:
             // SP_PLANET_LOC
             let planetID = Int(data[1])
@@ -301,11 +347,15 @@ class PacketAnalyzer {
             }
             universe.updatePlanet(planetID: planetID, positionX: positionX, positionY: positionY, name: name)
             if let planet = universe.planets[safe: planetID] {
-                debugPrint(planet)
+                //debugPrint(planet)
             }
+            printData(data, success: true)
+
 
         default:
             debugPrint("Default case: Received packet type \(packetType) length \(packetLength)\n")
+            printData(data, success: true)
+
         }
     }
 }

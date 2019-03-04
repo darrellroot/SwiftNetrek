@@ -27,7 +27,7 @@ class MessageViewController: NSViewController {
     }
 
     public func gotMessage(_ message: String) {
-        debugPrint("MessageViewController.gotMessage \(message)")
+        //debugPrint("MessageViewController.gotMessage \(message)")
         messages.append(message)
         if messages.count > maxMessages {
             messages.remove(at: 0)
@@ -36,7 +36,7 @@ class MessageViewController: NSViewController {
     }
     
     func update() {
-        debugPrint("MessageViewController.update")
+        //debugPrint("MessageViewController.update")
         var totalMessage: String = ""
         for message in messages {
             totalMessage.append(message)

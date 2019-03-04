@@ -18,6 +18,7 @@ class TcpReader {
     let connection: NWConnection
     var delegate: NetworkDelegate
     let queue: DispatchQueue
+    var receiving: Bool = false // primitive lock on receiving
     init?(hostname: String, port: Int, delegate: NetworkDelegate) {
         self.hostname = hostname
         self.port = port
@@ -28,12 +29,22 @@ class TcpReader {
         let port = UInt16(port)
         queue = DispatchQueue(label: "hostname", attributes: .concurrent)
         guard let portEndpoint = NWEndpoint.Port(rawValue: port) else { return nil }
+        //var options = NWProtocolTCP.Options()
+        //options.noDelay = true
+
+        //var parameters = NWParameters()
+        //parameters.
+        //let ipOptions = NWParameters().defaultProtocolStack.transportProtocol as? NWProtocolTCP.Options
+        //ipOptions?.noDelay = true
+
         connection = NWConnection(host: serverEndpoint, port: portEndpoint, using: .tcp)
+        //let connection2 = NWConnection(host: serverEndpoint, port: portEndpoint, using: ipOptions!)
         connection.stateUpdateHandler = { [weak self] (newState) in
             switch newState {
             case .ready:
                 debugPrint("TcpReader.ready to send")
                 self?.appDelegate.newGameState(.serverConnected)
+                
             case .failed(let error):
                 debugPrint("TcpReader.client failed with error \(error)")
                 self?.appDelegate.newGameState(.noServerSelected)
@@ -73,6 +84,8 @@ class TcpReader {
         connection.start(queue: queue)
     }
     @objc func receive() {  // called by timer
+        if receiving { return }
+        self.receiving = true
         /*
         connection.receiveMessage { (content, context, isComplete, error) in
             debugPrint("\(Date()) TcpReader: got a message \(String(describing: content?.count)) bytes")
@@ -82,12 +95,15 @@ class TcpReader {
         }
         */
         //debugPrint("trying to receive data")
-        connection.receive(minimumIncompleteLength: 4, maximumLength: 15000) { (content, context, isComplete, error) in
-            debugPrint("\(Date()) TcpReader: got a message \(String(describing: content?.count)) bytes")
+        connection.receive(minimumIncompleteLength: 1, maximumLength: 8192) { (content, context, isComplete, error) in
+            if (content?.count ?? 0) > 0 {
+                debugPrint("\(Date()) TcpReader: got a message \(String(describing: content?.count)) bytes")
+            }
             if let content = content {
                 self.delegate.gotData(data: content, from: self.hostname, port: self.port)
             }
         }
+        self.receiving = false
         //debugPrint("returning from trying to receive data")
     }
     

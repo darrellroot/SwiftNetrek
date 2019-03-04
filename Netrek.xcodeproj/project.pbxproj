@@ -19,7 +19,7 @@
 		2F75017B222A4956002040A7 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F75017A222A4956002040A7 /* Globals.swift */; };
 		2F75017E222A57EC002040A7 /* NetworkDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F75017D222A57EC002040A7 /* NetworkDelegate.swift */; };
 		2F750180222AEC8B002040A7 /* MakePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F75017F222AEC8B002040A7 /* MakePacket.swift */; };
-		2F750183222AF698002040A7 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F750182222AF698002040A7 /* GameState.swift */; };
+		2F750183222AF698002040A7 /* enumerations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F750182222AF698002040A7 /* enumerations.swift */; };
 		2F750185222B2476002040A7 /* PacketAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F750184222B2476002040A7 /* PacketAnalyzer.swift */; };
 		2F750189222B4532002040A7 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F750188222B4532002040A7 /* MessageViewController.swift */; };
 		2F750194222B6019002040A7 /* Universe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F750193222B6019002040A7 /* Universe.swift */; };
@@ -47,7 +47,7 @@
 		2F75017A222A4956002040A7 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		2F75017D222A57EC002040A7 /* NetworkDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDelegate.swift; sourceTree = "<group>"; };
 		2F75017F222AEC8B002040A7 /* MakePacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePacket.swift; sourceTree = "<group>"; };
-		2F750182222AF698002040A7 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
+		2F750182222AF698002040A7 /* enumerations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = enumerations.swift; sourceTree = "<group>"; };
 		2F750184222B2476002040A7 /* PacketAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketAnalyzer.swift; sourceTree = "<group>"; };
 		2F750188222B4532002040A7 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		2F750193222B6019002040A7 /* Universe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Universe.swift; sourceTree = "<group>"; };
@@ -162,7 +162,7 @@
 		2F750181222AF683002040A7 /* Enumerations */ = {
 			isa = PBXGroup;
 			children = (
-				2F750182222AF698002040A7 /* GameState.swift */,
+				2F750182222AF698002040A7 /* enumerations.swift */,
 			);
 			path = Enumerations;
 			sourceTree = "<group>";
@@ -267,7 +267,7 @@
 				2F7501A4222CA33C002040A7 /* packets.swift in Sources */,
 				2F750198222B66AF002040A7 /* Data-extensions.swift in Sources */,
 				2F750180222AEC8B002040A7 /* MakePacket.swift in Sources */,
-				2F750183222AF698002040A7 /* GameState.swift in Sources */,
+				2F750183222AF698002040A7 /* enumerations.swift in Sources */,
 				2F75019A222C33D6002040A7 /* Planet.swift in Sources */,
 				2F750171222A21BE002040A7 /* Collection-extensions.swift in Sources */,
 				2F750189222B4532002040A7 /* MessageViewController.swift in Sources */,

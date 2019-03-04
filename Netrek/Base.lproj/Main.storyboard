@@ -674,16 +674,90 @@
                             </menuItem>
                             <menuItem title="Servers" id="ynS-JN-hrX">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Servers" id="fh8-Tz-54x">
+                                <menu key="submenu" title="Servers" id="fh8-Tz-54x"/>
+                            </menuItem>
+                            <menuItem title="Select Team" id="tBm-Hs-EZZ">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Select Team" id="O0Y-Aa-brW" userLabel="Team">
                                     <items>
-                                        <menuItem title="Item 1" id="c5O-24-rGO">
+                                        <menuItem title="Federation" tag="1" id="QXd-H4-JIy">
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="selectTeam:" target="Voe-Tx-rLC" id="XNP-G7-TNe"/>
+                                            </connections>
                                         </menuItem>
-                                        <menuItem title="Item 2" id="XvZ-TD-bEu">
+                                        <menuItem title="Romulan" tag="2" id="kba-Sn-YPK">
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="selectTeam:" target="Voe-Tx-rLC" id="gWr-j0-Rce"/>
+                                            </connections>
                                         </menuItem>
-                                        <menuItem title="Item 3" id="C6m-Y2-niB">
+                                        <menuItem title="Klingon" tag="4" id="eOl-m9-uy5">
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="selectTeam:" target="Voe-Tx-rLC" id="1U5-jR-hi6"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Orion" tag="8" id="vkp-EH-W33">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="selectTeam:" target="Voe-Tx-rLC" id="hSi-cc-M8E"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Select Ship" id="Eur-jy-ise">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Select Ship" id="Erg-2x-DFO">
+                                    <items>
+                                        <menuItem title="Scout" id="K8f-w1-MFk" userLabel="Scout">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="selectShip:" target="Voe-Tx-rLC" id="9ck-P3-72Q"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Destroyer" tag="1" id="RQR-xk-MBV">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="selectShip:" target="Voe-Tx-rLC" id="Ueq-XL-B5Z"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Cruiser" tag="2" id="OK2-1b-QZf">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="selectShip:" target="Voe-Tx-rLC" id="erF-Mb-zIv"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Battleship" tag="3" id="IRe-hJ-dlA">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="selectShip:" target="Voe-Tx-rLC" id="RUw-8p-Ff5"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Assault" tag="4" id="Eac-fh-7uH">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="selectShip:" target="Voe-Tx-rLC" id="f1n-XZ-Z7d"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Starbase" tag="5" id="HaN-YX-xIR">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="selectShip:" target="Voe-Tx-rLC" id="Ai9-pa-YVN"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Galaxy" tag="6" id="0nc-GY-vqF">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="selectShip:" target="Voe-Tx-rLC" id="c2z-a9-c4y"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Attack Cruiser" tag="7" id="PJN-1x-q1X">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="selectShip:" target="Voe-Tx-rLC" id="7eY-Eh-xoV"/>
+                                            </connections>
                                         </menuItem>
                                     </items>
                                 </menu>
@@ -708,6 +782,18 @@
                 </application>
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Netrek" customModuleProvider="target">
                     <connections>
+                        <outlet property="selectShipAssault" destination="Eac-fh-7uH" id="g10-ZF-u1S"/>
+                        <outlet property="selectShipAttackCruiser" destination="PJN-1x-q1X" id="DaK-6X-ly0"/>
+                        <outlet property="selectShipBattleship" destination="IRe-hJ-dlA" id="xQy-su-IbW"/>
+                        <outlet property="selectShipCruiser" destination="OK2-1b-QZf" id="f3Q-FY-u0C"/>
+                        <outlet property="selectShipDestroyer" destination="RQR-xk-MBV" id="jeB-zk-UkE"/>
+                        <outlet property="selectShipGalaxy" destination="0nc-GY-vqF" id="sAH-F0-QR4"/>
+                        <outlet property="selectShipScout" destination="K8f-w1-MFk" id="1RG-m2-8MX"/>
+                        <outlet property="selectShipStarbase" destination="HaN-YX-xIR" id="Whg-fb-Nlu"/>
+                        <outlet property="selectTeamFederation" destination="QXd-H4-JIy" id="cVr-be-xqm"/>
+                        <outlet property="selectTeamKlingon" destination="eOl-m9-uy5" id="Ajd-Ph-4FM"/>
+                        <outlet property="selectTeamOrion" destination="vkp-EH-W33" id="wYs-aF-AfH"/>
+                        <outlet property="selectTeamRomulan" destination="kba-Sn-YPK" id="W9C-QF-FG8"/>
                         <outlet property="serverMenu" destination="fh8-Tz-54x" id="NRY-WO-pko"/>
                     </connections>
                 </customObject>

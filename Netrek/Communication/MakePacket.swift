@@ -7,9 +7,11 @@
 //
 
 import Foundation
+import AppKit
 
 class MakePacket {
-    
+    static let appDelegate = NSApplication.shared.delegate as! AppDelegate
+
     static func make16Tuple(string: String) -> (UInt8,UInt8,UInt8,UInt8,UInt8,UInt8,UInt8,UInt8,UInt8,UInt8,UInt8,UInt8,UInt8,UInt8,UInt8,UInt8) {
         var temp: [UInt8] = []
         for _ in 0..<16 {
@@ -23,6 +25,15 @@ class MakePacket {
         }
         let information = (temp[0],temp[1],temp[2],temp[3],temp[4],temp[5],temp[6],temp[7],temp[8],temp[9],temp[10],temp[11],temp[12],temp[13],temp[14],temp[15])
         return information
+    }
+    static func cpOutfit(team: Team, ship: ShipType) -> Data {
+        // packet type 8
+        var packet = CP_OUTFIT(team: team, ship: ship)
+        let data = Data(bytes: &packet, count: packet.size)
+        for char in data {
+            debugPrint(char)
+        }
+        return data
     }
     static func cpPacket() -> Data {
         // packet type 27
@@ -41,9 +52,6 @@ class MakePacket {
         packet.login = make16Tuple(string: login)
         packet.password = make16Tuple(string: password)
         let data = Data(bytes: &packet, count: packet.size)
-        for byte in data {
-            debugPrint(byte)
-        }
         return data
     }
     /*static func cpLogin(name: String, password: String, login: String) -> Data {
