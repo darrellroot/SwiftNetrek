@@ -27,6 +27,7 @@ class MakePacket {
         return information
     }
     static func cpOutfit(team: Team, ship: ShipType) -> Data {
+        debugPrint("Sending CP_OUTFIT")
         // packet type 8
         var packet = CP_OUTFIT(team: team, ship: ship)
         let data = Data(bytes: &packet, count: packet.size)
@@ -36,15 +37,18 @@ class MakePacket {
         return data
     }
     static func cpPacket() -> Data {
+        debugPrint("Sending CP_PACKET")
+
         // packet type 27
         var packet = CP_PACKET()
         let data = Data(bytes: &packet, count: packet.size)
         return data
     }
-    static func cpLogin(name: String, password:
+    static func cpLogin(name: String, password: String, login: String) -> Data {
+        debugPrint("Sending CP_LOGIN")
         // ugly hack with 16-element tuple and
         // C structure header to get bit boundaries to align
-        String, login: String) -> Data {
+    
         var packet = login_cpacket()
         packet.type = 8
         packet.query = 1

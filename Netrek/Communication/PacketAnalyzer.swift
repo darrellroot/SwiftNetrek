@@ -90,12 +90,15 @@ class PacketAnalyzer {
     }
 
     func printData(_ data: Data, success: Bool) {
-        var dumpString = "\(success) "
-        for byte in data {
-            let addString = String(format:"%x ",byte)
-            dumpString += addString
+        let printPacketDumps = false
+            if printPacketDumps {
+            var dumpString = "\(success) "
+            for byte in data {
+                let addString = String(format:"%x ",byte)
+                dumpString += addString
+            }
+            debugPrint(dumpString)
         }
-        debugPrint(dumpString)
     }
     func analyzeOnePacket(data: Data) {
         guard data.count > 0 else {
@@ -121,6 +124,7 @@ class PacketAnalyzer {
         switch packetType {
             
         case 2:
+            debugPrint("Received SP_PLAYER_INFO")
             //SP_PLAYER_INFO
             let playerID = Int(data[1])
             let shipType = Int(data[2])
@@ -137,6 +141,8 @@ class PacketAnalyzer {
             //debugPrint(player)
         
         case 3:
+            debugPrint("Received SP_KILLS")
+
             // SP_KILLS
             let playerID = Int(data[1])
             let killsInt = data.subdata(in: (4..<8)).to(type: UInt32.self)
@@ -151,6 +157,7 @@ class PacketAnalyzer {
             //debugPrint(player)
 
         case 4:
+            debugPrint("Received SP_PLAYER")
             // SP_PLAYER py-struct
             let playerID = Int(data[1])
             let direction = Int(data[2])
@@ -172,6 +179,7 @@ class PacketAnalyzer {
 
 
         case 11:
+            debugPrint("Received SP_PLAYER_INFO")
             // message
             let range = (4..<84)
             let messageData = data.subdata(in: range)
@@ -187,6 +195,7 @@ class PacketAnalyzer {
 
             }
         case 12:
+            debugPrint("Received SP_YOU")
             // My information
             // SP_YOU length 32
             let myPlayerID = Int(data[1])
@@ -227,6 +236,7 @@ class PacketAnalyzer {
             printData(data, success: true)
 
         case 13:
+            debugPrint("Received SP_QUEUE")
             // SP_QUEUE
             let queue = data.subdata(in: (2..<3)).to(type: UInt16.self)
             appDelegate.messageViewController?.gotMessage("Connected to server. Wait queue position \(queue)")
@@ -234,6 +244,7 @@ class PacketAnalyzer {
 
 
         case 17:
+            debugPrint("Received SP_LOGIN")
             // SP_LOGIN
             let accept = Int(data[1])
             let paradise1 = Int(data[2])
@@ -254,6 +265,7 @@ class PacketAnalyzer {
             printData(data, success: true)
 
         case 18:
+            debugPrint("Received SP_FLAGS")
             //SP_FLAGS
             let playerID = Int(data[1])
             let tractor = Int(data[2])
@@ -271,6 +283,7 @@ class PacketAnalyzer {
             printData(data, success: true)
 
         case 20:
+            debugPrint("Received SP_PSTATUS")
             // SP_PSTATUS
             let playerID = Int(data[1])
             let status = Int(data[2])
@@ -286,6 +299,7 @@ class PacketAnalyzer {
 
 
         case 22:
+            debugPrint("Received SP_HOSTILE")
             let playerID = Int(data[1])
             let war = Int(data[2])
             let hostile = Int(data[3])
@@ -302,6 +316,7 @@ class PacketAnalyzer {
 
             
         case 24:
+            debugPrint("Received SP_PL_LOGIN")
             //plyr_long_spacket SP_PL_LOGIN
             // new player logged in
             let playerID = Int(data[1])
@@ -336,6 +351,7 @@ class PacketAnalyzer {
             //debugPrint("PacketAnalyzer: received packet type 24: player login")
             //debugPrint(player)
         case 26:
+            debugPrint("Received SP_PLANET_LOC")
             // SP_PLANET_LOC
             let planetID = Int(data[1])
             let positionX = Int(data.subdata(in: (4..<8)).to(type: UInt32.self).byteSwapped)

@@ -46,7 +46,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let metaServer = metaServer {
             metaServer.update()
         }
-        timer = Timer(timeInterval: 1.0 / Double(UPDATE_RATE) , target: self, selector: #selector(timerFired), userInfo: nil, repeats: true)
+        timer = Timer(timeInterval: timerInterval , target: self, selector: #selector(timerFired), userInfo: nil, repeats: true)
         timer?.tolerance = timerInterval / 10.0
         if let timer = timer {
             RunLoop.current.add(timer, forMode: RunLoop.Mode.common)
@@ -223,16 +223,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         case .noServerSelected:
             break
         case .serverSelected:
+            break
             reader?.receive()
         case .serverConnected:
+            break
             reader?.receive()
         case .serverSlotFound:
+            break
             reader?.receive()
         case .loginAccepted:
+            break
             reader?.receive()
         case .outfitAccepted:
+            break
             reader?.receive()
         case .gameActive:
+            break
             reader?.receive()
         }
     }

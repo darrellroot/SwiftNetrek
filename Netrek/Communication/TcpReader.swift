@@ -19,6 +19,7 @@ class TcpReader {
     var delegate: NetworkDelegate
     let queue: DispatchQueue
     var receiving: Bool = false // primitive lock on receiving
+    var receiveCount: Int = 0
     init?(hostname: String, port: Int, delegate: NetworkDelegate) {
         self.hostname = hostname
         self.port = port
@@ -44,7 +45,7 @@ class TcpReader {
             case .ready:
                 debugPrint("TcpReader.ready to send")
                 self?.appDelegate.newGameState(.serverConnected)
-                
+                self?.receive()
             case .failed(let error):
                 debugPrint("TcpReader.client failed with error \(error)")
                 self?.appDelegate.newGameState(.noServerSelected)
@@ -59,7 +60,6 @@ class TcpReader {
                 self?.appDelegate.newGameState(.noServerSelected)
             }
         }
-        let interval = 1.0 / Double(UPDATE_RATE)
         //timer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(receive), userInfo: nil, repeats: true)
         //timer!.tolerance = interval / 10.0
         
@@ -83,9 +83,8 @@ class TcpReader {
         }*/
         connection.start(queue: queue)
     }
-    @objc func receive() {  // called by timer
-        if receiving { return }
-        self.receiving = true
+    func receive() {
+        debugPrint("starting receive count \(self.receiveCount)")
         /*
         connection.receiveMessage { (content, context, isComplete, error) in
             debugPrint("\(Date()) TcpReader: got a message \(String(describing: content?.count)) bytes")
@@ -96,14 +95,19 @@ class TcpReader {
         */
         //debugPrint("trying to receive data")
         connection.receive(minimumIncompleteLength: 1, maximumLength: 8192) { (content, context, isComplete, error) in
+            debugPrint("In receive closure count \(self.receiveCount)")
             if (content?.count ?? 0) > 0 {
                 debugPrint("\(Date()) TcpReader: got a message \(String(describing: content?.count)) bytes")
             }
             if let content = content {
                 self.delegate.gotData(data: content, from: self.hostname, port: self.port)
             }
+            if self.connection.state == .ready && isComplete == false {
+                self.receive()
+            }
         }
-        self.receiving = false
+        debugPrint("leaving receive count \(self.receiveCount)")
+        receiveCount = receiveCount + 1
         //debugPrint("returning from trying to receive data")
     }
     

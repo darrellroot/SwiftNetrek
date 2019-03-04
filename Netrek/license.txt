@@ -1,8 +1,21 @@
 SwiftNetrek - 2019 - Darrell Root
-This package already has sufficient licenses.  While I'm attempting to port
-this from Objective-C to Swift I see no reason to add any additional licenses.
-I thank Chris Lukassen for the Objective-C MacTrek and hope this port is worthy
-of his work.
+
+License note: "Swift Netrek" used MacTrek as a reference implemntation, which is derived
+from JTrek, which is derived from Netrek, which is derived from XTrek.
+I've reimplemented the code in Swift using a different language and different
+internal architecture than MacTrek.  At this time (4Mar2019) we use the API's and a few
+structure header files from the previous implementations (I expect to use
+some resources during implementation, but plan to eliminate anything which
+infringes on Television and Movie copyright holders).  Prior to
+accepting any source code contributions from anyone else we will
+evaluate which licenses apply to the shipping version of our code.  In the
+meantime, anyone who takes this code should comply with the 3 derived licenses
+below.
+
+No matter what, our source code will be freely available on the Internet.
+In fact, it already is during early development.  Long live Netrek!
+
+- Darrell Root
 
 MacTrek - Copyright (c) 2008 Chris Lukassen
 Preamble
