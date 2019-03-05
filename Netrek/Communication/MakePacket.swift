@@ -26,38 +26,68 @@ class MakePacket {
         let information = (temp[0],temp[1],temp[2],temp[3],temp[4],temp[5],temp[6],temp[7],temp[8],temp[9],temp[10],temp[11],temp[12],temp[13],temp[14],temp[15])
         return information
     }
-    static func cpOutfit(team: Team, ship: ShipType) -> Data {
-        debugPrint("Sending CP_OUTFIT")
-        // packet type 8
-        var packet = CP_OUTFIT(team: team, ship: ship)
-        let data = Data(bytes: &packet, count: packet.size)
-        for char in data {
-            debugPrint(char)
-        }
-        return data
-    }
-    static func cpPacket() -> Data {
-        debugPrint("Sending CP_PACKET")
-
-        // packet type 27
-        var packet = CP_PACKET()
-        let data = Data(bytes: &packet, count: packet.size)
-        return data
-    }
     static func cpLogin(name: String, password: String, login: String) -> Data {
-        debugPrint("Sending CP_LOGIN")
         // ugly hack with 16-element tuple and
         // C structure header to get bit boundaries to align
-    
+        
         var packet = login_cpacket()
         packet.type = 8
-        packet.query = 1
+        packet.query = 0
         packet.name = make16Tuple(string: name)
         packet.login = make16Tuple(string: login)
         packet.password = make16Tuple(string: password)
+        debugPrint("Sending CP_LOGIN 8 query \(packet.query) name \(name)")
         let data = Data(bytes: &packet, count: packet.size)
         return data
     }
+    static func cpOutfit(team: Team, ship: ShipType) -> Data {
+        debugPrint("Sending CP_OUTFIT 9")
+        // packet type 9
+        var packet = CP_OUTFIT(team: team, ship: ship)
+        let data = Data(bytes: &packet, count: packet.size)
+        return data
+    }
+    static func cpSocket() -> Data {
+        debugPrint("Sending CP_SOCKET 27")
+
+        // packet type 27
+        var packet = CP_SOCKET()
+        let data = Data(bytes: &packet, count: packet.size)
+        return data
+    }
+    static func cpUpdates() -> Data {
+        var packet = CP_UPDATES()
+        debugPrint("Sending CP_UPDATE 31 \(packet.usecs.byteSwapped)")
+        let data = Data(bytes: &packet, count: packet.size)
+        return data
+    }
+    static func cpFeatures(feature: String, arg1: Int8 = 0) -> Data {
+        let value = 1
+        debugPrint("Sending CP_FEATURE 60 arg1 \(arg1) value \(value) feature \(feature)")
+        var packet = feature_cpacket()
+        packet.type = 60
+        packet.feature_type = 83 // S in ascii
+        packet.arg1 = Int8(arg1)
+        packet.arg2 = 0
+        packet.value = Int32(value).bigEndian
+        var name = withUnsafeMutableBytes(of: &packet.name) {bytes in
+            var count = 0
+            let feature = feature.utf8
+            for char in feature {
+                bytes[count] = char
+                count = count + 1
+            }
+            // now null pad to 80
+            for _ in count..<80 {
+                bytes[count] = 0
+                count = count + 1
+            }
+        }
+        //var packet = CP_FEATURE(feature: feature)
+        let data = Data(bytes: &packet, count: MemoryLayout.size(ofValue: packet))
+        return data
+    }
+
     /*static func cpLogin(name: String, password: String, login: String) -> Data {
         var packet = CP_LOGIN()
         for (index,char) in name.utf8.enumerated() {

@@ -124,7 +124,7 @@ class PacketAnalyzer {
         switch packetType {
             
         case 2:
-            debugPrint("Received SP_PLAYER_INFO")
+            debugPrint("Received SP_PLAYER_INFO 2")
             //SP_PLAYER_INFO
             let playerID = Int(data[1])
             let shipType = Int(data[2])
@@ -141,7 +141,7 @@ class PacketAnalyzer {
             //debugPrint(player)
         
         case 3:
-            debugPrint("Received SP_KILLS")
+            debugPrint("Received SP_KILLS 3")
 
             // SP_KILLS
             let playerID = Int(data[1])
@@ -157,7 +157,7 @@ class PacketAnalyzer {
             //debugPrint(player)
 
         case 4:
-            debugPrint("Received SP_PLAYER")
+            debugPrint("Received SP_PLAYER 4")
             // SP_PLAYER py-struct
             let playerID = Int(data[1])
             let direction = Int(data[2])
@@ -179,7 +179,7 @@ class PacketAnalyzer {
 
 
         case 11:
-            debugPrint("Received SP_PLAYER_INFO")
+            debugPrint("Received SP_PLAYER_INFO 11")
             // message
             let range = (4..<84)
             let messageData = data.subdata(in: range)
@@ -195,7 +195,7 @@ class PacketAnalyzer {
 
             }
         case 12:
-            debugPrint("Received SP_YOU")
+            debugPrint("Received SP_YOU 12")
             // My information
             // SP_YOU length 32
             let myPlayerID = Int(data[1])
@@ -231,20 +231,31 @@ class PacketAnalyzer {
             me.weaponsTemp = Int(weaponsTemp)
             // whydead
             // whodead
-            appDelegate.newGameState(.serverSlotFound)
+            if appDelegate.gameState == .serverSelected || appDelegate.gameState == .serverConnected {
+                appDelegate.newGameState(.serverSlotFound)
+            }
             //debugPrint(me.description)
             printData(data, success: true)
 
         case 13:
-            debugPrint("Received SP_QUEUE")
+            debugPrint("Received SP_QUEUE 13")
             // SP_QUEUE
             let queue = data.subdata(in: (2..<3)).to(type: UInt16.self)
             appDelegate.messageViewController?.gotMessage("Connected to server. Wait queue position \(queue)")
             printData(data, success: true)
 
+        case 16:
+            // SP_PICKOK
+            let state = Int(data[1]) // 0 = no, 1 = yes
+            //pad2
+            //pad3
+            debugPrint("Received SP_PICKOK 16 state: \(state)")
+            if state == 1 {
+                appDelegate.newGameState(.outfitAccepted)
+            }
 
         case 17:
-            debugPrint("Received SP_LOGIN")
+            debugPrint("Received SP_LOGIN 17")
             // SP_LOGIN
             let accept = Int(data[1])
             let paradise1 = Int(data[2])
@@ -265,7 +276,7 @@ class PacketAnalyzer {
             printData(data, success: true)
 
         case 18:
-            debugPrint("Received SP_FLAGS")
+            debugPrint("Received SP_FLAGS 18")
             //SP_FLAGS
             let playerID = Int(data[1])
             let tractor = Int(data[2])
@@ -282,8 +293,15 @@ class PacketAnalyzer {
             //debugPrint(player)
             printData(data, success: true)
 
+        case 19:
+            //TODO process mask
+            //SP_MASK
+            let mask = UInt8(data[1])
+            // pad2
+            // pad3
+            debugPrint("Received SP_MASK 19 mask \(mask)")
         case 20:
-            debugPrint("Received SP_PSTATUS")
+            debugPrint("Received SP_PSTATUS 20")
             // SP_PSTATUS
             let playerID = Int(data[1])
             let status = Int(data[2])
@@ -299,7 +317,7 @@ class PacketAnalyzer {
 
 
         case 22:
-            debugPrint("Received SP_HOSTILE")
+            debugPrint("Received SP_HOSTILE 22")
             let playerID = Int(data[1])
             let war = Int(data[2])
             let hostile = Int(data[3])
@@ -316,7 +334,7 @@ class PacketAnalyzer {
 
             
         case 24:
-            debugPrint("Received SP_PL_LOGIN")
+            debugPrint("Received SP_PL_LOGIN 24")
             //plyr_long_spacket SP_PL_LOGIN
             // new player logged in
             let playerID = Int(data[1])
@@ -351,7 +369,7 @@ class PacketAnalyzer {
             //debugPrint("PacketAnalyzer: received packet type 24: player login")
             //debugPrint(player)
         case 26:
-            debugPrint("Received SP_PLANET_LOC")
+            debugPrint("Received SP_PLANET_LOC 26")
             // SP_PLANET_LOC
             let planetID = Int(data[1])
             let positionX = Int(data.subdata(in: (4..<8)).to(type: UInt32.self).byteSwapped)
@@ -367,6 +385,84 @@ class PacketAnalyzer {
             }
             printData(data, success: true)
 
+        case 32:
+            let version = Int(data[1])
+            guard version == 98 else {
+                debugPrint("Received SPGeneric 32 version \(version) discarding)")
+                return
+            }
+            let repairTime = (data.subdata(in: (2..<3)).to(type: UInt16.self).byteSwapped)
+            let pl_orbit = Int8(data[3])
+            let gameup = (data.subdata(in: (4..<5)).to(type: UInt16.self).byteSwapped)
+            let tournamentTeams = UInt8(data[6])
+            let tournamentAge = UInt8(data[7])
+            let tournamentUnits = Int8(data[8])
+            let tournamentRemain = UInt8(data[9])
+            let tournamentRemainUnits = UInt8(data[10])
+            let starbaseRemain = UInt8(data[11]) //starbase reconstruction in minutes
+            let teamRemain = UInt8(data[12]) // team surrender time
+            // 18 bytes padding
+            debugPrint("Received SP_GENERIC 32 version \(version) repairTime \(repairTime) orbit \(pl_orbit) and other stuff all discarded")
+            // 26 bytes of unused padding
+        case 39:
+            // SP_SHIP_CAP
+            let operation = UInt8(data[1])  // /* 0 = add/change a ship, 1 = remove a ship */
+            let shipType = (data.subdata(in: (2..<3)).to(type: UInt16.self).byteSwapped)
+            let torpSpeed = (data.subdata(in: (4..<5)).to(type: UInt16.self).byteSwapped)
+            let phaserRange = (data.subdata(in: (6..<7)).to(type: UInt16.self).byteSwapped)
+            let maxSpeed = (data.subdata(in: (8..<11)).to(type: UInt32.self).byteSwapped)
+            let maxFuel = (data.subdata(in: (12..<15)).to(type: UInt32.self).byteSwapped)
+            let maxShield = (data.subdata(in: (16..<19)).to(type: UInt32.self).byteSwapped)
+            let maxDamage = (data.subdata(in: (20..<23)).to(type: UInt32.self).byteSwapped)
+            let maxWpnTmp = (data.subdata(in: (23..<27)).to(type: Int32.self).byteSwapped)
+            let maxEngTmp = (data.subdata(in: (28..<31)).to(type: Int32.self).byteSwapped)
+            let width = (data.subdata(in: (32..<33)).to(type: UInt16.self).byteSwapped)
+            let height = (data.subdata(in: (34..<35)).to(type: UInt16.self).byteSwapped)
+            let maxArmies = (data.subdata(in: (36..<37)).to(type: UInt16.self).byteSwapped)
+            let letter = Character(UnicodeScalar(Int(data[38])) ?? "U")
+            // pad 39
+            let nameData = data.subdata(in: (40..<55))
+            var shipName = "unknown"
+            if let nameStringWithNulls = String(data: nameData, encoding: .utf8) {
+                shipName = nameStringWithNulls.filter { $0 != "\0" }
+            }
+            let s_desig1 = UInt8(data[56])
+            let s_desig2 = UInt8(data[57])
+            let bitmap = (data.subdata(in: (58..<59)).to(type: UInt16.self).byteSwapped)
+            debugPrint("Received SP_SHIP_CAP 39 operation \(operation) shipType \(shipType) torpSpeed \(torpSpeed) phaserRange \(phaserRange) maxSpeed \(maxSpeed) maxFuel \(maxFuel) maxShield \(maxShield) maxDamage \(maxDamage) maxWpnTmp \(maxWpnTmp) maxEngTmp \(maxEngTmp) width \(width) height \(height) maxArmies \(maxArmies) letter \(letter) shipName \(shipName) s_desig1 \(s_desig1) s_desig2 \(s_desig2) bitmap \(bitmap)")
+
+        case 60:
+            var datacopy = data
+            let feature_type = Character(UnicodeScalar(Int(data[1])) ?? "U") // expect C
+            let arg1 = Int(data[2])
+            let arg2 = Int(data[3])
+            let value = Int(data.subdata(in: (4..<8)).to(type: UInt32.self).byteSwapped)
+            var features: [String] = []
+            var newString: String = ""
+            var newStringValid = false
+            for index in 8 ..< 88 {  // feature packet size better be 88
+                if data[index] != 0 {
+                    if let unicodeScalar = UnicodeScalar(Int(data[index])) {
+                        let char = Character(unicodeScalar)
+                        newStringValid = true
+                        newString.append(char)
+                    }
+                } else {
+                    if newStringValid == true {
+                        features.append(newString)
+                        newString = ""
+                        newStringValid = false
+                    }
+                }
+            }
+            if features.count > 0 {
+                for feature in features {
+                    debugPrint("Received SP_FEATURE 60 \(feature)")
+                }
+            } else {
+                debugPrint("Received SP_FEATURE 60 empty")
+            }
+            appDelegate.serverFeatures = appDelegate.serverFeatures + features
 
         default:
             debugPrint("Default case: Received packet type \(packetType) length \(packetLength)\n")

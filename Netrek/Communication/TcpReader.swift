@@ -60,31 +60,11 @@ class TcpReader {
                 self?.appDelegate.newGameState(.noServerSelected)
             }
         }
-        //timer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(receive), userInfo: nil, repeats: true)
-        //timer!.tolerance = interval / 10.0
         
-        //if let timer = timer {
-        //    timer.tolerance = interval / 10.0
-        //    RunLoop.current.add(timer, forMode: .common)
-        //}
-        
-        
-        /*connection.receiveMessage { (content, context, isComplete, error) in
-            debugPrint("\(Date()) TcpReader: got a message \(String(describing: content?.count)) bytes")
-            if let content = content {
-                self.delegate.gotData(data: content, from: self.hostname, port: self.port)
-            }
-        }*/
-        /*connection.receive(minimumIncompleteLength: 8, maximumLength: 15000) { (content, context, isComplete, error) in
-            debugPrint("\(Date()) TcpReader: got a message \(String(describing: content?.count)) bytes")
-            if let content = content {
-                self.delegate.gotData(data: content, from: self.hostname, port: self.port)
-            }
-        }*/
         connection.start(queue: queue)
     }
     func receive() {
-        debugPrint("starting receive count \(self.receiveCount)")
+        //debugPrint("starting receive count \(self.receiveCount)")
         /*
         connection.receiveMessage { (content, context, isComplete, error) in
             debugPrint("\(Date()) TcpReader: got a message \(String(describing: content?.count)) bytes")
@@ -106,7 +86,7 @@ class TcpReader {
                 self.receive()
             }
         }
-        debugPrint("leaving receive count \(self.receiveCount)")
+        //debugPrint("leaving receive count \(self.receiveCount)")
         receiveCount = receiveCount + 1
         //debugPrint("returning from trying to receive data")
     }

@@ -12,6 +12,8 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     
+    var clientFeatures: [String] = ["FEATURE_PACKETS","SHIP_CAP","SP_GENERIC_32","TIPS"]
+    var serverFeatures: [String] = []
     var metaServer: MetaServer?
     var reader: TcpReader?
     var gameState: GameState = .noServerSelected
@@ -19,6 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var analyzer: PacketAnalyzer?
     let timerInterval = 10.0 / Double(UPDATE_RATE)
     var timer: Timer?
+    var timerCount = 0
     // The following are initialized by the child controllers via the appdelegate
     var messageViewController: MessageViewController?
     
@@ -132,23 +135,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     public func newGameState(_ newState: GameState ) {
+        self.messageViewController?.gotMessage("Game State: moving from self.gameState.rawValue to newState.rawValue")
         switch newState {
         case .noServerSelected:
             self.gameState = newState
-            self.messageViewController?.gotMessage("Game State: \(self.gameState.rawValue)\n")
             debugPrint("AppDelegate GameState \(newState) we may have been ghostbusted!  Resetting.  Try again")
             self.reader = nil
             self.refreshMetaserverMenu(self)
             break
         case .serverSelected:
             self.gameState = newState
-            self.messageViewController?.gotMessage("Game State: \(self.gameState.rawValue)\n")
             self.analyzer = PacketAnalyzer()
             // no need to do anything here, handled in the menu function
             break
         case .serverConnected:
             self.gameState = newState
-            self.messageViewController?.gotMessage("Game State: \(self.gameState.rawValue)\n")
 
             debugPrint("AppDelegate.newGameState: .serverConnected")
 
@@ -156,19 +157,28 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 self.newGameState(.noServerSelected)
                 return
             }
-            let cpPacket = MakePacket.cpPacket()
-            DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 1.0) {
-                reader.send(content: cpPacket)
+        
+            let cpSocket = MakePacket.cpSocket()
+            DispatchQueue.global(qos: .background).async{
+                reader.send(content: cpSocket)
             }
-            break
+            for feature in clientFeatures {
+                let cpFeature: Data
+                if feature == "SP_GENERIC_32" {
+                    cpFeature = MakePacket.cpFeatures(feature: feature,arg1: 2)
+                } else {
+                    cpFeature = MakePacket.cpFeatures(feature: feature)
+                }
+                DispatchQueue.global(qos: .background).asyncAfter(deadline: .now()+0.1) {
+                    self.reader?.send(content: cpFeature)
+                }
+            }
         case .serverSlotFound:
             self.gameState = newState
-            self.messageViewController?.gotMessage("Game State: \(self.gameState.rawValue)\n")
-
             debugPrint("AppDelegate.newGameState: .serverSlotFound")
             let cpLogin = MakePacket.cpLogin(name: "guest", password: "", login: "")
             if let reader = reader {
-                DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 1.0) {
+                DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 0.2) {
 
                     reader.send(content: cpLogin)
                 }
@@ -177,18 +187,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 self.newGameState(.noServerSelected)
             }
         case .loginAccepted:
-            self.messageViewController?.gotMessage("Game State: \(self.gameState.rawValue)\n")
-
             self.gameState = newState
-            let cpOutfit = MakePacket.cpOutfit(team: self.preferredTeam, ship: self.preferredShip)
-            if let reader = reader {
-            DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 1.0) {
-
-                    reader.send(content: cpOutfit)
-                }
-            } else {
+            guard let reader = reader else {
                 self.messageViewController?.gotMessage("ERROR: AppDelegate.newGameState.serverSlot found: no reader")
                 self.newGameState(.noServerSelected)
+                return
+            }
+            let cpUpdates = MakePacket.cpUpdates()
+            DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 0.3) {
+                reader.send(content: cpUpdates)
+            }
+            let cpOutfit = MakePacket.cpOutfit(team: self.preferredTeam, ship: self.preferredShip)
+            DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 0.4) {
+                    reader.send(content: cpOutfit)
             }
         case .outfitAccepted:
             self.gameState = newState
@@ -217,6 +228,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     @objc func timerFired() {
+        timerCount = timerCount + 1
         //debugPrint("AppDelegate.timerFired \(Date())")
         switch self.gameState {
             
@@ -224,29 +236,26 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             break
         case .serverSelected:
             break
-            reader?.receive()
         case .serverConnected:
             break
-            reader?.receive()
         case .serverSlotFound:
             break
-            reader?.receive()
         case .loginAccepted:
             break
-            reader?.receive()
         case .outfitAccepted:
+            //TODO send ping every x timer counts
+            //WHEN do we go to game active
             break
-            reader?.receive()
         case .gameActive:
+            //TODO send ping every x timer counts
             break
-            reader?.receive()
         }
     }
 }
 
 extension AppDelegate: NetworkDelegate {
     func gotData(data: Data, from: String, port: Int) {
-        debugPrint("appdelegate got data \(data.count) bytes")
+        //debugPrint("appdelegate got data \(data.count) bytes")
         if data.count > 0 {
             analyzer?.analyze(incomingData: data)
         }

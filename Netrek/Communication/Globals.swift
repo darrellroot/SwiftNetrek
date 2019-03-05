@@ -80,7 +80,7 @@ let PACKET_SIZES: [Int] = [
     4,        // SP_SEQUENCE
     4,        // SP_SC_SEQUENCE
     36,        // SP_RSA_KEY
-    12,        // SP_MOTD_PIC
+    32,        // SP_MOTD_PIC  // error is SP_GENERIC_32
     0,        // 33
     0,        // 34
     0,        // 35

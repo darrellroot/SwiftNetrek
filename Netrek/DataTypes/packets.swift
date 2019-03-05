@@ -30,7 +30,7 @@ import Foundation
 
 struct CP_OUTFIT {
     let type: UInt8 = 9
-    var team: UInt8 = 0
+    var team: UInt8 = 1
     var ship: UInt8 = 0
     let pad1: UInt8 = 0
     init(team: Team, ship: ShipType) {
@@ -44,7 +44,7 @@ struct CP_OUTFIT {
     }
 }
 
-struct CP_PACKET {
+struct CP_SOCKET {
     let type: UInt8 = 27
     let version: UInt8 = SOCKVERSION
     let udp_version: UInt8 = UDPVERSION
@@ -56,3 +56,62 @@ struct CP_PACKET {
         return 8
     }
 }
+
+struct CP_UPDATES {
+    let type: UInt8 = 31
+    let pad1: UInt8 = 0
+    let pad2: UInt8 = 0
+    let pad3: UInt8 = 0
+    let usecs: UInt32 = UInt32(100000).bigEndian
+    
+    var size: Int {
+        return 8
+    }
+}
+
+/* does not work but valiant attempt
+struct CP_FEATURE {
+    let type: UInt8 = 60
+    let featureType: UInt8 = UInt8(ascii: "C")
+    let arg1: UInt8 = 0
+    let arg2: UInt8 = 0
+    let value: UInt32
+    var data = Data(count: 80)
+    var size: Int {
+        return 88
+    }
+    init(features: [String]) {
+        debugPrint("data size \(MemoryLayout.size(ofValue:data))")
+        debugPrint("data stride \(MemoryLayout.stride(ofValue:data))")
+        debugPrint("data alignment \(MemoryLayout.alignment(ofValue:data))")
+
+        value = UInt32(features.count).bigEndian
+        var count = 0
+        for feature in features {
+            //do we have enough space remaining
+            //for next feature
+            if count + feature.count + 1 >= 80 {
+                debugPrint("CP_FEATURE.init: Warning: Feature packet size exceeded")
+                for _ in count..<80 {
+                    data[count] = 0
+                    count = count + 1
+                }
+                return
+            }
+            let feature = feature.utf8
+            for char in feature {
+                data[count] = char
+                count = count + 1
+            }
+            data[count] = 0
+            count = count + 1
+        }
+        // all features successfully added and null terminated.  now pad to 80
+        for _ in count..<80 {
+            data[count] = 0
+            count = count + 1
+        }
+        return
+    }
+ }
+ */

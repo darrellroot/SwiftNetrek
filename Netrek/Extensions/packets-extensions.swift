@@ -15,3 +15,11 @@ extension login_cpacket {
         }
     }
 }
+
+extension feature_cpacket {  //60
+    var size: Int {
+        get {
+            return 88
+        }
+    }
+}
