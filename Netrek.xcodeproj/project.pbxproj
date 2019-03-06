@@ -113,8 +113,7 @@
 				2F750175222A4296002040A7 /* Communication */,
 				2F750172222A41C8002040A7 /* Controllers */,
 				2F75016A2229F9F1002040A7 /* DataTypes */,
-				2F75015C22299E55002040A7 /* Assets.xcassets */,
-				2F75015E22299E55002040A7 /* Main.storyboard */,
+				2F7501B6222F6B28002040A7 /* Resources */,
 				2F75016122299E55002040A7 /* Info.plist */,
 				2F75016222299E55002040A7 /* Netrek.entitlements */,
 			);
@@ -201,6 +200,15 @@
 				2F7501B4222F5BD7002040A7 /* TacticalView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		2F7501B6222F6B28002040A7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2F75015E22299E55002040A7 /* Main.storyboard */,
+				2F75015C22299E55002040A7 /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

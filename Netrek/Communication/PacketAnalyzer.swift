@@ -25,13 +25,22 @@ class PacketAnalyzer {
     }
     
     func analyze(incomingData: Data) {
-        var data: Data
-        if let leftOverData = leftOverData {
-            data = leftOverData + incomingData
+        debugPrint("about to copy data")
+        let size = incomingData.count + (leftOverData?.count ?? 0) + 10
+        debugPrint("incoming data size \(incomingData.count) leftOverData.size \(String(describing: leftOverData?.count))")
+        var data = Data(capacity: size)
+        debugPrint("one")
+        if leftOverData != nil {
+            data = leftOverData!
+            debugPrint("two")
+            data.append(incomingData)
+            debugPrint("three")
             self.leftOverData = nil
         } else {
+            debugPrint("four")
             data = incomingData
         }
+        debugPrint("done copying data")
         repeat {
             guard let packetType: UInt8 = data.first else {
                 debugPrint("PacketAnalyzer.analyze is done")
@@ -53,10 +62,12 @@ class PacketAnalyzer {
                 return
             }
             let range = (data.startIndex..<data.startIndex + packetLength)
+            debugPrint("packetAnalyzer.analyze startIndex \(data.startIndex) packetLength \(packetLength) endindex \(data.endIndex) packetType \(packetType)")
             let thisPacket = data.subdata(in: range)
             self.analyzeOnePacket(data: thisPacket)
             data.removeFirst(packetLength)
         } while data.count > 0
+        
     }
 
     func printData(_ data: Data, success: Bool) {
@@ -71,11 +82,13 @@ class PacketAnalyzer {
         }
     }
     func analyzeOnePacket(data: Data) {
+        debugPrint("in analyze one packet")
         guard data.count > 0 else {
             debugPrint("PacketAnalyer.analyzeOnePacket data length 0")
             return
         }
         let packetType: UInt8 = data[0]
+        debugPrint("in analyze one packet packetType \(packetType)")
         guard let packetLength = PACKET_SIZES[safe: Int(packetType)] else {
             debugPrint("Warning: PacketAnalyzer.analyzeOnePacket received invalid packet type \(packetType)")
             printData(data, success: false)

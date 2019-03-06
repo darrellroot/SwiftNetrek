@@ -74,7 +74,7 @@ class TcpReader {
         }
         */
         //debugPrint("trying to receive data")
-        connection.receive(minimumIncompleteLength: 1, maximumLength: 8192) { (content, context, isComplete, error) in
+        connection.receive(minimumIncompleteLength: 1, maximumLength: 32768) { (content, context, isComplete, error) in
             debugPrint("In receive closure count \(self.receiveCount)")
             if (content?.count ?? 0) > 0 {
                 debugPrint("\(Date()) TcpReader: got a message \(String(describing: content?.count)) bytes")
@@ -83,7 +83,9 @@ class TcpReader {
                 self.delegate.gotData(data: content, from: self.hostname, port: self.port)
             }
             if self.connection.state == .ready && isComplete == false {
-                self.receive()
+                DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 0.05) {
+                    self.receive()
+                }
             }
         }
         //debugPrint("leaving receive count \(self.receiveCount)")

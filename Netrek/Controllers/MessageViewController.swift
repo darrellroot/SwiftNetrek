@@ -40,11 +40,10 @@ class MessageViewController: NSViewController {
         var totalMessage: String = ""
         for message in messages {
             totalMessage.append(message)
-            DispatchQueue.main.async {
-                self.messagesLabel.stringValue = totalMessage
-                self.view.needsDisplay = true
-            }
+        }
+        DispatchQueue.main.async {
+            self.messagesLabel.stringValue = totalMessage
+            self.view.needsDisplay = true
         }
     }
-    
 }

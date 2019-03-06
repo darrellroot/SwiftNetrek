@@ -28,6 +28,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var preferredTeam: Team = .federation
     var preferredShip: ShipType = .cruiser
     
+    var tacticalViewController: TacticalViewController?   // the child view controller sets this up in viewdidload
+    var strategicViewController: StrategicViewController?
+    
     @IBOutlet weak var serverMenu: NSMenu!
     @IBOutlet weak var selectTeamFederation: NSMenuItem!
     @IBOutlet weak var selectTeamRomulan: NSMenuItem!
@@ -209,6 +212,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             
         case .outfitAccepted:
             self.gameState = newState
+            if tacticalViewController == nil {
+                debugPrint("ERROR AppDelegate.newGameState.outfitAccepted: tacticalViewController not found")
+            }
+            tacticalViewController?.setup()
+            tacticalViewController?.update()
             
         case .gameActive:
             self.gameState = newState
@@ -250,10 +258,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         case .loginAccepted:
             break
         case .outfitAccepted:
+            tacticalViewController?.update()
             //TODO send ping every x timer counts
             //WHEN do we go to game active
             break
         case .gameActive:
+            tacticalViewController?.update()
             //TODO send ping every x timer counts
             break
         }
@@ -262,7 +272,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 extension AppDelegate: NetworkDelegate {
     func gotData(data: Data, from: String, port: Int) {
-        //debugPrint("appdelegate got data \(data.count) bytes")
+        debugPrint("appdelegate got data \(data.count) bytes")
         if data.count > 0 {
             analyzer?.analyze(incomingData: data)
         }
