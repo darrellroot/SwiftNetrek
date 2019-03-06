@@ -14,45 +14,15 @@ class PacketAnalyzer {
     let universe: Universe
     var leftOverData: Data?
     
+    let msg_len = 80
+    let name_len = 16
+    let keymap_len = 96
+    let playerMax = 100 // we ignore player updates for more than this
+
+    
     init() {
         universe = appDelegate.universe
     }
-    /*func analyze(incomingData: Data) {
-        var data: Data
-        if let leftOverData = leftOverData {
-            data = leftOverData + incomingData
-            self.leftOverData = nil
-        } else {
-            data = incomingData
-        }
-        var position = 0
-        guard position < data.count else {
-            debugPrint("Warning: PacketAnalyzer.analyze received zero length data.")
-            return
-        }
-        repeat {
-            let packetType: UInt8 = data[position]
-            guard let packetLength = PACKET_SIZES[safe: Int(packetType)] else {
-                debugPrint("Warning: PacketAnalyzer.analyze received invalid packet type \(packetType) at position \(position)")
-                return
-            }
-            guard packetLength > 0 else {
-                debugPrint("PacketAnalyzer invalid packet length \(packetLength) type \(packetType) position \(position)")
-                return
-            }
-            guard position + packetLength <= data.count else {
-                debugPrint("PacketAnalyzer.analyze: fractional packet at position \(position) expected length \(packetLength) total size \(data.count) saving for next round")
-                self.leftOverData = data[(position..<data.count)]
-                return
-            }
-            let range = (position..<position + packetLength)
-            let thisPacket = data.subdata(in: range)
-            //data.removeSubrange(range)
-            //let thisPacket = data[position..<position+packetLength]
-            self.analyzeOnePacket(data: thisPacket)
-            position = position + packetLength
-        } while position < data.count
-    }*/
     
     func analyze(incomingData: Data) {
         var data: Data
@@ -123,63 +93,115 @@ class PacketAnalyzer {
         }
         switch packetType {
             
+        case 1:
+            let flags = Int(data[1])
+            let m_recpt = Int(data[2])
+            let m_from = Int(data[3])
+            let range = (4..<(4 + msg_len))
+            let messageData = data.subdata(in: range)
+            var messageString = "message_decode_error"
+            if let messageStringWithNulls = String(data: messageData, encoding: .utf8) {
+                messageString = "From \(m_from) " + messageStringWithNulls.filter { $0 != "\0" }
+                messageString.append("\n")
+                appDelegate.messageViewController?.gotMessage(messageString)
+                //debugPrint(messageString)
+                printData(data, success: true)
+            } else {
+                debugPrint("PacketAnalyzer unable to decode message type 11")
+                printData(data, success: false)
+            }
+            debugPrint("Received SP_MESSAGE 1 from \(m_from) message \(messageString)")
+
         case 2:
             debugPrint("Received SP_PLAYER_INFO 2")
             //SP_PLAYER_INFO
             let playerID = Int(data[1])
             let shipType = Int(data[2])
             let team = Int(data[3])
-            guard let player = universe.players[safe: playerID] else {
-                debugPrint("PacketAnalyzer type 2 invalid player id \(playerID)")
-                printData(data, success: false)
-                return
-            }
-            player.ship = shipType
-            player.team = team
-            printData(data, success: true)
-
-            //debugPrint(player)
-        
+            debugPrint("Received SP_PLAYER_INFO 2 playerID \(playerID) shipType \(shipType) team \(team)")
+            universe.updatePlayer(playerID: playerID, shipType: shipType, team: team)
+       
         case 3:
-            debugPrint("Received SP_KILLS 3")
-
             // SP_KILLS
             let playerID = Int(data[1])
-            let killsInt = data.subdata(in: (4..<8)).to(type: UInt32.self)
+            let killsInt = data.subdata(in: (4..<8)).to(type: UInt32.self).byteSwapped
             let kills: Double = Double(killsInt) / 100.0
-            guard let player = universe.players[safe: playerID] else {
-                debugPrint("PacketAnalyzer type 2 invalid player id \(playerID)")
-                printData(data, success: false)
-                return
-            }
-            player.kills = kills
-            printData(data, success: true)
-            //debugPrint(player)
+            universe.updatePlayer(playerID: playerID, kills: kills)
+            debugPrint("Received SP_KILLS 3 playerID \(playerID) killsInt \(killsInt) kills \(kills)")
 
         case 4:
-            debugPrint("Received SP_PLAYER 4")
             // SP_PLAYER py-struct
             let playerID = Int(data[1])
             let direction = Int(data[2])
             let speed = Int(data[3])
-            let locationX = data.subdata(in: (4..<8)).to(type: UInt32.self)
-            let locationY = data.subdata(in: (4..<8)).to(type: UInt32.self)
-            guard let player = universe.players[safe: playerID] else {
-                debugPrint("PacketAnalyzer type 4 invalid player id \(playerID)")
+            let positionX = Int(data.subdata(in: (4..<8)).to(type: UInt32.self).byteSwapped)
+            let positionY = Int(data.subdata(in: (4..<8)).to(type: UInt32.self).byteSwapped)
+            universe.updatePlayer(playerID: playerID, direction: direction, speed: speed, positionX: positionX, positionY: positionY)
+            debugPrint("Received SP_PLAYER 4 playerID \(playerID) direction \(direction) speed \(speed) positionX \(positionX) positionY \(positionY)")
+
+        case 5:
+            // SP_TORP_INFO
+            let war = UInt8(data[1])  //mask of teams torp is hostile to
+            let status = UInt8(data[2]) // new status of torp, TFREE, TDET, etc
+            // pad
+            let torpedoNumber = Int(data.subdata(in: (4..<5)).to(type: UInt16.self).byteSwapped)
+            universe.updateTorpedo(torpedoNumber: torpedoNumber, war: war, status: status)
+            debugPrint("Received SP_TORP_INFO 5 torpedoNumber \(torpedoNumber) war \(war) status \(status) ")
+        
+        case 6:
+            // SP_TORP
+            let directionNetrek = Int(UInt8(data[1]))
+            let torpedoNumber = Int(data.subdata(in: (2..<3)).to(type: UInt16.self).byteSwapped)
+            let positionX = Int(data.subdata(in: (4..<8)).to(type: UInt32.self).byteSwapped)
+            let positionY = Int(data.subdata(in: (4..<8)).to(type: UInt32.self).byteSwapped)
+            debugPrint("Received SP_TORP 6 torpedoNumber \(torpedoNumber) directionNetrek \(directionNetrek) positionX \(positionX) positionY \(positionY)")
+            universe.updateTorpedo(torpedoNumber: torpedoNumber, directionNetrek: directionNetrek, positionX: positionX, positionY: positionY)
+            
+        case 7:
+            // SP_PHASER 7
+            let laserNumber = Int(data[1])
+            let status = Int(data[2]) // PH_HIT etc...
+            let directionNetrek = Int(UInt8(data[3]))
+            let positionX = Int(data.subdata(in: (4..<8)).to(type: UInt32.self).byteSwapped)
+            let positionY = Int(data.subdata(in: (8..<12)).to(type: UInt32.self).byteSwapped)
+            let target = Int(data.subdata(in: (12..<16)).to(type: Int32.self).byteSwapped)
+            debugPrint("Received SP_LASER 7 laserNumber \(laserNumber) status \(status) directionNetrek \(directionNetrek) positionX \(positionX) positionY \(positionY) target \(target)")
+            universe.updateLaser(laserNumber: laserNumber, status: status, directionNetrek: directionNetrek, positionX: positionX, positionY: positionY, target: target)
+        case 8:
+            //SP_PLASMA_INFO
+            let war = Int(data[1])
+            let status = Int(data[2])
+            let plasmaNumber = Int(data.subdata(in: (4..<5)).to(type: UInt16.self).byteSwapped)
+            universe.updatePlasma(plasmaNumber: plasmaNumber, war: war, status: status)
+            debugPrint("Received SP_PLASMA 8 plasmaNumber \(plasmaNumber) war \(war) status \(status)")
+
+        case 9:
+            //SP_PLASMA
+            let plasmaNumber = Int(data.subdata(in: (2..<3)).to(type: UInt16.self).byteSwapped)
+            let positionX = Int(data.subdata(in: (4..<8)).to(type: UInt32.self).byteSwapped)
+            let positionY = Int(data.subdata(in: (8..<12)).to(type: UInt32.self).byteSwapped)
+            debugPrint("Received SP_PLASMA 9 plasmaNumber \(plasmaNumber) positionX \(positionX) positionY \(positionY)")
+            universe.updatePlasma(plasmaNumber: plasmaNumber, positionX: positionX, positionY: positionY)
+        
+        case 10:
+            // SP_WARNING
+            let range = (4..<84)
+            let messageData = data.subdata(in: range)
+            if let messageStringWithNulls = String(data: messageData, encoding: .utf8) {
+                var messageString = messageStringWithNulls.filter { $0 != "\0" }
+                
+                messageString.append("\n")
+                debugPrint("Received SP_WARNING 10 sent to messages")
+                appDelegate.messageViewController?.gotMessage(messageString)
+                //debugPrint(messageString)
+                printData(data, success: true)
+            } else {
+                debugPrint("PacketAnalyzer unable to decode message type 10")
                 printData(data, success: false)
-
-                return
             }
-            player.direction = direction
-            player.speed = speed
-            player.locationX = Int(locationX)
-            player.locationY = Int(locationY)
-            //debugPrint(player)
-            printData(data, success: true)
-
 
         case 11:
-            debugPrint("Received SP_PLAYER_INFO 11")
+            debugPrint("Received SP_PLAYER_INFO SP_MOTD 11")
             // message
             let range = (4..<84)
             let messageData = data.subdata(in: range)
@@ -192,10 +214,8 @@ class PacketAnalyzer {
             } else {
                 debugPrint("PacketAnalyzer unable to decode message type 11")
                 printData(data, success: false)
-
             }
         case 12:
-            debugPrint("Received SP_YOU 12")
             // My information
             // SP_YOU length 32
             let myPlayerID = Int(data[1])
@@ -203,47 +223,61 @@ class PacketAnalyzer {
             let war = Int(data[3])
             let armies = Int(data[4])
             let tractor = Int(data[5])
-            let flags = data.subdata(in: (8..<12)).to(type: UInt32.self)
-            let damage = data.subdata(in: (12..<16)).to(type: UInt32.self)
-            let shieldStrength = data.subdata(in: (16..<20)).to(type: UInt32.self)
-            let fuel = data.subdata(in: (20..<24)).to(type: UInt32.self)
-            let engineTemp = data.subdata(in: (24..<25)).to(type: UInt16.self)
-            let weaponsTemp = data.subdata(in: (26..<27)).to(type: UInt16.self)
-            let whyDead = data.subdata(in: (28..<29)).to(type: UInt16.self)
-            let whoDead = data.subdata(in: (30..<31)).to(type: UInt16.self)
-            debugPrint("I am player \(myPlayerID) damage \(damage) fuel \(fuel) \(engineTemp)\n")
-            guard let me = universe.players[safe: myPlayerID] else {
-                debugPrint("PacketAnalyzer cannot find myPlayerID \(myPlayerID)")
-                printData(data, success: false)
-                return
-            }
-            universe.me = me
-            me.playerID = myPlayerID
-            me.hostile = hostile
-            me.war = war
-            me.armies = armies
-            // tractor
-            // flags
-            me.damage = Int(damage)
-            me.shieldStrength = Int(shieldStrength)
-            me.fuel = Int(fuel)
-            me.engineTemp = Int(engineTemp)
-            me.weaponsTemp = Int(weaponsTemp)
-            // whydead
-            // whodead
+            let flags = data.subdata(in: (8..<12)).to(type: UInt32.self).byteSwapped
+            let damage = Int(data.subdata(in: (12..<16)).to(type: UInt32.self).byteSwapped)
+            let shieldStrength = Int(data.subdata(in: (16..<20)).to(type: UInt32.self).byteSwapped)
+            let fuel = Int(data.subdata(in: (20..<24)).to(type: UInt32.self).byteSwapped)
+            let engineTemp = Int(data.subdata(in: (24..<25)).to(type: UInt16.self)).byteSwapped
+            let weaponsTemp = Int(data.subdata(in: (26..<27)).to(type: UInt16.self)).byteSwapped
+            let whyDead = Int(data.subdata(in: (28..<29)).to(type: UInt16.self)).byteSwapped
+            let whoDead = Int(data.subdata(in: (30..<31)).to(type: UInt16.self)).byteSwapped
+            debugPrint("Received SP_YOU 12 \(myPlayerID) hostile \(hostile) war \(war) armies \(armies) tractor \(tractor) flags \(flags) damage \(damage) shieldStrength \(shieldStrength) fuel \(fuel) engineTemp \(engineTemp) weaponsTemp \(weaponsTemp) whyDead \(whyDead) whodead \(whoDead)")
+            universe.updateMe(myPlayerID: myPlayerID, hostile: hostile, war: war, armies: armies, tractor: tractor, flags: flags, damage: damage, shieldStrength: shieldStrength, fuel: fuel, engineTemp: engineTemp, weaponsTemp: weaponsTemp, whyDead: whyDead, whoDead: whoDead)
             if appDelegate.gameState == .serverSelected || appDelegate.gameState == .serverConnected {
                 appDelegate.newGameState(.serverSlotFound)
             }
             //debugPrint(me.description)
-            printData(data, success: true)
+            //printData(data, success: true)
 
         case 13:
             debugPrint("Received SP_QUEUE 13")
             // SP_QUEUE
-            let queue = data.subdata(in: (2..<3)).to(type: UInt16.self)
+            let queue = data.subdata(in: (2..<3)).to(type: UInt16.self).byteSwapped
             appDelegate.messageViewController?.gotMessage("Connected to server. Wait queue position \(queue)")
             printData(data, success: true)
-
+            
+        case 14:
+            let tourn = Int(data[1])
+            //pad1
+            //pad2
+            let armsBomb = (data.subdata(in: (4..<8)).to(type: UInt32.self).byteSwapped)
+            let planets = (data.subdata(in: (8..<12)).to(type: UInt32.self).byteSwapped)
+            let kills = (data.subdata(in: (12..<16)).to(type: UInt32.self).byteSwapped)
+            let losses = (data.subdata(in: (16..<20)).to(type: UInt32.self).byteSwapped)
+            let time = (data.subdata(in: (20..<24)).to(type: UInt32.self).byteSwapped)
+            let timeProd = (data.subdata(in: (24..<28)).to(type: Int32.self).byteSwapped)
+            debugPrint("Received SP_STATUS 14 tourn \(tourn) armsBomb \(armsBomb) planets \(planets) kills \(kills) losses \(losses) time \(time) timeProd \(timeProd)")
+            let messageString = "Your stats: bombed \(armsBomb) armies, captured \(planets) planets, killed \(kills) enemies, died \(losses) times in \(time/3600) hours"
+            appDelegate.messageViewController?.gotMessage(messageString)
+        case 15:
+            //SP_PLANET
+            let planetID = Int(data[1])
+            let owner = Int(data[2])
+            let info = Int(data[3])
+            let flags = data.subdata(in: (4..<5)).to(type: UInt16.self).byteSwapped
+            // pad
+            // pad
+            let armies = data.subdata(in: (8..<12)).to(type: UInt32.self).byteSwapped
+            debugPrint("Received SP_PLANET planetID \(planetID) owner \(owner) info \(info) flags \(flags) armies \(armies)")
+            guard let planet = universe.planets[planetID] else {
+                debugPrint("ERROR: invalid planetID \(planetID)")
+                return
+            }
+            planet.setOwner(newOwnerInt: owner)
+            planet.setInfo(newInfoInt: info)
+            planet.setFlags(newFlagsInt: Int(flags))
+            planet.armies = Int(armies)
+            
         case 16:
             // SP_PICKOK
             let state = Int(data[1]) // 0 = no, 1 = yes
@@ -260,7 +294,7 @@ class PacketAnalyzer {
             let accept = Int(data[1])
             let paradise1 = Int(data[2])
             let paradise2 = Int(data[3])
-            let flags = data.subdata(in: (4..<8)).to(type: UInt32.self)
+            let flags = data.subdata(in: (4..<8)).to(type: UInt32.self).byteSwapped
             let keymap = data.subdata(in: (8..<96))
             
             if paradise1 == 69 && paradise2 == 42 {
@@ -280,16 +314,15 @@ class PacketAnalyzer {
             //SP_FLAGS
             let playerID = Int(data[1])
             let tractor = Int(data[2])
-            let flags = data.subdata(in: (4..<8)).to(type: UInt32.self)
+            let flags = data.subdata(in: (4..<8)).to(type: UInt32.self).byteSwapped
 
-            guard let player = universe.players[safe: playerID] else {
+            guard let player = universe.players[playerID] else {
                 debugPrint("PacketAnalyzer type 18 invalid player id \(playerID)")
                 printData(data, success: false)
 
                 return
             }
-            player.tractor = tractor
-            player.flags = flags
+            player.update(tractor: tractor, flags: flags)
             //debugPrint(player)
             printData(data, success: true)
 
@@ -305,10 +338,9 @@ class PacketAnalyzer {
             // SP_PSTATUS
             let playerID = Int(data[1])
             let status = Int(data[2])
-            guard let player = universe.players[safe: playerID] else {
+            guard let player = universe.players[playerID] else {
                 debugPrint("PacketAnalyzer type 20 invalid player id \(playerID)")
                 printData(data, success: false)
-
                 return
             }
             player.status = Int(status)
@@ -321,17 +353,8 @@ class PacketAnalyzer {
             let playerID = Int(data[1])
             let war = Int(data[2])
             let hostile = Int(data[3])
-            guard let player = universe.players[safe: playerID] else {
-                debugPrint("PacketAnalyzer type 22 invalid player id \(playerID)")
-                printData(data, success: false)
-
-                return
-            }
-            player.war = war
-            player.hostile = hostile
-            //debugPrint(player)
-            printData(data, success: true)
-
+            debugPrint("Received SP_HOSTILE 22 playerID \(playerID) war \(war) hostile \(hostile)")
+            universe.updatePlayer(playerID: playerID, war: war, hostile: hostile)
             
         case 24:
             debugPrint("Received SP_PL_LOGIN 24")
@@ -354,20 +377,9 @@ class PacketAnalyzer {
             if let loginStringWithNulls = String(data: loginData, encoding: .utf8) {
                 login = loginStringWithNulls.filter { $0 != "\0" }
             }
-            guard let player = universe.players[safe: playerID] else {
-                debugPrint("PacketAnalyzer type 24 invalid player id \(playerID)")
-                printData(data, success: false)
+            debugPrint("Received SP_PL_LOGIN 24 playerID: \(playerID) rank: \(rank) name: \(name) login: \(login)")
+            universe.updatePlayer(playerID: playerID, rank: rank, name: name, login: login)
 
-                return
-            }
-            player.rank = rank
-            player.name = name
-            //monitor
-            player.login = login
-            printData(data, success: true)
-
-            //debugPrint("PacketAnalyzer: received packet type 24: player login")
-            //debugPrint(player)
         case 26:
             debugPrint("Received SP_PLANET_LOC 26")
             // SP_PLANET_LOC
@@ -379,8 +391,8 @@ class PacketAnalyzer {
             if let nameStringWithNulls = String(data: nameData, encoding: .utf8) {
                 name = nameStringWithNulls.filter { $0 != "\0" }
             }
-            universe.updatePlanet(planetID: planetID, positionX: positionX, positionY: positionY, name: name)
-            if let planet = universe.planets[safe: planetID] {
+            universe.createPlanet(planetID: planetID, positionX: positionX, positionY: positionY, name: name)
+            if let planet = universe.planets[planetID] {
                 //debugPrint(planet)
             }
             printData(data, success: true)
@@ -396,7 +408,7 @@ class PacketAnalyzer {
             let gameup = (data.subdata(in: (4..<5)).to(type: UInt16.self).byteSwapped)
             let tournamentTeams = UInt8(data[6])
             let tournamentAge = UInt8(data[7])
-            let tournamentUnits = Int8(data[8])
+            let tournamentUnits = UInt8(data[8])
             let tournamentRemain = UInt8(data[9])
             let tournamentRemainUnits = UInt8(data[10])
             let starbaseRemain = UInt8(data[11]) //starbase reconstruction in minutes
@@ -414,7 +426,7 @@ class PacketAnalyzer {
             let maxFuel = (data.subdata(in: (12..<15)).to(type: UInt32.self).byteSwapped)
             let maxShield = (data.subdata(in: (16..<19)).to(type: UInt32.self).byteSwapped)
             let maxDamage = (data.subdata(in: (20..<23)).to(type: UInt32.self).byteSwapped)
-            let maxWpnTmp = (data.subdata(in: (23..<27)).to(type: Int32.self).byteSwapped)
+            let maxWpnTmp = (data.subdata(in: (24..<27)).to(type: Int32.self).byteSwapped)
             let maxEngTmp = (data.subdata(in: (28..<31)).to(type: Int32.self).byteSwapped)
             let width = (data.subdata(in: (32..<33)).to(type: UInt16.self).byteSwapped)
             let height = (data.subdata(in: (34..<35)).to(type: UInt16.self).byteSwapped)

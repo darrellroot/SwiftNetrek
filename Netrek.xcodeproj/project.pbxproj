@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2F75015922299E55002040A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F75015822299E55002040A7 /* AppDelegate.swift */; };
-		2F75015B22299E55002040A7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F75015A22299E55002040A7 /* ViewController.swift */; };
+		2F75015B22299E55002040A7 /* OverallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F75015A22299E55002040A7 /* OverallViewController.swift */; };
 		2F75015D22299E55002040A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F75015C22299E55002040A7 /* Assets.xcassets */; };
 		2F75016022299E55002040A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F75015E22299E55002040A7 /* Main.storyboard */; };
 		2F75016922299F2C002040A7 /* license.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2F75016822299F2C002040A7 /* license.txt */; };
@@ -29,12 +29,18 @@
 		2F7501A0222C8E59002040A7 /* Tuple16.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F75019F222C8E59002040A7 /* Tuple16.swift */; };
 		2F7501A2222C930B002040A7 /* packets-extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7501A1222C930B002040A7 /* packets-extensions.swift */; };
 		2F7501A4222CA33C002040A7 /* packets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7501A3222CA33C002040A7 /* packets.swift */; };
+		2F7501A8222F251B002040A7 /* Torpedo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7501A7222F251B002040A7 /* Torpedo.swift */; };
+		2F7501AA222F2CBE002040A7 /* Laser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7501A9222F2CBE002040A7 /* Laser.swift */; };
+		2F7501AC222F42E0002040A7 /* Plasma.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7501AB222F42E0002040A7 /* Plasma.swift */; };
+		2F7501B1222F5AD9002040A7 /* TacticalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7501B0222F5AD9002040A7 /* TacticalViewController.swift */; };
+		2F7501B3222F5B8F002040A7 /* StrategicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7501B2222F5B8F002040A7 /* StrategicViewController.swift */; };
+		2F7501B5222F5BD7002040A7 /* TacticalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7501B4222F5BD7002040A7 /* TacticalView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2F75015522299E55002040A7 /* Netrek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Netrek.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F75015822299E55002040A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2F75015A22299E55002040A7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2F75015A22299E55002040A7 /* OverallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverallViewController.swift; sourceTree = "<group>"; };
 		2F75015C22299E55002040A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2F75015F22299E55002040A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2F75016122299E55002040A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -59,6 +65,12 @@
 		2F75019F222C8E59002040A7 /* Tuple16.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tuple16.swift; sourceTree = "<group>"; };
 		2F7501A1222C930B002040A7 /* packets-extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "packets-extensions.swift"; sourceTree = "<group>"; };
 		2F7501A3222CA33C002040A7 /* packets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = packets.swift; sourceTree = "<group>"; };
+		2F7501A7222F251B002040A7 /* Torpedo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Torpedo.swift; sourceTree = "<group>"; };
+		2F7501A9222F2CBE002040A7 /* Laser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Laser.swift; sourceTree = "<group>"; };
+		2F7501AB222F42E0002040A7 /* Plasma.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plasma.swift; sourceTree = "<group>"; };
+		2F7501B0222F5AD9002040A7 /* TacticalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TacticalViewController.swift; sourceTree = "<group>"; };
+		2F7501B2222F5B8F002040A7 /* StrategicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategicViewController.swift; sourceTree = "<group>"; };
+		2F7501B4222F5BD7002040A7 /* TacticalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TacticalView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +103,7 @@
 		2F75015722299E55002040A7 /* Netrek */ = {
 			isa = PBXGroup;
 			children = (
+				2F7501AD222F55BF002040A7 /* Views */,
 				2F750192222B6008002040A7 /* Data */,
 				2F750181222AF683002040A7 /* Enumerations */,
 				2F75017C222A5765002040A7 /* Protocols */,
@@ -133,8 +146,10 @@
 		2F750172222A41C8002040A7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				2F75015A22299E55002040A7 /* ViewController.swift */,
+				2F75015A22299E55002040A7 /* OverallViewController.swift */,
 				2F750188222B4532002040A7 /* MessageViewController.swift */,
+				2F7501B0222F5AD9002040A7 /* TacticalViewController.swift */,
+				2F7501B2222F5B8F002040A7 /* StrategicViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -173,8 +188,19 @@
 				2F750193222B6019002040A7 /* Universe.swift */,
 				2F750199222C33D6002040A7 /* Planet.swift */,
 				2F750195222B6048002040A7 /* Player.swift */,
+				2F7501A7222F251B002040A7 /* Torpedo.swift */,
+				2F7501A9222F2CBE002040A7 /* Laser.swift */,
+				2F7501AB222F42E0002040A7 /* Plasma.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		2F7501AD222F55BF002040A7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2F7501B4222F5BD7002040A7 /* TacticalView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,13 +284,19 @@
 				2F7501A2222C930B002040A7 /* packets-extensions.swift in Sources */,
 				2F75016C2229FA22002040A7 /* MetaServerEntry.swift in Sources */,
 				2F750185222B2476002040A7 /* PacketAnalyzer.swift in Sources */,
+				2F7501B1222F5AD9002040A7 /* TacticalViewController.swift in Sources */,
+				2F7501AA222F2CBE002040A7 /* Laser.swift in Sources */,
 				2F75017E222A57EC002040A7 /* NetworkDelegate.swift in Sources */,
 				2F75016E2229FFE8002040A7 /* MetaServer.swift in Sources */,
 				2F750196222B6048002040A7 /* Player.swift in Sources */,
-				2F75015B22299E55002040A7 /* ViewController.swift in Sources */,
+				2F75015B22299E55002040A7 /* OverallViewController.swift in Sources */,
 				2F750179222A4461002040A7 /* TcpReader.swift in Sources */,
+				2F7501A8222F251B002040A7 /* Torpedo.swift in Sources */,
+				2F7501AC222F42E0002040A7 /* Plasma.swift in Sources */,
+				2F7501B3222F5B8F002040A7 /* StrategicViewController.swift in Sources */,
 				2F75015922299E55002040A7 /* AppDelegate.swift in Sources */,
 				2F7501A4222CA33C002040A7 /* packets.swift in Sources */,
+				2F7501B5222F5BD7002040A7 /* TacticalView.swift in Sources */,
 				2F750198222B66AF002040A7 /* Data-extensions.swift in Sources */,
 				2F750180222AEC8B002040A7 /* MakePacket.swift in Sources */,
 				2F750183222AF698002040A7 /* enumerations.swift in Sources */,

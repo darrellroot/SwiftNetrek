@@ -71,6 +71,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             selectTeamKlingon.state = .on
         case .orion:
             selectTeamOrion.state = .on
+        case .nobody:
+            break
+        case .ogg:
+            break
         }
         
         selectShipScout.state = .off
@@ -135,29 +139,28 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     public func newGameState(_ newState: GameState ) {
-        self.messageViewController?.gotMessage("Game State: moving from self.gameState.rawValue to newState.rawValue")
+        self.messageViewController?.gotMessage("Game State: moving from self.gameState.rawValue to newState.rawValue\n")
         switch newState {
         case .noServerSelected:
             self.gameState = newState
-            debugPrint("AppDelegate GameState \(newState) we may have been ghostbusted!  Resetting.  Try again")
+            self.messageViewController?.gotMessage("AppDelegate GameState \(newState) we may have been ghostbusted!  Resetting.  Try again\n")
             self.reader = nil
             self.refreshMetaserverMenu(self)
             break
+            
         case .serverSelected:
             self.gameState = newState
             self.analyzer = PacketAnalyzer()
             // no need to do anything here, handled in the menu function
             break
+            
         case .serverConnected:
             self.gameState = newState
-
-            debugPrint("AppDelegate.newGameState: .serverConnected")
 
             guard let reader = reader else {
                 self.newGameState(.noServerSelected)
                 return
             }
-        
             let cpSocket = MakePacket.cpSocket()
             DispatchQueue.global(qos: .background).async{
                 reader.send(content: cpSocket)
@@ -173,6 +176,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     self.reader?.send(content: cpFeature)
                 }
             }
+            
         case .serverSlotFound:
             self.gameState = newState
             debugPrint("AppDelegate.newGameState: .serverSlotFound")
@@ -186,6 +190,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 self.messageViewController?.gotMessage("ERROR: AppDelegate.newGameState.serverSlot found: no reader")
                 self.newGameState(.noServerSelected)
             }
+            
         case .loginAccepted:
             self.gameState = newState
             guard let reader = reader else {
@@ -201,8 +206,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 0.4) {
                     reader.send(content: cpOutfit)
             }
+            
         case .outfitAccepted:
             self.gameState = newState
+            
         case .gameActive:
             self.gameState = newState
         }

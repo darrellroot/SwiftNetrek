@@ -30,8 +30,10 @@ enum ShipType: Int, CaseIterable {
 }
 
 enum Team: Int, CaseIterable {
+    case nobody = 0
     case federation = 1
     case romulan = 2
     case klingon = 4
     case orion = 8
+    case ogg = 15
 }

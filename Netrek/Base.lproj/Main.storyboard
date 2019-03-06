@@ -824,50 +824,79 @@
             </objects>
             <point key="canvasLocation" x="55" y="292"/>
         </scene>
-        <!--View Controller-->
+        <!--Overall View Controller-->
         <scene sceneID="ge4-9L-QeV">
             <objects>
-                <viewController id="Yf6-2s-0ES" sceneMemberID="viewController">
+                <viewController id="Yf6-2s-0ES" customClass="OverallViewController" customModule="Netrek" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Zma-0P-ZGo">
-                        <rect key="frame" x="0.0" y="0.0" width="800" height="533"/>
+                        <rect key="frame" x="0.0" y="0.0" width="805" height="538"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="Txd-na-oXg">
-                                <rect key="frame" x="0.0" y="0.0" width="533" height="533"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="Txd-na-oXg" secondAttribute="height" multiplier="1:1" id="a7A-Mc-vPh"/>
-                                </constraints>
-                            </customView>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="f7o-8z-t1V">
-                                <rect key="frame" x="533" y="0.0" width="267" height="267"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="f7o-8z-t1V" secondAttribute="height" multiplier="1:1" id="X9k-mW-1h0"/>
-                                </constraints>
-                            </customView>
-                            <containerView translatesAutoresizingMaskIntoConstraints="NO" id="0Ew-YM-Th3">
-                                <rect key="frame" x="533" y="267" width="267" height="266"/>
-                                <connections>
-                                    <segue destination="1yz-XC-MLA" kind="embed" id="AAa-T3-ir2"/>
-                                </connections>
-                            </containerView>
+                            <stackView distribution="fillProportionally" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ee2-LE-dlE">
+                                <rect key="frame" x="0.0" y="0.0" width="805" height="538"/>
+                                <subviews>
+                                    <containerView translatesAutoresizingMaskIntoConstraints="NO" id="FcW-AB-Ga8" userLabel="Tactical Container View">
+                                        <rect key="frame" x="0.0" y="0.0" width="538" height="538"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="FcW-AB-Ga8" secondAttribute="height" multiplier="1:1" id="CFr-pP-wgG"/>
+                                        </constraints>
+                                        <connections>
+                                            <segue destination="Zsp-ZK-TcN" kind="embed" id="J7t-RV-edc"/>
+                                        </connections>
+                                    </containerView>
+                                    <stackView distribution="fillEqually" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Tk-8f-CJv">
+                                        <rect key="frame" x="538" y="0.0" width="267" height="538"/>
+                                        <subviews>
+                                            <containerView translatesAutoresizingMaskIntoConstraints="NO" id="0Ew-YM-Th3" userLabel="Message Container View">
+                                                <rect key="frame" x="0.0" y="269" width="267" height="269"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="0Ew-YM-Th3" secondAttribute="height" multiplier="267:269" id="nZH-WY-WC6"/>
+                                                </constraints>
+                                                <connections>
+                                                    <segue destination="1yz-XC-MLA" kind="embed" id="AAa-T3-ir2"/>
+                                                </connections>
+                                            </containerView>
+                                            <containerView translatesAutoresizingMaskIntoConstraints="NO" id="Oyb-z0-Kxg" userLabel="Strategic Container View">
+                                                <rect key="frame" x="0.0" y="0.0" width="267" height="269"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Oyb-z0-Kxg" secondAttribute="height" multiplier="267:269" id="Xss-SV-uTD"/>
+                                                </constraints>
+                                                <connections>
+                                                    <segue destination="tQA-Kk-hUK" kind="embed" id="5wW-Pj-N78"/>
+                                                </connections>
+                                            </containerView>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="f7o-8z-t1V" firstAttribute="leading" secondItem="Txd-na-oXg" secondAttribute="trailing" id="5fK-vZ-ghD"/>
-                            <constraint firstItem="Txd-na-oXg" firstAttribute="top" secondItem="Zma-0P-ZGo" secondAttribute="top" id="6K6-Rq-9BE"/>
-                            <constraint firstItem="Txd-na-oXg" firstAttribute="leading" secondItem="Zma-0P-ZGo" secondAttribute="leading" id="9QO-Vz-L5f"/>
-                            <constraint firstItem="0Ew-YM-Th3" firstAttribute="leading" secondItem="Txd-na-oXg" secondAttribute="trailing" id="O9M-cf-6Cw"/>
-                            <constraint firstItem="f7o-8z-t1V" firstAttribute="top" secondItem="0Ew-YM-Th3" secondAttribute="bottom" id="Q4g-Ks-UcL"/>
-                            <constraint firstAttribute="trailing" secondItem="0Ew-YM-Th3" secondAttribute="trailing" id="RXL-3P-YiC"/>
-                            <constraint firstAttribute="trailing" secondItem="f7o-8z-t1V" secondAttribute="trailing" id="Wi2-l3-iYE"/>
-                            <constraint firstAttribute="bottom" secondItem="f7o-8z-t1V" secondAttribute="bottom" id="Zcc-aQ-C2s"/>
-                            <constraint firstAttribute="bottom" secondItem="Txd-na-oXg" secondAttribute="bottom" id="qYA-sb-1Dg"/>
-                            <constraint firstItem="0Ew-YM-Th3" firstAttribute="top" secondItem="Zma-0P-ZGo" secondAttribute="top" id="zb1-LG-6zC"/>
+                            <constraint firstAttribute="bottom" secondItem="ee2-LE-dlE" secondAttribute="bottom" id="4Dh-g1-ct9"/>
+                            <constraint firstItem="ee2-LE-dlE" firstAttribute="top" secondItem="Zma-0P-ZGo" secondAttribute="top" id="Iei-CV-KbF"/>
+                            <constraint firstAttribute="trailing" secondItem="ee2-LE-dlE" secondAttribute="trailing" id="T2n-Vc-Hoh"/>
+                            <constraint firstItem="ee2-LE-dlE" firstAttribute="leading" secondItem="Zma-0P-ZGo" secondAttribute="leading" id="zHj-Jx-mxO"/>
                         </constraints>
                     </view>
                 </viewController>
                 <customObject id="Ngl-3X-Tsl" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-238" y="1025"/>
+            <point key="canvasLocation" x="-238" y="1024.5"/>
         </scene>
         <!--Message View Controller-->
         <scene sceneID="tjC-8G-zwd">
@@ -900,6 +929,32 @@
                 <customObject id="nPL-ll-a1w" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="477" y="876"/>
+        </scene>
+        <!--Tactical View Controller-->
+        <scene sceneID="cV4-Zt-N4h">
+            <objects>
+                <viewController id="Zsp-ZK-TcN" customClass="TacticalViewController" customModule="Netrek" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="XS0-Rx-Fxg" customClass="SKView">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="XzW-3P-xSJ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-543" y="1651"/>
+        </scene>
+        <!--Strategic View Controller-->
+        <scene sceneID="NQt-FY-33X">
+            <objects>
+                <viewController id="tQA-Kk-hUK" customClass="StrategicViewController" customModule="Netrek" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="Rxy-pd-ix6">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="oYE-g6-NE3" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="55" y="1623"/>
         </scene>
     </scenes>
 </document>
