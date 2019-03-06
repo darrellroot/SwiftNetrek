@@ -686,13 +686,13 @@
                                                 <action selector="selectTeam:" target="Voe-Tx-rLC" id="XNP-G7-TNe"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Romulan" tag="2" id="kba-Sn-YPK">
+                                        <menuItem title="Roman" tag="2" id="kba-Sn-YPK">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="selectTeam:" target="Voe-Tx-rLC" id="gWr-j0-Rce"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Klingon" tag="4" id="eOl-m9-uy5">
+                                        <menuItem title="Kleptocrat" tag="4" id="eOl-m9-uy5">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="selectTeam:" target="Voe-Tx-rLC" id="1U5-jR-hi6"/>
@@ -791,9 +791,9 @@
                         <outlet property="selectShipScout" destination="K8f-w1-MFk" id="1RG-m2-8MX"/>
                         <outlet property="selectShipStarbase" destination="HaN-YX-xIR" id="Whg-fb-Nlu"/>
                         <outlet property="selectTeamFederation" destination="QXd-H4-JIy" id="cVr-be-xqm"/>
-                        <outlet property="selectTeamKlingon" destination="eOl-m9-uy5" id="Ajd-Ph-4FM"/>
+                        <outlet property="selectTeamKleptocrat" destination="eOl-m9-uy5" id="plU-9H-Vxx"/>
                         <outlet property="selectTeamOrion" destination="vkp-EH-W33" id="wYs-aF-AfH"/>
-                        <outlet property="selectTeamRomulan" destination="kba-Sn-YPK" id="W9C-QF-FG8"/>
+                        <outlet property="selectTeamRoman" destination="kba-Sn-YPK" id="Z0o-tS-9J3"/>
                         <outlet property="serverMenu" destination="fh8-Tz-54x" id="NRY-WO-pko"/>
                     </connections>
                 </customObject>

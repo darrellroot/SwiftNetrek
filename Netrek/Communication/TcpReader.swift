@@ -20,6 +20,7 @@ class TcpReader {
     let queue: DispatchQueue
     var receiving: Bool = false // primitive lock on receiving
     var receiveCount: Int = 0
+    var complete = false // set to true once we get complete in our receive closure
     init?(hostname: String, port: Int, delegate: NetworkDelegate) {
         self.hostname = hostname
         self.port = port
@@ -64,29 +65,28 @@ class TcpReader {
         connection.start(queue: queue)
     }
     func receive() {
-        //debugPrint("starting receive count \(self.receiveCount)")
-        /*
-        connection.receiveMessage { (content, context, isComplete, error) in
-            debugPrint("\(Date()) TcpReader: got a message \(String(describing: content?.count)) bytes")
-            if let content = content {
-                self.delegate.gotData(data: content, from: self.hostname, port: self.port)
-            }
+        guard self.complete == false else {
+            debugPrint("TCPReader.receive: already complete.  not trying to receive")
+            return
         }
-        */
-        //debugPrint("trying to receive data")
-        connection.receive(minimumIncompleteLength: 1, maximumLength: 32768) { (content, context, isComplete, error) in
+        guard self.connection.state == .ready else {
+            debugPrint("TCPReader.receive: connection state \(self.connection.state) no trying to receive")
+            return
+        }
+        debugPrint("TCPReader.receive: initiating receive count \(receiveCount)")
+        connection.receive(minimumIncompleteLength: 1, maximumLength: 16384) { (content, context, isComplete, error) in
             debugPrint("In receive closure count \(self.receiveCount)")
             if (content?.count ?? 0) > 0 {
                 debugPrint("\(Date()) TcpReader: got a message \(String(describing: content?.count)) bytes")
             }
             if let content = content {
+                //debugPrint("content startIndex \(content.startIndex) endIndex \(content.endIndex)" )
                 self.delegate.gotData(data: content, from: self.hostname, port: self.port)
             }
-            if self.connection.state == .ready && isComplete == false {
-                DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 0.05) {
+            /* moved to after PacketAnalyzer
+             if self.connection.state == .ready && isComplete == false {
                     self.receive()
-                }
-            }
+            }*/
         }
         //debugPrint("leaving receive count \(self.receiveCount)")
         receiveCount = receiveCount + 1

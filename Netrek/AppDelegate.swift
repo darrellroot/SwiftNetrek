@@ -19,7 +19,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var gameState: GameState = .noServerSelected
     let universe = Universe()
     var analyzer: PacketAnalyzer?
-    let timerInterval = 10.0 / Double(UPDATE_RATE)
+    let timerInterval = 1.0 / Double(UPDATE_RATE)
     var timer: Timer?
     var timerCount = 0
     // The following are initialized by the child controllers via the appdelegate
@@ -33,8 +33,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBOutlet weak var serverMenu: NSMenu!
     @IBOutlet weak var selectTeamFederation: NSMenuItem!
-    @IBOutlet weak var selectTeamRomulan: NSMenuItem!
-    @IBOutlet weak var selectTeamKlingon: NSMenuItem!
+    @IBOutlet weak var selectTeamRoman: NSMenuItem!
+    @IBOutlet weak var selectTeamKleptocrat: NSMenuItem!
     @IBOutlet weak var selectTeamOrion: NSMenuItem!
     
     @IBOutlet weak var selectShipScout: NSMenuItem!
@@ -62,16 +62,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func updateMenu() {
         selectTeamFederation.state = .off
-        selectTeamRomulan.state = .off
-        selectTeamKlingon.state = .off
+        selectTeamRoman.state = .off
+        selectTeamKleptocrat.state = .off
         selectTeamOrion.state = .off
         switch preferredTeam {
         case .federation:
             selectTeamFederation.state = .on
-        case .romulan:
-            selectTeamRomulan.state = .on
-        case .klingon:
-            selectTeamKlingon.state = .on
+        case .roman:
+            selectTeamRoman.state = .on
+        case .kleptocrat:
+            selectTeamKleptocrat.state = .on
         case .orion:
             selectTeamOrion.state = .on
         case .nobody:
@@ -273,6 +273,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 extension AppDelegate: NetworkDelegate {
     func gotData(data: Data, from: String, port: Int) {
         debugPrint("appdelegate got data \(data.count) bytes")
+        //debugPrint("appdelegate data index \(data.startIndex) \(data.endIndex)")
         if data.count > 0 {
             analyzer?.analyze(incomingData: data)
         }

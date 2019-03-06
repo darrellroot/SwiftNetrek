@@ -25,15 +25,24 @@ class PacketAnalyzer {
     }
     
     func analyze(incomingData: Data) {
-        debugPrint("about to copy data")
-        let size = incomingData.count + (leftOverData?.count ?? 0) + 10
-        debugPrint("incoming data size \(incomingData.count) leftOverData.size \(String(describing: leftOverData?.count))")
-        var data = Data(capacity: size)
-        debugPrint("one")
+        //debugPrint("incoming data size \(incomingData.count) leftOverData.size \(String(describing: leftOverData?.count))")
+        var data = Data()
+        //debugPrint("one data.startIndex \(data.startIndex) data.endIndex \(data.endIndex)")
+        
         if leftOverData != nil {
-            data = leftOverData!
-            debugPrint("two")
-            data.append(incomingData)
+            //debugPrint("leftoverdata.startIndex \(leftOverData!.startIndex) leftoverdata.endIndex \(leftOverData!.endIndex)")
+            //data.append(leftOverData!)
+            var leftOverDataStruct: [UInt8] = []
+            for byte in leftOverData! {
+                leftOverDataStruct.append(byte)
+            }
+            //let leftOverDataStruct: [UInt8] = leftOverData!
+            data = leftOverDataStruct + incomingData
+            //debugPrint("two")
+            //debugPrint("data startIndex \(data.startIndex) endIndex \(data.endIndex)\n")
+            //debugPrint("incomingData startIndex \(incomingData.startIndex) endIndex \(incomingData.endIndex)\n")
+
+            //data.append(incomingData)
             debugPrint("three")
             self.leftOverData = nil
         } else {
@@ -43,7 +52,8 @@ class PacketAnalyzer {
         debugPrint("done copying data")
         repeat {
             guard let packetType: UInt8 = data.first else {
-                debugPrint("PacketAnalyzer.analyze is done")
+                debugPrint("PacketAnalyzer.analyze is done, should not have gotten here")
+                appDelegate.reader?.receive()
                 return
             }
             guard let packetLength = PACKET_SIZES[safe: Int(packetType)] else {
@@ -58,16 +68,27 @@ class PacketAnalyzer {
             }
             guard data.count >= packetLength else {
                 debugPrint("PacketAnalyzer.analyze: fractional packet expected length \(packetLength) remaining size \(data.count) saving for next round")
-                self.leftOverData = data
+                self.leftOverData = Data()
+                for byte in data {
+                    self.leftOverData?.append(byte)
+                }
+                //self.leftOverData!.append(data)
+                //debugPrint("created leftOverData startIndex \(leftOverData?.startIndex) endIndex \(leftOverData?.endIndex)")
+                //debugPrint("from data startIndex \(data.startIndex) endIndex \(data.endIndex)")
+
+                appDelegate.reader?.receive()
                 return
             }
             let range = (data.startIndex..<data.startIndex + packetLength)
-            debugPrint("packetAnalyzer.analyze startIndex \(data.startIndex) packetLength \(packetLength) endindex \(data.endIndex) packetType \(packetType)")
+            //debugPrint("packetAnalyzer.analyze startIndex \(data.startIndex) packetLength \(packetLength) endindex \(data.endIndex) packetType \(packetType)")
             let thisPacket = data.subdata(in: range)
             self.analyzeOnePacket(data: thisPacket)
             data.removeFirst(packetLength)
         } while data.count > 0
+        // now that we've analyzed our data, we can try
+        // to receive more
         
+        appDelegate.reader?.receive()
     }
 
     func printData(_ data: Data, success: Bool) {
@@ -148,7 +169,7 @@ class PacketAnalyzer {
             let direction = Int(data[2])
             let speed = Int(data[3])
             let positionX = Int(data.subdata(in: (4..<8)).to(type: UInt32.self).byteSwapped)
-            let positionY = Int(data.subdata(in: (4..<8)).to(type: UInt32.self).byteSwapped)
+            let positionY = Int(data.subdata(in: (8..<12)).to(type: UInt32.self).byteSwapped)
             universe.updatePlayer(playerID: playerID, direction: direction, speed: speed, positionX: positionX, positionY: positionY)
             debugPrint("Received SP_PLAYER 4 playerID \(playerID) direction \(direction) speed \(speed) positionX \(positionX) positionY \(positionY)")
 

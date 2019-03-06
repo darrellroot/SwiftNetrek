@@ -51,6 +51,13 @@ class TacticalViewController: NSViewController, SKSceneDelegate {
             planetNode.size = CGSize(width: 1120, height: 1120)
             scene.addChild(planetNode)
             planetNodes[index] = planetNode
+            let planetTextNode = SKLabelNode(text: planet.name)
+            planetTextNode.position = CGPoint(x: 0, y: -2000)
+            planetNode.addChild(planetTextNode)
+            planetTextNode.color = NSColor.orange
+            planetTextNode.fontName = "Courier"
+            planetTextNode.fontColor = NSColor.white
+            planetTextNode.fontSize = 800
         }
         setupComplete = true
     }
