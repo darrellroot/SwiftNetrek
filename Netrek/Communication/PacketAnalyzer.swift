@@ -253,8 +253,8 @@ class PacketAnalyzer {
             // My information
             // SP_YOU length 32
             let myPlayerID = Int(data[1])
-            let hostile = Int(data[2])
-            let war = Int(data[3])
+            let hostile = UInt32(data[2])
+            let war = UInt32(data[3])
             let armies = Int(data[4])
             let tractor = Int(data[5])
             let flags = data.subdata(in: (8..<12)).to(type: UInt32.self).byteSwapped
@@ -385,8 +385,8 @@ class PacketAnalyzer {
         case 22:
             debugPrint("Received SP_HOSTILE 22")
             let playerID = Int(data[1])
-            let war = Int(data[2])
-            let hostile = Int(data[3])
+            let war = UInt32(data[2])
+            let hostile = UInt32(data[3])
             debugPrint("Received SP_HOSTILE 22 playerID \(playerID) war \(war) hostile \(hostile)")
             universe.updatePlayer(playerID: playerID, war: war, hostile: hostile)
             

@@ -45,7 +45,10 @@ class TacticalViewController: NSViewController, SKSceneDelegate {
     }
     
     public func setup() {
-        for (index,planet) in appDelegate.universe.planets {
+        /*
+        for planet in appDelegate.universe.planets.values {
+                scene.addChild(planet.planetTacticalNode)
+        }
             let planetNode = SKSpriteNode(imageNamed: "planet-ind")
             planetNode.position = CGPoint(x: planet.positionX, y: planet.positionY)
             planetNode.size = CGSize(width: 1120, height: 1120)
@@ -58,7 +61,7 @@ class TacticalViewController: NSViewController, SKSceneDelegate {
             planetTextNode.fontName = "Courier"
             planetTextNode.fontColor = NSColor.white
             planetTextNode.fontSize = 800
-        }
+ */
         setupComplete = true
     }
     public func update() {  // this gets called 10 times a second so its gotta be fast
@@ -69,6 +72,7 @@ class TacticalViewController: NSViewController, SKSceneDelegate {
             if playerNodes[index] == nil {
                 let newPlayerNode = SKSpriteNode(imageNamed: "ori-ca")
                 newPlayerNode.position = CGPoint(x: player.positionX, y: player.positionY)
+                newPlayerNode.zPosition = 3
                 newPlayerNode.size = CGSize(width: 800, height: 800)
                 scene.addChild(newPlayerNode)
                 playerNodes[index] = newPlayerNode

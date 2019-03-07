@@ -10,8 +10,9 @@ import Foundation
 
 class Player: CustomStringConvertible {
     var playerID: Int?
-    private(set) var hostile = 0
-    private(set) var war = 0
+    //private(set) var hostile = 0
+    private(set) var hostile: [Team:Bool] = [:]
+    private(set) var war: [Team:Bool] = [:]
     private(set) var armies = 0
     private(set) var tractor = 0
     private(set) var flags: UInt32 = 0
@@ -49,12 +50,26 @@ class Player: CustomStringConvertible {
             return "Player \(String(describing: playerID)) name \(name) armies \(armies) damage \(damage) shield \(shieldStrength) fuel \(fuel) eTmp \(engineTemp) ship \(String(describing: ship)) team \(String(describing: team)) wTmp \(weaponsTemp) playing \(playing) positionX \(positionX) positionY \(positionY) login \(login) rank \(rank)"
         }
     }
-    public func updateMe(myPlayerID: Int, hostile: Int, war: Int, armies: Int, tractor: Int, flags: UInt32, damage: Int, shieldStrength: Int, fuel: Int, engineTemp: Int, weaponsTemp: Int, whyDead: Int, whoDead: Int) {
+    public func updateMe(myPlayerID: Int, hostile: UInt32, war: UInt32, armies: Int, tractor: Int, flags: UInt32, damage: Int, shieldStrength: Int, fuel: Int, engineTemp: Int, weaponsTemp: Int, whyDead: Int, whoDead: Int) {
         if self.playerID != myPlayerID && self.playerID != nil  {
             debugPrint("Player.updateMe: ERROR: inconsistent player ID \(myPlayerID) versus \(String(describing: self.playerID))")
         }
-        self.hostile = hostile //TODO break this up
-        self.war = war // TODO break this up
+        //self.hostile = hostile //TODO break this up
+        for team in Team.allCases {
+            if UInt32(team.rawValue) & hostile != 0 {
+                self.hostile[team] = true
+            } else {
+                self.hostile[team] = false
+            }
+        }
+        //self.war = war // TODO break this up
+        for team in Team.allCases {
+            if UInt32(team.rawValue) & war != 0 {
+                self.war[team] = true
+            } else {
+                self.war[team] = false
+            }
+        }
         self.armies = armies
         self.tractor = tractor
         self.flags = flags
@@ -99,9 +114,26 @@ class Player: CustomStringConvertible {
         self.flags = flags
     }
     // from SP_HOSTILE_22
-    public func update(war: Int, hostile: Int) {
-        self.war = war
-        self.hostile = hostile
+    public func update(war: UInt32, hostile: UInt32) {
+        for team in Team.allCases {
+            if UInt32(team.rawValue) & hostile != 0 {
+                self.hostile[team] = true
+            } else {
+                self.hostile[team] = false
+            }
+        }
+        //self.war = war // TODO break this up
+        for team in Team.allCases {
+            if UInt32(team.rawValue) & war != 0 {
+                self.war[team] = true
+            } else {
+                self.war[team] = false
+            }
+        }
+        /*for team in Team.allCases {
+            debugPrint("player \(String(describing: playerID)) is on team \(self.team) and is hostile:\(self.hostile) with team \(team)" )
+            debugPrint("player \(String(describing: playerID)) is on team \(self.team) and is war:\(self.war) with team \(team)" )
+        }*/
     }
     public func update(rank: Int, name: String, login: String) {
         self.rank = rank

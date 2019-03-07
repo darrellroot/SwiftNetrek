@@ -22,15 +22,6 @@ class Universe {
     let maxPlasma = 100
     
     init() {
-        /*for i in 0..<MAXPLAYERS {
-            let newPlayer = Player(playerID: i)
-            players.append(newPlayer)
-            me = players[0]
-        }
-        for i in 0..<MAXPLANETS {
-            let newPlanet = Planet(planetID: i)
-            planets.append(newPlanet)
-        }*/
     }
     public func createPlanet(planetID: Int, positionX: Int, positionY: Int, name: String) {
         guard planetID >= 0 else {
@@ -61,7 +52,7 @@ class Universe {
         self.players[playerID]?.update(shipType: shipType)
         self.players[playerID]?.update(team: team)
     }
-    public func updatePlayer(playerID: Int, war: Int, hostile: Int) {
+    public func updatePlayer(playerID: Int, war: UInt32, hostile: UInt32) {
         guard playerID >= 0 && playerID < maxPlayers else {
             debugPrint("Universe.updatePlayer invalid playerID \(playerID)")
             return
@@ -108,7 +99,7 @@ class Universe {
         self.players[playerID]?.update(direction: direction, speed: speed, positionX: positionX, positionY: positionY)
     }
     
-    public func updateMe(myPlayerID: Int, hostile: Int, war: Int, armies: Int, tractor: Int, flags: UInt32, damage: Int, shieldStrength: Int, fuel: Int, engineTemp: Int, weaponsTemp: Int, whyDead: Int, whoDead: Int) {
+    public func updateMe(myPlayerID: Int, hostile: UInt32, war: UInt32, armies: Int, tractor: Int, flags: UInt32, damage: Int, shieldStrength: Int, fuel: Int, engineTemp: Int, weaponsTemp: Int, whyDead: Int, whoDead: Int) {
         guard myPlayerID >= 0 && myPlayerID < maxPlayers else {
             debugPrint("Universe.updateMe invalid playerID \(myPlayerID)")
             return
