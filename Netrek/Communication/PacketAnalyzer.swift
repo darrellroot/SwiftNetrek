@@ -166,10 +166,10 @@ class PacketAnalyzer {
         case 4:
             // SP_PLAYER py-struct
             let playerID = Int(data[1])
-            let directionNetrek = Int(data[2])
+            let directionNetrek = UInt8(data[2])
             let speed = Int(data[3])
             let positionX = Int(data.subdata(in: (4..<8)).to(type: UInt32.self).byteSwapped)
-            let positionY = Int(data.subdata(in: (8..<12)).to(type: UInt32.self).byteSwapped)
+            let positionY = NetrekMath.netrekY2GameY(Int(data.subdata(in: (8..<12)).to(type: UInt32.self).byteSwapped))
             universe.updatePlayer(playerID: playerID, directionNetrek: directionNetrek, speed: speed, positionX: positionX, positionY: positionY)
             debugPrint("Received SP_PLAYER 4 playerID \(playerID) directionNetrek \(directionNetrek) speed \(speed) positionX \(positionX) positionY \(positionY)")
 
@@ -187,7 +187,7 @@ class PacketAnalyzer {
             let directionNetrek = Int(UInt8(data[1]))
             let torpedoNumber = Int(data.subdata(in: (2..<3)).to(type: UInt16.self).byteSwapped)
             let positionX = Int(data.subdata(in: (4..<8)).to(type: UInt32.self).byteSwapped)
-            let positionY = Int(data.subdata(in: (4..<8)).to(type: UInt32.self).byteSwapped)
+            let positionY = NetrekMath.netrekY2GameY((Int(data.subdata(in: (4..<8)).to(type: UInt32.self).byteSwapped)))
             debugPrint("Received SP_TORP 6 torpedoNumber \(torpedoNumber) directionNetrek \(directionNetrek) positionX \(positionX) positionY \(positionY)")
             universe.updateTorpedo(torpedoNumber: torpedoNumber, directionNetrek: directionNetrek, positionX: positionX, positionY: positionY)
             
@@ -197,7 +197,7 @@ class PacketAnalyzer {
             let status = Int(data[2]) // PH_HIT etc...
             let directionNetrek = Int(UInt8(data[3]))
             let positionX = Int(data.subdata(in: (4..<8)).to(type: UInt32.self).byteSwapped)
-            let positionY = Int(data.subdata(in: (8..<12)).to(type: UInt32.self).byteSwapped)
+            let positionY = NetrekMath.netrekY2GameY(Int(data.subdata(in: (8..<12)).to(type: UInt32.self).byteSwapped))
             let target = Int(data.subdata(in: (12..<16)).to(type: Int32.self).byteSwapped)
             debugPrint("Received SP_LASER 7 laserNumber \(laserNumber) status \(status) directionNetrek \(directionNetrek) positionX \(positionX) positionY \(positionY) target \(target)")
             universe.updateLaser(laserNumber: laserNumber, status: status, directionNetrek: directionNetrek, positionX: positionX, positionY: positionY, target: target)
@@ -213,7 +213,7 @@ class PacketAnalyzer {
             //SP_PLASMA
             let plasmaNumber = Int(data.subdata(in: (2..<3)).to(type: UInt16.self).byteSwapped)
             let positionX = Int(data.subdata(in: (4..<8)).to(type: UInt32.self).byteSwapped)
-            let positionY = Int(data.subdata(in: (8..<12)).to(type: UInt32.self).byteSwapped)
+            let positionY = NetrekMath.netrekY2GameY(Int(data.subdata(in: (8..<12)).to(type: UInt32.self).byteSwapped))
             debugPrint("Received SP_PLASMA 9 plasmaNumber \(plasmaNumber) positionX \(positionX) positionY \(positionY)")
             universe.updatePlasma(plasmaNumber: plasmaNumber, positionX: positionX, positionY: positionY)
         
@@ -392,6 +392,28 @@ class PacketAnalyzer {
             debugPrint("Received SP_HOSTILE 22 playerID \(playerID) war \(war) hostile \(hostile)")
             universe.updatePlayer(playerID: playerID, war: war, hostile: hostile)
             
+        case 23:
+            // SP_STATS 23
+            let playerID = Int(data[1])
+            // pad1
+            // pad2
+            let tournamentKills = Int(data.subdata(in: (4..<8)).to(type: UInt32.self).byteSwapped)
+            let tournamentLosses = Int(data.subdata(in: (8..<12)).to(type: UInt32.self).byteSwapped)
+            let overallKills = Int(data.subdata(in: (12..<16)).to(type: UInt32.self).byteSwapped)
+            let overallLosses = Int(data.subdata(in: (16..<20)).to(type: UInt32.self).byteSwapped)
+            let tournamentTicks = Int(data.subdata(in: (20..<24)).to(type: UInt32.self).byteSwapped)
+            let tournamentPlanets = Int(data.subdata(in: (24..<28)).to(type: UInt32.self).byteSwapped)
+            let tournamentArmies = Int(data.subdata(in: (28..<32)).to(type: UInt32.self).byteSwapped)
+            let starbaseKills = Int(data.subdata(in: (32..<36)).to(type: UInt32.self).byteSwapped)
+            let starbaseLosses = Int(data.subdata(in: (36..<40)).to(type: UInt32.self).byteSwapped)
+            let intramuralArmies = Int(data.subdata(in: (40..<44)).to(type: UInt32.self).byteSwapped)
+            let intramuralPlanets = Int(data.subdata(in: (44..<48)).to(type: UInt32.self).byteSwapped)
+            let maxKills100 = Int(data.subdata(in: (48..<52)).to(type: UInt32.self).byteSwapped)
+            let starbaseMaxKills100 = Int(data.subdata(in: (52..<56)).to(type: UInt32.self).byteSwapped)
+            let maxKills = Double(maxKills100) / 100.0
+            let starbaseMaxKills = Double(starbaseMaxKills100) / 100.0
+            debugPrint("Received SP_STATS 23  tkills \(tournamentKills) tlosses \(tournamentLosses) overallKills \(overallKills) overallLosses \(overallLosses) tTicks \(tournamentTicks) tPlanets \(tournamentPlanets) tArmies \(tournamentArmies) sbKills \(starbaseKills) sbLosses \(starbaseLosses) intramuralArmies \(intramuralArmies) intramuralPlanets \(intramuralPlanets) maxKills \(maxKills) starbaseMaxKills \(starbaseMaxKills)")
+            //TODO need to process this data
         case 24:
             debugPrint("Received SP_PL_LOGIN 24")
             //plyr_long_spacket SP_PL_LOGIN
@@ -415,13 +437,14 @@ class PacketAnalyzer {
             }
             debugPrint("Received SP_PL_LOGIN 24 playerID: \(playerID) rank: \(rank) name: \(name) login: \(login)")
             universe.updatePlayer(playerID: playerID, rank: rank, name: name, login: login)
-
+        /*case 25:
+            // is reserved, but I got one on pickled.netrek.org
+            break*/
         case 26:
-            debugPrint("Received SP_PLANET_LOC 26")
             // SP_PLANET_LOC
             let planetID = Int(data[1])
             let positionX = Int(data.subdata(in: (4..<8)).to(type: UInt32.self).byteSwapped)
-            let positionY = Int(data.subdata(in: (8..<12)).to(type: UInt32.self).byteSwapped)
+            let positionY = NetrekMath.netrekY2GameY(Int(data.subdata(in: (8..<12)).to(type: UInt32.self).byteSwapped))
             let nameData = data.subdata(in: (12..<28))
             var name = "unknown"
             if let nameStringWithNulls = String(data: nameData, encoding: .utf8) {
@@ -431,7 +454,8 @@ class PacketAnalyzer {
             if let planet = universe.planets[planetID] {
                 //debugPrint(planet)
             }
-            printData(data, success: true)
+            debugPrint("Received SP_PLANET_LOC 26 name \(name) positionX \(positionX) positionY \(positionY)")
+            //printData(data, success: true)
 
         case 32:
             let version = Int(data[1])

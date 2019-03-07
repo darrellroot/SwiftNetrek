@@ -87,7 +87,7 @@ class Universe {
         }
         self.players[playerID]?.update(kills: kills)
     }
-    public func updatePlayer(playerID: Int, directionNetrek: Int, speed: Int, positionX: Int, positionY: Int) {
+    public func updatePlayer(playerID: Int, directionNetrek: UInt8, speed: Int, positionX: Int, positionY: Int) {
         guard playerID >= 0 && playerID < maxPlayers else {
             debugPrint("Universe.updatePlayer invalid playerID \(playerID)")
             return

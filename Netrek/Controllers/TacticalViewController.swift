@@ -23,6 +23,8 @@ class TacticalViewController: NSViewController, SKSceneDelegate {
         let skView = self.view as! SKView
         skView.showsFPS = true
         skView.showsNodeCount = true
+        skView.showsDrawCount = true
+        skView.showsQuadCount = true
         skView.ignoresSiblingOrder = true
         defaultCamera.xScale = 0.2
         defaultCamera.yScale = 0.2

@@ -20,7 +20,7 @@ class TacticalScene: SKScene {
             let location = event.location(in: self)
             debugPrint("LeftMouseDown location \(location)")
             if let me = appDelegate.universe.me {
-                let netrekDirection = calculateNetrekDirection(mePositionX: Double(me.positionX), mePositionY: Double(me.positionY), destinationX: Double(location.x), destinationY: Double(location.y))
+                let netrekDirection = NetrekMath.calculateNetrekDirection(mePositionX: Double(me.positionX), mePositionY: Double(me.positionY), destinationX: Double(location.x), destinationY: Double(location.y))
                 if let cpDirection = MakePacket.cpDirection(netrekDirection: netrekDirection) {
                     appDelegate.reader?.send(content: cpDirection)
                 }
@@ -70,15 +70,4 @@ class TacticalScene: SKScene {
         }
     }
     
-    func calculateNetrekDirection(mePositionX: Double, mePositionY: Double, destinationX: Double, destinationY: Double) -> Int {
-        let deltaX = Double(destinationX - mePositionX)
-        let deltaY = Double(destinationY - mePositionY)
-        var angleRadians = atan2(deltaY,deltaX)
-        if angleRadians < 0 { angleRadians = angleRadians + Double.pi + Double.pi }
-        var netrekDirection = Int(angleRadians * 128 / Double.pi) + 64
-        if netrekDirection > 255 {
-            netrekDirection = netrekDirection - 256
-        }
-        return(netrekDirection)
-    }
 }

@@ -36,6 +36,7 @@
 		2F7501B3222F5B8F002040A7 /* StrategicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7501B2222F5B8F002040A7 /* StrategicViewController.swift */; };
 		2F7501B5222F5BD7002040A7 /* TacticalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7501B4222F5BD7002040A7 /* TacticalView.swift */; };
 		2F94A82F2230DA3B00FAAF39 /* TacticalScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F94A82E2230DA3B00FAAF39 /* TacticalScene.swift */; };
+		2F94A8312231AEA800FAAF39 /* NetrekMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F94A8302231AEA800FAAF39 /* NetrekMath.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +74,7 @@
 		2F7501B2222F5B8F002040A7 /* StrategicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategicViewController.swift; sourceTree = "<group>"; };
 		2F7501B4222F5BD7002040A7 /* TacticalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TacticalView.swift; sourceTree = "<group>"; };
 		2F94A82E2230DA3B00FAAF39 /* TacticalScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TacticalScene.swift; sourceTree = "<group>"; };
+		2F94A8302231AEA800FAAF39 /* NetrekMath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetrekMath.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 				2F75016B2229FA22002040A7 /* MetaServerEntry.swift */,
 				2F75016D2229FFE8002040A7 /* MetaServer.swift */,
 				2F75019F222C8E59002040A7 /* Tuple16.swift */,
+				2F94A8302231AEA800FAAF39 /* NetrekMath.swift */,
 			);
 			path = DataTypes;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				2F7501B5222F5BD7002040A7 /* TacticalView.swift in Sources */,
 				2F750198222B66AF002040A7 /* Data-extensions.swift in Sources */,
 				2F750180222AEC8B002040A7 /* MakePacket.swift in Sources */,
+				2F94A8312231AEA800FAAF39 /* NetrekMath.swift in Sources */,
 				2F750183222AF698002040A7 /* enumerations.swift in Sources */,
 				2F75019A222C33D6002040A7 /* Planet.swift in Sources */,
 				2F94A82F2230DA3B00FAAF39 /* TacticalScene.swift in Sources */,

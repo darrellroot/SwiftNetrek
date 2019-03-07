@@ -136,7 +136,10 @@ class Player: CustomStringConvertible {
     public func update(shipType: Int) {
         for shipCase in ShipType.allCases {
             if shipCase.rawValue == shipType {
-                self.ship = shipCase
+                if shipCase != self.ship {
+                    self.ship = shipCase
+                    self.remakeNode()
+                }
                 return
             }
         }
@@ -145,7 +148,10 @@ class Player: CustomStringConvertible {
     public func update(team: Int) {
         for teamCase in Team.allCases {
             if teamCase.rawValue == team {
-                self.team = teamCase
+                if self.team != teamCase {
+                    self.team = teamCase
+                    self.remakeNode()
+                }
                 return
             }
         }
@@ -155,12 +161,17 @@ class Player: CustomStringConvertible {
         self.kills = kills
     }
     // from SP_PLAYER 4
-    public func update(directionNetrek: Int, speed: Int, positionX: Int, positionY: Int) {
-        self.direction = CGFloat(direction) * 2 * CGFloat.pi / 256.0
+    public func update(directionNetrek: UInt8, speed: Int, positionX: Int, positionY: Int) {
+        self.direction = NetrekMath.directionNetrek2radian(UInt8(directionNetrek))
         self.speed = speed
         self.positionX = positionX
         self.positionY = positionY
         self.updateNode()
+        /* for debugging only
+         if me && self.direction < CGFloat.pi {
+            // do nothing
+            debugPrint("self.direction \(self.direction)")
+        }*/
     }
     // from SP_FLAGS_18
     public func update(tractor: Int, flags: UInt32) {
