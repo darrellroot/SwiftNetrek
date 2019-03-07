@@ -74,7 +74,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             selectTeamKleptocrat.state = .on
         case .orion:
             selectTeamOrion.state = .on
-        case .nobody:
+        case .independent:
             break
         case .ogg:
             break
@@ -142,7 +142,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     public func newGameState(_ newState: GameState ) {
-        self.messageViewController?.gotMessage("Game State: moving from self.gameState.rawValue to newState.rawValue\n")
+        self.messageViewController?.gotMessage("Game State: moving from \(self.gameState.rawValue) to \(newState.rawValue)\n")
         switch newState {
         case .noServerSelected:
             self.gameState = newState

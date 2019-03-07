@@ -14,11 +14,11 @@ class Planet: CustomStringConvertible {
     private(set) var name: String
     private(set) var positionX: Int
     private(set) var positionY: Int
-    private(set) var owner: Team = .nobody
+    private(set) var owner: Team = .independent
     private(set) var info: Int = 0
     private(set) var flags: Int = 0
     var armies: Int = 0
-    var planetTacticalNode = SKSpriteNode(texture: SKTexture(imageNamed: "planet-ind"))
+    var planetTacticalNode = SKSpriteNode(imageNamed: "planet-ind")
     let planetTacticalLabel = SKLabelNode()
     
     let appDelegate = NSApplication.shared.delegate as! AppDelegate

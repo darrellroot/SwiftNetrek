@@ -87,7 +87,7 @@ class Universe {
         }
         self.players[playerID]?.update(kills: kills)
     }
-    public func updatePlayer(playerID: Int, direction: Int, speed: Int, positionX: Int, positionY: Int) {
+    public func updatePlayer(playerID: Int, directionNetrek: Int, speed: Int, positionX: Int, positionY: Int) {
         guard playerID >= 0 && playerID < maxPlayers else {
             debugPrint("Universe.updatePlayer invalid playerID \(playerID)")
             return
@@ -96,7 +96,7 @@ class Universe {
             let newPlayer = Player(playerID: playerID)
             self.players[playerID] = newPlayer
         }
-        self.players[playerID]?.update(direction: direction, speed: speed, positionX: positionX, positionY: positionY)
+        self.players[playerID]?.update(directionNetrek: directionNetrek, speed: speed, positionX: positionX, positionY: positionY)
     }
     
     public func updateMe(myPlayerID: Int, hostile: UInt32, war: UInt32, armies: Int, tractor: Int, flags: UInt32, damage: Int, shieldStrength: Int, fuel: Int, engineTemp: Int, weaponsTemp: Int, whyDead: Int, whoDead: Int) {

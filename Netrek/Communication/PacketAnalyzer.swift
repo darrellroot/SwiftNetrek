@@ -166,12 +166,12 @@ class PacketAnalyzer {
         case 4:
             // SP_PLAYER py-struct
             let playerID = Int(data[1])
-            let direction = Int(data[2])
+            let directionNetrek = Int(data[2])
             let speed = Int(data[3])
             let positionX = Int(data.subdata(in: (4..<8)).to(type: UInt32.self).byteSwapped)
             let positionY = Int(data.subdata(in: (8..<12)).to(type: UInt32.self).byteSwapped)
-            universe.updatePlayer(playerID: playerID, direction: direction, speed: speed, positionX: positionX, positionY: positionY)
-            debugPrint("Received SP_PLAYER 4 playerID \(playerID) direction \(direction) speed \(speed) positionX \(positionX) positionY \(positionY)")
+            universe.updatePlayer(playerID: playerID, directionNetrek: directionNetrek, speed: speed, positionX: positionX, positionY: positionY)
+            debugPrint("Received SP_PLAYER 4 playerID \(playerID) directionNetrek \(directionNetrek) speed \(speed) positionX \(positionX) positionY \(positionY)")
 
         case 5:
             // SP_TORP_INFO
@@ -341,14 +341,15 @@ class PacketAnalyzer {
             } else {
                 appDelegate.newGameState(.loginAccepted)
             }
-            printData(data, success: true)
+            //printData(data, success: true)
 
         case 18:
-            debugPrint("Received SP_FLAGS 18")
-            //SP_FLAGS
+            //SP_FLAGS 18
             let playerID = Int(data[1])
             let tractor = Int(data[2])
             let flags = data.subdata(in: (4..<8)).to(type: UInt32.self).byteSwapped
+
+            debugPrint("Received SP_FLAGS 18 playerID \(playerID) tractor \(tractor) flags \(flags)")
 
             guard let player = universe.players[playerID] else {
                 debugPrint("PacketAnalyzer type 18 invalid player id \(playerID)")
@@ -358,7 +359,7 @@ class PacketAnalyzer {
             }
             player.update(tractor: tractor, flags: flags)
             //debugPrint(player)
-            printData(data, success: true)
+            //printData(data, success: true)
 
         case 19:
             //TODO process mask
@@ -368,7 +369,6 @@ class PacketAnalyzer {
             // pad3
             debugPrint("Received SP_MASK 19 mask \(mask)")
         case 20:
-            debugPrint("Received SP_PSTATUS 20")
             // SP_PSTATUS
             let playerID = Int(data[1])
             let status = Int(data[2])
@@ -377,9 +377,11 @@ class PacketAnalyzer {
                 printData(data, success: false)
                 return
             }
-            player.status = Int(status)
+            debugPrint("Received SP_PSTATUS 20 playerID \(playerID) status \(status)")
+            player.update(sp_pstatus: status)
+            //player.status = Int(status)
             //debugPrint(player)
-            printData(data, success: true)
+            //printData(data, success: true)
 
 
         case 22:

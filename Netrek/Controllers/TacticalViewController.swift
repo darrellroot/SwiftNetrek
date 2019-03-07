@@ -16,7 +16,6 @@ class TacticalViewController: NSViewController, SKSceneDelegate {
     let appDelegate = NSApplication.shared.delegate as! AppDelegate
     
     var playerNodes: [Int:SKSpriteNode] = [:]
-    var planetNodes: [Int:SKSpriteNode] = [:]
     var torpedoNodes: [Int: SKSpriteNode] = [:]
     //var lasers: [Int: ] = [:]
     var plasmaNodes: [Int: SKSpriteNode] = [:]
@@ -68,7 +67,7 @@ class TacticalViewController: NSViewController, SKSceneDelegate {
         if !setupComplete {
             return
         }
-        for (index,player) in appDelegate.universe.players {
+        /*for (index,player) in appDelegate.universe.players {
             if playerNodes[index] == nil {
                 let newPlayerNode = SKSpriteNode(imageNamed: "ori-ca")
                 newPlayerNode.position = CGPoint(x: player.positionX, y: player.positionY)
@@ -81,6 +80,6 @@ class TacticalViewController: NSViewController, SKSceneDelegate {
             if let me = appDelegate.universe.me {
                 camera.position = CGPoint(x: me.positionX, y: me.positionY)
             }
-        }
+        }*/
     }
 }
