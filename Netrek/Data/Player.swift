@@ -61,14 +61,15 @@ class Player: CustomStringConvertible {
     
     private func remakeNode() {
         //private(set) var status = 0  //free=0 outfit=1 alive=2 explode=3 dead=4 observe=5
-
-        self.playerTacticalNode.removeFromParent()
+        if self.playerTacticalNode.parent != nil {
+            self.playerTacticalNode.removeFromParent()
+        }
         self.playerTacticalNode = SKSpriteNode(imageNamed: "ori-ca")
         self.playerTacticalNode.zPosition = ZPosition.ship.rawValue
         self.playerTacticalNode.zRotation = self.direction
         self.playerTacticalNode.size = CGSize(width: 800, height: 800)
         self.updateNode()
-        appDelegate.tacticalViewController?.scene.addChild(self.playerTacticalNode)
+    appDelegate.tacticalViewController?.scene.addChild(self.playerTacticalNode)
     }
     private func updateNode() {
         //    private(set) var status = 0  //free=0 outfit=1 alive=2 explode=3 dead=4 observe=5
@@ -89,12 +90,15 @@ class Player: CustomStringConvertible {
                 self.playerTacticalNode.isHidden = true
             }
         }
-        if self.me {
-            appDelegate.tacticalViewController?.camera.position = CGPoint(x: self.positionX, y: self.positionY)
+        if self.slotStatus == .alive && self.positionX > 0 && self.positionX < 100000 && self.positionY > 0 && self.positionY < 100000 {
+                self.playerTacticalNode.position = CGPoint(x: positionX, y: positionY)
+                self.playerTacticalNode.zRotation = self.direction
+                if self.me {
+                    if let defaultCamera = appDelegate.tacticalViewController?.defaultCamera {
+                        defaultCamera.position = CGPoint(x: self.positionX, y: self.positionY)
+                    }
+            }
         }
-
-        self.playerTacticalNode.position = CGPoint(x: positionX, y: positionY)
-        self.playerTacticalNode.zRotation = self.direction
     }
     
     public func updateMe(myPlayerID: Int, hostile: UInt32, war: UInt32, armies: Int, tractor: Int, flags: UInt32, damage: Int, shieldStrength: Int, fuel: Int, engineTemp: Int, weaponsTemp: Int, whyDead: Int, whoDead: Int) {

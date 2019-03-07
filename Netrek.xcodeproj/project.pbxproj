@@ -35,6 +35,7 @@
 		2F7501B1222F5AD9002040A7 /* TacticalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7501B0222F5AD9002040A7 /* TacticalViewController.swift */; };
 		2F7501B3222F5B8F002040A7 /* StrategicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7501B2222F5B8F002040A7 /* StrategicViewController.swift */; };
 		2F7501B5222F5BD7002040A7 /* TacticalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7501B4222F5BD7002040A7 /* TacticalView.swift */; };
+		2F94A82F2230DA3B00FAAF39 /* TacticalScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F94A82E2230DA3B00FAAF39 /* TacticalScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +72,7 @@
 		2F7501B0222F5AD9002040A7 /* TacticalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TacticalViewController.swift; sourceTree = "<group>"; };
 		2F7501B2222F5B8F002040A7 /* StrategicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategicViewController.swift; sourceTree = "<group>"; };
 		2F7501B4222F5BD7002040A7 /* TacticalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TacticalView.swift; sourceTree = "<group>"; };
+		2F94A82E2230DA3B00FAAF39 /* TacticalScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TacticalScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 				2F750188222B4532002040A7 /* MessageViewController.swift */,
 				2F7501B0222F5AD9002040A7 /* TacticalViewController.swift */,
 				2F7501B2222F5B8F002040A7 /* StrategicViewController.swift */,
+				2F94A82E2230DA3B00FAAF39 /* TacticalScene.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				2F750180222AEC8B002040A7 /* MakePacket.swift in Sources */,
 				2F750183222AF698002040A7 /* enumerations.swift in Sources */,
 				2F75019A222C33D6002040A7 /* Planet.swift in Sources */,
+				2F94A82F2230DA3B00FAAF39 /* TacticalScene.swift in Sources */,
 				2F750171222A21BE002040A7 /* Collection-extensions.swift in Sources */,
 				2F750189222B4532002040A7 /* MessageViewController.swift in Sources */,
 				2F750194222B6019002040A7 /* Universe.swift in Sources */,

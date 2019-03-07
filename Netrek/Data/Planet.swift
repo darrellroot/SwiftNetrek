@@ -37,6 +37,7 @@ class Planet: CustomStringConvertible {
     private func remakeNode() {
         planetTacticalNode.removeFromParent()
         planetTacticalNode = SKSpriteNode(imageNamed: "planet-ind")
+        planetTacticalNode.name = self.name
         planetTacticalNode.size = CGSize(width: 1120, height: 1120)
         planetTacticalLabel.fontSize = 800
         planetTacticalLabel.fontName = "Courier"

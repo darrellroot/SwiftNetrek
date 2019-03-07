@@ -27,7 +27,27 @@ import Foundation
  }
  }*/
 
+struct CP_SPEED {
+    let type: UInt8 = 2
+    var speed: UInt8 = 0
+    var pad1: UInt8 = 0
+    var pad2: UInt8 = 0
+    
+    var size: Int {
+        return 4
+    }
+}
 
+struct CP_DIRECTION {
+    let type: UInt8 = 3
+    var direction: UInt8 = 0
+    var pad1: UInt8 = 0
+    var pad2: UInt8 = 0
+    
+    var size: Int {
+        return 4
+    }
+}
 struct CP_OUTFIT {
     let type: UInt8 = 9
     var team: UInt8 = 1

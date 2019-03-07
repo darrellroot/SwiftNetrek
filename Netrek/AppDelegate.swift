@@ -215,8 +215,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             if tacticalViewController == nil {
                 debugPrint("ERROR AppDelegate.newGameState.outfitAccepted: tacticalViewController not found")
             }
-            tacticalViewController?.setup()
-            tacticalViewController?.update()
             
         case .gameActive:
             self.gameState = newState
@@ -258,12 +256,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         case .loginAccepted:
             break
         case .outfitAccepted:
-            tacticalViewController?.update()
             //TODO send ping every x timer counts
             //WHEN do we go to game active
             break
         case .gameActive:
-            tacticalViewController?.update()
             //TODO send ping every x timer counts
             break
         }

@@ -26,6 +26,36 @@ class MakePacket {
         let information = (temp[0],temp[1],temp[2],temp[3],temp[4],temp[5],temp[6],temp[7],temp[8],temp[9],temp[10],temp[11],temp[12],temp[13],temp[14],temp[15])
         return information
     }
+    
+    // CP_SPEED 2
+    static func cpSpeed(speed: Int) -> Data? {
+        var packet = CP_SPEED()
+        guard speed >= 0 else {
+            return nil
+        }
+        guard speed < 13 else {
+            return nil
+        }
+        packet.speed = UInt8(speed)
+        let data = Data(bytes: &packet, count: packet.size)
+        debugPrint("Sending CP_SPEED 2 speed \(speed)")
+        return data
+    }
+
+    // CP_DIRECTION 3
+    static func cpDirection(netrekDirection: Int) -> Data? {
+        guard netrekDirection >= 0 else {
+            return nil
+        }
+        guard netrekDirection < 256 else {
+            return nil
+        }
+        var packet = CP_DIRECTION()
+        packet.direction = UInt8(netrekDirection)
+        let data = Data(bytes: &packet, count: packet.size)
+        debugPrint("Sending CP_DIRECTION 3 direction \(netrekDirection)")
+        return data
+    }
     static func cpLogin(name: String, password: String, login: String) -> Data {
         // ugly hack with 16-element tuple and
         // C structure header to get bit boundaries to align
