@@ -319,7 +319,7 @@ class PacketAnalyzer {
             //pad3
             debugPrint("Received SP_PICKOK 16 state: \(state)")
             if state == 1 {
-                appDelegate.newGameState(.outfitAccepted)
+                appDelegate.newGameState(.gameActive)
             }
 
         case 17:

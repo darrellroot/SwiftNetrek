@@ -108,7 +108,7 @@ class Player: CustomStringConvertible {
                 shipSuffix = "as"
             case .starbase:
                 shipSuffix = "sb"
-            case .sgalaxy:
+            case .battlecruiser:
                 debugPrint("Player.remakeNode need galaxy")
                 shipSuffix = "ca"
             }
@@ -127,7 +127,6 @@ class Player: CustomStringConvertible {
     private func updateNode() {
         //    private(set) var status = 0  //free=0 outfit=1 alive=2 explode=3 dead=4 observe=5
         if self.slotStatus != self.lastSlotStatus {
-            self.lastSlotStatus = self.slotStatus
         switch self.slotStatus {
             case .free:
                 self.playerTacticalNode.isHidden = true
@@ -137,11 +136,18 @@ class Player: CustomStringConvertible {
                 self.playerTacticalNode.isHidden = false
             case .explode:
                 self.playerTacticalNode.isHidden = true
+                if me && self.lastSlotStatus == .alive {
+                    appDelegate.newGameState(.loginAccepted)
+            }
             case .dead:
                 self.playerTacticalNode.isHidden = true
+                if me && self.lastSlotStatus == .alive {
+                    appDelegate.newGameState(.loginAccepted)
+            }
             case .observe:
                 self.playerTacticalNode.isHidden = true
             }
+            self.lastSlotStatus = self.slotStatus
         }
         if shieldsUp {
             self.shieldNode.isHidden = false

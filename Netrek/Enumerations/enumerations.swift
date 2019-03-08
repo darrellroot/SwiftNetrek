@@ -14,7 +14,6 @@ enum GameState: String, CaseIterable {
     case serverConnected
     case serverSlotFound
     case loginAccepted
-    case outfitAccepted
     case gameActive
 }
 
@@ -25,7 +24,7 @@ enum ShipType: Int, CaseIterable {
     case battleship = 3
     case assault = 4
     case starbase = 5
-    case sgalaxy = 6
+    case battlecruiser = 6
     //case att = 7
 }
 // teams_numeric = {IND: -1, FED: 0, ROM: 1, KLI: 2, ORI: 3}
@@ -93,6 +92,12 @@ enum TorpedoStatus: UInt32 {
     case detonate = 3
     case off = 4
     case straight = 5
+}
+
+enum SceneType {
+    case tactical
+    case strategic
+    case welcome
 }
 
 // see KeymapController.swift for "control" and "command" enumerations

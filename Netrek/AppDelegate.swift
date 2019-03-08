@@ -16,7 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var serverFeatures: [String] = []
     var metaServer: MetaServer?
     var reader: TcpReader?
-    var gameState: GameState = .noServerSelected
+    private(set) var gameState: GameState = .noServerSelected
     let universe = Universe()
     var analyzer: PacketAnalyzer?
     let timerInterval = 1.0 / Double(UPDATE_RATE)
@@ -33,6 +33,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var strategicViewController: StrategicViewController?
     
     @IBOutlet weak var serverMenu: NSMenu!
+    
+    @IBOutlet weak var selectTeamAny: NSMenuItem!
     @IBOutlet weak var selectTeamFederation: NSMenuItem!
     @IBOutlet weak var selectTeamRoman: NSMenuItem!
     @IBOutlet weak var selectTeamKleptocrat: NSMenuItem!
@@ -44,7 +46,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var selectShipBattleship: NSMenuItem!
     @IBOutlet weak var selectShipAssault: NSMenuItem!
     @IBOutlet weak var selectShipStarbase: NSMenuItem!
-    @IBOutlet weak var selectShipGalaxy: NSMenuItem!
+    @IBOutlet weak var selectShipBattlecruiser: NSMenuItem!
     @IBOutlet weak var selectShipAttackCruiser: NSMenuItem!
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -64,6 +66,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func updateMenu() {
         selectTeamFederation.state = .off
+        selectTeamFederation.state = .off
         selectTeamRoman.state = .off
         selectTeamKleptocrat.state = .off
         selectTeamOrion.state = .off
@@ -77,18 +80,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         case .orion:
             selectTeamOrion.state = .on
         case .independent:
-            break
+            selectTeamAny.state = .on
         case .ogg:
             break
         }
         
+        /*
         selectShipScout.state = .off
         selectShipDestroyer.state = .off
         selectShipCruiser.state = .off
         selectShipBattleship.state = .off
         selectShipAssault.state = .off
         selectShipStarbase.state = .off
-        selectShipGalaxy.state = .off
+        selectShipBattlecruiser.state = .off
         switch preferredShip {
         case .scout:
             selectShipScout.state = .on
@@ -102,9 +106,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             selectShipAssault.state = .on
         case .starbase:
             selectShipStarbase.state = .on
-        case .sgalaxy:
-            selectShipGalaxy.state = .on
+        case .battlecruiser:
+            selectShipBattlecruiser.state = .on
         }
+ */
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -120,14 +125,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             messageViewController?.gotMessage("Server list updated from metaserver")
             serverMenu.removeAllItems()
             for (index,server) in metaServer.servers.enumerated() {
-                let newItem = NSMenuItem(title: server.description, action: #selector(self.startGame), keyEquivalent: "")
+                let newItem = NSMenuItem(title: server.description, action: #selector(self.selectServer), keyEquivalent: "")
                 newItem.tag = index
                 
                 serverMenu.addItem(newItem)
             }
         }
     }
-    @objc func startGame(sender: NSMenuItem) {
+    @objc func selectServer(sender: NSMenuItem) {
         let tag = sender.tag
         if let server = metaServer?.servers[safe: tag] {
             print("starting game server \(server.description)")
@@ -194,28 +199,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
             
         case .loginAccepted:
+            if self.gameState == .serverSlotFound {
+                tacticalViewController?.presentScene(delay: 1.0)
+            }
             self.gameState = newState
-            guard let reader = reader else {
-                self.messageViewController?.gotMessage("ERROR: AppDelegate.newGameState.serverSlot found: no reader")
-                self.newGameState(.noServerSelected)
-                return
-            }
-            let cpUpdates = MakePacket.cpUpdates()
-            DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 0.3) {
-                reader.send(content: cpUpdates)
-            }
-            let cpOutfit = MakePacket.cpOutfit(team: self.preferredTeam, ship: self.preferredShip)
-            DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 0.4) {
-                    reader.send(content: cpOutfit)
-            }
             
-        case .outfitAccepted:
-            self.gameState = newState
-            guard let tacticalViewController = tacticalViewController else {
-                debugPrint("ERROR AppDelegate.newGameState.outfitAccepted: tacticalViewController not found")
-                return
-            }
-            tacticalViewController.presentScene(delay: 1.0)
         case .gameActive:
             self.gameState = newState
         }
@@ -237,6 +225,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 self.updateMenu()
             }
         }
+        if self.gameState == .loginAccepted {
+            if let reader = self.reader {
+                let cpUpdates = MakePacket.cpUpdates()
+                    reader.send(content: cpUpdates)
+                let cpOutfit = MakePacket.cpOutfit(team: self.preferredTeam, ship: self.preferredShip)
+                reader.send(content: cpOutfit)
+            }
+        }
     }
     
     
@@ -254,10 +250,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         case .serverSlotFound:
             break
         case .loginAccepted:
-            break
-        case .outfitAccepted:
-            //TODO send ping every x timer counts
-            //WHEN do we go to game active
             break
         case .gameActive:
             //TODO send ping every x timer counts

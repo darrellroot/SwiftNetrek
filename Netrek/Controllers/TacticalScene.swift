@@ -11,7 +11,7 @@ import SpriteKit
 
 class TacticalScene: SKScene {
     let appDelegate = NSApplication.shared.delegate as! AppDelegate
-
+    let sceneType: SceneType = .tactical
     var window: NSWindow?
     var keymapController: KeymapController!
     
