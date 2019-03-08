@@ -56,6 +56,17 @@ class MakePacket {
         debugPrint("Sending CP_DIRECTION 3 direction \(netrekDirection)")
         return data
     }
+    
+    // CP_TORP 6
+    static func cpTorp(netrekDirection: UInt8) -> Data {
+        var packet = CP_TORP()
+        packet.netrekDirection = netrekDirection
+        let data = Data(bytes: &packet, count: packet.size)
+        debugPrint("Sending CP_TORP 6 direction \(netrekDirection)")
+        return data
+    }
+    
+    // CP_LOGIN 8
     static func cpLogin(name: String, password: String, login: String) -> Data {
         // ugly hack with 16-element tuple and
         // C structure header to get bit boundaries to align
@@ -70,11 +81,25 @@ class MakePacket {
         let data = Data(bytes: &packet, count: packet.size)
         return data
     }
+    // CP_OUTFIT 9
     static func cpOutfit(team: Team, ship: ShipType) -> Data {
         debugPrint("Sending CP_OUTFIT 9")
         // packet type 9
         var packet = CP_OUTFIT(team: team, ship: ship)
         let data = Data(bytes: &packet, count: packet.size)
+        return data
+    }
+    
+    // CP_SHIELD 12
+    static func cpShield(up: Bool) -> Data {
+        var packet = CP_SHIELD()
+        if up {
+            packet.state = 1
+        } else {
+            packet.state = 0
+        }
+        let data = Data(bytes: &packet, count: packet.size)
+        debugPrint("Sending CP_SHIELD state \(packet.state)")
         return data
     }
     static func cpSocket() -> Data {

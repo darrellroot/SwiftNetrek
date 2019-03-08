@@ -48,6 +48,17 @@ struct CP_DIRECTION {
         return 4
     }
 }
+
+struct CP_TORP {
+    let type: UInt8 = 6
+    var netrekDirection: UInt8 = 0
+    let pad1: UInt8 = 0
+    let pad2: UInt8 = 0
+    
+    var size: Int {
+        return 4
+    }
+}
 struct CP_OUTFIT {
     let type: UInt8 = 9
     var team: UInt8 = 1
@@ -64,6 +75,16 @@ struct CP_OUTFIT {
     }
 }
 
+struct CP_SHIELD {
+    let type: UInt8 = 12
+    var state: UInt8 = 0
+    let pad1: UInt8 = 0
+    let pad2: UInt8 = 0
+    
+    var size: Int {
+        return 4
+    }
+}
 struct CP_SOCKET {
     let type: UInt8 = 27
     let version: UInt8 = SOCKVERSION

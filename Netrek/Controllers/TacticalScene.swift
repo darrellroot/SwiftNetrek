@@ -60,6 +60,19 @@ class TacticalScene: SKScene {
             setSpeed(8)
         case "9":
             setSpeed(9)
+        case "s":
+            if let shieldsUp = appDelegate.universe.me?.shieldsUp {
+                if shieldsUp {
+                    let cpShield = MakePacket.cpShield(up: false)
+                    appDelegate.reader?.send(content: cpShield)
+                } else {
+                    let cpShield = MakePacket.cpShield(up: true)
+                    appDelegate.reader?.send(content: cpShield)
+                }
+            }
+        case "u":
+            let cpShield = MakePacket.cpShield(up: true)
+            appDelegate.reader?.send(content: cpShield)
         default:
             debugPrint("TacticalScene.keyDown unknown key \(String(describing: event.characters))")
         }

@@ -40,6 +40,8 @@ class Player: CustomStringConvertible {
     private(set) var lastPositionY: Int = 0
     private(set) var lastUpdateTime = Date()
     private(set) var updateTime = Date()
+    // from flags
+    private(set) var shieldsUp = false
     //
     // from packet type 24
     private(set) var rank = 0
@@ -53,10 +55,13 @@ class Player: CustomStringConvertible {
     private(set) var direction: CGFloat = 0.0 // 2 * Double.pi = 360 degrees
     private(set) var speed = 0
     var playerTacticalNode = SKSpriteNode()
+    var shieldNode = SKShapeNode(circleOfRadius: CGFloat(NetrekMath.playerSize))
     
     init(playerID: Int) {
         self.playerID = playerID
         self.remakeNode()
+        shieldNode.lineWidth = CGFloat(NetrekMath.playerSize) / 10.0
+        shieldNode.strokeColor = .green
     }
     public var description: String {
         get {
@@ -66,6 +71,9 @@ class Player: CustomStringConvertible {
     
     private func remakeNode() {
         //private(set) var status = 0  //free=0 outfit=1 alive=2 explode=3 dead=4 observe=5
+        if self.shieldNode.parent != nil {
+            self.shieldNode.removeFromParent()
+        }
         if self.playerTacticalNode.parent != nil {
             self.playerTacticalNode.removeFromParent()
         }
@@ -112,6 +120,7 @@ class Player: CustomStringConvertible {
         self.playerTacticalNode.zPosition = ZPosition.ship.rawValue
         self.playerTacticalNode.zRotation = self.direction
         self.playerTacticalNode.size = CGSize(width: NetrekMath.playerSize, height: NetrekMath.playerSize)
+        self.playerTacticalNode.addChild(self.shieldNode)
         self.updateNode()
     appDelegate.tacticalViewController?.scene.addChild(self.playerTacticalNode)
     }
@@ -133,6 +142,11 @@ class Player: CustomStringConvertible {
             case .observe:
                 self.playerTacticalNode.isHidden = true
             }
+        }
+        if shieldsUp {
+            self.shieldNode.isHidden = false
+        } else {
+            self.shieldNode.isHidden = true
         }
         if self.slotStatus == .alive && self.positionX > 0 && self.positionX < NetrekMath.galacticSize && self.positionY > 0 && self.positionY < NetrekMath.galacticSize {
             self.playerTacticalNode.position = CGPoint(x: positionX, y: positionY)
@@ -194,6 +208,14 @@ class Player: CustomStringConvertible {
         self.weaponsTemp = weaponsTemp
         self.whyDead = whyDead
         self.whoDead = whoDead
+        if flags & PlayerStatus.shield.rawValue != 0 {
+            self.shieldsUp = true
+            self.shieldNode.isHidden = false
+        } else {
+            self.shieldsUp = false
+            self.shieldNode.isHidden = true
+        }
+        self.updateNode()
     }
     public func update(shipType: Int) {
         for shipCase in ShipType.allCases {
@@ -243,6 +265,13 @@ class Player: CustomStringConvertible {
     public func update(tractor: Int, flags: UInt32) {
         self.tractor = tractor
         self.flags = flags
+        if flags & PlayerStatus.shield.rawValue != 0 {
+            self.shieldsUp = true
+            self.shieldNode.isHidden = false
+        } else {
+            self.shieldsUp = false
+            self.shieldNode.isHidden = true
+        }
     }
     // from SP_PSTATUS_20
     public func update(sp_pstatus: Int) {
