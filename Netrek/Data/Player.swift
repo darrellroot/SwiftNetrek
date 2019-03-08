@@ -144,6 +144,7 @@ class Player: CustomStringConvertible {
                 let action = SKAction.moveBy(x: CGFloat(deltaX), y: CGFloat(deltaY), duration: deltaTime)
                 self.playerTacticalNode.removeAllActions()
                 self.playerTacticalNode.run(action)
+                debugPrint("running action player \(playerID) deltaX \(deltaX) deltaY \(deltaY) deltaTime \(deltaTime)")
             } else {
                 debugPrint("Player.update.noAction playerID \(String(describing: playerID)) deltaX \(deltaX) deltaY \(deltaY) deltaT \(deltaTime)")
             }

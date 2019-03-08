@@ -187,7 +187,7 @@ class PacketAnalyzer {
             let directionNetrek = Int(UInt8(data[1]))
             let torpedoNumber = Int(data.subdata(in: (2..<3)).to(type: UInt16.self).byteSwapped)
             let positionX = Int(data.subdata(in: (4..<8)).to(type: UInt32.self).byteSwapped)
-            let positionY = NetrekMath.netrekY2GameY((Int(data.subdata(in: (4..<8)).to(type: UInt32.self).byteSwapped)))
+            let positionY = NetrekMath.netrekY2GameY((Int(data.subdata(in: (8..<12)).to(type: UInt32.self).byteSwapped)))
             debugPrint("Received SP_TORP 6 torpedoNumber \(torpedoNumber) directionNetrek \(directionNetrek) positionX \(positionX) positionY \(positionY)")
             universe.updateTorpedo(torpedoNumber: torpedoNumber, directionNetrek: directionNetrek, positionX: positionX, positionY: positionY)
             
