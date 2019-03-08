@@ -87,7 +87,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         selectShipAssault.state = .off
         selectShipStarbase.state = .off
         selectShipGalaxy.state = .off
-        selectShipAttackCruiser.state = .off
         switch preferredShip {
         case .scout:
             selectShipScout.state = .on
@@ -103,8 +102,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             selectShipStarbase.state = .on
         case .sgalaxy:
             selectShipGalaxy.state = .on
-        case .att:
-            selectShipAttackCruiser.state = .on
         }
     }
 
@@ -212,10 +209,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             
         case .outfitAccepted:
             self.gameState = newState
-            if tacticalViewController == nil {
+            guard let tacticalViewController = tacticalViewController else {
                 debugPrint("ERROR AppDelegate.newGameState.outfitAccepted: tacticalViewController not found")
+                return
             }
-            
+            tacticalViewController.presentScene(delay: 5.0)
         case .gameActive:
             self.gameState = newState
         }

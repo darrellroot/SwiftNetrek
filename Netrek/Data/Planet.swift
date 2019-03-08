@@ -36,7 +36,23 @@ class Planet: CustomStringConvertible {
     }
     private func remakeNode() {
         planetTacticalNode.removeFromParent()
-        planetTacticalNode = SKSpriteNode(imageNamed: "planet-ind")
+        let teamSuffix: String
+        switch self.owner {
+        case .federation:
+            teamSuffix = "fed"
+        case .independent:
+            teamSuffix = "ind"
+        case .roman:
+            teamSuffix = "rom"
+        case .kleptocrat:
+            teamSuffix = "kle"
+        case .orion:
+            teamSuffix = "ori"
+        case .ogg:
+            teamSuffix = "ind"
+        }
+        let planetImage = "planet-\(teamSuffix)"
+        planetTacticalNode = SKSpriteNode(imageNamed: planetImage)
         planetTacticalNode.name = self.name
         planetTacticalNode.size = CGSize(width: 1120, height: 1120)
         planetTacticalLabel.fontSize = 800
@@ -74,10 +90,10 @@ class Planet: CustomStringConvertible {
         for team in Team.allCases {
             if newOwnerInt == team.rawValue {
                 self.owner = team
+                self.remakeNode()
                 return
             }
         }
-        self.remakeNode()
     }
     public func setInfo(newInfoInt: Int) {
         self.info = newInfoInt

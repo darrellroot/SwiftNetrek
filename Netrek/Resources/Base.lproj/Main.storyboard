@@ -753,12 +753,6 @@
                                                 <action selector="selectShip:" target="Voe-Tx-rLC" id="c2z-a9-c4y"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Attack Cruiser" tag="7" id="PJN-1x-q1X">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="selectShip:" target="Voe-Tx-rLC" id="7eY-Eh-xoV"/>
-                                            </connections>
-                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>
@@ -783,7 +777,6 @@
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Netrek" customModuleProvider="target">
                     <connections>
                         <outlet property="selectShipAssault" destination="Eac-fh-7uH" id="g10-ZF-u1S"/>
-                        <outlet property="selectShipAttackCruiser" destination="PJN-1x-q1X" id="DaK-6X-ly0"/>
                         <outlet property="selectShipBattleship" destination="IRe-hJ-dlA" id="xQy-su-IbW"/>
                         <outlet property="selectShipCruiser" destination="OK2-1b-QZf" id="f3Q-FY-u0C"/>
                         <outlet property="selectShipDestroyer" destination="RQR-xk-MBV" id="jeB-zk-UkE"/>

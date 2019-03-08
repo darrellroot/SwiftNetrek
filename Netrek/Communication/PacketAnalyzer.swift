@@ -454,7 +454,7 @@ class PacketAnalyzer {
             if let planet = universe.planets[planetID] {
                 //debugPrint(planet)
             }
-            debugPrint("Received SP_PLANET_LOC 26 name \(name) positionX \(positionX) positionY \(positionY)")
+            debugPrint("Received SP_PLANET_LOC 26 name \(name) planetID \(planetID) positionX \(positionX) positionY \(positionY)")
             //printData(data, success: true)
 
         case 32:

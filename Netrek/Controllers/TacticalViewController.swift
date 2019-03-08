@@ -15,6 +15,7 @@ class TacticalViewController: NSViewController, SKSceneDelegate {
     var scene = TacticalScene(size:CGSize(width: 100000, height: 100000))
     let appDelegate = NSApplication.shared.delegate as! AppDelegate
     
+    
     var setupComplete = false
 
     override func viewDidLoad() {
@@ -32,6 +33,18 @@ class TacticalViewController: NSViewController, SKSceneDelegate {
         scene.addChild(defaultCamera)
         scene.camera = defaultCamera
         defaultCamera.position = CGPoint(x: 2000, y: 2000)
-        skView.presentScene(scene)
+        //skView.presentScene(self.scene)
+    }
+    public func presentScene(delay: Double) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+            if let skView = self.view as? SKView {
+                skView.presentScene(self.scene)
+            }
+        }
+    }
+    public func hideScene() {
+        if let skView = self.view as? SKView {
+            skView.scene?.removeFromParent()
+        }
     }
 }

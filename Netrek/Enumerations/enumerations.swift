@@ -26,7 +26,7 @@ enum ShipType: Int, CaseIterable {
     case assault = 4
     case starbase = 5
     case sgalaxy = 6
-    case att = 7
+    //case att = 7
 }
 // teams_numeric = {IND: -1, FED: 0, ROM: 1, KLI: 2, ORI: 3}
 

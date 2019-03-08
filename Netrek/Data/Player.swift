@@ -36,6 +36,11 @@ class Player: CustomStringConvertible {
     private(set) var me: Bool = false
     private(set) var name: String = "nobody"
     //
+    private(set) var lastPositionX: Int = 0
+    private(set) var lastPositionY: Int = 0
+    private(set) var lastUpdateTime = Date()
+    private(set) var updateTime = Date()
+    //
     // from packet type 24
     private(set) var rank = 0
     private(set) var login = "unknown"
@@ -64,7 +69,46 @@ class Player: CustomStringConvertible {
         if self.playerTacticalNode.parent != nil {
             self.playerTacticalNode.removeFromParent()
         }
-        self.playerTacticalNode = SKSpriteNode(imageNamed: "ori-ca")
+        let teamPrefix: String
+        switch self.team {
+        case .federation:
+            teamPrefix = "fed"
+        case .independent:
+            teamPrefix = "ind"
+        case .roman:
+            teamPrefix = "rom"
+        case .kleptocrat:
+            teamPrefix = "kle"
+        case .orion:
+            teamPrefix = "ori"
+        case .ogg:
+            teamPrefix = "ind"
+        }
+        let shipSuffix: String
+        if let ship = self.ship {
+            switch ship {
+                
+            case .scout:
+                shipSuffix = "sc"
+            case .destroyer:
+                shipSuffix = "dd"
+            case .cruiser:
+                shipSuffix = "ca"
+            case .battleship:
+                shipSuffix = "bb"
+            case .assault:
+                shipSuffix = "as"
+            case .starbase:
+                shipSuffix = "sb"
+            case .sgalaxy:
+                debugPrint("Player.remakeNode need galaxy")
+                shipSuffix = "ca"
+            }
+        } else {
+            shipSuffix = "dd"
+        }
+
+        self.playerTacticalNode = SKSpriteNode(imageNamed: "\(teamPrefix)-\(shipSuffix)")
         self.playerTacticalNode.zPosition = ZPosition.ship.rawValue
         self.playerTacticalNode.zRotation = self.direction
         self.playerTacticalNode.size = CGSize(width: 800, height: 800)
@@ -91,12 +135,25 @@ class Player: CustomStringConvertible {
             }
         }
         if self.slotStatus == .alive && self.positionX > 0 && self.positionX < 100000 && self.positionY > 0 && self.positionY < 100000 {
-                self.playerTacticalNode.position = CGPoint(x: positionX, y: positionY)
-                self.playerTacticalNode.zRotation = self.direction
-                if self.me {
-                    if let defaultCamera = appDelegate.tacticalViewController?.defaultCamera {
-                        defaultCamera.position = CGPoint(x: self.positionX, y: self.positionY)
-                    }
+            self.playerTacticalNode.position = CGPoint(x: positionX, y: positionY)
+            self.playerTacticalNode.zRotation = self.direction
+            let deltaX = self.positionX - self.lastPositionX
+            let deltaY = self.positionY - self.lastPositionY
+            let deltaTime = self.updateTime.timeIntervalSince(self.lastUpdateTime)
+            if deltaX < 1000 && deltaY < 1000 && deltaTime < 2.0 {
+                let action = SKAction.moveBy(x: CGFloat(deltaX), y: CGFloat(deltaY), duration: deltaTime)
+                self.playerTacticalNode.removeAllActions()
+                self.playerTacticalNode.run(action)
+            } else {
+                debugPrint("Player.update.noAction playerID \(String(describing: playerID)) deltaX \(deltaX) deltaY \(deltaY) deltaT \(deltaTime)")
+            }
+            if self.me {
+                if let defaultCamera = appDelegate.tacticalViewController?.defaultCamera {
+                    defaultCamera.position = CGPoint(x: self.positionX, y: self.positionY)
+                    let action = SKAction.moveBy(x: CGFloat(deltaX), y: CGFloat(deltaY), duration: deltaTime)
+                    defaultCamera.removeAllActions()
+                    defaultCamera.run(action)
+                }
             }
         }
     }
@@ -164,6 +221,10 @@ class Player: CustomStringConvertible {
     public func update(directionNetrek: UInt8, speed: Int, positionX: Int, positionY: Int) {
         self.direction = NetrekMath.directionNetrek2radian(UInt8(directionNetrek))
         self.speed = speed
+        self.lastPositionX = positionX
+        self.lastPositionY = positionY
+        self.lastUpdateTime = self.updateTime
+        self.updateTime = Date()
         self.positionX = positionX
         self.positionY = positionY
         self.updateNode()
