@@ -674,7 +674,7 @@
                             </menuItem>
                             <menuItem title="Select Server" id="ynS-JN-hrX">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Select Server" id="fh8-Tz-54x"/>
+                                <menu key="submenu" title="Select Server" autoenablesItems="NO" id="fh8-Tz-54x"/>
                             </menuItem>
                             <menuItem title="Preferred Team" id="tBm-Hs-EZZ">
                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -715,9 +715,9 @@
                             </menuItem>
                             <menuItem title="Launch Ship" id="Eur-jy-ise">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Launch Ship" id="Erg-2x-DFO">
+                                <menu key="submenu" title="Launch Ship" autoenablesItems="NO" id="Erg-2x-DFO">
                                     <items>
-                                        <menuItem title="Any" id="hLS-ZR-SU0">
+                                        <menuItem title="Any" tag="15" id="hLS-ZR-SU0">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
                                         <menuItem title="Scout" id="K8f-w1-MFk" userLabel="Scout">
@@ -785,12 +785,13 @@
                 </application>
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Netrek" customModuleProvider="target">
                     <connections>
+                        <outlet property="selectShipAny" destination="hLS-ZR-SU0" id="tah-Uy-m0z"/>
                         <outlet property="selectShipAssault" destination="Eac-fh-7uH" id="g10-ZF-u1S"/>
                         <outlet property="selectShipBattlecruiser" destination="0nc-GY-vqF" id="vEr-4u-LuE"/>
                         <outlet property="selectShipBattleship" destination="IRe-hJ-dlA" id="xQy-su-IbW"/>
                         <outlet property="selectShipCruiser" destination="OK2-1b-QZf" id="f3Q-FY-u0C"/>
                         <outlet property="selectShipDestroyer" destination="RQR-xk-MBV" id="jeB-zk-UkE"/>
-                        <outlet property="selectShipScout" destination="K8f-w1-MFk" id="1RG-m2-8MX"/>
+                        <outlet property="selectShipScout" destination="K8f-w1-MFk" id="LWv-em-9tK"/>
                         <outlet property="selectShipStarbase" destination="HaN-YX-xIR" id="Whg-fb-Nlu"/>
                         <outlet property="selectTeamAny" destination="Ovq-TC-iNJ" id="fgI-b1-Jio"/>
                         <outlet property="selectTeamFederation" destination="QXd-H4-JIy" id="cVr-be-xqm"/>

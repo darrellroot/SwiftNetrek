@@ -25,7 +25,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // The following are initialized by the child controllers via the appdelegate
     var messageViewController: MessageViewController?
     
-    var preferredTeam: Team = .federation
+    var preferredTeam: Team = .independent
     var preferredShip: ShipType = .cruiser
     var keymapController: KeymapController!
 
@@ -40,6 +40,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var selectTeamKleptocrat: NSMenuItem!
     @IBOutlet weak var selectTeamOrion: NSMenuItem!
     
+    
+    
+    @IBOutlet weak var selectShipAny: NSMenuItem!
     @IBOutlet weak var selectShipScout: NSMenuItem!
     @IBOutlet weak var selectShipDestroyer: NSMenuItem!
     @IBOutlet weak var selectShipCruiser: NSMenuItem!
@@ -61,10 +64,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let timer = timer {
             RunLoop.current.add(timer, forMode: RunLoop.Mode.common)
         }
-        self.updateMenu()
+        self.updateTeamMenu()
+        self.disableShipMenu()
     }
     
-    func updateMenu() {
+    private func updateTeamMenu() {
+        selectTeamAny.state = .off
         selectTeamFederation.state = .off
         selectTeamFederation.state = .off
         selectTeamRoman.state = .off
@@ -84,33 +89,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         case .ogg:
             break
         }
-        
-        /*
-        selectShipScout.state = .off
-        selectShipDestroyer.state = .off
-        selectShipCruiser.state = .off
-        selectShipBattleship.state = .off
-        selectShipAssault.state = .off
-        selectShipStarbase.state = .off
-        selectShipBattlecruiser.state = .off
-        switch preferredShip {
-        case .scout:
-            selectShipScout.state = .on
-        case .destroyer:
-            selectShipDestroyer.state = .on
-        case .cruiser:
-            selectShipCruiser.state = .on
-        case .battleship:
-            selectShipBattleship.state = .on
-        case .assault:
-            selectShipAssault.state = .on
-        case .starbase:
-            selectShipStarbase.state = .on
-        case .battlecruiser:
-            selectShipBattlecruiser.state = .on
-        }
- */
     }
+
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
@@ -147,8 +127,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     public func newGameState(_ newState: GameState ) {
         self.messageViewController?.gotMessage("Game State: moving from \(self.gameState.rawValue) to \(newState.rawValue)\n")
+        debugPrint("Game State: moving from \(self.gameState.rawValue) to \(newState.rawValue)\n")
         switch newState {
         case .noServerSelected:
+            enableServerMenu()
+            disableShipMenu()
             self.gameState = newState
             self.messageViewController?.gotMessage("AppDelegate GameState \(newState) we may have been ghostbusted!  Resetting.  Try again\n")
             self.reader = nil
@@ -156,12 +139,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             break
             
         case .serverSelected:
+            disableShipMenu()
             self.gameState = newState
             self.analyzer = PacketAnalyzer()
             // no need to do anything here, handled in the menu function
             break
             
         case .serverConnected:
+            disableShipMenu()
             self.gameState = newState
 
             guard let reader = reader else {
@@ -185,6 +170,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
             
         case .serverSlotFound:
+            disableShipMenu()
             self.gameState = newState
             debugPrint("AppDelegate.newGameState: .serverSlotFound")
             let cpLogin = MakePacket.cpLogin(name: "guest", password: "", login: "")
@@ -199,6 +185,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
             
         case .loginAccepted:
+            enableShipMenu()
             if self.gameState == .serverSlotFound {
                 tacticalViewController?.presentScene(delay: 1.0)
             }
@@ -206,14 +193,52 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             
         case .gameActive:
             self.gameState = newState
+            disableShipMenu()
+            disableServerMenu()
         }
+    }
+    private func disableServerMenu() {
+        debugPrint("disable server menu")
+        for menuItem in self.serverMenu.items {
+            debugPrint("disabling server menu \(menuItem.title)")
+            menuItem.isEnabled = false
+        }
+    }
+    private func enableServerMenu() {
+        debugPrint("enable server menu")
+        for menuItem in self.serverMenu.items {
+            menuItem.isEnabled = true
+        }
+    }
+
+    private func disableShipMenu() {
+        debugPrint("disable ship menu")
+        selectShipAny.isEnabled = false
+        selectShipScout.isEnabled = false
+        selectShipDestroyer.isEnabled = false
+        selectShipCruiser.isEnabled = false
+        selectShipBattleship.isEnabled = false
+        selectShipAssault.isEnabled = false
+        selectShipStarbase.isEnabled = false
+        selectShipBattlecruiser.isEnabled = false
+    }
+    private func enableShipMenu() {
+        debugPrint("enable ship menu")
+        selectShipAny.isEnabled = true
+        selectShipScout.isEnabled = true
+        selectShipDestroyer.isEnabled = true
+        selectShipCruiser.isEnabled = true
+        selectShipBattleship.isEnabled = true
+        selectShipAssault.isEnabled = true
+        selectShipStarbase.isEnabled = true
+        selectShipBattlecruiser.isEnabled = true
     }
     @IBAction func selectTeam(_ sender: NSMenuItem) {
         let tag = sender.tag
         for team in Team.allCases {
             if tag == team.rawValue {
                 self.preferredTeam = team
-                self.updateMenu()
+                self.updateTeamMenu()
             }
         }
     }
@@ -222,7 +247,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         for ship in ShipType.allCases {
             if tag == ship.rawValue {
                 self.preferredShip = ship
-                self.updateMenu()
             }
         }
         if self.gameState == .loginAccepted {
