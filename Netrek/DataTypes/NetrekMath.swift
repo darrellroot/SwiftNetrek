@@ -9,6 +9,13 @@
 import Foundation
 class NetrekMath {
     
+    static let galacticSize = 10000
+    static let actionThreshold = 100
+    static let planetDiameter = 112
+    static let planetFontSize: CGFloat = 80.0
+    static let playerSize = 80
+    static let torpedoSize = 10
+    
     static func directionNetrek2radian(_ directionNetrek: UInt8) -> Double {
         let answer = Double.pi * ((Double(directionNetrek) / -128.0) + 0.5)
         if answer > 0 {
@@ -27,7 +34,10 @@ class NetrekMath {
     }
 
     static func netrekY2GameY(_ netrekY: Int) -> Int {
-        return ( 100000 - netrekY)
+        return ( 100000 - netrekY) / 10
+    }
+    static func netrekX2GameX(_ netrekX: Int) -> Int {
+        return netrekX / 10
     }
     static func calculateNetrekDirection(mePositionX: Double, mePositionY: Double, destinationX: Double, destinationY: Double) -> Int {
         let deltaX = Double(destinationX - mePositionX)

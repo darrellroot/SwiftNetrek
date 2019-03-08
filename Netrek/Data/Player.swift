@@ -111,7 +111,7 @@ class Player: CustomStringConvertible {
         self.playerTacticalNode = SKSpriteNode(imageNamed: "\(teamPrefix)-\(shipSuffix)")
         self.playerTacticalNode.zPosition = ZPosition.ship.rawValue
         self.playerTacticalNode.zRotation = self.direction
-        self.playerTacticalNode.size = CGSize(width: 800, height: 800)
+        self.playerTacticalNode.size = CGSize(width: NetrekMath.playerSize, height: NetrekMath.playerSize)
         self.updateNode()
     appDelegate.tacticalViewController?.scene.addChild(self.playerTacticalNode)
     }
@@ -134,15 +134,17 @@ class Player: CustomStringConvertible {
                 self.playerTacticalNode.isHidden = true
             }
         }
-        if self.slotStatus == .alive && self.positionX > 0 && self.positionX < 100000 && self.positionY > 0 && self.positionY < 100000 {
+        if self.slotStatus == .alive && self.positionX > 0 && self.positionX < NetrekMath.galacticSize && self.positionY > 0 && self.positionY < NetrekMath.galacticSize {
             self.playerTacticalNode.position = CGPoint(x: positionX, y: positionY)
             self.playerTacticalNode.zRotation = self.direction
             let deltaX = self.positionX - self.lastPositionX
             let deltaY = self.positionY - self.lastPositionY
             let deltaTime = self.updateTime.timeIntervalSince(self.lastUpdateTime)
-            if deltaX < 1000 && deltaY < 1000 && deltaTime < 2.0 && deltaTime > 0.04 {
+            if deltaX < NetrekMath.actionThreshold && deltaY < NetrekMath.actionThreshold && deltaTime < 2.0 && deltaTime > 0.04 {
                 let action = SKAction.moveBy(x: CGFloat(deltaX), y: CGFloat(deltaY), duration: deltaTime)
-                self.playerTacticalNode.removeAllActions()
+                if self.playerTacticalNode.hasActions() {
+                    self.playerTacticalNode.removeAllActions()
+                }
                 self.playerTacticalNode.run(action)
                 debugPrint("running action player \(playerID) deltaX \(deltaX) deltaY \(deltaY) deltaTime \(deltaTime)")
             } else {
@@ -152,7 +154,9 @@ class Player: CustomStringConvertible {
                 if let defaultCamera = appDelegate.tacticalViewController?.defaultCamera {
                     defaultCamera.position = CGPoint(x: self.positionX, y: self.positionY)
                     let action = SKAction.moveBy(x: CGFloat(deltaX), y: CGFloat(deltaY), duration: deltaTime)
-                    defaultCamera.removeAllActions()
+                    if defaultCamera.hasActions() {
+                        defaultCamera.removeAllActions()
+                    }
                     defaultCamera.run(action)
                 }
             }

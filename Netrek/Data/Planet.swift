@@ -54,10 +54,10 @@ class Planet: CustomStringConvertible {
         let planetImage = "planet-\(teamSuffix)"
         planetTacticalNode = SKSpriteNode(imageNamed: planetImage)
         planetTacticalNode.name = self.name
-        planetTacticalNode.size = CGSize(width: 1120, height: 1120)
-        planetTacticalLabel.fontSize = 800
+        planetTacticalNode.size = CGSize(width: NetrekMath.planetDiameter, height: NetrekMath.planetDiameter)
+        planetTacticalLabel.fontSize = NetrekMath.planetFontSize
         planetTacticalLabel.fontName = "Courier"
-        planetTacticalLabel.position = CGPoint(x: 0, y: -2000)
+        planetTacticalLabel.position = CGPoint(x: 0, y: -2 * NetrekMath.planetDiameter)
         planetTacticalLabel.zPosition = 2
         planetTacticalLabel.fontColor = NSColor.green
         if let hostile = appDelegate.universe.me?.hostile[self.owner] {

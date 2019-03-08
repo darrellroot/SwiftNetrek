@@ -25,7 +25,7 @@ class Torpedo {
     private(set) var lastUpdateTime = Date()
     private(set) var updateTime = Date()
     var torpedoNode = SKSpriteNode(color: .red,
-                                   size: CGSize(width: 100, height: 100))
+                                   size: CGSize(width: NetrekMath.torpedoSize, height: NetrekMath.torpedoSize))
 
     
     func update(war: UInt8, status: UInt8) {
@@ -53,7 +53,7 @@ class Torpedo {
                         }
                     }
                 }
-                self.torpedoNode = SKSpriteNode(color: torpedoColor, size: CGSize(width: 100, height: 100))
+                self.torpedoNode = SKSpriteNode(color: torpedoColor, size: CGSize(width: NetrekMath.torpedoSize, height: NetrekMath.torpedoSize))
                 torpedoNode.zPosition = ZPosition.torpedo.rawValue
             appDelegate.tacticalViewController?.scene.addChild(torpedoNode)
             }
@@ -79,13 +79,15 @@ class Torpedo {
         self.direction = ( Double.pi * 2 ) * Double(directionNetrek) / 256.0
         self.torpedoNode.position = CGPoint(x: self.positionX, y: self.positionY)
         
-        if self.positionX > 0 && self.positionX < 100000 && self.positionY > 0 && self.positionY < 100000 {
+        if self.positionX > 0 && self.positionX < NetrekMath.galacticSize && self.positionY > 0 && self.positionY < NetrekMath.galacticSize {
             let deltaX = self.positionX - self.lastPositionX
             let deltaY = self.positionY - self.lastPositionY
             let deltaTime = self.updateTime.timeIntervalSince(self.lastUpdateTime)
-            if deltaX < 1000 && deltaY < 1000 && deltaTime < 2.0 && deltaTime > 0.04 {
+            if deltaX < NetrekMath.actionThreshold && deltaY < NetrekMath.actionThreshold && deltaTime < 2.0 && deltaTime > 0.04 {
                 let action = SKAction.moveBy(x: CGFloat(deltaX), y: CGFloat(deltaY), duration: deltaTime)
-                self.torpedoNode.removeAllActions()
+                if self.torpedoNode.hasActions() {
+                    self.torpedoNode.removeAllActions()
+                }
                 self.torpedoNode.run(action)
             }
         }
