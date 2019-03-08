@@ -83,7 +83,7 @@ class Torpedo {
             let deltaX = self.positionX - self.lastPositionX
             let deltaY = self.positionY - self.lastPositionY
             let deltaTime = self.updateTime.timeIntervalSince(self.lastUpdateTime)
-            if deltaX < 1000 && deltaY < 1000 && deltaTime < 2.0 {
+            if deltaX < 1000 && deltaY < 1000 && deltaTime < 2.0 && deltaTime > 0.04 {
                 let action = SKAction.moveBy(x: CGFloat(deltaX), y: CGFloat(deltaY), duration: deltaTime)
                 self.torpedoNode.removeAllActions()
                 self.torpedoNode.run(action)
