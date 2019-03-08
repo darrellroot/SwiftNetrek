@@ -94,3 +94,5 @@ enum TorpedoStatus: UInt32 {
     case off = 4
     case straight = 5
 }
+
+// see KeymapController.swift for "control" and "command" enumerations

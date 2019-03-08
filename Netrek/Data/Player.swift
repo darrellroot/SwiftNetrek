@@ -156,10 +156,10 @@ class Player: CustomStringConvertible {
             let deltaTime = self.updateTime.timeIntervalSince(self.lastUpdateTime)
             if deltaX < NetrekMath.actionThreshold && deltaY < NetrekMath.actionThreshold && deltaTime < 2.0 && deltaTime > 0.04 {
                 let action = SKAction.moveBy(x: CGFloat(deltaX), y: CGFloat(deltaY), duration: deltaTime)
-                if self.playerTacticalNode.hasActions() {
+                DispatchQueue.main.async {
                     self.playerTacticalNode.removeAllActions()
+                    self.playerTacticalNode.run(action)
                 }
-                self.playerTacticalNode.run(action)
                 debugPrint("running action player \(playerID) deltaX \(deltaX) deltaY \(deltaY) deltaTime \(deltaTime)")
             } else {
                 debugPrint("Player.update.noAction playerID \(String(describing: playerID)) deltaX \(deltaX) deltaY \(deltaY) deltaT \(deltaTime)")
@@ -168,10 +168,10 @@ class Player: CustomStringConvertible {
                 if let defaultCamera = appDelegate.tacticalViewController?.defaultCamera {
                     defaultCamera.position = CGPoint(x: self.positionX, y: self.positionY)
                     let action = SKAction.moveBy(x: CGFloat(deltaX), y: CGFloat(deltaY), duration: deltaTime)
-                    if defaultCamera.hasActions() {
+                    DispatchQueue.main.async {
                         defaultCamera.removeAllActions()
+                        defaultCamera.run(action)
                     }
-                    defaultCamera.run(action)
                 }
             }
         }

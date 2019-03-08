@@ -43,13 +43,7 @@ class MakePacket {
     }
 
     // CP_DIRECTION 3
-    static func cpDirection(netrekDirection: Int) -> Data? {
-        guard netrekDirection >= 0 else {
-            return nil
-        }
-        guard netrekDirection < 256 else {
-            return nil
-        }
+    static func cpDirection(netrekDirection: UInt8) -> Data? {
         var packet = CP_DIRECTION()
         packet.direction = UInt8(netrekDirection)
         let data = Data(bytes: &packet, count: packet.size)

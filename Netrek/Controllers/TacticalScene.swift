@@ -12,26 +12,36 @@ import SpriteKit
 class TacticalScene: SKScene {
     let appDelegate = NSApplication.shared.delegate as! AppDelegate
 
+    var window: NSWindow?
+    var keymapController: KeymapController!
+    
+    override func sceneDidLoad() {
+        self.window = self.view?.window
+        self.keymapController = appDelegate.keymapController
+    }
+    override func rightMouseDown(with event: NSEvent) {
+        let location = event.location(in: self)
+        debugPrint("RightMouseDown location \(location)")
+        appDelegate.keymapController.execute(.rightMouse, location: location)
+    }
+    
     override func mouseDown(with event: NSEvent) {
-        
-
+        let modifiers = event.modifierFlags
+        if modifiers.contains(.control) {
+            self.rightMouseDown(with: event)
+            return
+        }
         switch event.type {
         case .leftMouseDown:
             let location = event.location(in: self)
             debugPrint("LeftMouseDown location \(location)")
-            if let me = appDelegate.universe.me {
-                let netrekDirection = NetrekMath.calculateNetrekDirection(mePositionX: Double(me.positionX), mePositionY: Double(me.positionY), destinationX: Double(location.x), destinationY: Double(location.y))
-                if let cpDirection = MakePacket.cpDirection(netrekDirection: netrekDirection) {
-                    appDelegate.reader?.send(content: cpDirection)
-                }
-            }
-
+            appDelegate.keymapController.execute(.leftMouse, location: location)
         case .otherMouseDown:
             let location = event.location(in: self)
             debugPrint("CenterMouseDown location \(location)")
         case .rightMouseDown:
-            let location = event.location(in: self)
-            debugPrint("RightMouseDown location \(location)")
+            // does not work alternative implementation above
+            break
         default:
             break
         }
@@ -39,47 +49,44 @@ class TacticalScene: SKScene {
     
     override func keyDown(with event: NSEvent) {
         debugPrint("TacticalScene.keyDown characters \(String(describing: event.characters))")
+        guard let keymap = appDelegate.keymapController else {
+            debugPrint("TacticalScene.keyDown unable to find keymapController")
+            return
+        }
+        var location: CGPoint? = nil
+        if let windowLocation = window?.mouseLocationOutsideOfEventStream {
+            if let viewLocation = self.view?.convert(windowLocation, from: window?.contentView) {
+                location = convert(viewLocation, to: self)
+            }
+        }
+        
         switch event.characters?.first {
         case "0":
-            setSpeed(0)
+            keymap.execute(.zeroKey, location: location)
         case "1":
-            setSpeed(1)
+            keymap.execute(.oneKey, location: location)
         case "2":
-            setSpeed(2)
+            keymap.execute(.twoKey, location: location)
         case "3":
-            setSpeed(3)
+            keymap.execute(.threeKey, location: location)
         case "4":
-            setSpeed(4)
+            keymap.execute(.fourKey, location: location)
         case "5":
-            setSpeed(5)
+            keymap.execute(.fiveKey, location: location)
         case "6":
-            setSpeed(6)
+            keymap.execute(.sixKey, location: location)
         case "7":
-            setSpeed(7)
+            keymap.execute(.sevenKey, location: location)
         case "8":
-            setSpeed(8)
+            keymap.execute(.eightKey, location: location)
         case "9":
-            setSpeed(9)
+            keymap.execute(.nineKey, location: location)
         case "s":
-            if let shieldsUp = appDelegate.universe.me?.shieldsUp {
-                if shieldsUp {
-                    let cpShield = MakePacket.cpShield(up: false)
-                    appDelegate.reader?.send(content: cpShield)
-                } else {
-                    let cpShield = MakePacket.cpShield(up: true)
-                    appDelegate.reader?.send(content: cpShield)
-                }
-            }
+            keymap.execute(.sKey, location: location)
         case "u":
-            let cpShield = MakePacket.cpShield(up: true)
-            appDelegate.reader?.send(content: cpShield)
+            keymap.execute(.uKey, location: location)
         default:
             debugPrint("TacticalScene.keyDown unknown key \(String(describing: event.characters))")
-        }
-    }
-    func setSpeed(_ speed: Int) {
-        if let cpSpeed = MakePacket.cpSpeed(speed: speed) {
-            appDelegate.reader?.send(content: cpSpeed)
         }
     }
     

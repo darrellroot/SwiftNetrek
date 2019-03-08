@@ -37,6 +37,8 @@
 		2F7501B5222F5BD7002040A7 /* TacticalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7501B4222F5BD7002040A7 /* TacticalView.swift */; };
 		2F94A82F2230DA3B00FAAF39 /* TacticalScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F94A82E2230DA3B00FAAF39 /* TacticalScene.swift */; };
 		2F94A8312231AEA800FAAF39 /* NetrekMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F94A8302231AEA800FAAF39 /* NetrekMath.swift */; };
+		2F94A83322324C2600FAAF39 /* SKView-extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F94A83222324C2600FAAF39 /* SKView-extensions.swift */; };
+		2F94A8352233009600FAAF39 /* KeymapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F94A8342233009600FAAF39 /* KeymapController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +77,8 @@
 		2F7501B4222F5BD7002040A7 /* TacticalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TacticalView.swift; sourceTree = "<group>"; };
 		2F94A82E2230DA3B00FAAF39 /* TacticalScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TacticalScene.swift; sourceTree = "<group>"; };
 		2F94A8302231AEA800FAAF39 /* NetrekMath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetrekMath.swift; sourceTree = "<group>"; };
+		2F94A83222324C2600FAAF39 /* SKView-extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKView-extensions.swift"; sourceTree = "<group>"; };
+		2F94A8342233009600FAAF39 /* KeymapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeymapController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +147,7 @@
 				2F750170222A21BE002040A7 /* Collection-extensions.swift */,
 				2F750197222B66AF002040A7 /* Data-extensions.swift */,
 				2F7501A1222C930B002040A7 /* packets-extensions.swift */,
+				2F94A83222324C2600FAAF39 /* SKView-extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -155,6 +160,7 @@
 				2F7501B0222F5AD9002040A7 /* TacticalViewController.swift */,
 				2F7501B2222F5B8F002040A7 /* StrategicViewController.swift */,
 				2F94A82E2230DA3B00FAAF39 /* TacticalScene.swift */,
+				2F94A8342233009600FAAF39 /* KeymapController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -298,6 +304,7 @@
 				2F7501A2222C930B002040A7 /* packets-extensions.swift in Sources */,
 				2F75016C2229FA22002040A7 /* MetaServerEntry.swift in Sources */,
 				2F750185222B2476002040A7 /* PacketAnalyzer.swift in Sources */,
+				2F94A83322324C2600FAAF39 /* SKView-extensions.swift in Sources */,
 				2F7501B1222F5AD9002040A7 /* TacticalViewController.swift in Sources */,
 				2F7501AA222F2CBE002040A7 /* Laser.swift in Sources */,
 				2F75017E222A57EC002040A7 /* NetworkDelegate.swift in Sources */,
@@ -316,6 +323,7 @@
 				2F94A8312231AEA800FAAF39 /* NetrekMath.swift in Sources */,
 				2F750183222AF698002040A7 /* enumerations.swift in Sources */,
 				2F75019A222C33D6002040A7 /* Planet.swift in Sources */,
+				2F94A8352233009600FAAF39 /* KeymapController.swift in Sources */,
 				2F94A82F2230DA3B00FAAF39 /* TacticalScene.swift in Sources */,
 				2F750171222A21BE002040A7 /* Collection-extensions.swift in Sources */,
 				2F750189222B4532002040A7 /* MessageViewController.swift in Sources */,

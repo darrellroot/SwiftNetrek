@@ -33,6 +33,7 @@ class TacticalViewController: NSViewController, SKSceneDelegate {
         scene.delegate = self
         scene.addChild(defaultCamera)
         scene.camera = defaultCamera
+        scene.window = self.view.window
         defaultCamera.position = CGPoint(x: 1000, y: 1000)
         //skView.presentScene(self.scene)
     }

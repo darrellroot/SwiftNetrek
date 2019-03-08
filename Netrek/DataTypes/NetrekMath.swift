@@ -39,16 +39,16 @@ class NetrekMath {
     static func netrekX2GameX(_ netrekX: Int) -> Int {
         return netrekX / 10
     }
-    static func calculateNetrekDirection(mePositionX: Double, mePositionY: Double, destinationX: Double, destinationY: Double) -> Int {
+    static func calculateNetrekDirection(mePositionX: Double, mePositionY: Double, destinationX: Double, destinationY: Double) -> UInt8 {
         let deltaX = Double(destinationX - mePositionX)
         let deltaY = Double(destinationY - mePositionY)
         var angleRadians = atan2(deltaY,deltaX)
         if angleRadians < 0 { angleRadians = angleRadians + Double.pi + Double.pi }
         let netrekDirection = Int(64.0 - 128.0 * angleRadians / Double.pi)
         if netrekDirection >= 0 {
-            return(netrekDirection)
+            return(UInt8(netrekDirection))
         } else {
-            return(netrekDirection + 256)
+            return(UInt8(netrekDirection + 256))
         }
     }
 }

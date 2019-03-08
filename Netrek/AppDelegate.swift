@@ -27,7 +27,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var preferredTeam: Team = .federation
     var preferredShip: ShipType = .cruiser
-    
+    var keymapController: KeymapController!
+
     var tacticalViewController: TacticalViewController?   // the child view controller sets this up in viewdidload
     var strategicViewController: StrategicViewController?
     
@@ -47,6 +48,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var selectShipAttackCruiser: NSMenuItem!
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        keymapController = KeymapController()
         // Insert code here to initialize your application
         metaServer = MetaServer(hostname: "metaserver.netrek.org", port: 3521)
         if let metaServer = metaServer {
@@ -213,7 +215,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 debugPrint("ERROR AppDelegate.newGameState.outfitAccepted: tacticalViewController not found")
                 return
             }
-            tacticalViewController.presentScene(delay: 5.0)
+            tacticalViewController.presentScene(delay: 1.0)
         case .gameActive:
             self.gameState = newState
         }
