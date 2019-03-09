@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AppKit
 class NetrekMath {
     
     static let galacticSize = 10000
@@ -15,7 +16,8 @@ class NetrekMath {
     static let planetFontSize: CGFloat = 80.0
     static let playerSize = 80
     static let torpedoSize = 10
-    
+    static let appDelegate = NSApplication.shared.delegate as! AppDelegate
+
     static func directionNetrek2radian(_ directionNetrek: UInt8) -> Double {
         let answer = Double.pi * ((Double(directionNetrek) / -128.0) + 0.5)
         if answer > 0 {
@@ -111,5 +113,21 @@ class NetrekMath {
             }
         }
         return playerLetter
+    }
+    static public func color(team: Team) -> NSColor {
+        if let me = appDelegate.universe.me {
+            if team == me.team {
+                return NSColor.green
+            }
+            if me.war[team] ?? false {
+                return NSColor.red
+            }
+            if me.hostile[team] ?? false {
+                return NSColor.orange
+            }
+            return NSColor.gray
+        } else {
+            return NSColor.gray
+        }
     }
 }

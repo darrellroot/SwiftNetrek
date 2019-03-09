@@ -41,6 +41,7 @@
 		2F94A8352233009600FAAF39 /* KeymapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F94A8342233009600FAAF39 /* KeymapController.swift */; };
 		2FD8567422335770005165C1 /* PlayerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD8567322335770005165C1 /* PlayerListViewController.swift */; };
 		2FD8569422337CFC005165C1 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD8569322337CFC005165C1 /* PlayerView.swift */; };
+		2FD856962234222D005165C1 /* StrategicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD856952234222D005165C1 /* StrategicView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +84,7 @@
 		2F94A8342233009600FAAF39 /* KeymapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeymapController.swift; sourceTree = "<group>"; };
 		2FD8567322335770005165C1 /* PlayerListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListViewController.swift; sourceTree = "<group>"; };
 		2FD8569322337CFC005165C1 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		2FD856952234222D005165C1 /* StrategicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategicView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +216,7 @@
 		2F7501AD222F55BF002040A7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2FD856952234222D005165C1 /* StrategicView.swift */,
 				2FD8569322337CFC005165C1 /* PlayerView.swift */,
 				2F7501B4222F5BD7002040A7 /* TacticalView.swift */,
 			);
@@ -321,6 +324,7 @@
 				2F750179222A4461002040A7 /* TcpReader.swift in Sources */,
 				2F7501A8222F251B002040A7 /* Torpedo.swift in Sources */,
 				2F7501AC222F42E0002040A7 /* Plasma.swift in Sources */,
+				2FD856962234222D005165C1 /* StrategicView.swift in Sources */,
 				2F7501B3222F5B8F002040A7 /* StrategicViewController.swift in Sources */,
 				2F75015922299E55002040A7 /* AppDelegate.swift in Sources */,
 				2F7501A4222CA33C002040A7 /* packets.swift in Sources */,

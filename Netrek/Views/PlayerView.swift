@@ -12,7 +12,7 @@ class PlayerView: NSView {
     
     let appDelegate = NSApplication.shared.delegate as! AppDelegate
 
-    let attribute: [NSAttributedString.Key: Any]? = [NSAttributedString.Key.foregroundColor: NSColor.black, NSAttributedString.Key.font: NSFont(name: "Courier",size: 10.0)]
+    let attribute: [NSAttributedString.Key: Any]? = [NSAttributedString.Key.foregroundColor: NSColor.white, NSAttributedString.Key.font: NSFont(name: "Courier",size: 10.0)]
 
     let rows = 17
     //let columns = 2  two columns hardcoded in logic
@@ -27,6 +27,7 @@ class PlayerView: NSView {
     }
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
+        self.needsDisplay = false
         debugPrint("PlayerView.draw")
         var fedPlayer: [Player] = []
         var oriPlayer: [Player] = []

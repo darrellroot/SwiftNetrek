@@ -187,13 +187,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             
         case .loginAccepted:
             enableShipMenu()
-            playerListViewController?.view.needsDisplay = true
+            DispatchQueue.main.async {
+                self.playerListViewController?.view.needsDisplay = true
+            }
             if self.gameState == .serverSlotFound {
                 tacticalViewController?.presentScene(delay: 1.0)
             }
             self.gameState = newState
             
         case .gameActive:
+            playerListViewController?.view.needsDisplay = true
             self.gameState = newState
             disableShipMenu()
             disableServerMenu()
@@ -278,8 +281,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         case .loginAccepted:
             break
         case .gameActive:
-            if (timerCount % 30) == 0 {
+            if (timerCount % 100) == 0 {
+                debugPrint("Setting needs display for playerListViewController")
                 playerListViewController?.view.needsDisplay = true
+            }
+            if (timerCount % 10) == 0 {
+                strategicViewController?.view.needsDisplay = true
             }
             //TODO send ping every x timer counts
             break

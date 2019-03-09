@@ -9,10 +9,15 @@
 import Cocoa
 
 class StrategicViewController: NSViewController {
+    let appDelegate = NSApplication.shared.delegate as! AppDelegate
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        appDelegate.strategicViewController = self
         // Do view setup here.
+        //self.view.wantsLayer = true
+        //self.view.layer?.backgroundColor = NSColor.black.cgColor
+
     }
     
 }

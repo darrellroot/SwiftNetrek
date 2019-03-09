@@ -15,7 +15,9 @@ class PlayerListViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         appDelegate.playerListViewController = self
-        // Do view setup here.
+        
+        self.view.wantsLayer = true
+        self.view.layer?.backgroundColor = NSColor.black.cgColor
     }
     
     

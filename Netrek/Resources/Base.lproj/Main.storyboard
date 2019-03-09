@@ -963,7 +963,7 @@
         <scene sceneID="NQt-FY-33X">
             <objects>
                 <viewController id="tQA-Kk-hUK" customClass="StrategicViewController" customModule="Netrek" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="Rxy-pd-ix6">
+                    <view key="view" id="Rxy-pd-ix6" customClass="StrategicView" customModule="Netrek" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </view>
@@ -975,7 +975,7 @@
         <!--Player List View Controller-->
         <scene sceneID="fo9-AW-ilh">
             <objects>
-                <viewController title="Player List View Controller" id="lyJ-BP-EQ1" sceneMemberID="viewController">
+                <viewController title="Player List View Controller" id="lyJ-BP-EQ1" customClass="PlayerListViewController" customModule="Netrek" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="1NG-h9-mic" customClass="PlayerView" customModule="Netrek" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
