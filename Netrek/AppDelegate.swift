@@ -32,6 +32,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var tacticalViewController: TacticalViewController?   // the child view controller sets this up in viewdidload
     var strategicViewController: StrategicViewController?
     var playerListViewController: PlayerListViewController?
+    var hudViewController: HUDViewController?
     
     @IBOutlet weak var serverMenu: NSMenu!
     
@@ -196,7 +197,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.gameState = newState
             
         case .gameActive:
-            playerListViewController?.view.needsDisplay = true
+            DispatchQueue.main.async {
+                self.playerListViewController?.view.needsDisplay = true
+            }
             self.gameState = newState
             disableShipMenu()
             disableServerMenu()
@@ -283,10 +286,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         case .gameActive:
             if (timerCount % 100) == 0 {
                 debugPrint("Setting needs display for playerListViewController")
-                playerListViewController?.view.needsDisplay = true
+                DispatchQueue.main.async {
+                    self.playerListViewController?.view.needsDisplay = true
+                }
             }
             if (timerCount % 10) == 0 {
-                strategicViewController?.view.needsDisplay = true
+                DispatchQueue.main.async {
+                    self.strategicViewController?.view.needsDisplay = true
+                    self.hudViewController?.view.needsDisplay = true
+                }
             }
             //TODO send ping every x timer counts
             break

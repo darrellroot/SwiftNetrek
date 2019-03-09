@@ -14,6 +14,7 @@ class Universe {
     var torpedoes: [Int: Torpedo] = [:]
     var lasers: [Int: Laser] = [:]
     var plasmas: [Int: Plasma] = [:]
+    var shipInfo: [ShipType:ShipInfo] = [:]
     var me: Player?
     let maxPlanets = 200
     let maxPlayers = 100
@@ -169,5 +170,13 @@ class Universe {
         }
         self.plasmas[plasmaNumber]?.update(positionX: positionX, positionY: positionY)
     }
+    
+    public func shipinfo(shipType: ShipType, torpSpeed: Int, phaserRange: Int, maxSpeed: Int, maxFuel: Int, maxShield: Int, maxDamage: Int, maxWpnTmp: Int, maxEngTmp: Int, width: Int, height: Int, maxArmies: Int) {
+        if shipInfo[shipType] == nil {
+            let newShipInfo = ShipInfo(shipType: shipType, torpSpeed: torpSpeed, phaserRange: phaserRange, maxSpeed: maxSpeed, maxFuel: maxFuel, maxShield: maxShield, maxDamage: maxDamage, maxWpnTmp: maxWpnTmp, maxEngTmp: maxEngTmp, width: width, height: height, maxArmies: maxArmies)
+            self.shipInfo[shipType] = newShipInfo
+        }
+    }
+
 
 }

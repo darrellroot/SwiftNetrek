@@ -13,10 +13,6 @@ class StrategicView: NSView {
     let appDelegate = NSApplication.shared.delegate as! AppDelegate
 
     
-    let greenAttribute = [NSAttributedString.Key.foregroundColor: NSColor.green, NSAttributedString.Key.font: NSFont(name: "Courier", size: 9.0)!,NSAttributedString.Key.baselineOffset: NSNumber(value: 4)]
-    let orangeAttribute = [NSAttributedString.Key.foregroundColor: NSColor.orange, NSAttributedString.Key.font: NSFont(name: "Courier", size: 9.0)!,NSAttributedString.Key.baselineOffset: NSNumber(value: 4)]
-    let grayAttribute = [NSAttributedString.Key.foregroundColor: NSColor.gray, NSAttributedString.Key.font: NSFont(name: "Courier", size: 9.0)!,NSAttributedString.Key.baselineOffset: NSNumber(value: 4)]
-    let redAttribute = [NSAttributedString.Key.foregroundColor: NSColor.red, NSAttributedString.Key.font: NSFont(name: "Courier", size: 9.0)!, NSAttributedString.Key.baselineOffset: NSNumber(value: 4)]
      override func draw(_ dirtyRect: NSRect) {
         //super.draw(dirtyRect)
         debugPrint("StrategicView.draw)")
@@ -28,8 +24,16 @@ class StrategicView: NSView {
         for planet in appDelegate.universe.planets.values {
             let stratPosition = CGPoint(x: galXstratX(planet.positionX),y: galYstratY(planet.positionY))
             let prefix = String(planet.name.prefix(3))
-            var attributes = [NSAttributedString.Key.font: NSFont(name: "Courier", size: 9.0)!,NSAttributedString.Key.baselineOffset: NSNumber(value: 4)]
+            var attributes: [NSAttributedString.Key : NSObject]
+            if planet.armies > 4 {
+                attributes = [NSAttributedString.Key.font: NSFont(name: "Courier-Bold", size: 10.0)!,NSAttributedString.Key.baselineOffset: NSNumber(value: 4)]
+            } else {
+                attributes = [NSAttributedString.Key.font: NSFont(name: "Courier", size: 9.0)!,NSAttributedString.Key.baselineOffset: NSNumber(value: 4)]
+            }
             // select color
+            /*if planet.armies > 4 {
+                attributes.updateValue(NSNumber(value: -12), forKey: NSAttributedString.Key.strokeWidth  )
+            }*/
             let color = NetrekMath.color(team: planet.owner)
             color.set()
             attributes.updateValue(color, forKey: NSAttributedString.Key.foregroundColor)

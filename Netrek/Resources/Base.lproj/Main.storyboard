@@ -988,8 +988,8 @@
         <!--HUD View Controller-->
         <scene sceneID="dcz-va-UMi">
             <objects>
-                <viewController title="HUD View Controller" id="Ixy-Os-X9f" sceneMemberID="viewController">
-                    <view key="view" id="RPp-Yc-CKX">
+                <viewController title="HUD View Controller" id="Ixy-Os-X9f" customClass="HUDViewController" customModule="Netrek" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="RPp-Yc-CKX" customClass="HUDView" customModule="Netrek" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </view>

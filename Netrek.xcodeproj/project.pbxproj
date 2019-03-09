@@ -42,6 +42,9 @@
 		2FD8567422335770005165C1 /* PlayerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD8567322335770005165C1 /* PlayerListViewController.swift */; };
 		2FD8569422337CFC005165C1 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD8569322337CFC005165C1 /* PlayerView.swift */; };
 		2FD856962234222D005165C1 /* StrategicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD856952234222D005165C1 /* StrategicView.swift */; };
+		2FD8569822346743005165C1 /* HUDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD8569722346743005165C1 /* HUDViewController.swift */; };
+		2FD8569A22346760005165C1 /* HUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD8569922346760005165C1 /* HUDView.swift */; };
+		2FD8569C22347566005165C1 /* ShipInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD8569B22347566005165C1 /* ShipInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +88,9 @@
 		2FD8567322335770005165C1 /* PlayerListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListViewController.swift; sourceTree = "<group>"; };
 		2FD8569322337CFC005165C1 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		2FD856952234222D005165C1 /* StrategicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategicView.swift; sourceTree = "<group>"; };
+		2FD8569722346743005165C1 /* HUDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDViewController.swift; sourceTree = "<group>"; };
+		2FD8569922346760005165C1 /* HUDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDView.swift; sourceTree = "<group>"; };
+		2FD8569B22347566005165C1 /* ShipInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +167,7 @@
 		2F750172222A41C8002040A7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2FD8569722346743005165C1 /* HUDViewController.swift */,
 				2F75015A22299E55002040A7 /* OverallViewController.swift */,
 				2F750188222B4532002040A7 /* MessageViewController.swift */,
 				2F7501B0222F5AD9002040A7 /* TacticalViewController.swift */,
@@ -203,6 +210,7 @@
 		2F750192222B6008002040A7 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				2FD8569B22347566005165C1 /* ShipInfo.swift */,
 				2F750193222B6019002040A7 /* Universe.swift */,
 				2F750199222C33D6002040A7 /* Planet.swift */,
 				2F750195222B6048002040A7 /* Player.swift */,
@@ -216,6 +224,7 @@
 		2F7501AD222F55BF002040A7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2FD8569922346760005165C1 /* HUDView.swift */,
 				2FD856952234222D005165C1 /* StrategicView.swift */,
 				2FD8569322337CFC005165C1 /* PlayerView.swift */,
 				2F7501B4222F5BD7002040A7 /* TacticalView.swift */,
@@ -317,6 +326,7 @@
 				2F7501B1222F5AD9002040A7 /* TacticalViewController.swift in Sources */,
 				2F7501AA222F2CBE002040A7 /* Laser.swift in Sources */,
 				2FD8567422335770005165C1 /* PlayerListViewController.swift in Sources */,
+				2FD8569A22346760005165C1 /* HUDView.swift in Sources */,
 				2F75017E222A57EC002040A7 /* NetworkDelegate.swift in Sources */,
 				2F75016E2229FFE8002040A7 /* MetaServer.swift in Sources */,
 				2F750196222B6048002040A7 /* Player.swift in Sources */,
@@ -327,6 +337,8 @@
 				2FD856962234222D005165C1 /* StrategicView.swift in Sources */,
 				2F7501B3222F5B8F002040A7 /* StrategicViewController.swift in Sources */,
 				2F75015922299E55002040A7 /* AppDelegate.swift in Sources */,
+				2FD8569C22347566005165C1 /* ShipInfo.swift in Sources */,
+				2FD8569822346743005165C1 /* HUDViewController.swift in Sources */,
 				2F7501A4222CA33C002040A7 /* packets.swift in Sources */,
 				2F7501B5222F5BD7002040A7 /* TacticalView.swift in Sources */,
 				2F750198222B66AF002040A7 /* Data-extensions.swift in Sources */,
