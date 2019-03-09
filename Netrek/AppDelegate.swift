@@ -31,6 +31,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     var tacticalViewController: TacticalViewController?   // the child view controller sets this up in viewdidload
     var strategicViewController: StrategicViewController?
+    var playerListViewController: PlayerListViewController?
     
     @IBOutlet weak var serverMenu: NSMenu!
     
@@ -186,6 +187,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             
         case .loginAccepted:
             enableShipMenu()
+            playerListViewController?.view.needsDisplay = true
             if self.gameState == .serverSlotFound {
                 tacticalViewController?.presentScene(delay: 1.0)
             }
@@ -276,6 +278,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         case .loginAccepted:
             break
         case .gameActive:
+            if (timerCount % 30) == 0 {
+                playerListViewController?.view.needsDisplay = true
+            }
             //TODO send ping every x timer counts
             break
         }

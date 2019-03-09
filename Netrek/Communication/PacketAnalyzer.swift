@@ -301,16 +301,17 @@ class PacketAnalyzer {
             let flags = data.subdata(in: (4..<5)).to(type: UInt16.self).byteSwapped
             // pad
             // pad
-            let armies = data.subdata(in: (8..<12)).to(type: UInt32.self).byteSwapped
-            debugPrint("Received SP_PLANET planetID \(planetID) owner \(owner) info \(info) flags \(flags) armies \(armies)")
+            let armies = Int(data.subdata(in: (8..<12)).to(type: UInt32.self).byteSwapped)
+            debugPrint("Received SP_PLANET 15 planetID \(planetID) owner \(owner) info \(info) flags \(flags) armies \(armies)")
             guard let planet = universe.planets[planetID] else {
                 debugPrint("ERROR: invalid planetID \(planetID)")
                 return
             }
-            planet.setOwner(newOwnerInt: owner)
-            planet.setInfo(newInfoInt: info)
-            planet.setFlags(newFlagsInt: Int(flags))
-            planet.armies = Int(armies)
+            planet.update(owner: owner, info: info, flags: flags, armies: armies)
+            //planet.setOwner(newOwnerInt: owner)
+            //planet.setInfo(newInfoInt: info)
+            //planet.setFlags(newFlagsInt: Int(flags))
+            //planet.armies = Int(armies)
             
         case 16:
             // SP_PICKOK

@@ -811,9 +811,9 @@
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
                     <window key="window" title="Netrek" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowStyleMask key="styleMask" titled="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="800" height="500"/>
+                        <rect key="contentRect" x="196" y="240" width="0.0" height="0.0"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <value key="minSize" type="size" width="800" height="500"/>
                         <connections>
@@ -826,92 +826,104 @@
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="55" y="292"/>
+            <point key="canvasLocation" x="-235" y="362"/>
         </scene>
         <!--Overall View Controller-->
         <scene sceneID="ge4-9L-QeV">
             <objects>
                 <viewController id="Yf6-2s-0ES" customClass="OverallViewController" customModule="Netrek" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Zma-0P-ZGo">
-                        <rect key="frame" x="0.0" y="0.0" width="805" height="538"/>
+                        <rect key="frame" x="0.0" y="0.0" width="833" height="522"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <stackView distribution="fillProportionally" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ee2-LE-dlE">
-                                <rect key="frame" x="0.0" y="0.0" width="805" height="538"/>
-                                <subviews>
-                                    <containerView translatesAutoresizingMaskIntoConstraints="NO" id="FcW-AB-Ga8" userLabel="Tactical Container View">
-                                        <rect key="frame" x="0.0" y="0.0" width="538" height="538"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="FcW-AB-Ga8" secondAttribute="height" multiplier="1:1" id="CFr-pP-wgG"/>
-                                        </constraints>
-                                        <connections>
-                                            <segue destination="Zsp-ZK-TcN" kind="embed" id="J7t-RV-edc"/>
-                                        </connections>
-                                    </containerView>
-                                    <stackView distribution="fillEqually" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Tk-8f-CJv">
-                                        <rect key="frame" x="538" y="0.0" width="267" height="538"/>
-                                        <subviews>
-                                            <containerView translatesAutoresizingMaskIntoConstraints="NO" id="0Ew-YM-Th3" userLabel="Message Container View">
-                                                <rect key="frame" x="0.0" y="269" width="267" height="269"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="0Ew-YM-Th3" secondAttribute="height" multiplier="267:269" id="nZH-WY-WC6"/>
-                                                </constraints>
-                                                <connections>
-                                                    <segue destination="1yz-XC-MLA" kind="embed" id="AAa-T3-ir2"/>
-                                                </connections>
-                                            </containerView>
-                                            <containerView translatesAutoresizingMaskIntoConstraints="NO" id="Oyb-z0-Kxg" userLabel="Strategic Container View">
-                                                <rect key="frame" x="0.0" y="0.0" width="267" height="269"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="Oyb-z0-Kxg" secondAttribute="height" multiplier="267:269" id="Xss-SV-uTD"/>
-                                                </constraints>
-                                                <connections>
-                                                    <segue destination="tQA-Kk-hUK" kind="embed" id="5wW-Pj-N78"/>
-                                                </connections>
-                                            </containerView>
-                                        </subviews>
-                                        <visibilityPriorities>
-                                            <integer value="1000"/>
-                                            <integer value="1000"/>
-                                        </visibilityPriorities>
-                                        <customSpacing>
-                                            <real value="3.4028234663852886e+38"/>
-                                            <real value="3.4028234663852886e+38"/>
-                                        </customSpacing>
-                                    </stackView>
-                                </subviews>
-                                <visibilityPriorities>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                </visibilityPriorities>
-                                <customSpacing>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                </customSpacing>
-                            </stackView>
+                            <gridView xPlacement="center" yPlacement="center" rowAlignment="none" rowSpacing="3" columnSpacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Gnq-EQ-kcS">
+                                <rect key="frame" x="0.0" y="0.0" width="833" height="522"/>
+                                <constraints>
+                                    <constraint firstItem="o2q-es-GCi" firstAttribute="height" secondItem="0Ew-YM-Th3" secondAttribute="height" id="4Kr-ZI-cS4"/>
+                                    <constraint firstItem="FcW-AB-Ga8" firstAttribute="height" secondItem="Oyb-z0-Kxg" secondAttribute="height" id="Z2h-ig-dKd"/>
+                                    <constraint firstItem="o2q-es-GCi" firstAttribute="width" secondItem="0Ew-YM-Th3" secondAttribute="width" id="fQk-1P-FS5"/>
+                                    <constraint firstItem="FcW-AB-Ga8" firstAttribute="width" secondItem="Oyb-z0-Kxg" secondAttribute="width" id="kWW-WU-E1M"/>
+                                    <constraint firstItem="FcW-AB-Ga8" firstAttribute="height" secondItem="o2q-es-GCi" secondAttribute="height" multiplier="2" id="vV2-RW-cUB"/>
+                                </constraints>
+                                <rows>
+                                    <gridRow id="xD4-I5-dAT"/>
+                                    <gridRow id="DFd-Lc-dFB"/>
+                                    <gridRow id="FIg-v0-FBh"/>
+                                </rows>
+                                <columns>
+                                    <gridColumn id="HqZ-jq-B7p"/>
+                                    <gridColumn id="Ste-nP-qmP"/>
+                                </columns>
+                                <gridCells>
+                                    <gridCell row="xD4-I5-dAT" column="HqZ-jq-B7p" id="zzP-nL-UHk">
+                                        <containerView key="contentView" translatesAutoresizingMaskIntoConstraints="NO" id="FcW-AB-Ga8" userLabel="Tactical Container View">
+                                            <rect key="frame" x="0.0" y="462" width="100" height="60"/>
+                                            <connections>
+                                                <segue destination="Zsp-ZK-TcN" kind="embed" id="J7t-RV-edc"/>
+                                            </connections>
+                                        </containerView>
+                                    </gridCell>
+                                    <gridCell row="xD4-I5-dAT" column="Ste-nP-qmP" id="854-EW-b4p">
+                                        <containerView key="contentView" translatesAutoresizingMaskIntoConstraints="NO" id="Oyb-z0-Kxg" userLabel="Strategic Container View">
+                                            <rect key="frame" x="418" y="462" width="100" height="60"/>
+                                            <connections>
+                                                <segue destination="tQA-Kk-hUK" kind="embed" id="5wW-Pj-N78"/>
+                                            </connections>
+                                        </containerView>
+                                    </gridCell>
+                                    <gridCell row="DFd-Lc-dFB" column="HqZ-jq-B7p" id="cqu-Y4-MOE">
+                                        <containerView key="contentView" translatesAutoresizingMaskIntoConstraints="NO" id="Rg3-kK-gBt" userLabel="HUD Container View">
+                                            <rect key="frame" x="0.0" y="221" width="100" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="Dwk-7u-wId"/>
+                                            </constraints>
+                                            <connections>
+                                                <segue destination="Ixy-Os-X9f" kind="embed" id="Kpq-Bl-Yj5"/>
+                                            </connections>
+                                        </containerView>
+                                    </gridCell>
+                                    <gridCell row="DFd-Lc-dFB" column="Ste-nP-qmP" id="MBY-Rk-0rZ"/>
+                                    <gridCell row="FIg-v0-FBh" column="HqZ-jq-B7p" id="zRl-Zo-2jc">
+                                        <containerView key="contentView" translatesAutoresizingMaskIntoConstraints="NO" id="o2q-es-GCi" userLabel="Player List View">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
+                                            <connections>
+                                                <segue destination="lyJ-BP-EQ1" kind="embed" id="7j5-2W-vDk"/>
+                                            </connections>
+                                        </containerView>
+                                    </gridCell>
+                                    <gridCell row="FIg-v0-FBh" column="Ste-nP-qmP" id="nr4-oW-AZK">
+                                        <containerView key="contentView" translatesAutoresizingMaskIntoConstraints="NO" id="0Ew-YM-Th3" userLabel="Message Container View">
+                                            <rect key="frame" x="418" y="0.0" width="100" height="30"/>
+                                            <connections>
+                                                <segue destination="1yz-XC-MLA" kind="embed" id="AAa-T3-ir2"/>
+                                            </connections>
+                                        </containerView>
+                                    </gridCell>
+                                </gridCells>
+                            </gridView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="ee2-LE-dlE" secondAttribute="bottom" id="4Dh-g1-ct9"/>
-                            <constraint firstItem="ee2-LE-dlE" firstAttribute="top" secondItem="Zma-0P-ZGo" secondAttribute="top" id="Iei-CV-KbF"/>
-                            <constraint firstAttribute="trailing" secondItem="ee2-LE-dlE" secondAttribute="trailing" id="T2n-Vc-Hoh"/>
-                            <constraint firstItem="ee2-LE-dlE" firstAttribute="leading" secondItem="Zma-0P-ZGo" secondAttribute="leading" id="zHj-Jx-mxO"/>
+                            <constraint firstItem="Gnq-EQ-kcS" firstAttribute="leading" secondItem="Zma-0P-ZGo" secondAttribute="leading" id="2nU-dG-hXn"/>
+                            <constraint firstAttribute="bottom" secondItem="Gnq-EQ-kcS" secondAttribute="bottom" id="JDq-BJ-MVn"/>
+                            <constraint firstItem="Gnq-EQ-kcS" firstAttribute="top" secondItem="Zma-0P-ZGo" secondAttribute="top" id="Kyv-wh-Q4N"/>
+                            <constraint firstAttribute="trailing" secondItem="Gnq-EQ-kcS" secondAttribute="trailing" id="MUT-4h-Swj"/>
                         </constraints>
                     </view>
                 </viewController>
                 <customObject id="Ngl-3X-Tsl" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-238" y="1024.5"/>
+            <point key="canvasLocation" x="-238.5" y="822"/>
         </scene>
         <!--Message View Controller-->
         <scene sceneID="tjC-8G-zwd">
             <objects>
                 <viewController id="1yz-XC-MLA" customClass="MessageViewController" customModule="Netrek" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="mgb-el-VHX">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="68"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="18"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="lQy-mh-8hd">
-                                <rect key="frame" x="0.0" y="50" width="450" height="18"/>
+                            <textField horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="lQy-mh-8hd">
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="18"/>
                                 <textFieldCell key="cell" selectable="YES" borderStyle="border" title="Multiline Label" id="8j3-dl-RFp">
                                     <font key="font" size="11" name="Courier"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -920,10 +932,10 @@
                             </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="lQy-mh-8hd" secondAttribute="trailing" id="4Qs-0s-nuV"/>
-                            <constraint firstAttribute="bottom" secondItem="lQy-mh-8hd" secondAttribute="bottom" constant="50" id="NKY-I0-Hw9"/>
-                            <constraint firstItem="lQy-mh-8hd" firstAttribute="leading" secondItem="mgb-el-VHX" secondAttribute="leading" id="SbU-mV-bze"/>
-                            <constraint firstItem="lQy-mh-8hd" firstAttribute="top" secondItem="mgb-el-VHX" secondAttribute="top" id="s2s-16-1aC"/>
+                            <constraint firstAttribute="bottom" secondItem="lQy-mh-8hd" secondAttribute="bottom" id="BPx-Q2-LsF"/>
+                            <constraint firstItem="lQy-mh-8hd" firstAttribute="top" secondItem="mgb-el-VHX" secondAttribute="top" id="WR1-7k-qet"/>
+                            <constraint firstAttribute="trailing" secondItem="lQy-mh-8hd" secondAttribute="trailing" id="cRJ-Mp-hUw"/>
+                            <constraint firstItem="lQy-mh-8hd" firstAttribute="leading" secondItem="mgb-el-VHX" secondAttribute="leading" id="xtE-fg-gsG"/>
                         </constraints>
                     </view>
                     <connections>
@@ -932,7 +944,7 @@
                 </viewController>
                 <customObject id="nPL-ll-a1w" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="477" y="876"/>
+            <point key="canvasLocation" x="202" y="1313"/>
         </scene>
         <!--Tactical View Controller-->
         <scene sceneID="cV4-Zt-N4h">
@@ -945,7 +957,7 @@
                 </viewController>
                 <customObject id="XzW-3P-xSJ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-543" y="1651"/>
+            <point key="canvasLocation" x="-648" y="293"/>
         </scene>
         <!--Strategic View Controller-->
         <scene sceneID="NQt-FY-33X">
@@ -958,7 +970,33 @@
                 </viewController>
                 <customObject id="oYE-g6-NE3" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="55" y="1623"/>
+            <point key="canvasLocation" x="88" y="293"/>
+        </scene>
+        <!--Player List View Controller-->
+        <scene sceneID="fo9-AW-ilh">
+            <objects>
+                <viewController title="Player List View Controller" id="lyJ-BP-EQ1" sceneMemberID="viewController">
+                    <view key="view" id="1NG-h9-mic" customClass="PlayerView" customModule="Netrek" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="ymo-8H-9ZX" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-696" y="1376"/>
+        </scene>
+        <!--HUD View Controller-->
+        <scene sceneID="dcz-va-UMi">
+            <objects>
+                <viewController title="HUD View Controller" id="Ixy-Os-X9f" sceneMemberID="viewController">
+                    <view key="view" id="RPp-Yc-CKX">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="KrF-vb-XrH" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-929" y="896"/>
         </scene>
     </scenes>
 </document>

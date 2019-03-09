@@ -26,6 +26,25 @@ enum ShipType: Int, CaseIterable {
     case starbase = 5
     case battlecruiser = 6
     //case att = 7
+    var description: String {
+        switch self {
+            
+        case .scout:
+            return "SC"
+        case .destroyer:
+            return "DD"
+        case .cruiser:
+            return "CA"
+        case .battleship:
+            return "BB"
+        case .assault:
+            return "AS"
+        case .starbase:
+            return "SB"
+        case .battlecruiser:
+            return "BC"
+        }
+    }
 }
 // teams_numeric = {IND: -1, FED: 0, ROM: 1, KLI: 2, ORI: 3}
 
@@ -69,9 +88,44 @@ enum PlayerStatus: UInt32 {
     case transWarp = 0x40000000 // paradise mode
     case bpRobot = 0x80000000
 }
+enum Rank: Int, CaseIterable {
+    case ensign = 0
+    case lieutenant = 1
+    case ltCmdr = 2
+    case commander = 3
+    case captain = 4
+    case fleetCapt = 5
+    case commodore = 6
+    case rearAdm = 7
+    case admiral = 8
+    
+    var description: String {
+        switch self {
+            
+        case .ensign:
+            return "Ensign"
+        case .lieutenant:
+            return "Lieutenant"
+        case .ltCmdr:
+            return "Lt. Cmdr."
+        case .commander:
+            return "Commander"
+        case .captain:
+            return "Captain"
+        case .fleetCapt:
+            return "Flt. Capt."
+        case .commodore:
+            return "Commodore"
+        case .rearAdm:
+            return "Rear Adm."
+        case .admiral:
+            return "Admiral"
+        }
+        
+    }
+}
 enum ZPosition: CGFloat {
     case planet = 1.0
-    case planetLabel = 2.0
     case ship = 3.0
     case torpedo = 4.0
     case explosion = 5.0

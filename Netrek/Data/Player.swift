@@ -13,7 +13,7 @@ class Player: CustomStringConvertible {
     
     let appDelegate = NSApplication.shared.delegate as! AppDelegate
 
-    private(set) var playerID: Int?
+    private(set) var playerID: Int = 0
     //private(set) var hostile = 0
     private(set) var hostile: [Team:Bool] = [:]
     private(set) var war: [Team:Bool] = [:]
@@ -44,7 +44,7 @@ class Player: CustomStringConvertible {
     private(set) var shieldsUp = false
     //
     // from packet type 24
-    private(set) var rank = 0
+    private(set) var rank: Rank = .ensign
     private(set) var login = "unknown"
     // from packet type 3
     private(set) var kills = 0.0
@@ -324,7 +324,11 @@ class Player: CustomStringConvertible {
         }*/
     }
     public func update(rank: Int, name: String, login: String) {
-        self.rank = rank
+        for netrekRank in Rank.allCases {
+            if netrekRank.rawValue == rank {
+                self.rank = netrekRank
+            }
+        }
         self.name = name
         self.login = login
     }

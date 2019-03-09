@@ -58,24 +58,22 @@ class Planet: CustomStringConvertible {
         planetTacticalLabel.fontSize = NetrekMath.planetFontSize
         planetTacticalLabel.fontName = "Courier"
         planetTacticalLabel.position = CGPoint(x: 0, y: -2 * NetrekMath.planetDiameter)
-        planetTacticalLabel.zPosition = 2
+        planetTacticalLabel.zPosition = ZPosition.planet.rawValue
         planetTacticalLabel.fontColor = NSColor.green
         if let hostile = appDelegate.universe.me?.hostile[self.owner] {
             if hostile {
                 planetTacticalLabel.fontColor = NSColor.yellow
-                return
             }
         }
         if let war = appDelegate.universe.me?.war[self.owner] {
             if war {
                 planetTacticalLabel.fontColor = NSColor.red
-                return
             }
         }
 
         planetTacticalNode.position = CGPoint(x: self.positionX, y: self.positionY)
 
-        planetTacticalNode.zPosition = 1
+        planetTacticalNode.zPosition = ZPosition.planet.rawValue
         planetTacticalLabel.text = self.name
         planetTacticalNode.addChild(planetTacticalLabel)
         appDelegate.tacticalViewController?.scene.addChild(planetTacticalNode)
@@ -86,7 +84,19 @@ class Planet: CustomStringConvertible {
         self.positionY = positionY
         self.remakeNode()
     }
-    public func setOwner(newOwnerInt: Int) {
+    public func update(owner: Int, info: Int, flags: UInt16, armies: Int) {
+        self.flags = Int(flags)
+        self.info = info
+        self.armies = armies
+        for team in Team.allCases {
+            if owner == team.rawValue {
+                self.owner = team
+                self.remakeNode()
+                return
+            }
+        }
+    }
+    /*public func setOwner(newOwnerInt: Int) {
         for team in Team.allCases {
             if newOwnerInt == team.rawValue {
                 self.owner = team
@@ -100,5 +110,5 @@ class Planet: CustomStringConvertible {
     }
     public func setFlags(newFlagsInt: Int) {
         self.flags = newFlagsInt
-    }
+    }*/
 }

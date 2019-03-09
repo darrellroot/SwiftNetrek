@@ -51,4 +51,65 @@ class NetrekMath {
             return(UInt8(netrekDirection + 256))
         }
     }
+    static func teamLetter(team: Team) -> String {
+        switch team {
+            
+        case .independent:
+            return "I"
+        case .federation:
+            return "F"
+        case .roman:
+            return "R"
+        case .kleptocrat:
+            return "K"
+        case .orion:
+            return "O"
+        case .ogg:
+            return "I"
+        }
+    }
+    static func playerLetter(playerID: Int) -> String {
+        let playerLetter: String
+        if playerID < 16 {
+            playerLetter = String(format: "%x", playerID)
+        } else {
+            switch playerID {
+            case 16:
+                playerLetter = "g"
+            case 17:
+                playerLetter = "h"
+            case 18:
+                playerLetter = "i"
+            case 19:
+                playerLetter = "j"
+            case 20:
+                playerLetter = "k"
+            case 21:
+                playerLetter = "l"
+            case 22:
+                playerLetter = "m"
+            case 23:
+                playerLetter = "n"
+            case 24:
+                playerLetter = "o"
+            case 25:
+                playerLetter = "p"
+            case 26:
+                playerLetter = "q"
+            case 27:
+                playerLetter = "r"
+            case 28:
+                playerLetter = "s"
+            case 29:
+                playerLetter = "t"
+            case 30:
+                playerLetter = "u"
+            case 31:
+                playerLetter = "v"
+            default:
+                playerLetter = "?"
+            }
+        }
+        return playerLetter
+    }
 }
