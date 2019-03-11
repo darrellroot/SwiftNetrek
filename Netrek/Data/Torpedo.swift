@@ -15,6 +15,7 @@ class Torpedo {
 
     var torpedoNumber: Int = 0
     var status: UInt8 = 0
+    //public var displayed: Bool = false
     private(set) var war: [Team:Bool] = [:]
     var directionNetrek: Int = 0  // netrek format direction for now
     var direction: Double = 0.0 // in radians
@@ -38,7 +39,7 @@ class Torpedo {
         }
 
         self.status = status
-        switch status {
+/*        switch status {
         case 0:
             self.torpedoNode.removeFromParent()
         case 1:
@@ -62,7 +63,7 @@ class Torpedo {
         default:
             debugPrint("torpedo status unknown \(status)")
         }
-        //self.war = war // TODO break this up
+ */
     }
     func update(directionNetrek: Int, positionX: Int, positionY: Int) {
         if self.status == 0 {
@@ -74,7 +75,7 @@ class Torpedo {
         self.updateTime = Date()
         self.positionX = positionX
         self.positionY = positionY
-        
+/*
         self.directionNetrek = directionNetrek
         self.direction = ( Double.pi * 2 ) * Double(directionNetrek) / 256.0
         self.torpedoNode.position = CGPoint(x: self.positionX, y: self.positionY)
@@ -90,6 +91,6 @@ class Torpedo {
                 }
                 self.torpedoNode.run(action)
             }
-        }
+        }*/
     }
 }

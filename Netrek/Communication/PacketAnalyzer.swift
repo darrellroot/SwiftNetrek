@@ -87,7 +87,9 @@ class PacketAnalyzer {
         } while data.count > 0
         // now that we've analyzed our data, we can try
         // to receive more
-        
+        DispatchQueue.main.async() {
+            self.appDelegate.tacticalViewController?.scene.packetUpdate()
+        }
         appDelegate.reader?.receive()
     }
 

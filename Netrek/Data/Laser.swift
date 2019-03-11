@@ -21,7 +21,7 @@ class Laser {
     var laserNode = SKShapeNode()
     //let waitAction = SKAction.wait(forDuration: 1.0)
     //let removeAction = SKAction.removeFromParent()
-    let laserAction = SKAction.sequence([SKAction.wait(forDuration: 1.0),SKAction.removeFromParent()])
+    let laserAction = SKAction.sequence([SKAction.fadeOut(withDuration: 1.0),SKAction.removeFromParent()])
     let laserRange = 600.0 // game units
     
     
