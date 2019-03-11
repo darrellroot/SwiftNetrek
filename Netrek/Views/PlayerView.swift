@@ -8,13 +8,12 @@
 
 import Cocoa
 
-class PlayerView: NSView {
+class PlayerView: NSScrollView {
     
     let appDelegate = NSApplication.shared.delegate as! AppDelegate
 
-    let attribute: [NSAttributedString.Key: Any]? = [NSAttributedString.Key.foregroundColor: NSColor.white, NSAttributedString.Key.font: NSFont(name: "Courier",size: 10.0)]
 
-    let rows = 17
+    let rows = 33
     //let columns = 2  two columns hardcoded in logic
     //let inset = 4
     
@@ -37,41 +36,73 @@ class PlayerView: NSView {
 
         let players = appDelegate.universe.players.values
         let players2 = players.sorted (by: { $0.playerID < $1.playerID })
-
+        
         for (playerID,player) in players2.enumerated() {
         //for (playerID,player) in appDelegate.universe.players.sorted(by: { $0.value.playerID < $1.value.playerID }).value.enumerated() {
             
+            if player.slotStatus != .free && player.slotStatus != .observe {
+                switch player.team {
 
-            switch player.team {
-
-            case .independent:
-                indPlayer.append(player)
-            case .federation:
-                fedPlayer.append(player)
-            case .roman:
-                romPlayer.append(player)
-            case .kleptocrat:
-                klePlayer.append(player)
-            case .orion:
-                oriPlayer.append(player)
-            case .ogg:
-                indPlayer.append(player)
+                case .independent:
+                    indPlayer.append(player)
+                case .federation:
+                    fedPlayer.append(player)
+                case .roman:
+                    romPlayer.append(player)
+                case .kleptocrat:
+                    klePlayer.append(player)
+                case .orion:
+                    oriPlayer.append(player)
+                case .ogg:
+                    indPlayer.append(player)
+                }
             }
         }
-        let column1Player = romPlayer + fedPlayer
+        let column1Player = romPlayer + fedPlayer + klePlayer + oriPlayer + indPlayer
+        displayHeader(inset: 4)
         displayColumn(players: column1Player, inset: 4)
-        let column2Player = klePlayer + oriPlayer + indPlayer
-        let inset2 = 4 + Int(self.bounds.width) / 2
-        displayColumn(players: column2Player, inset: inset2)
+        //let column2Player = klePlayer + oriPlayer + indPlayer
+        //let inset2 = 4 + Int(self.bounds.width) / 2
+        //displayColumn(players: column2Player, inset: inset2)
+        
+    }
+    private func displayHeader(inset: Int) {
+        let verticalPosition = 0
+        let horizontalInterval = Int(self.bounds.width) / totalCharacterWidth
+
+        let attribute: [NSAttributedString.Key: Any]? = [ NSAttributedString.Key.foregroundColor: NSColor.white, NSAttributedString.Key.font: NSFont(name: "Courier",size: 10.0) as Any]
+
+        var attString = NSAttributedString(string: "Team", attributes: attribute)
+        var point = CGPoint(x: inset + 3 * horizontalInterval, y: verticalPosition)
+        attString.draw(at: point)
+        
+        point = CGPoint(x: (inset + 6 * horizontalInterval), y: verticalPosition)
+        attString = NSAttributedString(string: "Ship", attributes: attribute)
+        attString.draw(at: point)
+        
+        point = CGPoint(x: (inset + 9 * horizontalInterval), y: verticalPosition)
+        attString = NSAttributedString(string: "Rank", attributes: attribute)
+        attString.draw(at: point)
+        
+        point = CGPoint(x: (inset + 19 * horizontalInterval), y: verticalPosition)
+        attString = NSAttributedString(string: "Player Name", attributes: attribute)
+        attString.draw(at: point)
+        
+        point = CGPoint(x: (inset + 32 * horizontalInterval), y: verticalPosition)
+        attString = NSAttributedString(string: "Kills", attributes: attribute)
+        attString.draw(at: point)
+
     }
     private func displayColumn(players: [Player], inset: Int) {
         for (index,player) in players.enumerated() {
-            let verticalInterval = Int(self.bounds.height) / self.rows
+            let verticalInterval = (Int(self.bounds.height) / (players.count + 1)) - 1
             debugPrint("playerView.displayColumn verticalInterval \(verticalInterval)")
             let horizontalInterval = Int(self.bounds.width) / totalCharacterWidth
+            let playerColor = NetrekMath.color(team: player.team)
+            let attribute: [NSAttributedString.Key: Any]? = [ NSAttributedString.Key.foregroundColor: playerColor, NSAttributedString.Key.font: NSFont(name: "Courier",size: 10.0) as Any]
 
             // player code
-            let verticalPosition = index * verticalInterval
+            let verticalPosition = (index + 1) * verticalInterval
             debugPrint("playerView.displayColumn index \(index) verticalPosition \(verticalPosition)")
 
             let teamLetter = NetrekMath.teamLetter(team: player.team)

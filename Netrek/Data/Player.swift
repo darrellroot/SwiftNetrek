@@ -55,7 +55,7 @@ class Player: CustomStringConvertible {
     private(set) var direction: CGFloat = 0.0 // 2 * Double.pi = 360 degrees
     private(set) var speed = 0
     var playerTacticalNode = SKSpriteNode()
-    var shieldNode = SKShapeNode(circleOfRadius: CGFloat(NetrekMath.playerSize))
+    var shieldNode = SKShapeNode(circleOfRadius: CGFloat(NetrekMath.playerSize)/1.8)
     
     init(playerID: Int) {
         self.playerID = playerID

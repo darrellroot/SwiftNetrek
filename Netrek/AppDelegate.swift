@@ -34,6 +34,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var playerListViewController: PlayerListViewController?
     var hudViewController: HUDViewController?
     var sendMessageViewController: SendMessageViewController?
+    var clientTypeSent = false
     
     @IBOutlet weak var serverMenu: NSMenu!
     
@@ -190,13 +191,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         case .loginAccepted:
             enableShipMenu()
             if self.gameState == .serverSlotFound {
-                if let letter = universe.me?.team.letter, let playerID = universe.me?.playerID {
-                DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 10.0) {
-                    let hexNumber = NetrekMath.playerLetter(playerID: playerID)
-                        let data = MakePacket.cpMessage(message: "\(letter)\(hexNumber) is playing Swift Netrek Client v0.1 on MacOS", team: .ogg, individual: 0)
-                        self.reader?.send(content: data)
-                    }
-                }
             }
             DispatchQueue.main.async {
                 self.playerListViewController?.view.needsDisplay = true
@@ -213,6 +207,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.gameState = newState
             disableShipMenu()
             disableServerMenu()
+            if !clientTypeSent {
+                if let letter = universe.me?.team.letter, let playerID = universe.me?.playerID {
+                    let hexNumber = NetrekMath.playerLetter(playerID: playerID)
+                    let data = MakePacket.cpMessage(message: "\(letter)\(hexNumber) is playing Swift Netrek Client v0.1 on MacOS", team: .ogg, individual: 0)
+                    self.reader?.send(content: data)
+                }
+            }
         }
     }
     private func disableServerMenu() {
