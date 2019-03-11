@@ -94,6 +94,15 @@ class MakePacket {
         debugPrint("Sending CP_DIRECTION 3 direction \(netrekDirection)")
         return data
     }
+    // CP_LASER 4
+    static func cpLaser(netrekDirection: UInt8) -> Data {
+        var packet = CP_LASER()
+        packet.netrekDirection = netrekDirection
+        let data = Data(bytes: &packet, count: packet.size)
+        debugPrint("Sending CP_LASER 4 direction \(netrekDirection)")
+        return data
+    }
+
     
     // CP_TORP 6
     static func cpTorp(netrekDirection: UInt8) -> Data {

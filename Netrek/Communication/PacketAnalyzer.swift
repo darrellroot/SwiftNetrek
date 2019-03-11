@@ -201,10 +201,10 @@ class PacketAnalyzer {
             universe.updateTorpedo(torpedoNumber: torpedoNumber, directionNetrek: directionNetrek, positionX: positionX, positionY: positionY)
             
         case 7:
-            // SP_PHASER 7
+            // SP_LASER 7
             let laserNumber = Int(data[1])
-            let status = Int(data[2]) // PH_HIT etc...
-            let directionNetrek = Int(UInt8(data[3]))
+            let status = Int(data[2]) // LA_HIT etc...
+            let directionNetrek = UInt8(data[3])
             let positionX = NetrekMath.netrekX2GameX(Int(data.subdata(in: (4..<8)).to(type: UInt32.self).byteSwapped))
             let positionY = NetrekMath.netrekY2GameY(Int(data.subdata(in: (8..<12)).to(type: UInt32.self).byteSwapped))
             let target = Int(data.subdata(in: (12..<16)).to(type: Int32.self).byteSwapped)

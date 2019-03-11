@@ -24,6 +24,12 @@ class TacticalScene: SKScene {
         debugPrint("RightMouseDown location \(location)")
         appDelegate.keymapController.execute(.rightMouse, location: location)
     }
+    override func otherMouseDown(with event: NSEvent) {
+        // had to catch event in tacticalViewController
+        let location = event.location(in: self)
+        debugPrint("OtherMouseDown location \(location)")
+        appDelegate.keymapController.execute(.otherMouse, location: location)
+    }
     
     override func mouseDown(with event: NSEvent) {
         let modifiers = event.modifierFlags
@@ -36,9 +42,8 @@ class TacticalScene: SKScene {
             let location = event.location(in: self)
             debugPrint("LeftMouseDown location \(location)")
             appDelegate.keymapController.execute(.leftMouse, location: location)
-        case .otherMouseDown:
-            let location = event.location(in: self)
-            debugPrint("CenterMouseDown location \(location)")
+        case .otherMouseDown: // does not work
+            break
         case .rightMouseDown:
             // does not work alternative implementation above
             break

@@ -21,6 +21,7 @@ enum Control: String {
     case eightKey = "8 key"
     case nineKey = "9 key"
     case leftMouse = "left mouse button"
+    case otherMouse = "other mouse button (center)"
     case rightMouse = "right mouse button and control-click"
     case sKey = "s key"
     case uKey = "u key"
@@ -39,6 +40,7 @@ enum Command: String {
     case speedNine = "Set speed 9"
     case setCourse = "Set course"
     case fireTorpedo = "Fire torpedo"
+    case fireLaser = "Fire laser"
     case toggleShields = "Toggle shields"
     case raiseShields = "Raise shields"
 }
@@ -68,6 +70,7 @@ class KeymapController {
             .sKey:.toggleShields,
             .uKey:.raiseShields,
             .leftMouse:.fireTorpedo,
+            .otherMouse:.fireLaser,
             .rightMouse:.setCourse,
         ]
     }
@@ -121,7 +124,19 @@ class KeymapController {
             case .raiseShields:
                 let cpShield = MakePacket.cpShield(up: true)
                 appDelegate.reader?.send(content: cpShield)
-                
+            
+            case .fireLaser:
+                debugPrint("FireLaser location \(String(describing: location))")
+                guard let targetLocation = location else {
+                    debugPrint("KeymapController.execute.fireLaser location is nil...holding fire")
+                    return
+                }
+                if let me = appDelegate.universe.me {
+                    let netrekDirection = NetrekMath.calculateNetrekDirection(mePositionX: Double(me.positionX), mePositionY: Double(me.positionY), destinationX: Double(targetLocation.x), destinationY: Double(targetLocation.y))
+                    let cpLaser = MakePacket.cpLaser(netrekDirection: netrekDirection)
+                    appDelegate.reader?.send(content: cpLaser)
+                }
+
             case .fireTorpedo:
                 debugPrint("RightMouseDown location \(String(describing: location))")
                 guard let targetLocation = location else {

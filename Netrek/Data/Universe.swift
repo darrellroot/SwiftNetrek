@@ -136,7 +136,7 @@ class Universe {
         }
         self.torpedoes[torpedoNumber]?.update(directionNetrek: directionNetrek, positionX: positionX, positionY: positionY)
     }
-    public func updateLaser(laserNumber: Int, status: Int, directionNetrek: Int, positionX: Int, positionY: Int, target: Int) {
+    public func updateLaser(laserNumber: Int, status: Int, directionNetrek: UInt8, positionX: Int, positionY: Int, target: Int) {
         guard laserNumber >= 0 && laserNumber < maxLasers else {
             debugPrint("Universe.updatePlayer invalid laserNumber \(laserNumber)")
             return

@@ -49,4 +49,11 @@ class TacticalViewController: NSViewController, SKSceneDelegate {
             skView.scene?.removeFromParent()
         }
     }
+    override func otherMouseDown(with event: NSEvent) {
+        //let location = event.location(in: self)
+        debugPrint("TacticalViewController: OtherMouseDown location ")
+        self.scene.otherMouseDown(with: event)
+        //appDelegate.keymapController.execute(.otherMouse, location: location)
+    }
+
 }
