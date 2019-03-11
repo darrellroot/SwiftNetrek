@@ -27,6 +27,50 @@ class MakePacket {
         return information
     }
     
+    // CP_MEESSAGE 1
+    static func cpMessage(message: String, team: Team?, individual: Int8) -> Data {
+        let message_length = 80
+        var packet = mesg_cpacket()
+        packet.type = 1
+        if let team = team {
+            switch team {
+            case .independent: // we'll assume this means all teams
+                packet.group = 8 // MALL
+                packet.indiv = 0
+            case .federation, .roman, .kleptocrat, .orion:
+                packet.group = 4 //MTEAM
+                packet.indiv = Int8(team.rawValue)
+            case .ogg:  // meaning all teams
+                packet.group = 8 // MALL
+                packet.indiv = 0
+            }
+        } else {  // team == nil so this is going to an individual
+            packet.group = 2 // MINDIV
+            packet.indiv = Int8(individual)
+        }
+        packet.pad1 = 0
+        withUnsafeMutablePointer(to: &packet.mesg) {
+            $0.withMemoryRebound(to: UInt8.self, capacity: message_length) {mesg_ptr in
+                for count in 0 ..< message_length {
+                    mesg_ptr[count] = 0
+                }
+                var count = 0
+                for char in message.utf8 {
+                    if count < message_length - 1 {
+                        mesg_ptr[count] = char
+                        count = count + 1
+                    }
+                }
+                for count2 in count ..< message_length {
+                    mesg_ptr[count2] = 0
+                }
+            }
+        }
+        let data = Data(bytes: &packet, count: message_length + 4)
+        debugPrint("Sending CP_MESSAGE 1 team: \(team) individual: \(individual) message \(message)")
+        return data
+    }
+
     // CP_SPEED 2
     static func cpSpeed(speed: Int) -> Data? {
         var packet = CP_SPEED()

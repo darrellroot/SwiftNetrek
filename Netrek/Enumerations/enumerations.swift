@@ -55,6 +55,40 @@ enum Team: Int, CaseIterable {
     case kleptocrat = 4
     case orion = 8
     case ogg = 15
+    
+    var description: String {
+        switch self {
+            
+        case .independent:
+            return "Independent"
+        case .federation:
+            return "Federation"
+        case .roman:
+            return "Roman"
+        case .kleptocrat:
+            return "Kleptocrat"
+        case .orion:
+            return "Orion"
+        case .ogg:
+            return "Ogg"
+        }
+    }
+    var letter: String {
+        switch self {
+        case .independent:
+            return "I"
+        case .federation:
+            return "F"
+        case .roman:
+            return "R"
+        case .kleptocrat:
+            return "K"
+        case .orion:
+            return "O"
+        case .ogg:
+            return "I"
+        }
+    }
 }
 
 enum PlayerStatus: UInt32 {

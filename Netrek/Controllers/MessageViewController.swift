@@ -40,6 +40,9 @@ class MessageViewController: NSViewController {
         var totalMessage: String = ""
         for message in messages {
             totalMessage.append(message)
+            if message.last != "\n"{
+                totalMessage.append("\n")
+            }
         }
         DispatchQueue.main.async {
             self.messagesLabel.stringValue = totalMessage

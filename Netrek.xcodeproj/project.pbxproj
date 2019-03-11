@@ -45,6 +45,7 @@
 		2FD8569822346743005165C1 /* HUDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD8569722346743005165C1 /* HUDViewController.swift */; };
 		2FD8569A22346760005165C1 /* HUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD8569922346760005165C1 /* HUDView.swift */; };
 		2FD8569C22347566005165C1 /* ShipInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD8569B22347566005165C1 /* ShipInfo.swift */; };
+		2FD8569E2234C660005165C1 /* SendMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD8569D2234C660005165C1 /* SendMessageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +92,7 @@
 		2FD8569722346743005165C1 /* HUDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDViewController.swift; sourceTree = "<group>"; };
 		2FD8569922346760005165C1 /* HUDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDView.swift; sourceTree = "<group>"; };
 		2FD8569B22347566005165C1 /* ShipInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipInfo.swift; sourceTree = "<group>"; };
+		2FD8569D2234C660005165C1 /* SendMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 				2F75015A22299E55002040A7 /* OverallViewController.swift */,
 				2F750188222B4532002040A7 /* MessageViewController.swift */,
 				2F7501B0222F5AD9002040A7 /* TacticalViewController.swift */,
+				2FD8569D2234C660005165C1 /* SendMessageViewController.swift */,
 				2F7501B2222F5B8F002040A7 /* StrategicViewController.swift */,
 				2F94A82E2230DA3B00FAAF39 /* TacticalScene.swift */,
 				2F94A8342233009600FAAF39 /* KeymapController.swift */,
@@ -334,6 +337,7 @@
 				2F750179222A4461002040A7 /* TcpReader.swift in Sources */,
 				2F7501A8222F251B002040A7 /* Torpedo.swift in Sources */,
 				2F7501AC222F42E0002040A7 /* Plasma.swift in Sources */,
+				2FD8569E2234C660005165C1 /* SendMessageViewController.swift in Sources */,
 				2FD856962234222D005165C1 /* StrategicView.swift in Sources */,
 				2F7501B3222F5B8F002040A7 /* StrategicViewController.swift in Sources */,
 				2F75015922299E55002040A7 /* AppDelegate.swift in Sources */,

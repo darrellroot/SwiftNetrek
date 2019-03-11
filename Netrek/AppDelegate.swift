@@ -33,6 +33,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var strategicViewController: StrategicViewController?
     var playerListViewController: PlayerListViewController?
     var hudViewController: HUDViewController?
+    var sendMessageViewController: SendMessageViewController?
     
     @IBOutlet weak var serverMenu: NSMenu!
     
@@ -188,6 +189,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             
         case .loginAccepted:
             enableShipMenu()
+            if self.gameState == .serverSlotFound {
+                if let letter = universe.me?.team.letter, let playerID = universe.me?.playerID {
+                DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 10.0) {
+                    let hexNumber = NetrekMath.playerLetter(playerID: playerID)
+                        let data = MakePacket.cpMessage(message: "\(letter)\(hexNumber) is playing Swift Netrek Client v0.1 on MacOS", team: .ogg, individual: 0)
+                        self.reader?.send(content: data)
+                    }
+                }
+            }
             DispatchQueue.main.async {
                 self.playerListViewController?.view.needsDisplay = true
             }
@@ -284,6 +294,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         case .loginAccepted:
             break
         case .gameActive:
+            if (timerCount % 200) == 0 {
+                debugPrint("AppDelegate.timer.gameActive: updating sendMessageViewController")
+                DispatchQueue.main.async {
+                    self.sendMessageViewController?.updateMenu()
+                }
+            }
             if (timerCount % 100) == 0 {
                 debugPrint("Setting needs display for playerListViewController")
                 DispatchQueue.main.async {

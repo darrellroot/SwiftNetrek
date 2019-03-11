@@ -810,12 +810,12 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Netrek" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="Netrek" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" appearanceType="darkAqua" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="0.0" height="0.0"/>
+                        <rect key="contentRect" x="196" y="240" width="600" height="400"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
-                        <value key="minSize" type="size" width="800" height="500"/>
+                        <value key="minSize" type="size" width="600" height="400"/>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
                         </connections>
@@ -882,7 +882,14 @@
                                             </connections>
                                         </containerView>
                                     </gridCell>
-                                    <gridCell row="DFd-Lc-dFB" column="Ste-nP-qmP" id="MBY-Rk-0rZ"/>
+                                    <gridCell row="DFd-Lc-dFB" column="Ste-nP-qmP" id="MBY-Rk-0rZ">
+                                        <containerView key="contentView" translatesAutoresizingMaskIntoConstraints="NO" id="SpF-99-HOD" userLabel="Send Message Container View">
+                                            <rect key="frame" x="418" y="231" width="100" height="30"/>
+                                            <connections>
+                                                <segue destination="tDw-iQ-NwS" kind="embed" id="qae-eC-cj9"/>
+                                            </connections>
+                                        </containerView>
+                                    </gridCell>
                                     <gridCell row="FIg-v0-FBh" column="HqZ-jq-B7p" id="zRl-Zo-2jc">
                                         <containerView key="contentView" translatesAutoresizingMaskIntoConstraints="NO" id="o2q-es-GCi" userLabel="Player List View">
                                             <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
@@ -962,7 +969,7 @@
         <!--Strategic View Controller-->
         <scene sceneID="NQt-FY-33X">
             <objects>
-                <viewController id="tQA-Kk-hUK" customClass="StrategicViewController" customModule="Netrek" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Strategic View Controller" id="tQA-Kk-hUK" customClass="StrategicViewController" customModule="Netrek" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Rxy-pd-ix6" customClass="StrategicView" customModule="Netrek" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -970,7 +977,7 @@
                 </viewController>
                 <customObject id="oYE-g6-NE3" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="88" y="293"/>
+            <point key="canvasLocation" x="452" y="314"/>
         </scene>
         <!--Player List View Controller-->
         <scene sceneID="fo9-AW-ilh">
@@ -997,6 +1004,46 @@
                 <customObject id="KrF-vb-XrH" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-929" y="896"/>
+        </scene>
+        <!--Send Message View Controller-->
+        <scene sceneID="pXO-vA-bhO">
+            <objects>
+                <viewController title="Send Message View Controller" id="tDw-iQ-NwS" customClass="SendMessageViewController" customModule="Netrek" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" appearanceType="darkAqua" id="NHS-70-dLE">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HcA-0e-BaE">
+                                <rect key="frame" x="-2" y="20" width="218" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="NNL-11-NyY">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="fh0-b3-Gl2"/>
+                                </popUpButtonCell>
+                            </popUpButton>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2aB-sK-4qw">
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="22"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="obR-XO-82y">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <action selector="sendMessageTextAction:" target="tDw-iQ-NwS" id="pPe-SY-FrS"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="messageOutlet" destination="2aB-sK-4qw" id="0wH-uT-Prs"/>
+                        <outlet property="sendMessageTeamOutlet" destination="HcA-0e-BaE" id="TCH-ua-7hw"/>
+                    </connections>
+                </viewController>
+                <customObject id="DC3-hC-a0d" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="607" y="877"/>
         </scene>
     </scenes>
 </document>

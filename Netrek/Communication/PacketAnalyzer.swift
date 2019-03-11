@@ -92,7 +92,7 @@ class PacketAnalyzer {
     }
 
     func printData(_ data: Data, success: Bool) {
-        let printPacketDumps = false
+        let printPacketDumps = true
             if printPacketDumps {
             var dumpString = "\(success) "
             for byte in data {
@@ -134,14 +134,23 @@ class PacketAnalyzer {
             let range = (4..<(4 + msg_len))
             let messageData = data.subdata(in: range)
             var messageString = "message_decode_error"
-            if let messageStringWithNulls = String(data: messageData, encoding: .utf8) {
-                messageString = "From \(m_from) " + messageStringWithNulls.filter { $0 != "\0" }
-                messageString.append("\n")
+//            if let messageStringWithNulls = String(data: messageData, encoding: .utf8) {
+            if let messageStringWithNulls = String(data: messageData, encoding: .ascii) {
+                messageString = ""
+                var done = false
+                for char in messageStringWithNulls {
+                    if !done && char != "\0" {
+                        messageString.append(char)
+                    } else {
+                        done = true
+                    }
+                }
+ 
                 appDelegate.messageViewController?.gotMessage(messageString)
                 //debugPrint(messageString)
                 printData(data, success: true)
             } else {
-                debugPrint("PacketAnalyzer unable to decode message type 11")
+                debugPrint("PacketAnalyzer unable to decode message type 1")
                 printData(data, success: false)
             }
             debugPrint("Received SP_MESSAGE 1 from \(m_from) message \(messageString)")
