@@ -36,6 +36,7 @@ class Planet: CustomStringConvertible {
     }
     private func remakeNode() {
         planetTacticalNode.removeFromParent()
+        // no need to re-add after: scene controller will handle it after any packet arrives
         let teamSuffix: String
         switch self.owner {
         case .federation:
@@ -59,24 +60,28 @@ class Planet: CustomStringConvertible {
         planetTacticalLabel.fontName = "Courier"
         planetTacticalLabel.position = CGPoint(x: 0, y: -2 * NetrekMath.planetDiameter)
         planetTacticalLabel.zPosition = ZPosition.planet.rawValue
-        planetTacticalLabel.fontColor = NSColor.green
-        if let hostile = appDelegate.universe.me?.hostile[self.owner] {
-            if hostile {
-                planetTacticalLabel.fontColor = NSColor.yellow
-            }
+        switch self.owner {
+        case .independent:
+            planetTacticalLabel.fontColor = NSColor.gray
+        case .federation:
+            planetTacticalLabel.fontColor = NSColor.yellow
+        case .roman:
+            planetTacticalLabel.fontColor = NSColor.red
+        case .kleptocrat:
+            planetTacticalLabel.fontColor = NSColor.green
+        case .orion:
+            planetTacticalLabel.fontColor = NSColor.blue
+        case .ogg:
+            planetTacticalLabel.fontColor = NSColor.gray
         }
-        if let war = appDelegate.universe.me?.war[self.owner] {
-            if war {
-                planetTacticalLabel.fontColor = NSColor.red
-            }
-        }
-
         planetTacticalNode.position = CGPoint(x: self.positionX, y: self.positionY)
 
         planetTacticalNode.zPosition = ZPosition.planet.rawValue
         planetTacticalLabel.text = self.name
         planetTacticalNode.addChild(planetTacticalLabel)
-        appDelegate.tacticalViewController?.scene.addChild(planetTacticalNode)
+        // add child not needed, tactical scene handles that
+        // if planet within required distance
+        //appDelegate.tacticalViewController?.scene.addChild(planetTacticalNode)
     }
     public func update(name: String, positionX: Int, positionY: Int) {
         self.name = name
@@ -96,19 +101,4 @@ class Planet: CustomStringConvertible {
             }
         }
     }
-    /*public func setOwner(newOwnerInt: Int) {
-        for team in Team.allCases {
-            if newOwnerInt == team.rawValue {
-                self.owner = team
-                self.remakeNode()
-                return
-            }
-        }
-    }
-    public func setInfo(newInfoInt: Int) {
-        self.info = newInfoInt
-    }
-    public func setFlags(newFlagsInt: Int) {
-        self.flags = newFlagsInt
-    }*/
 }

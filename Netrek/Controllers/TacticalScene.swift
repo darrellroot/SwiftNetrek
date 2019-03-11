@@ -26,6 +26,22 @@ class TacticalScene: SKScene {
         for torpedo in appDelegate.universe.torpedoes.values {
             updateTorpedo(torpedo)
         }
+        for planet in appDelegate.universe.planets.values {
+            updatePlanet(planet)
+        }
+    }
+    func updatePlanet(_ planet: Planet) {
+        guard let me = appDelegate.universe.me else { return }
+        let taxiDistance = abs(me.positionX - planet.positionX) + abs(me.positionY - planet.positionY)
+        guard taxiDistance < displayDistance else {
+            if planet.planetTacticalNode.parent != nil {
+                planet.planetTacticalNode.removeFromParent()
+            }
+            return
+        }
+        if planet.planetTacticalNode.parent == nil {
+            self.addChild(planet.planetTacticalNode)
+        }
     }
     func updateTorpedo(_ torpedo: Torpedo) {
         // status 0==free 1==live 2==hit 3==?
@@ -39,7 +55,7 @@ class TacticalScene: SKScene {
         }
         // torpedo status is 1
         let taxiDistance = abs(me.positionX - torpedo.positionX) + abs(me.positionY - torpedo.positionY)
-        if taxiDistance > displayDistance {
+        guard taxiDistance < displayDistance else {
             if torpedo.torpedoNode.parent != nil {
                 torpedo.torpedoNode.removeAllActions()
                 torpedo.torpedoNode.removeFromParent()

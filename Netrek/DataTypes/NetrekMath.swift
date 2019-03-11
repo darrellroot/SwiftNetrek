@@ -115,7 +115,23 @@ class NetrekMath {
         return playerLetter
     }
     static public func color(team: Team) -> NSColor {
-        if let me = appDelegate.universe.me {
+        switch team {
+            
+        case .independent:
+            return NSColor.gray
+        case .federation:
+            return NSColor.yellow
+        case .roman:
+            return NSColor.red
+        case .kleptocrat:
+            return NSColor.green
+        case .orion:
+            return NSColor.blue
+        case .ogg:
+            return NSColor.gray
+        }
+        
+        /*if let me = appDelegate.universe.me {
             if team == me.team {
                 return NSColor.green
             }
@@ -128,6 +144,6 @@ class NetrekMath {
             return NSColor.gray
         } else {
             return NSColor.gray
-        }
+        }*/
     }
 }
