@@ -78,8 +78,19 @@ class Player: CustomStringConvertible {
     // flags from packet type 12
     private(set) var repair = false
     private(set) var bomb = false
+    private let cloakAction = SKAction.fadeOut(withDuration: 0.5)
+    private let unCloakAction = SKAction.fadeIn(withDuration: 0.5)
     private(set) var orbit = false
-    private(set) var cloak = false
+    private(set) var cloak = false {
+        didSet {
+            if oldValue == false && cloak == true && playerTacticalNode != nil {
+                playerTacticalNode.run(cloakAction)
+            }
+            if oldValue == true && cloak == false && playerTacticalNode != nil {
+                playerTacticalNode.run(unCloakAction)
+            }
+        }
+    }
     private(set) var weaponsOverheated = false
     private(set) var enginesOverheated = false
     private(set) var beamUp = false

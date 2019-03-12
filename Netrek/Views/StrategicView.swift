@@ -58,11 +58,18 @@ class StrategicView: NSView {
             return
         }
         var attributes = [NSAttributedString.Key.font: NSFont(name: "Courier", size: 9.0)!,NSAttributedString.Key.baselineOffset: NSNumber(value: 4)]
-        let color = NetrekMath.color(team: player.team)
+        let color: NSColor
+        let playerString: String
+        if player.cloak == true {
+            color = NSColor.gray
+            playerString = "??"
+        } else {
+            color = NetrekMath.color(team: player.team)
+            let playerLetter = NetrekMath.playerLetter(playerID: player.playerID)
+            let teamLetter = NetrekMath.teamLetter(team: player.team)
+            playerString = teamLetter + playerLetter
+        }
         attributes.updateValue(color, forKey: NSAttributedString.Key.foregroundColor)
-        let playerLetter = NetrekMath.playerLetter(playerID: player.playerID)
-        let teamLetter = NetrekMath.teamLetter(team: player.team)
-        let playerString = teamLetter + playerLetter
         playerString.draw(at: stratPosition, withAttributes: attributes)
     }
     

@@ -255,7 +255,7 @@ class MakePacket {
         return data
     }
 
-    
+
     static func cpSocket() -> Data {
         debugPrint("Sending CP_SOCKET 27")
 

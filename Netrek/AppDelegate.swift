@@ -100,9 +100,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to tear down your application
     }
     
-    @IBAction func refreshMetaserverMenu(_ sender: Any) {
-        metaServer?.update()
+    func refreshMetaserver() {
+        if let metaServer = metaServer {
+            metaServer.update()
+        }
     }
+    @IBAction func refreshMetaserverNetrekOrg(_ sender: NSMenuItem) {
+        metaServer = MetaServer(hostname: "metaserver.netrek.org", port: 3521)
+        if let metaServer = metaServer {
+            metaServer.update()
+        }
+    }
+    @IBAction func refreshMetaserverEuNetrekOrg(_ sender: NSMenuItem) {
+        metaServer = MetaServer(hostname: "metaserver.eu.netrek.org", port: 3521)
+        if let metaServer = metaServer {
+            metaServer.update()
+        }
+    }
+    
     public func metaserverUpdated() {
         debugPrint("AppDelegate.metaserverUpdated")
         if let metaServer = metaServer {
@@ -139,7 +154,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.gameState = newState
             self.messageViewController?.gotMessage("AppDelegate GameState \(newState) we may have been ghostbusted!  Resetting.  Try again\n")
             self.reader = nil
-            self.refreshMetaserverMenu(self)
+            self.refreshMetaserver()
             break
             
         case .serverSelected:

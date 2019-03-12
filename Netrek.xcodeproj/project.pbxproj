@@ -503,7 +503,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.networkmom.Netrek;
+				PRODUCT_BUNDLE_IDENTIFIER = net.networkmom.netrek;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Netrek/Communication/Netrek-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -525,7 +525,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.networkmom.Netrek;
+				PRODUCT_BUNDLE_IDENTIFIER = net.networkmom.netrek;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Netrek/Communication/Netrek-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
