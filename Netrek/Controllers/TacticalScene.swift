@@ -12,12 +12,12 @@ import SpriteKit
 class TacticalScene: SKScene {
     let appDelegate = NSApplication.shared.delegate as! AppDelegate
     let sceneType: SceneType = .tactical
-    var window: NSWindow?
+    //var window: NSWindow?
     var keymapController: KeymapController!
     
     
     override func sceneDidLoad() {
-        self.window = self.view?.window
+        //self.window = self.view?.window
         self.keymapController = appDelegate.keymapController
     }
     
@@ -198,9 +198,9 @@ class TacticalScene: SKScene {
             return
         }
         var location: CGPoint? = nil
-        if let windowLocation = window?.mouseLocationOutsideOfEventStream {
-            if let viewLocation = self.view?.convert(windowLocation, from: window?.contentView) {
-                location = convert(viewLocation, to: self)
+        if let windowLocation = self.view?.window?.mouseLocationOutsideOfEventStream {
+            if let viewLocation = self.view?.convert(windowLocation, from: self.view?.window?.contentView) {
+                location = self.scene?.convertPoint(fromView: viewLocation)
             }
         }
         
@@ -227,6 +227,8 @@ class TacticalScene: SKScene {
             keymap.execute(.nineKey, location: location)
         case "f":
             keymap.execute(.fKey, location: location)
+        case "l":
+            keymap.execute(.lKey, location: location)
         case "s":
             keymap.execute(.sKey, location: location)
         case "u":

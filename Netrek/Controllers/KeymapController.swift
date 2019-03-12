@@ -24,6 +24,7 @@ enum Control: String {
     case otherMouse = "other mouse button (center)"
     case rightMouse = "right mouse button and control-click"
     case fKey = "f key"
+    case lKey = "l key"
     case sKey = "s key"
     case uKey = "u key"
     case QKey = "Q key"
@@ -45,6 +46,7 @@ enum Command: String {
     case fireTorpedo = "Fire torpedo"
     case firePlasma = "Fire plasma"
     case fireLaser = "Fire laser"
+    case lockDestination = "Lock onto Destination"
     case toggleShields = "Toggle shields"
     case raiseShields = "Raise shields"
     case quitGame = "Self destruct and quit game"
@@ -74,6 +76,7 @@ class KeymapController {
             .eightKey:.speedEight,
             .nineKey:.speedNine,
             .fKey:.firePlasma,
+            .lKey:.lockDestination,
             .sKey:.toggleShields,
             .uKey:.raiseShields,
             .QKey:.quitGame,
@@ -176,7 +179,53 @@ class KeymapController {
                 debugPrint("Requesting practice robot")
                 let cpPractice = MakePacket.cpPractice()
                 appDelegate.reader?.send(content: cpPractice)
-
+            case .lockDestination:
+                guard let lockLocation = location else {
+                    debugPrint("KeymapController.execute.lockDestination location is nil...awaiting instructions")
+                    return
+                }
+                let lockLocationX = Int(lockLocation.x)
+                let lockLocationY = Int(lockLocation.y)
+                var closestPlanetDistance = 10000
+                var closestPlanet: Planet?
+                var closestPlayerDistance = 10000
+                var closestPlayer: Player?
+                
+                for planet in appDelegate.universe.planets.values {
+                    let thisPlanetDistance = abs(planet.positionX - lockLocationX) + abs(planet.positionY - lockLocationY)
+                    if thisPlanetDistance < closestPlanetDistance {
+                        closestPlanetDistance = thisPlanetDistance
+                        closestPlanet = planet
+                    }
+                }
+                for player in appDelegate.universe.players.values {
+                    if player.me == false {
+                        let thisPlayerDistance = abs(player.positionX - lockLocationX) + abs(player.positionY - lockLocationY)
+                        if thisPlayerDistance < closestPlayerDistance {
+                            closestPlayerDistance = thisPlayerDistance
+                            closestPlayer = player
+                        }
+                    }
+                }
+                if closestPlayerDistance < closestPlanetDistance {
+                    // lock onto player
+                    guard let player = closestPlayer else { return }
+                    guard player.playerID > 0 && player.playerID < 256 else {
+                        debugPrint("keymap.playerlock invalid playerID \(player.playerID)")
+                        return
+                    }
+                    let cpPlayerLock = MakePacket.cpPlayerLock(playerID: UInt8(player.playerID))
+                    appDelegate.reader?.send(content: cpPlayerLock)
+                } else {
+                    guard let planet = closestPlanet else { return }
+                    guard planet.planetID > 0 && planet.planetID < 256 else {
+                        debugPrint("keymap.planetlock invalid planetID \(planet.planetID)")
+                        return
+                    }
+                    let cpPlanetLock = MakePacket.cpPlanetLock(planetID: UInt8(planet.planetID))
+                    appDelegate.reader?.send(content: cpPlanetLock)
+                }
+                    
             }
 
             

@@ -33,17 +33,17 @@ class TacticalViewController: NSViewController, SKSceneDelegate {
         scene.delegate = self
         scene.addChild(defaultCamera)
         scene.camera = defaultCamera
-        scene.window = self.view.window
-        defaultCamera.position = CGPoint(x: 1000, y: 1000)
-        //skView.presentScene(self.scene)
+        //scene.window = self.view.window
+        defaultCamera.position = CGPoint(x: 2000, y: 5000)
+        skView.presentScene(self.scene)
     }
-    public func presentScene(delay: Double) {
+    /*public func presentScene(delay: Double) {
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
             if let skView = self.view as? SKView {
                 skView.presentScene(self.scene)
             }
         }
-    }
+    }*/
     public func hideScene() {
         if let skView = self.view as? SKView {
             skView.scene?.removeFromParent()

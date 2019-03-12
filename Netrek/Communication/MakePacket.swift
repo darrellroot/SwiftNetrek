@@ -160,7 +160,6 @@ class MakePacket {
         return data
     }
     
-    
     // CP_SHIELD 12
     static func cpShield(up: Bool) -> Data {
         var packet = CP_SHIELD()
@@ -173,6 +172,40 @@ class MakePacket {
         debugPrint("Sending CP_SHIELD state \(packet.state)")
         return data
     }
+    
+    // CP_REPAIR 13 not called yet
+    static func cpRepair(state: Bool) -> Data {
+        var packet = CP_REPAIR()
+        if state {
+            packet.state = 1
+        } else {
+            packet.state = 0
+        }
+        let data = Data(bytes: &packet, count: packet.size)
+        debugPrint("Sending CP_REPAIR state \(packet.state)")
+        return data
+    }
+    
+    // CP_ORBIT 14 NOT implemented
+    
+    // CP_PLANLOCK 15
+    static func cpPlanetLock(planetID: UInt8) -> Data {
+        var packet = CP_PLANLOCK()
+        packet.planetID = planetID
+        let data = Data(bytes: &packet, count: packet.size)
+        debugPrint("Sending CP_PLANLOCK planetID \(planetID)")
+        return data
+    }
+    
+    // CP_PLAYLOCK 16
+    static func cpPlayerLock(playerID: UInt8) -> Data{
+        var packet = CP_PLAYLOCK()
+        packet.playerID = playerID
+        let data = Data(bytes: &packet, count: packet.size)
+        debugPrint("Sending CP_PLAYLOCK playerID \(playerID)")
+        return data
+    }
+    
     static func cpSocket() -> Data {
         debugPrint("Sending CP_SOCKET 27")
 

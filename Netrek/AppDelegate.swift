@@ -196,9 +196,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             DispatchQueue.main.async {
                 self.playerListViewController?.view.needsDisplay = true
             }
-            if self.gameState == .serverSlotFound {
+            /*if self.gameState == .serverSlotFound {
                 tacticalViewController?.presentScene(delay: 1.0)
-            }
+            }*/
             self.gameState = newState
             
         case .gameActive:

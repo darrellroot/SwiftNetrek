@@ -135,6 +135,106 @@ struct CP_SHIELD {
         return 4
     }
 }
+
+struct CP_REPAIR {
+    let type: UInt8 = 13
+    var state: UInt8 = 0  // on/off
+    let pad1: UInt8 = 0
+    let pad2: UInt8 = 0
+    
+    var size: Int {
+        return 4
+    }
+}
+
+struct CP_ORBIT {
+    let type: UInt8 = 14
+    var state: UInt8 = 0  // on/off
+    let pad1: UInt8 = 0
+    let pad2: UInt8 = 0
+    
+    var size: Int {
+        return 4
+    }
+}
+
+struct CP_PLANLOCK {
+    let type: UInt8 = 15
+    var planetID: UInt8 = 0
+    let pad1: UInt8 = 0
+    let pad2: UInt8 = 0
+    
+    var size: Int {
+        return 4
+    }
+}
+
+struct CP_PLAYLOCK {
+    let type: UInt8 = 16
+    var playerID: UInt8 = 0
+    let pad1: UInt8 = 0
+    let pad2: UInt8 = 0
+    
+    var size: Int {
+        return 4
+    }
+}
+
+struct CP_BOMB {
+    let type: UInt8 = 17
+    var state: UInt8 = 0
+    let pad1: UInt8 = 0
+    let pad2: UInt8 = 0
+    
+    var size: Int {
+        return 4
+    }
+}
+
+struct CP_BEAM {
+    let type: UInt8 = 18
+    var state: UInt8 = 0
+    let pad1: UInt8 = 0
+    let pad2: UInt8 = 0
+    
+    var size: Int {
+        return 4
+    }
+}
+
+struct CP_CLOAK {
+    let type: UInt8 = 19
+    var state: UInt8 = 0
+    let pad1: UInt8 = 0
+    let pad2: UInt8 = 0
+    
+    var size: Int {
+        return 4
+    }
+}
+
+struct CP_DET_TORPS {
+    let type: UInt8 = 20
+    var pad1: UInt8 = 0
+    let pad2: UInt8 = 0
+    let pad3: UInt8 = 0
+    
+    var size: Int {
+        return 4
+    }
+}
+
+struct CP_DET_MYTORP {
+    let type: UInt8 = 21
+    var pad1: UInt8 = 0
+    let pad2: UInt8 = 0
+    let pad3: UInt8 = 0
+    
+    var size: Int {
+        return 4
+    }
+}
+
 struct CP_SOCKET {
     let type: UInt8 = 27
     let version: UInt8 = SOCKVERSION
