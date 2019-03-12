@@ -78,15 +78,20 @@ class Player: CustomStringConvertible {
     // flags from packet type 12
     private(set) var repair = false
     private(set) var bomb = false
-    private let cloakAction = SKAction.fadeOut(withDuration: 0.5)
-    private let unCloakAction = SKAction.fadeIn(withDuration: 0.5)
+    private let cloakAction = SKAction.fadeOut(withDuration: 0.7)
+    private let unCloakAction = SKAction.fadeIn(withDuration: 0.7)
+    private let playerCloakAction = SKAction.fadeAlpha(to: 0.2, duration: 0.7)
     private(set) var orbit = false
     private(set) var cloak = false {
         didSet {
-            if oldValue == false && cloak == true && playerTacticalNode != nil {
-                playerTacticalNode.run(cloakAction)
+            if oldValue == false && cloak == true {
+                if me == true {
+                    playerTacticalNode.run(playerCloakAction)
+                } else {
+                    playerTacticalNode.run(cloakAction)
+                }
             }
-            if oldValue == true && cloak == false && playerTacticalNode != nil {
+            if oldValue == true && cloak == false {
                 playerTacticalNode.run(unCloakAction)
             }
         }
@@ -276,6 +281,16 @@ class Player: CustomStringConvertible {
             self.shieldsUp = false
             self.shieldNode.isHidden = true
         }
+        if flags & PlayerStatus.tractor.rawValue != 0 {
+            self.tractorFlag = true
+        } else {
+            self.tractorFlag = false
+        }
+        if flags & PlayerStatus.pressor.rawValue != 0 {
+            self.pressor = true
+        } else {
+            self.pressor = false
+        }
         //self.flags = flags
 
         if flags & UInt32(0x0002) != 0 { repair = true } else { repair = false }
@@ -357,6 +372,11 @@ class Player: CustomStringConvertible {
         } else {
             self.shieldsUp = false
             self.shieldNode.isHidden = true
+        }
+        if flags & PlayerStatus.cloak.rawValue != 0 {
+            self.cloak = true
+        } else {
+            self.cloak = false
         }
     }
     // from SP_PSTATUS_20

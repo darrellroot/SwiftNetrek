@@ -374,7 +374,7 @@ class PacketAnalyzer {
             //printData(data, success: true)
 
         case 19:
-            //TODO process mask
+            //TODO process mask  Tournament mode mask
             //SP_MASK
             let mask = UInt8(data[1])
             // pad2
@@ -394,7 +394,9 @@ class PacketAnalyzer {
             //player.status = Int(status)
             //debugPrint(player)
             //printData(data, success: true)
-
+        case 21: //SP_BADVERSION
+            let why = UInt8(data[2])
+            debugPrint("Received SP_BADVERSION 21 reason: \(why)")
 
         case 22:
             debugPrint("Received SP_HOSTILE 22")

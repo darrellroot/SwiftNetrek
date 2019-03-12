@@ -255,6 +255,31 @@ class MakePacket {
         return data
     }
 
+    static func cpTractor(on: Bool, playerID: UInt8) -> Data {
+        debugPrint("Sending CP_TRACTOR 24 on \(on) playerID \(playerID)")
+        var packet = CP_TRACTOR()
+        if on {
+            packet.state = 1
+        } else {
+            packet.state = 0
+        }
+        packet.playerID = playerID
+        let data = Data(bytes: &packet, count: packet.size)
+        return data
+    }
+    
+    static func cpPressor(on: Bool, playerID: UInt8) -> Data {
+        debugPrint("Sending CP_REPRESS 25 on \(on) playerID \(playerID)")
+        var packet = CP_REPRESS()
+        if on {
+            packet.state = 1
+        } else {
+            packet.state = 0
+        }
+        packet.playerID = playerID
+        let data = Data(bytes: &packet, count: packet.size)
+        return data
+    }
 
     static func cpSocket() -> Data {
         debugPrint("Sending CP_SOCKET 27")

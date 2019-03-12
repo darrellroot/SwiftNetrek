@@ -235,6 +235,27 @@ struct CP_DET_MYTORP {
     }
 }
 
+struct CP_TRACTOR {
+    let type: UInt8 = 24
+    var state: UInt8 = 0
+    var playerID: UInt8 = 0
+    var pad: UInt8 = 0
+    
+    var size: Int {
+        return 4
+    }
+}
+struct CP_REPRESS {
+    let type: UInt8 = 25
+    var state: UInt8 = 0
+    var playerID: UInt8 = 0
+    var pad: UInt8 = 0
+    
+    var size: Int {
+        return 4
+    }
+}
+
 struct CP_SOCKET {
     let type: UInt8 = 27
     let version: UInt8 = SOCKVERSION

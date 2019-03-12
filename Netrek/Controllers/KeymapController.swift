@@ -31,9 +31,11 @@ enum Control: String {
     case sKey = "s key"
     case uKey = "u key"
     case xKey = "x key"
+    case yKey = "y key"
     case zKey = "z key"
     case QKey = "Q key"
     case RKey = "R key"
+    case TKey = "T key"
     case asteriskKey = "* key"
 }
 
@@ -56,11 +58,13 @@ enum Command: String {
     case fireTorpedo = "Fire torpedo"
     case firePlasma = "Fire plasma"
     case fireLaser = "Fire laser"
-    case orbit = "Orbit"
-    case repair = "Repair"
     case lockDestination = "Lock onto Destination"
-    case toggleShields = "Toggle shields"
+    case orbit = "Orbit"
+    case pressorBeam = "Pressor beam"
     case raiseShields = "Raise shields"
+    case repair = "Repair"
+    case toggleShields = "Toggle shields"
+    case tractorBeam = "Tractor beam"
     case quitGame = "Self destruct and quit game"
     case practiceRobot = "Send in practice robot"
 }
@@ -95,9 +99,11 @@ class KeymapController {
             .sKey:.toggleShields,
             .uKey:.raiseShields,
             .xKey:.beamDown,
+            .yKey:.pressorBeam,
             .zKey:.beamUp,
             .QKey:.quitGame,
             .RKey:.repair,
+            .TKey:.tractorBeam,
             .leftMouse:.fireTorpedo,
             .otherMouse:.fireLaser,
             .rightMouse:.setCourse,
@@ -168,6 +174,39 @@ class KeymapController {
                         appDelegate.reader?.send(content: cpShield)
                     }
                 }
+            case .tractorBeam:
+                debugPrint("TractorBeam location \(String(describing: location))")
+                guard let targetLocation = location else {
+                    debugPrint("KeymapController.execute.tractorBeam location is nil...cannot lock onto nothing")
+                    return
+                }
+                guard let target = findClosestPlayer(location: targetLocation) else {
+                    return
+                }
+                guard let me = appDelegate.universe.me else { return }
+                if target.me == true { return }
+                guard target.playerID >= 0 else { return }
+                guard target.playerID < 256 else { return }
+                let playerID = UInt8(target.playerID)
+                let cpTractor = MakePacket.cpTractor(on: !me.tractorFlag, playerID: playerID)
+                    appDelegate.reader?.send(content: cpTractor)
+            case .pressorBeam:
+                debugPrint("PressorBeam location \(String(describing: location))")
+                guard let targetLocation = location else {
+                    debugPrint("KeymapController.execute.pressorBeam location is nil...cannot lock onto nothing")
+                    return
+                }
+                guard let target = findClosestPlayer(location: targetLocation) else {
+                    return
+                }
+                guard let me = appDelegate.universe.me else { return }
+                if target.me == true { return }
+                guard target.playerID >= 0 else { return }
+                guard target.playerID < 256 else { return }
+                let playerID = UInt8(target.playerID)
+                let cpPressor = MakePacket.cpPressor(on: !me.pressor, playerID: playerID)
+                appDelegate.reader?.send(content: cpPressor)
+
             case .orbit:
                 if let orbitState = appDelegate.universe.me?.orbit {
                     let cpOrbit = MakePacket.cpOrbit(state: !orbitState)
@@ -271,11 +310,22 @@ class KeymapController {
                     let cpPlanetLock = MakePacket.cpPlanetLock(planetID: UInt8(planet.planetID))
                     appDelegate.reader?.send(content: cpPlanetLock)
                 }
-                    
             }
-
-            
         }
+    }
+    private func findClosestPlayer(location: CGPoint) -> Player? {
+        var closestPlayerDistance = 10000
+        var closestPlayer: Player?
+        for player in appDelegate.universe.players.values {
+            if player.me == false {
+                let thisPlayerDistance = abs(player.positionX - Int(location.x)) + abs(player.positionY - Int(location.y))
+                if thisPlayerDistance < closestPlayerDistance {
+                    closestPlayerDistance = thisPlayerDistance
+                    closestPlayer = player
+                }
+            }
+        }
+        return closestPlayer
     }
     func setSpeed(_ speed: Int) {
         if let cpSpeed = MakePacket.cpSpeed(speed: speed) {
