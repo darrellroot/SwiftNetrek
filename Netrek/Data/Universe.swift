@@ -136,39 +136,39 @@ class Universe {
         }
         self.torpedoes[torpedoNumber]?.update(directionNetrek: directionNetrek, positionX: positionX, positionY: positionY)
     }
-    public func updateLaser(laserNumber: Int, status: Int, directionNetrek: UInt8, positionX: Int, positionY: Int, target: Int) {
-        guard laserNumber >= 0 && laserNumber < maxLasers else {
-            debugPrint("Universe.updatePlayer invalid laserNumber \(laserNumber)")
+    public func updateLaser(laserID: Int, status: Int, directionNetrek: UInt8, positionX: Int, positionY: Int, target: Int) {
+        guard laserID >= 0 && laserID < maxLasers else {
+            debugPrint("Universe.updatePlayer invalid laserNumber \(laserID)")
             return
         }
-        if self.lasers[laserNumber] == nil {
+        if self.lasers[laserID] == nil {
             let newLaser = Laser()
-            self.lasers[laserNumber] = newLaser
+            self.lasers[laserID] = newLaser
         }
-        self.lasers[laserNumber]?.update(status: status, directionNetrek: directionNetrek, positionX: positionX, positionY: positionY, target: target)
+        self.lasers[laserID]?.update(laserID: laserID, status: status, directionNetrek: directionNetrek, positionX: positionX, positionY: positionY, target: target)
     }
 
-    public func updatePlasma(plasmaNumber: Int, war: Int, status: Int) {
-        guard plasmaNumber >= 0 && plasmaNumber < maxPlasma else {
-            debugPrint("Universe.updatePlayer invalid plasmaNumber \(plasmaNumber)")
+    public func updatePlasma(plasmaID: Int, war: UInt8, status: Int) {
+        guard plasmaID >= 0 && plasmaID < maxPlasma else {
+            debugPrint("Universe.updatePlayer invalid plasmaNumber \(plasmaID)")
             return
         }
-        if self.plasmas[plasmaNumber] == nil {
+        if self.plasmas[plasmaID] == nil {
             let newPlasma = Plasma()
-            self.plasmas[plasmaNumber] = newPlasma
+            self.plasmas[plasmaID] = newPlasma
         }
-        self.plasmas[plasmaNumber]?.update(war: war, status: status)
+        self.plasmas[plasmaID]?.update(plasmaID: plasmaID, war: war, status: status)
     }
-    public func updatePlasma(plasmaNumber: Int, positionX: Int, positionY: Int) {
-        guard plasmaNumber >= 0 && plasmaNumber < maxPlasma else {
-            debugPrint("Universe.updatePlayer invalid plasmaNumber \(plasmaNumber)")
+    public func updatePlasma(plasmaID: Int, positionX: Int, positionY: Int) {
+        guard plasmaID >= 0 && plasmaID < maxPlasma else {
+            debugPrint("Universe.updatePlayer invalid plasmaID \(plasmaID)")
             return
         }
-        if self.plasmas[plasmaNumber] == nil {
+        if self.plasmas[plasmaID] == nil {
             let newPlasma = Plasma()
-            self.plasmas[plasmaNumber] = newPlasma
+            self.plasmas[plasmaID] = newPlasma
         }
-        self.plasmas[plasmaNumber]?.update(positionX: positionX, positionY: positionY)
+        self.plasmas[plasmaID]?.update(positionX: positionX, positionY: positionY)
     }
     
     public func shipinfo(shipType: ShipType, torpSpeed: Int, phaserRange: Int, maxSpeed: Int, maxFuel: Int, maxShield: Int, maxDamage: Int, maxWpnTmp: Int, maxEngTmp: Int, width: Int, height: Int, maxArmies: Int) {

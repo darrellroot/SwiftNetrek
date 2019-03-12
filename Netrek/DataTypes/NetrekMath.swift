@@ -10,6 +10,7 @@ import Foundation
 import AppKit
 class NetrekMath {
     
+    static let displayDistance = 3000
     static let galacticSize = 10000
     static let actionThreshold = 100
     static let planetDiameter = 112

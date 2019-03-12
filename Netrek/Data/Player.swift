@@ -13,6 +13,7 @@ class Player: CustomStringConvertible {
     
     let appDelegate = NSApplication.shared.delegate as! AppDelegate
 
+    var detonated = false //set to true when blowing up
     private(set) var playerID: Int = 0
     //private(set) var hostile = 0
     private(set) var hostile: [Team:Bool] = [:]
@@ -36,8 +37,8 @@ class Player: CustomStringConvertible {
     private(set) var me: Bool = false
     private(set) var name: String = "nobody"
     //
-    private(set) var lastPositionX: Int = 0
-    private(set) var lastPositionY: Int = 0
+    private(set) var lastAlivePositionX: Int = 0
+    private(set) var lastAlivePositionY: Int = 0
     private(set) var lastUpdateTime = Date()
     private(set) var updateTime = Date()
     // from flags
@@ -69,7 +70,7 @@ class Player: CustomStringConvertible {
         }
     }
     
-    private func remakeNode() {
+    public func remakeNode() {
         //private(set) var status = 0  //free=0 outfit=1 alive=2 explode=3 dead=4 observe=5
         if self.shieldNode.parent != nil {
             self.shieldNode.removeFromParent()
@@ -122,30 +123,33 @@ class Player: CustomStringConvertible {
         self.playerTacticalNode.size = CGSize(width: NetrekMath.playerSize, height: NetrekMath.playerSize)
         self.playerTacticalNode.addChild(self.shieldNode)
         self.updateNode()
-    appDelegate.tacticalViewController?.scene.addChild(self.playerTacticalNode)
+    //appDelegate.tacticalViewController?.scene.addChild(self.playerTacticalNode)
     }
     private func updateNode() {
         //    private(set) var status = 0  //free=0 outfit=1 alive=2 explode=3 dead=4 observe=5
+        
         if self.slotStatus != self.lastSlotStatus {
+            
         switch self.slotStatus {
             case .free:
-                self.playerTacticalNode.isHidden = true
+                break
             case .outfit:
-                self.playerTacticalNode.isHidden = true
+                break
             case .alive:
-                self.playerTacticalNode.isHidden = false
+                break
             case .explode:
-                self.playerTacticalNode.isHidden = true
+                //self.playerTacticalNode.isHidden = true
                 if me && self.lastSlotStatus == .alive {
                     appDelegate.newGameState(.loginAccepted)
             }
             case .dead:
-                self.playerTacticalNode.isHidden = true
+                //self.playerTacticalNode.isHidden = true
                 if me && self.lastSlotStatus == .alive {
                     appDelegate.newGameState(.loginAccepted)
             }
             case .observe:
-                self.playerTacticalNode.isHidden = true
+                //self.playerTacticalNode.isHidden = true
+                break
             }
             self.lastSlotStatus = self.slotStatus
         }
@@ -157,7 +161,7 @@ class Player: CustomStringConvertible {
         if self.slotStatus == .alive && self.positionX > 0 && self.positionX < NetrekMath.galacticSize && self.positionY > 0 && self.positionY < NetrekMath.galacticSize {
             self.playerTacticalNode.position = CGPoint(x: positionX, y: positionY)
             self.playerTacticalNode.zRotation = self.direction
-            let deltaX = self.positionX - self.lastPositionX
+            /*let deltaX = self.positionX - self.lastPositionX
             let deltaY = self.positionY - self.lastPositionY
             let deltaTime = self.updateTime.timeIntervalSince(self.lastUpdateTime)
             if deltaX < NetrekMath.actionThreshold && deltaY < NetrekMath.actionThreshold && deltaTime < 2.0 && deltaTime > 0.04 {
@@ -169,15 +173,14 @@ class Player: CustomStringConvertible {
                 debugPrint("running action player \(playerID) deltaX \(deltaX) deltaY \(deltaY) deltaTime \(deltaTime)")
             } else {
                 debugPrint("Player.update.noAction playerID \(String(describing: playerID)) deltaX \(deltaX) deltaY \(deltaY) deltaT \(deltaTime)")
-            }
+            }*/
             if self.me {
                 if let defaultCamera = appDelegate.tacticalViewController?.defaultCamera {
                     defaultCamera.position = CGPoint(x: self.positionX, y: self.positionY)
-                    let action = SKAction.moveBy(x: CGFloat(deltaX), y: CGFloat(deltaY), duration: deltaTime)
+                    /*let action = SKAction.moveBy(x: CGFloat(deltaX), y: CGFloat(deltaY), duration: deltaTime)
                     DispatchQueue.main.async {
                         defaultCamera.removeAllActions()
-                        defaultCamera.run(action)
-                    }
+                        defaultCamera.run(action)*/
                 }
             }
         }
@@ -254,8 +257,10 @@ class Player: CustomStringConvertible {
     public func update(directionNetrek: UInt8, speed: Int, positionX: Int, positionY: Int) {
         self.direction = NetrekMath.directionNetrek2radian(UInt8(directionNetrek))
         self.speed = speed
-        self.lastPositionX = positionX
-        self.lastPositionY = positionY
+        if self.slotStatus == .alive {
+            self.lastAlivePositionX = positionX
+            self.lastAlivePositionY = positionY
+        }
         self.lastUpdateTime = self.updateTime
         self.updateTime = Date()
         self.positionX = positionX
@@ -288,6 +293,7 @@ class Player: CustomStringConvertible {
             self.slotStatus = .outfit
         case 2:
             self.slotStatus = .alive
+            self.detonated = false
             self.updateNode()
         case 3:
             self.slotStatus = .explode

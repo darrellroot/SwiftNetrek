@@ -102,7 +102,14 @@ class MakePacket {
         debugPrint("Sending CP_LASER 4 direction \(netrekDirection)")
         return data
     }
-
+    // CP_PLASMA 5
+    static func cpPlasma(netrekDirection: UInt8) -> Data {
+        var packet = CP_PLASMA()
+        packet.netrekDirection = netrekDirection
+        let data = Data(bytes: &packet, count: packet.size)
+        debugPrint("Sending CP_PLASMA 5 direction \(netrekDirection)")
+        return data
+    }
     
     // CP_TORP 6
     static func cpTorp(netrekDirection: UInt8) -> Data {
@@ -110,6 +117,13 @@ class MakePacket {
         packet.netrekDirection = netrekDirection
         let data = Data(bytes: &packet, count: packet.size)
         debugPrint("Sending CP_TORP 6 direction \(netrekDirection)")
+        return data
+    }
+    // CP_QUIT 7
+    static func cpQuit() -> Data {
+        var packet = CP_QUIT()
+        let data = Data(bytes: &packet, count: packet.size)
+        debugPrint("Sending CP_QUIT 7")
         return data
     }
     
@@ -136,6 +150,16 @@ class MakePacket {
         let data = Data(bytes: &packet, count: packet.size)
         return data
     }
+    
+    // CP 10 war not implemented
+    
+    static func cpPractice() -> Data {
+        debugPrint("Sending CP_PRACTR 11")
+        var packet = CP_PRACTR()
+        let data = Data(bytes: &packet, count: packet.size)
+        return data
+    }
+    
     
     // CP_SHIELD 12
     static func cpShield(up: Bool) -> Data {

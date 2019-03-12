@@ -12,6 +12,7 @@ import SpriteKit
 class Laser {
     let appDelegate = NSApplication.shared.delegate as! AppDelegate
 
+    private(set) var laserID = 0
     private(set) var status = 0
     private(set) var directionNetrek: UInt8 = 0 // 256= full circle
     private(set) var direction = 0.0 //radians
@@ -25,7 +26,8 @@ class Laser {
     let laserRange = 600.0 // game units
     
     
-    public func update(status: Int, directionNetrek: UInt8, positionX: Int, positionY: Int, target: Int) {
+    public func update(laserID: Int, status: Int, directionNetrek: UInt8, positionX: Int, positionY: Int, target: Int) {
+        self.laserID = laserID
         self.status = status
         self.directionNetrek = directionNetrek
         self.direction = 2.0 * Double.pi * Double(directionNetrek) / 256.0
@@ -37,37 +39,44 @@ class Laser {
         }
     }
     public func displayLaser() {
-        let point1 = CGPoint(x: self.positionX, y: self.positionY)
+        guard let source = appDelegate.universe.players[self.laserID] else { return }
+        guard let me = appDelegate.universe.me else { return }
+        let taxiDistance = abs(me.positionX - source.positionX) + abs(me.positionY - source.positionY)
+        guard taxiDistance < NetrekMath.displayDistance else { return }
         switch self.status{
             
-        /*case 1: // hit
-            if let target = appDelegate.universe.players[target] {
-                let point2 = CGPoint(x: target.positionX, y: target.positionY)
-            var points = [point1, point2]
+        case 1: // hit
+            guard let target = appDelegate.universe.players[target] else {
+                return
+            }
+            let sourcePoint = CGPoint(x: source.positionX, y: source.positionY)
+            let destinationPoint = CGPoint(x: target.positionX, y: target.positionY)
+            var points = [sourcePoint, destinationPoint]
             laserNode = SKShapeNode(points: &points, count: 2)
             laserNode.strokeColor = .red
             laserNode.lineWidth = 10
                 DispatchQueue.main.async {
-                    self.appDelegate.tacticalViewController?.scene.addChild(self.laserNode)
+                    debugPrint("displaying laser hit source \(sourcePoint) destination \(destinationPoint)")
+                self.appDelegate.tacticalViewController?.scene.addChild(self.laserNode)
                     self.laserNode.run(self.laserAction)
-                }
-            }*/
-        case 1,2,4: // miss
+            }
+        case 2: // miss
             self.direction = NetrekMath.directionNetrek2radian(self.directionNetrek)
-            let targetX = Double(self.positionX) - cos(self.direction) * laserRange
-            let targetY = Double(self.positionY) - sin(self.direction) * laserRange
-            let point2 = CGPoint(x: targetX, y: targetY)
-            var points = [point1, point2]
+            let sourcePoint = CGPoint(x: source.positionX, y: source.positionY)
+            let destinationX = Double(source.positionX) + cos(self.direction) * laserRange
+            let destinationY = Double(source.positionY) + sin(self.direction) * laserRange
+            let destinationPoint = CGPoint(x: destinationX, y: destinationY)
+            var points = [sourcePoint, destinationPoint]
             laserNode = SKShapeNode(points: &points, count: 2)
             laserNode.strokeColor = .red
             laserNode.lineWidth = 10
             DispatchQueue.main.async {
-                debugPrint("displaying laser positionX \(self.positionX) positionY \(self.positionY) targetX \(targetX) targetY \(targetY)")
+                debugPrint("displaying laser miss source \(sourcePoint) destination \(destinationPoint)")
                 self.appDelegate.tacticalViewController?.scene.addChild(self.laserNode)
                 self.laserNode.run(self.laserAction)
             }
-        /*case 4: // hit plasma
-            break*/
+        case 4: // hit plasma TODO
+            break
 
         default: // should not get here
             debugPrint("Laser.displayLaser invalid status \(status)")

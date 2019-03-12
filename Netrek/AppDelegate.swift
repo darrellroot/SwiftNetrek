@@ -151,6 +151,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             
         case .serverConnected:
             disableShipMenu()
+            self.clientTypeSent = false
             self.gameState = newState
 
             guard let reader = reader else {
@@ -210,7 +211,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             if !clientTypeSent {
                 if let letter = universe.me?.team.letter, let playerID = universe.me?.playerID {
                     let hexNumber = NetrekMath.playerLetter(playerID: playerID)
-                    let data = MakePacket.cpMessage(message: "\(letter)\(hexNumber) is playing Swift Netrek Client v0.1 on MacOS", team: .ogg, individual: 0)
+                    let data = MakePacket.cpMessage(message: "I am using the Swift Netrek Client v0.1 on MacOS", team: .ogg, individual: 0)
+                    clientTypeSent = true
                     self.reader?.send(content: data)
                 }
             }

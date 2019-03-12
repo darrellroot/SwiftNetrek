@@ -59,6 +59,17 @@ struct CP_LASER {
         return 4
     }
 }
+
+struct CP_PLASMA {
+    let type: UInt8 = 5
+    var netrekDirection: UInt8 = 0
+    let pad1: UInt8 = 0
+    let pad2: UInt8 = 0
+    
+    var size: Int {
+        return 4
+    }
+}
 struct CP_TORP {
     let type: UInt8 = 6
     var netrekDirection: UInt8 = 0
@@ -69,6 +80,20 @@ struct CP_TORP {
         return 4
     }
 }
+
+struct CP_QUIT {
+    let type: UInt8 = 7
+    let pad1: UInt8 = 0
+    let pad2: UInt8 = 0
+    let pad3: UInt8 = 0
+    
+    var size: Int {
+        return 4
+    }
+}
+
+// CP_LOGIN 8 is in packets.h due to array
+
 struct CP_OUTFIT {
     let type: UInt8 = 9
     var team: UInt8 = 1
@@ -78,6 +103,21 @@ struct CP_OUTFIT {
         //self.team = UInt8(team.rawValue)
         self.ship = UInt8(ship.rawValue)
     }
+    var size: Int {
+        get {
+            return 4
+        }
+    }
+}
+
+// CP_WAR 10 not implemented
+
+struct CP_PRACTR {
+    let type: UInt8 = 11
+    let pad1: UInt8 = 0
+    let pad2: UInt8 = 0
+    let pad3: UInt8 = 0
+    
     var size: Int {
         get {
             return 4

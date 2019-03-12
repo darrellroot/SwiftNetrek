@@ -23,8 +23,11 @@ enum Control: String {
     case leftMouse = "left mouse button"
     case otherMouse = "other mouse button (center)"
     case rightMouse = "right mouse button and control-click"
+    case fKey = "f key"
     case sKey = "s key"
     case uKey = "u key"
+    case QKey = "Q key"
+    case asteriskKey = "* key"
 }
 
 enum Command: String {
@@ -40,9 +43,12 @@ enum Command: String {
     case speedNine = "Set speed 9"
     case setCourse = "Set course"
     case fireTorpedo = "Fire torpedo"
+    case firePlasma = "Fire plasma"
     case fireLaser = "Fire laser"
     case toggleShields = "Toggle shields"
     case raiseShields = "Raise shields"
+    case quitGame = "Self destruct and quit game"
+    case practiceRobot = "Send in practice robot"
 }
 
 class KeymapController {
@@ -67,11 +73,14 @@ class KeymapController {
             .sevenKey:.speedSeven,
             .eightKey:.speedEight,
             .nineKey:.speedNine,
+            .fKey:.firePlasma,
             .sKey:.toggleShields,
             .uKey:.raiseShields,
+            .QKey:.quitGame,
             .leftMouse:.fireTorpedo,
             .otherMouse:.fireLaser,
             .rightMouse:.setCourse,
+            .asteriskKey:.practiceRobot,
         ]
     }
     func execute(_ control: Control, location: CGPoint?) {
@@ -148,8 +157,29 @@ class KeymapController {
                     let cpTorp = MakePacket.cpTorp(netrekDirection: netrekDirection)
                     appDelegate.reader?.send(content: cpTorp)
                 }
+            case .firePlasma:
+                debugPrint("firePlasma location \(String(describing: location))")
+                guard let targetLocation = location else {
+                    debugPrint("KeymapController.execute.firePlasma location is nil...holding fire")
+                    return
+                }
+                if let me = appDelegate.universe.me {
+                    let netrekDirection = NetrekMath.calculateNetrekDirection(mePositionX: Double(me.positionX), mePositionY: Double(me.positionY), destinationX: Double(targetLocation.x), destinationY: Double(targetLocation.y))
+                    let cpPlasma = MakePacket.cpPlasma(netrekDirection: netrekDirection)
+                    appDelegate.reader?.send(content: cpPlasma)
+                }
+            case .quitGame:
+                debugPrint("Quitting game")
+                let cpQuit = MakePacket.cpQuit()
+                appDelegate.reader?.send(content: cpQuit)
+            case .practiceRobot:
+                debugPrint("Requesting practice robot")
+                let cpPractice = MakePacket.cpPractice()
+                appDelegate.reader?.send(content: cpPractice)
 
             }
+
+            
         }
     }
     func setSpeed(_ speed: Int) {

@@ -35,11 +35,9 @@ class PlayerView: NSScrollView {
         var indPlayer: [Player] = []
 
         let players = appDelegate.universe.players.values
-        let players2 = players.sorted (by: { $0.playerID < $1.playerID })
         
-        for (playerID,player) in players2.enumerated() {
-        //for (playerID,player) in appDelegate.universe.players.sorted(by: { $0.value.playerID < $1.value.playerID }).value.enumerated() {
-            
+        for player in players.sorted (by: { $0.playerID < $1.playerID }) {
+        
             if player.slotStatus != .free && player.slotStatus != .observe {
                 switch player.team {
 
@@ -61,10 +59,7 @@ class PlayerView: NSScrollView {
         let column1Player = romPlayer + fedPlayer + klePlayer + oriPlayer + indPlayer
         displayHeader(inset: 4)
         displayColumn(players: column1Player, inset: 4)
-        //let column2Player = klePlayer + oriPlayer + indPlayer
-        //let inset2 = 4 + Int(self.bounds.width) / 2
-        //displayColumn(players: column2Player, inset: inset2)
-        
+    
     }
     private func displayHeader(inset: Int) {
         let verticalPosition = 0

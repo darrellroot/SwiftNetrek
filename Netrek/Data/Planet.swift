@@ -35,6 +35,7 @@ class Planet: CustomStringConvertible {
         self.positionY = 0
     }
     private func remakeNode() {
+        planetTacticalLabel.removeFromParent()
         planetTacticalNode.removeFromParent()
         // no need to re-add after: scene controller will handle it after any packet arrives
         let teamSuffix: String

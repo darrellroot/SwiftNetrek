@@ -15,7 +15,6 @@ class TacticalScene: SKScene {
     var window: NSWindow?
     var keymapController: KeymapController!
     
-    let displayDistance = 3000  // display units
     
     override func sceneDidLoad() {
         self.window = self.view?.window
@@ -23,17 +22,24 @@ class TacticalScene: SKScene {
     }
     
     func packetUpdate() {
+        for player in appDelegate.universe.players.values {
+            updatePlayer(player)
+        }
         for torpedo in appDelegate.universe.torpedoes.values {
             updateTorpedo(torpedo)
         }
         for planet in appDelegate.universe.planets.values {
             updatePlanet(planet)
         }
+        for plasma in appDelegate.universe.plasmas.values {
+            updatePlasma(plasma)
+        }
     }
     func updatePlanet(_ planet: Planet) {
         guard let me = appDelegate.universe.me else { return }
-        let taxiDistance = abs(me.positionX - planet.positionX) + abs(me.positionY - planet.positionY)
-        guard taxiDistance < displayDistance else {
+        //let taxiDistance = abs(me.positionX - planet.positionX) + abs(me.positionY - planet.positionY)
+        let taxiDistance = abs(me.lastAlivePositionX - planet.positionX) + abs(me.lastAlivePositionY - planet.positionY)
+        guard taxiDistance < NetrekMath.displayDistance else {
             if planet.planetTacticalNode.parent != nil {
                 planet.planetTacticalNode.removeFromParent()
             }
@@ -41,6 +47,75 @@ class TacticalScene: SKScene {
         }
         if planet.planetTacticalNode.parent == nil {
             self.addChild(planet.planetTacticalNode)
+        }
+    }
+    func updatePlayer(_ player: Player) {
+        guard let me = appDelegate.universe.me else { return }
+        //let taxiDistance = abs(me.lastPositionX - player.positionX) + abs(me.lastPositionY - player.positionY)
+        let taxiDistance = abs(me.lastAlivePositionX - player.positionX) + abs(me.lastAlivePositionY - player.positionY)
+
+        guard taxiDistance < NetrekMath.displayDistance else {
+            if player.playerTacticalNode.parent != nil {
+                player.playerTacticalNode.removeAllActions()
+                player.playerTacticalNode.removeFromParent()
+            }
+            return
+        }
+        switch player.slotStatus {
+        case .free, .outfit, .observe:
+            if player.playerTacticalNode.parent != nil {
+                player.playerTacticalNode.removeAllActions()
+                player.playerTacticalNode.removeFromParent()
+            }
+            return
+        case .explode, .dead:
+            if player.detonated {
+                return
+            } else {
+                detonate(player: player)
+                return
+            }
+        case .alive:
+            if player.playerTacticalNode.parent == nil {
+                player.remakeNode()
+                self.addChild(player.playerTacticalNode)
+            }
+        }
+    }
+    func detonate(player: Player) {
+        return
+    }
+    func updatePlasma(_ plasma: Plasma) {
+        guard let me = appDelegate.universe.me else { return }
+        guard plasma.status == 1 else {
+            if plasma.plasmaNode.parent != nil {
+                plasma.plasmaNode.removeFromParent()
+            }
+            return
+        }
+        let taxiDistance = abs(me.lastAlivePositionX - plasma.positionX) + abs(me.lastAlivePositionY - plasma.positionY)
+        guard taxiDistance < NetrekMath.displayDistance else {
+            if plasma.plasmaNode.parent != nil {
+                plasma.plasmaNode.removeFromParent()
+            }
+            return
+        }
+        let plasmaCorrectColor: NSColor
+        if (plasma.war[me.team] ?? false) {
+            plasmaCorrectColor = NSColor.red
+        } else {
+            plasmaCorrectColor = NSColor.green
+        }
+        if plasma.plasmaNode.color != plasmaCorrectColor {
+            // remake node
+            plasma.plasmaNode.removeAllActions()
+            plasma.plasmaNode.removeFromParent()
+            plasma.plasmaNode = SKSpriteNode(color: plasmaCorrectColor,
+                                               size: CGSize(width: NetrekMath.torpedoSize * 2, height: NetrekMath.torpedoSize * 2))
+        }
+        plasma.plasmaNode.position = CGPoint(x: plasma.positionX, y: plasma.positionY)
+        if plasma.plasmaNode.parent == nil {
+            self.scene?.addChild(plasma.plasmaNode)
         }
     }
     func updateTorpedo(_ torpedo: Torpedo) {
@@ -54,8 +129,9 @@ class TacticalScene: SKScene {
             return
         }
         // torpedo status is 1
-        let taxiDistance = abs(me.positionX - torpedo.positionX) + abs(me.positionY - torpedo.positionY)
-        guard taxiDistance < displayDistance else {
+        let taxiDistance = abs(me.lastAlivePositionX - torpedo.positionX) + abs(me.lastAlivePositionY - torpedo.positionY)
+        //let taxiDistance = abs(me.positionX - torpedo.positionX) + abs(me.positionY - torpedo.positionY)
+        guard taxiDistance < NetrekMath.displayDistance else {
             if torpedo.torpedoNode.parent != nil {
                 torpedo.torpedoNode.removeAllActions()
                 torpedo.torpedoNode.removeFromParent()
@@ -149,10 +225,16 @@ class TacticalScene: SKScene {
             keymap.execute(.eightKey, location: location)
         case "9":
             keymap.execute(.nineKey, location: location)
+        case "f":
+            keymap.execute(.fKey, location: location)
         case "s":
             keymap.execute(.sKey, location: location)
         case "u":
             keymap.execute(.uKey, location: location)
+        case "Q":
+            keymap.execute(.QKey, location: location)
+        case "*":
+            keymap.execute(.asteriskKey, location: location)
         default:
             debugPrint("TacticalScene.keyDown unknown key \(String(describing: event.characters))")
         }

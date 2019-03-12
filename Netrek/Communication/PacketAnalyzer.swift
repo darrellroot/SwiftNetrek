@@ -204,29 +204,29 @@ class PacketAnalyzer {
             
         case 7:
             // SP_LASER 7
-            let laserNumber = Int(data[1])
+            let laserID = Int(data[1])
             let status = Int(data[2]) // LA_HIT etc...
             let directionNetrek = UInt8(data[3])
             let positionX = NetrekMath.netrekX2GameX(Int(data.subdata(in: (4..<8)).to(type: UInt32.self).byteSwapped))
             let positionY = NetrekMath.netrekY2GameY(Int(data.subdata(in: (8..<12)).to(type: UInt32.self).byteSwapped))
             let target = Int(data.subdata(in: (12..<16)).to(type: Int32.self).byteSwapped)
-            debugPrint("Received SP_LASER 7 laserNumber \(laserNumber) status \(status) directionNetrek \(directionNetrek) positionX \(positionX) positionY \(positionY) target \(target)")
-            universe.updateLaser(laserNumber: laserNumber, status: status, directionNetrek: directionNetrek, positionX: positionX, positionY: positionY, target: target)
+            debugPrint("Received SP_LASER 7 laserID \(laserID) status \(status) directionNetrek \(directionNetrek) positionX \(positionX) positionY \(positionY) target \(target)")
+            universe.updateLaser(laserID: laserID, status: status, directionNetrek: directionNetrek, positionX: positionX, positionY: positionY, target: target)
         case 8:
             //SP_PLASMA_INFO
-            let war = Int(data[1])
+            let war = UInt8(data[1])
             let status = Int(data[2])
-            let plasmaNumber = Int(data.subdata(in: (4..<5)).to(type: UInt16.self).byteSwapped)
-            universe.updatePlasma(plasmaNumber: plasmaNumber, war: war, status: status)
-            debugPrint("Received SP_PLASMA 8 plasmaNumber \(plasmaNumber) war \(war) status \(status)")
+            let plasmaID = Int(data.subdata(in: (4..<5)).to(type: UInt16.self).byteSwapped)
+            universe.updatePlasma(plasmaID: plasmaID, war: war, status: status)
+            debugPrint("Received SP_PLASMA 8 plasmaID \(plasmaID) war \(war) status \(status)")
 
         case 9:
             //SP_PLASMA
-            let plasmaNumber = Int(data.subdata(in: (2..<3)).to(type: UInt16.self).byteSwapped)
+            let plasmaID = Int(data.subdata(in: (2..<3)).to(type: UInt16.self).byteSwapped)
             let positionX = NetrekMath.netrekX2GameX(Int(data.subdata(in: (4..<8)).to(type: UInt32.self).byteSwapped))
             let positionY = NetrekMath.netrekY2GameY(Int(data.subdata(in: (8..<12)).to(type: UInt32.self).byteSwapped))
-            debugPrint("Received SP_PLASMA 9 plasmaNumber \(plasmaNumber) positionX \(positionX) positionY \(positionY)")
-            universe.updatePlasma(plasmaNumber: plasmaNumber, positionX: positionX, positionY: positionY)
+            debugPrint("Received SP_PLASMA 9 plasmaID \(plasmaID) positionX \(positionX) positionY \(positionY)")
+            universe.updatePlasma(plasmaID: plasmaID, positionX: positionX, positionY: positionY)
         
         case 10:
             // SP_WARNING
@@ -239,7 +239,7 @@ class PacketAnalyzer {
                 debugPrint("Received SP_WARNING 10 sent to messages")
                 appDelegate.messageViewController?.gotMessage(messageString)
                 //debugPrint(messageString)
-                printData(data, success: true)
+                //printData(data, success: true)
             } else {
                 debugPrint("PacketAnalyzer unable to decode message type 10")
                 printData(data, success: false)
