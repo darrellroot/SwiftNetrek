@@ -11,6 +11,29 @@ import SpriteKit
 
 class Player: CustomStringConvertible {
     
+    static let SHIELDFLAG: UInt32 = 0x0001
+    static let REPAIRFLAG: UInt32 = 0x0002
+    static let BOMBFLAG: UInt32 = 0x0004
+    static let ORBITFLAG: UInt32 = 0x0008
+    static let CLOAKFLAG: UInt32 = 0x0010
+    static let WEPFLAG: UInt32 = 0x0020
+    static let ENGFLAG: UInt32 = 0x0040
+    static let BEAMUPFLAG: UInt32 = 0x0100
+    static let BEAMDOWNFLAG: UInt32 = 0x0200
+    static let SELFDESTRUCTFLAG: UInt32 = 0x0400
+    static let GREENFLAG: UInt32 = 0x0800
+    static let YELLOWFLAG: UInt32 = 0x1000
+    static let REDFLAG: UInt32 = 0x2000
+    static let PLAYERLOCKFLAG: UInt32 = 0x4000
+    static let PLANETLOCKFLAG: UInt32 = 0x8000
+    static let WARSETFLAG: UInt32 = 0x10000
+    static let DOCKFLAG: UInt32 = 0x80000
+    static let REFITFLAG: UInt32 = 0x100000
+    static let REFITTINGFLAG: UInt32 = 0x200000
+    static let TRACTORFLAG: UInt32 = 0x400000
+    static let PRESSORFLAG: UInt32 = 0x800000
+    static let DOCKOKFLAG: UInt32 = 0x1000000
+
     let appDelegate = NSApplication.shared.delegate as! AppDelegate
 
     var detonated = false //set to true when blowing up
@@ -52,6 +75,25 @@ class Player: CustomStringConvertible {
     private(set) var slotStatus: SlotStatus = .free //free=0 outfit=1 alive=2 explode=3 dead=4 observe=5
     // from packet type 4
     private(set) var lastSlotStatus: SlotStatus = .free //free=0 outfit=1 alive=2 explode=3 dead=4 observe=5
+    // flags from packet type 12
+    private(set) var repair = false
+    private(set) var bomb = false
+    private(set) var orbit = false
+    private(set) var cloak = false
+    private(set) var weaponsOverheated = false
+    private(set) var enginesOverheated = false
+    private(set) var beamUp = false
+    private(set) var beamDown = false
+    private(set) var selfDestruct = false
+    private(set) var alertCondition: AlertCondition = .green
+    private(set) var playerLock = false
+    private(set) var planetLock = false
+    private(set) var settingWar = false
+    private(set) var docked = false
+    private(set) var tractorFlag = false
+    private(set) var pressor = false
+    private(set) var dockok = false
+    
 
     private(set) var direction: CGFloat = 0.0 // 2 * Double.pi = 360 degrees
     private(set) var speed = 0
@@ -209,7 +251,6 @@ class Player: CustomStringConvertible {
         }
         self.armies = armies
         self.tractor = tractor
-        self.flags = flags
         self.damage = damage
         self.shieldStrength = shieldStrength
         self.fuel = fuel
@@ -224,6 +265,29 @@ class Player: CustomStringConvertible {
             self.shieldsUp = false
             self.shieldNode.isHidden = true
         }
+        //self.flags = flags
+
+        if flags & UInt32(0x0002) != 0 { repair = true } else { repair = false }
+        if flags & UInt32(0x0004) != 0 { bomb = true } else { bomb = false }
+        if flags & UInt32(0x0008) != 0 { orbit = true } else { orbit = false }
+        if flags & UInt32(0x0010) != 0 { cloak = true } else { cloak = false }
+        if flags & UInt32(0x0020) != 0 { weaponsOverheated = true } else { weaponsOverheated = false }
+        if flags & UInt32(0x0040) != 0 { enginesOverheated = true } else { enginesOverheated = false }
+        if flags & UInt32(0x0100) != 0 { beamUp = true } else { beamUp = false }
+        if flags & UInt32(0x0200) != 0 { beamDown = true } else { beamDown = false }
+        if flags & UInt32(0x0400) != 0 { selfDestruct = true } else { selfDestruct = false }
+        if flags & UInt32(0x0800) != 0 { alertCondition = .green }
+        if flags & UInt32(0x1000) != 0 { alertCondition = .yellow }
+        if flags & UInt32(0x2000) != 0 { alertCondition = .red }
+        if flags & UInt32(0x4000) != 0 { playerLock = true } else { playerLock = false }
+        if flags & UInt32(0x8000) != 0 { planetLock = true } else { planetLock = false }
+        if flags & UInt32(0x10000) != 0 { settingWar = true } else { settingWar = false }
+        if flags & UInt32(0x80000) != 0 { docked = true } else { docked = false }
+
+        if flags & UInt32(0x400000) != 0 { tractorFlag = true } else { tractorFlag = false }
+        
+        if flags & UInt32(0x800000) != 0 { pressor = true } else { pressor = false }
+        if flags & UInt32(0x1000000) != 0 { dockok = true } else { dockok = false }
         self.updateNode()
     }
     public func update(shipType: Int) {

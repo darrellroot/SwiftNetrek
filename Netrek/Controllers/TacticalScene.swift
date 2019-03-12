@@ -225,16 +225,28 @@ class TacticalScene: SKScene {
             keymap.execute(.eightKey, location: location)
         case "9":
             keymap.execute(.nineKey, location: location)
+        case "b":
+            keymap.execute(.bKey, location: location)
+        case "c":
+            keymap.execute(.cKey, location: location)
         case "f":
             keymap.execute(.fKey, location: location)
         case "l":
             keymap.execute(.lKey, location: location)
+        case "o":
+            keymap.execute(.oKey, location: location)
         case "s":
             keymap.execute(.sKey, location: location)
         case "u":
             keymap.execute(.uKey, location: location)
+        case "x":
+            keymap.execute(.xKey, location: location)
+        case "z":
+            keymap.execute(.zKey, location: location)
         case "Q":
             keymap.execute(.QKey, location: location)
+        case "R":
+            keymap.execute(.RKey, location: location)
         case "*":
             keymap.execute(.asteriskKey, location: location)
         default:

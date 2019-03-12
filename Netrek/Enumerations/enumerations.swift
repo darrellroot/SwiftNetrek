@@ -17,6 +17,12 @@ enum GameState: String, CaseIterable {
     case gameActive
 }
 
+enum AlertCondition: CaseIterable {
+    case green
+    case yellow
+    case red
+}
+
 enum ShipType: Int, CaseIterable {
     case scout = 0
     case destroyer = 1

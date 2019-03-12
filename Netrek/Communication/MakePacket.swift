@@ -187,6 +187,17 @@ class MakePacket {
     }
     
     // CP_ORBIT 14 NOT implemented
+    static func cpOrbit(state: Bool) -> Data {
+        var packet = CP_ORBIT()
+        if state {
+            packet.state = 1
+        } else {
+            packet.state = 0
+        }
+        let data = Data(bytes: &packet, count: packet.size)
+        debugPrint("Sending CP_ORBIT state \(packet.state)")
+        return data
+    }
     
     // CP_PLANLOCK 15
     static func cpPlanetLock(planetID: UInt8) -> Data {
@@ -205,6 +216,45 @@ class MakePacket {
         debugPrint("Sending CP_PLAYLOCK playerID \(playerID)")
         return data
     }
+    
+    //CP_BOMB 17
+    static func cpBomb(state: Bool) -> Data {
+        var packet = CP_BOMB()
+        if state {
+            packet.state = 1
+        } else {
+            packet.state = 0
+        }
+        let data = Data(bytes: &packet, count: packet.size)
+        debugPrint("Sending CP_BOMB state \(packet.state)")
+        return data
+    }
+    //CP_BEAM 18
+    static func cpBeam(state: Bool) -> Data {
+        var packet = CP_BEAM()
+        if state {
+            packet.state = 1
+        } else {
+            packet.state = 0
+        }
+        let data = Data(bytes: &packet, count: packet.size)
+        debugPrint("Sending CP_BEAM state \(packet.state)")
+        return data
+    }
+
+    //CP_CLOAK 19
+    static func cpCloak(state: Bool) -> Data {
+        var packet = CP_CLOAK()
+        if state {
+            packet.state = 1
+        } else {
+            packet.state = 0
+        }
+        let data = Data(bytes: &packet, count: packet.size)
+        debugPrint("Sending CP_CLOAK state \(packet.state)")
+        return data
+    }
+
     
     static func cpSocket() -> Data {
         debugPrint("Sending CP_SOCKET 27")

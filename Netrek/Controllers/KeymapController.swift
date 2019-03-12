@@ -23,11 +23,17 @@ enum Control: String {
     case leftMouse = "left mouse button"
     case otherMouse = "other mouse button (center)"
     case rightMouse = "right mouse button and control-click"
+    case bKey = "b key"
+    case cKey = "c key"
     case fKey = "f key"
     case lKey = "l key"
+    case oKey = "o key"
     case sKey = "s key"
     case uKey = "u key"
+    case xKey = "x key"
+    case zKey = "z key"
     case QKey = "Q key"
+    case RKey = "R key"
     case asteriskKey = "* key"
 }
 
@@ -43,9 +49,15 @@ enum Command: String {
     case speedEight = "Set speed 8"
     case speedNine = "Set speed 9"
     case setCourse = "Set course"
+    case beamUp = "Beam up armies"
+    case beamDown = "Beam down armies"
+    case bomb = "Bomb"
+    case cloak = "Toggle cloak"
     case fireTorpedo = "Fire torpedo"
     case firePlasma = "Fire plasma"
     case fireLaser = "Fire laser"
+    case orbit = "Orbit"
+    case repair = "Repair"
     case lockDestination = "Lock onto Destination"
     case toggleShields = "Toggle shields"
     case raiseShields = "Raise shields"
@@ -75,11 +87,17 @@ class KeymapController {
             .sevenKey:.speedSeven,
             .eightKey:.speedEight,
             .nineKey:.speedNine,
+            .bKey:.bomb,
+            .cKey:.cloak,
             .fKey:.firePlasma,
             .lKey:.lockDestination,
+            .oKey:.orbit,
             .sKey:.toggleShields,
             .uKey:.raiseShields,
+            .xKey:.beamDown,
+            .zKey:.beamUp,
             .QKey:.quitGame,
+            .RKey:.repair,
             .leftMouse:.fireTorpedo,
             .otherMouse:.fireLaser,
             .rightMouse:.setCourse,
@@ -110,6 +128,24 @@ class KeymapController {
                 self.setSpeed(8)
             case .speedNine:
                 self.setSpeed(9)
+            case .beamUp:
+                let cpBeam = MakePacket.cpBeam(state: true)
+                appDelegate.reader?.send(content: cpBeam)
+            case .beamDown:
+                let cpBeam = MakePacket.cpBeam(state: false)
+                appDelegate.reader?.send(content: cpBeam)
+            case .bomb:
+                if let bombState = appDelegate.universe.me?.bomb {
+                    let cpBomb = MakePacket.cpRepair(state: !bombState )
+                    appDelegate.reader?.send(content: cpBomb)
+                }
+            case .cloak:
+                if let cloakState = appDelegate.universe.me?.cloak {
+                    let cpCloak = MakePacket.cpCloak(state: !cloakState )
+                    appDelegate.reader?.send(content: cpCloak)
+                }
+
+
             case .setCourse:
                 guard let location = location else {
                     debugPrint("KeymapController.execute.setCourse location is nil...holding steady")
@@ -132,11 +168,21 @@ class KeymapController {
                         appDelegate.reader?.send(content: cpShield)
                     }
                 }
+            case .orbit:
+                if let orbitState = appDelegate.universe.me?.orbit {
+                    let cpOrbit = MakePacket.cpOrbit(state: !orbitState)
+                    appDelegate.reader?.send(content: cpOrbit)
 
+                }
             case .raiseShields:
                 let cpShield = MakePacket.cpShield(up: true)
                 appDelegate.reader?.send(content: cpShield)
             
+            case .repair:
+                if let repairState = appDelegate.universe.me?.repair {
+                    let cpRepair = MakePacket.cpRepair(state: !repairState )
+                    appDelegate.reader?.send(content: cpRepair)
+                }
             case .fireLaser:
                 debugPrint("FireLaser location \(String(describing: location))")
                 guard let targetLocation = location else {
