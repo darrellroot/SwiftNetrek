@@ -64,6 +64,9 @@ class TcpReader {
         
         connection.start(queue: queue)
     }
+    func resetConnection() {
+        self.connection.cancel()
+    }
     func receive() {
         guard self.complete == false else {
             debugPrint("TCPReader.receive: already complete.  not trying to receive")

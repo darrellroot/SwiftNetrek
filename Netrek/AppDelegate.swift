@@ -73,31 +73,48 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     private func updateTeamMenu() {
-        selectTeamAny.state = .off
-        selectTeamFederation.state = .off
-        selectTeamFederation.state = .off
-        selectTeamRoman.state = .off
-        selectTeamKleptocrat.state = .off
-        selectTeamOrion.state = .off
-        switch preferredTeam {
-        case .federation:
-            selectTeamFederation.state = .on
-        case .roman:
-            selectTeamRoman.state = .on
-        case .kleptocrat:
-            selectTeamKleptocrat.state = .on
-        case .orion:
-            selectTeamOrion.state = .on
-        case .independent:
-            selectTeamAny.state = .on
-        case .ogg:
-            break
+        DispatchQueue.main.async {
+            self.selectTeamAny.state = .off
+            self.selectTeamFederation.state = .off
+            self.selectTeamFederation.state = .off
+            self.selectTeamRoman.state = .off
+            self.selectTeamKleptocrat.state = .off
+            self.selectTeamOrion.state = .off
+            switch self.preferredTeam {
+            case .federation:
+                self.selectTeamFederation.state = .on
+            case .roman:
+                self.selectTeamRoman.state = .on
+            case .kleptocrat:
+                self.selectTeamKleptocrat.state = .on
+            case .orion:
+                self.selectTeamOrion.state = .on
+            case .independent:
+                self.selectTeamAny.state = .on
+            case .ogg:
+                break
+            }
         }
     }
 
-
     func applicationWillTerminate(_ aNotification: Notification) {
+        self.resetConnection()
         // Insert code here to tear down your application
+    }
+    
+    @IBAction func disconnectGame(_ sender: NSMenuItem) {
+        self.newGameState(.noServerSelected)
+    }
+    func resetConnection() {
+        debugPrint("AppDelegate.resetConnection")
+        if gameState == .gameActive || gameState == .serverConnected || gameState == .serverSlotFound || gameState == .loginAccepted {
+            let cp_bye = MakePacket.cpBye()
+            self.reader?.send(content: cp_bye)
+        }
+        if self.reader != nil {
+            self.reader?.resetConnection()
+        }
+        self.reader = nil
     }
     
     func refreshMetaserver() {
@@ -135,6 +152,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let tag = sender.tag
         if let server = metaServer?.servers[safe: tag] {
             print("starting game server \(server.description)")
+            if reader != nil {
+                self.resetConnection()
+            }
             //if let reader = TcpReader(hostname: "metaserver.netrek.org", port: 3521, delegate: self) {
             if let reader = TcpReader(hostname: server.hostname, port: server.port, delegate: self) {
                 self.reader = reader
@@ -149,16 +169,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         debugPrint("Game State: moving from \(self.gameState.rawValue) to \(newState.rawValue)\n")
         switch newState {
         case .noServerSelected:
+            self.resetConnection()
             enableServerMenu()
             disableShipMenu()
             self.gameState = newState
             self.messageViewController?.gotMessage("AppDelegate GameState \(newState) we may have been ghostbusted!  Resetting.  Try again\n")
-            self.reader = nil
             self.refreshMetaserver()
             break
             
         case .serverSelected:
             disableShipMenu()
+            disableServerMenu()
             self.gameState = newState
             self.analyzer = PacketAnalyzer()
             // no need to do anything here, handled in the menu function
@@ -166,6 +187,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             
         case .serverConnected:
             disableShipMenu()
+            disableServerMenu()
             self.clientTypeSent = false
             self.gameState = newState
 
@@ -191,6 +213,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             
         case .serverSlotFound:
             disableShipMenu()
+            disableServerMenu()
             self.gameState = newState
             debugPrint("AppDelegate.newGameState: .serverSlotFound")
             let cpLogin = MakePacket.cpLogin(name: "guest", password: "", login: "")
@@ -205,69 +228,70 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
             
         case .loginAccepted:
-            enableShipMenu()
-            if self.gameState == .serverSlotFound {
-            }
+            self.enableShipMenu()
+            self.disableServerMenu()
             DispatchQueue.main.async {
                 self.playerListViewController?.view.needsDisplay = true
             }
-            /*if self.gameState == .serverSlotFound {
-                tacticalViewController?.presentScene(delay: 1.0)
-            }*/
             self.gameState = newState
             
         case .gameActive:
+            self.enableShipMenu()
+            self.disableServerMenu()
             DispatchQueue.main.async {
                 self.playerListViewController?.view.needsDisplay = true
             }
             self.gameState = newState
-            disableShipMenu()
-            disableServerMenu()
             if !clientTypeSent {
-                if let letter = universe.me?.team.letter, let playerID = universe.me?.playerID {
-                    let hexNumber = NetrekMath.playerLetter(playerID: playerID)
-                    let data = MakePacket.cpMessage(message: "I am using the Swift Netrek Client v0.1 on MacOS", team: .ogg, individual: 0)
+                let data = MakePacket.cpMessage(message: "I am using the Swift Netrek Client v0.1 on MacOS", team: .ogg, individual: 0)
                     clientTypeSent = true
                     self.reader?.send(content: data)
-                }
             }
         }
     }
     private func disableServerMenu() {
-        debugPrint("disable server menu")
-        for menuItem in self.serverMenu.items {
-            debugPrint("disabling server menu \(menuItem.title)")
-            menuItem.isEnabled = false
+        DispatchQueue.main.async {
+            debugPrint("disable server menu")
+            for menuItem in self.serverMenu.items {
+                debugPrint("disabling server menu \(menuItem.title)")
+                menuItem.isEnabled = false
+            }
         }
     }
     private func enableServerMenu() {
-        debugPrint("enable server menu")
-        for menuItem in self.serverMenu.items {
-            menuItem.isEnabled = true
+        DispatchQueue.main.async {
+            debugPrint("enable server menu")
+            for menuItem in self.serverMenu.items {
+                menuItem.isEnabled = true
+            }
         }
     }
 
     private func disableShipMenu() {
-        debugPrint("disable ship menu")
-        selectShipAny.isEnabled = false
-        selectShipScout.isEnabled = false
-        selectShipDestroyer.isEnabled = false
-        selectShipCruiser.isEnabled = false
-        selectShipBattleship.isEnabled = false
-        selectShipAssault.isEnabled = false
-        selectShipStarbase.isEnabled = false
-        selectShipBattlecruiser.isEnabled = false
+        DispatchQueue.main.async {
+            debugPrint("disable ship menu")
+            self.selectShipAny.isEnabled = false
+            self.selectShipScout.isEnabled = false
+            self.selectShipDestroyer.isEnabled = false
+            self.selectShipCruiser.isEnabled = false
+            self.selectShipBattleship.isEnabled = false
+            self.selectShipAssault.isEnabled = false
+            self.selectShipStarbase.isEnabled = false
+            self.selectShipBattlecruiser.isEnabled = false
+        }
     }
     private func enableShipMenu() {
-        debugPrint("enable ship menu")
-        selectShipAny.isEnabled = true
-        selectShipScout.isEnabled = true
-        selectShipDestroyer.isEnabled = true
-        selectShipCruiser.isEnabled = true
-        selectShipBattleship.isEnabled = true
-        selectShipAssault.isEnabled = true
-        selectShipStarbase.isEnabled = true
-        selectShipBattlecruiser.isEnabled = true
+        DispatchQueue.main.async {
+            debugPrint("enable ship menu")
+            self.selectShipAny.isEnabled = true
+            self.selectShipScout.isEnabled = true
+            self.selectShipDestroyer.isEnabled = true
+            self.selectShipCruiser.isEnabled = true
+            self.selectShipBattleship.isEnabled = true
+            self.selectShipAssault.isEnabled = true
+            self.selectShipStarbase.isEnabled = true
+            self.selectShipBattlecruiser.isEnabled = true
+        }
     }
     @IBAction func selectTeam(_ sender: NSMenuItem) {
         let tag = sender.tag
@@ -291,6 +315,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     reader.send(content: cpUpdates)
                 let cpOutfit = MakePacket.cpOutfit(team: self.preferredTeam, ship: self.preferredShip)
                 reader.send(content: cpOutfit)
+            }
+        }
+        if self.gameState == .gameActive {
+            if let reader = self.reader {
+                let cpRefit = MakePacket.cpRefit(newShip: self.preferredShip)
+                self.reader?.send(content: cpRefit)
             }
         }
     }

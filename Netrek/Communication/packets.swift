@@ -227,8 +227,21 @@ struct CP_DET_TORPS {
 struct CP_DET_MYTORP {
     let type: UInt8 = 21
     var pad1: UInt8 = 0
+    var tNumByte1: UInt8 = 0
+    var tNumByte2: UInt8 = 0
+    
+    var size: Int {
+        return 4
+    }
+}
+
+// 22 copilot not implemented
+
+struct CP_REFIT {
+    let type: UInt8 = 23
+    var ship: UInt8 = 0
+    let pad1: UInt8 = 0
     let pad2: UInt8 = 0
-    let pad3: UInt8 = 0
     
     var size: Int {
         return 4
@@ -256,6 +269,16 @@ struct CP_REPRESS {
     }
 }
 
+struct CP_COUP {
+    let type: UInt8 = 26
+    let pad1: UInt8 = 0
+    let pad2: UInt8 = 0
+    let pad3: UInt8 = 0
+    
+    var size: Int {
+        return 4
+    }
+}
 struct CP_SOCKET {
     let type: UInt8 = 27
     let version: UInt8 = SOCKVERSION
@@ -266,6 +289,19 @@ struct CP_SOCKET {
     
     var size: Int {
         return 8
+    }
+}
+
+// 28 CP_OPTIONS not implamented
+
+struct CP_BYE {
+    let type: UInt8 = 29
+    let pad1: UInt8 = 0
+    let pad2: UInt8 = 0
+    let pad3: UInt8 = 0
+    
+    var size: Int {
+        return 4
     }
 }
 

@@ -109,6 +109,13 @@
                                                 <action selector="refreshMetaserverEuNetrekOrg:" target="Voe-Tx-rLC" id="Xhy-Vv-GDl"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="5qn-z1-JMl"/>
+                                        <menuItem title="Disconnect from current game" id="sL3-Gw-QtR">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="disconnectGame:" target="Voe-Tx-rLC" id="efh-5G-g5f"/>
+                                            </connections>
+                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>

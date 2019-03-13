@@ -254,6 +254,35 @@ class MakePacket {
         debugPrint("Sending CP_CLOAK state \(packet.state)")
         return data
     }
+    
+    // CP_DET_TORPS 20
+    static func cpDetTorps() -> Data {
+        debugPrint("Sending CP_DET_TORPS")
+        var packet = CP_DET_TORPS()
+        let data = Data(bytes: &packet, count: packet.size)
+        return data
+    }
+
+    // CP_DET_MYTORPS 21
+    static func cpDetMyTorps(torpNum: UInt8) -> Data {
+        debugPrint("Sending CP_DET_MYTORP")
+        var packet = CP_DET_MYTORP()
+        packet.tNumByte1 = 0
+        packet.tNumByte2 = torpNum
+        let data = Data(bytes: &packet, count: packet.size)
+        return data
+    }
+    
+    // CP_COPLIOT 22 not implemented
+    
+    // CP_REFIT 23
+    static func cpRefit(newShip: ShipType) -> Data {
+        debugPrint("Sending CP_REFIT 23 shipType \(newShip.rawValue)")
+        var packet = CP_REFIT()
+        packet.ship = UInt8(newShip.rawValue)
+        let data = Data(bytes: &packet, count: packet.size)
+        return data
+    }
 
     static func cpTractor(on: Bool, playerID: UInt8) -> Data {
         debugPrint("Sending CP_TRACTOR 24 on \(on) playerID \(playerID)")
@@ -280,12 +309,28 @@ class MakePacket {
         let data = Data(bytes: &packet, count: packet.size)
         return data
     }
+    
+    static func cpCoup() -> Data {
+        debugPrint("Sending CP_COUP 26")
+        var packet = CP_COUP()
+        let data = Data(bytes: &packet, count: packet.size)
+        return data
+    }
 
     static func cpSocket() -> Data {
         debugPrint("Sending CP_SOCKET 27")
 
         // packet type 27
         var packet = CP_SOCKET()
+        let data = Data(bytes: &packet, count: packet.size)
+        return data
+    }
+    
+    // CP_OPTIONS 28 not implemented
+    
+    static func cpBye() -> Data {
+        debugPrint("Sending CP_BYE 29")
+        var packet = CP_BYE()
         let data = Data(bytes: &packet, count: packet.size)
         return data
     }

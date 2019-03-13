@@ -25,14 +25,18 @@ enum Control: String {
     case rightMouse = "right mouse button and control-click"
     case bKey = "b key"
     case cKey = "c key"
+    case dKey = "d key"
     case fKey = "f key"
     case lKey = "l key"
     case oKey = "o key"
+    case rKey = "r key"
     case sKey = "s key"
     case uKey = "u key"
     case xKey = "x key"
     case yKey = "y key"
     case zKey = "z key"
+    case CKey = "C key"
+    case DKey = "D key"
     case QKey = "Q key"
     case RKey = "R key"
     case TKey = "T key"
@@ -55,6 +59,9 @@ enum Command: String {
     case beamDown = "Beam down armies"
     case bomb = "Bomb"
     case cloak = "Toggle cloak"
+    case coup = "Coup own home planet"
+    case detOwn = "Detonate own torpedoes"
+    case detEnemy = "Detonate enemy torpedoes"
     case fireTorpedo = "Fire torpedo"
     case firePlasma = "Fire plasma"
     case fireLaser = "Fire laser"
@@ -62,6 +69,7 @@ enum Command: String {
     case orbit = "Orbit"
     case pressorBeam = "Pressor beam"
     case raiseShields = "Raise shields"
+    case refit = "Refit (unused: use launch ship menu)"
     case repair = "Repair"
     case toggleShields = "Toggle shields"
     case tractorBeam = "Tractor beam"
@@ -93,14 +101,17 @@ class KeymapController {
             .nineKey:.speedNine,
             .bKey:.bomb,
             .cKey:.cloak,
+            .dKey:.detEnemy,
             .fKey:.firePlasma,
             .lKey:.lockDestination,
             .oKey:.orbit,
+            .rKey:.refit,
             .sKey:.toggleShields,
             .uKey:.raiseShields,
             .xKey:.beamDown,
             .yKey:.pressorBeam,
             .zKey:.beamUp,
+            .DKey:.detOwn,
             .QKey:.quitGame,
             .RKey:.repair,
             .TKey:.tractorBeam,
@@ -151,7 +162,24 @@ class KeymapController {
                     appDelegate.reader?.send(content: cpCloak)
                 }
 
+            case .coup:
+                let cpCoup = MakePacket.cpCoup()
+                appDelegate.reader?.send(content: cpCoup)
+                
+            case .detEnemy:
+                let cpDetTorps = MakePacket.cpDetTorps()
+                appDelegate.reader?.send(content: cpDetTorps)
 
+            case .detOwn:
+                guard let me = appDelegate.universe.me else { return }
+                for count in 0..<8 {
+                    let myTorpNum = UInt8(me.playerID * 8 + count)
+                    let cpDetMyTorps = MakePacket.cpDetMyTorps(torpNum: myTorpNum)
+                    appDelegate.reader?.send(content: cpDetMyTorps)
+                }
+            case .refit:
+                appDelegate.messageViewController?.gotMessage("To refit, orbit home planet and select LAUNCH SHIP menu item")
+                break
             case .setCourse:
                 guard let location = location else {
                     debugPrint("KeymapController.execute.setCourse location is nil...holding steady")
