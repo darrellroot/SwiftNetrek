@@ -245,7 +245,7 @@ class Player: CustomStringConvertible {
     }
     
     public func updateMe(myPlayerID: Int, hostile: UInt32, war: UInt32, armies: Int, tractor: Int, flags: UInt32, damage: Int, shieldStrength: Int, fuel: Int, engineTemp: Int, weaponsTemp: Int, whyDead: Int, whoDead: Int) {
-        if self.playerID != myPlayerID && self.playerID != nil  {
+        if self.playerID != myPlayerID {
             debugPrint("Player.updateMe: ERROR: inconsistent player ID \(myPlayerID) versus \(String(describing: self.playerID))")
         }
         self.me = true

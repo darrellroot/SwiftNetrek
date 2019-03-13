@@ -15,12 +15,43 @@ class TacticalScene: SKScene {
     //var window: NSWindow?
     var keymapController: KeymapController!
     
+   
     
     override func sceneDidLoad() {
         //self.window = self.view?.window
         self.keymapController = appDelegate.keymapController
+        let border = SKShapeNode(rect: CGRect(x: 0, y: 0, width: NetrekMath.galacticSize, height: NetrekMath.galacticSize))
+        border.lineWidth = 10
+        border.strokeColor = NSColor.white
+        self.addChild(border)
+        
     }
-    
+    func explosion() -> SKEmitterNode {
+        let emitter = SKEmitterNode()
+        let particleTexture = SKTexture(imageNamed: "spark")
+        var emitterAction = SKAction.sequence([SKAction.wait(forDuration: 1.0),SKAction.removeFromParent()])
+        emitter.zPosition = ZPosition.explosion.rawValue
+        emitter.particleTexture = particleTexture
+        emitter.particleBirthRate = 1000
+        emitter.numParticlesToEmit = 200
+        emitter.particleLifetime = 1.0
+        emitter.particleLifetimeRange = 1.0
+        emitter.emissionAngle = 0.0
+        emitter.emissionAngleRange = 360.0
+        emitter.particleSpeed = 200
+        emitter.particleSpeedRange = 50
+        emitter.particleAlpha = 1.0
+        emitter.particleAlphaRange = 0.0
+        emitter.particleAlphaSpeed = -1.0
+        emitter.particleScale = 0.2
+        emitter.particleScaleRange = 0.1
+        emitter.particleScaleSpeed = 0.0
+        emitter.particleColor = SKColor.white
+        emitter.particleColorBlendFactor = 1
+        emitter.particleBlendMode = .add
+        emitter.run(emitterAction)
+        return emitter
+    }
     func packetUpdate() {
         for player in appDelegate.universe.players.values {
             updatePlayer(player)
@@ -73,6 +104,7 @@ class TacticalScene: SKScene {
                 return
             } else {
                 detonate(player: player)
+            player.playerTacticalNode.removeFromParent()
                 return
             }
         case .alive:
@@ -83,6 +115,11 @@ class TacticalScene: SKScene {
         }
     }
     func detonate(player: Player) {
+        debugPrint("DETONATING player \(player.playerID) at positionX \(player.positionX) positionY \(player.positionY)")
+        let emitterNode = explosion()
+        emitterNode.position = player.playerTacticalNode.position
+        self.addChild(emitterNode)
+        player.detonated = true
         return
     }
     func updatePlasma(_ plasma: Plasma) {
