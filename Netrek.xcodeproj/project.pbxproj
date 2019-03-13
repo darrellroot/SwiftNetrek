@@ -40,6 +40,7 @@
 		2F94A8312231AEA800FAAF39 /* NetrekMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F94A8302231AEA800FAAF39 /* NetrekMath.swift */; };
 		2F94A83322324C2600FAAF39 /* SKView-extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F94A83222324C2600FAAF39 /* SKView-extensions.swift */; };
 		2F94A8352233009600FAAF39 /* KeymapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F94A8342233009600FAAF39 /* KeymapController.swift */; };
+		2FA665EF2238A67800F0CA76 /* ShieldFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA665EE2238A67800F0CA76 /* ShieldFactory.swift */; };
 		2FD8567422335770005165C1 /* PlayerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD8567322335770005165C1 /* PlayerListViewController.swift */; };
 		2FD8569422337CFC005165C1 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD8569322337CFC005165C1 /* PlayerView.swift */; };
 		2FD856962234222D005165C1 /* StrategicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD856952234222D005165C1 /* StrategicView.swift */; };
@@ -88,6 +89,7 @@
 		2F94A8302231AEA800FAAF39 /* NetrekMath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetrekMath.swift; sourceTree = "<group>"; };
 		2F94A83222324C2600FAAF39 /* SKView-extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKView-extensions.swift"; sourceTree = "<group>"; };
 		2F94A8342233009600FAAF39 /* KeymapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeymapController.swift; sourceTree = "<group>"; };
+		2FA665EE2238A67800F0CA76 /* ShieldFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldFactory.swift; sourceTree = "<group>"; };
 		2FD8567322335770005165C1 /* PlayerListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListViewController.swift; sourceTree = "<group>"; };
 		2FD8569322337CFC005165C1 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		2FD856952234222D005165C1 /* StrategicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategicView.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				2FD856952234222D005165C1 /* StrategicView.swift */,
 				2FD8569322337CFC005165C1 /* PlayerView.swift */,
 				2F7501B4222F5BD7002040A7 /* TacticalView.swift */,
+				2FA665EE2238A67800F0CA76 /* ShieldFactory.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				2F7501A2222C930B002040A7 /* packets-extensions.swift in Sources */,
 				2F75016C2229FA22002040A7 /* MetaServerEntry.swift in Sources */,
 				2F750185222B2476002040A7 /* PacketAnalyzer.swift in Sources */,
+				2FA665EF2238A67800F0CA76 /* ShieldFactory.swift in Sources */,
 				2F94A83322324C2600FAAF39 /* SKView-extensions.swift in Sources */,
 				2F7501B1222F5AD9002040A7 /* TacticalViewController.swift in Sources */,
 				2F7501AA222F2CBE002040A7 /* Laser.swift in Sources */,

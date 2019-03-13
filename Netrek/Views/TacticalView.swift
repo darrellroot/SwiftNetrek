@@ -11,6 +11,7 @@ import SpriteKit
 
 class TacticalView: SKView {
 
+
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
 

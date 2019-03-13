@@ -10,6 +10,7 @@ import Foundation
 import SpriteKit
 
 class Player: CustomStringConvertible {
+    static let shieldFactory = ShieldFactory()
     
     static let SHIELDFLAG: UInt32 = 0x0001
     static let REPAIRFLAG: UInt32 = 0x0002
@@ -114,13 +115,18 @@ class Player: CustomStringConvertible {
     private(set) var direction: CGFloat = 0.0 // 2 * Double.pi = 360 degrees
     private(set) var speed = 0
     var playerTacticalNode = SKSpriteNode()
-    var shieldNode = SKShapeNode(circleOfRadius: CGFloat(NetrekMath.playerSize)/1.8)
+    let shieldTexture = Player.shieldFactory.shieldTexture()
+    var shieldNode = SKSpriteNode()
+    //var shieldNode = SKShapeNode(circleOfRadius: CGFloat(NetrekMath.playerSize)/1.8)
+    
     
     init(playerID: Int) {
         self.playerID = playerID
         self.remakeNode()
-        shieldNode.lineWidth = CGFloat(NetrekMath.playerSize) / 10.0
-        shieldNode.strokeColor = .green
+        shieldNode = SKSpriteNode(texture: shieldTexture)
+        shieldNode.colorBlendFactor = 1.0
+        //shieldNode.lineWidth = CGFloat(NetrekMath.playerSize) / 10.0
+        //shieldNode.strokeColor = .green
     }
     public var description: String {
         get {
@@ -179,6 +185,7 @@ class Player: CustomStringConvertible {
         self.playerTacticalNode.zPosition = ZPosition.ship.rawValue
         self.playerTacticalNode.zRotation = self.direction
         self.playerTacticalNode.size = CGSize(width: NetrekMath.playerSize, height: NetrekMath.playerSize)
+        self.shieldNode.color = NetrekMath.color(team: self.team)
         self.playerTacticalNode.addChild(self.shieldNode)
         self.updateNode()
     //appDelegate.tacticalViewController?.scene.addChild(self.playerTacticalNode)
@@ -233,6 +240,13 @@ class Player: CustomStringConvertible {
                 debugPrint("Player.update.noAction playerID \(String(describing: playerID)) deltaX \(deltaX) deltaY \(deltaY) deltaT \(deltaTime)")
             }*/
             if self.me {
+                if self.shieldStrength < 20 {
+                    self.shieldNode.alpha = 0.2
+                } else if shieldStrength > 100 {
+                    self.shieldNode.alpha = 1.0
+                } else {
+                    self.shieldNode.alpha = CGFloat(self.shieldStrength) / 100.0
+                }
                 if let defaultCamera = appDelegate.tacticalViewController?.defaultCamera {
                     defaultCamera.position = CGPoint(x: self.positionX, y: self.positionY)
                     /*let action = SKAction.moveBy(x: CGFloat(deltaX), y: CGFloat(deltaY), duration: deltaTime)
