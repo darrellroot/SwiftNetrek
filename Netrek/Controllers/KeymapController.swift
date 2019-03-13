@@ -85,6 +85,7 @@ class KeymapController {
 
     init() {
         self.setDefaults()
+        self.loadSavedKeymaps()
     }
     
     func setDefaults() {
@@ -122,6 +123,30 @@ class KeymapController {
             .asteriskKey:.practiceRobot,
         ]
     }
+    public func setKeymap(control: Control, command: Command) {
+        self.keymap[control] = command
+        appDelegate.defaults.set(command.rawValue, forKey: control.rawValue)
+    }
+    func resetKeymaps() {
+        for control in Control.allCases {
+            appDelegate.defaults.removeObject(forKey: control.rawValue)
+        }
+        self.setDefaults()
+        appDelegate.defaults.synchronize()
+    }
+    func loadSavedKeymaps() {
+        for control in Control.allCases {
+            if let commandString = appDelegate.defaults.string(forKey: control.rawValue) {
+                for command in Command.allCases {
+                    if command.rawValue == commandString {
+                        keymap[control] = command
+                    }
+                }
+            }
+        }
+    }
+    //appDelegate.keymapController.setKeymap(control: control, command: command)
+
     func execute(_ control: Control, location: CGPoint?) {
         if let command = keymap[control] {
             switch command {

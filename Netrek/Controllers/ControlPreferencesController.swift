@@ -71,14 +71,15 @@ class ControlPreferencesController: NSViewController {
         if let control = controlArray[safe: sender.tag] {
             for command in Command.allCases {
                 if command.rawValue == sender.titleOfSelectedItem {
-                    appDelegate.keymapController.keymap[control] = command
+                    appDelegate.keymapController.setKeymap(control: control, command: command)
+                    //appDelegate.keymapController.keymap[control] = command
                     debugPrint("setting control \(control.rawValue) to command \(command.rawValue)")
                 }
             }
         }
     }
     @objc func resetAll(sender: NSButton) {
-        appDelegate.keymapController.setDefaults()
+        appDelegate.keymapController.resetKeymaps()
         self.setupControls()
     }
 }
