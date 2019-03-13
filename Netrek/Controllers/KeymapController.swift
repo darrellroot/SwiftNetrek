@@ -9,7 +9,7 @@
 import Foundation
 import AppKit
 
-enum Control: String {
+enum Control: String, CaseIterable {
     case zeroKey = "0 key"
     case oneKey = "1 key"
     case twoKey = "2 key"
@@ -21,8 +21,8 @@ enum Control: String {
     case eightKey = "8 key"
     case nineKey = "9 key"
     case leftMouse = "left mouse button"
-    case otherMouse = "other mouse button (center)"
-    case rightMouse = "right mouse button and control-click"
+    case otherMouse = "center mouse button"
+    case rightMouse = "right mouse button"
     case bKey = "b key"
     case cKey = "c key"
     case dKey = "d key"
@@ -43,7 +43,7 @@ enum Control: String {
     case asteriskKey = "* key"
 }
 
-enum Command: String {
+enum Command: String, CaseIterable {
     case speedZero = "Set speed 0"
     case speedOne = "Set speed 1"
     case speedTwo = "Set speed 2"
@@ -88,6 +88,7 @@ class KeymapController {
     }
     
     func setDefaults() {
+        keymap = [:]
         keymap = [
             .zeroKey:.speedZero,
             .oneKey:.speedOne,
@@ -178,8 +179,8 @@ class KeymapController {
                     let myTorpNum = UInt8(me.playerID * 8 + count)
                     let cpDetMyTorps = MakePacket.cpDetMyTorps(torpNum: myTorpNum)
                     appDelegate.reader?.send(content: cpDetMyTorps)
-                    appDelegate.soundController.play(sound: .detonate, volume: 0.5)
                 }
+                appDelegate.soundController.play(sound: .detonate, volume: 0.5)
             case .refit:
                 appDelegate.messageViewController?.gotMessage("To refit, orbit home planet and select LAUNCH SHIP menu item")
                 break

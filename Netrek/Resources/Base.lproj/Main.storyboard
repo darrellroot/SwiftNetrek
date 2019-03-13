@@ -23,7 +23,15 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
-                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
+                                        <menuItem title="Control Preferences" id="BOF-NM-1cW">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <segue destination="WKh-eM-qL6" kind="show" id="chh-xP-NQg"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Other Preferences" id="2U8-of-EG5">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
                                         <menuItem title="Services" id="NMo-om-nkz">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -56,9 +64,9 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="View" id="H8h-7b-M4v">
+                            <menuItem title="Window" id="aUF-d1-5bR">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="View" id="HyV-fh-RgO">
+                                <menu key="submenu" title="Window" systemMenu="window" id="Td7-aD-5lo">
                                     <items>
                                         <menuItem title="Enter Full Screen" keyEquivalent="f" id="4J7-dP-txa">
                                             <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
@@ -66,13 +74,7 @@
                                                 <action selector="toggleFullScreen:" target="Ady-hI-5gd" id="dU3-MA-1Rq"/>
                                             </connections>
                                         </menuItem>
-                                    </items>
-                                </menu>
-                            </menuItem>
-                            <menuItem title="Window" id="aUF-d1-5bR">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Window" systemMenu="window" id="Td7-aD-5lo">
-                                    <items>
+                                        <menuItem isSeparatorItem="YES" id="okO-iA-QEr"/>
                                         <menuItem title="Minimize" keyEquivalent="m" id="OY7-WF-poV">
                                             <connections>
                                                 <action selector="performMiniaturize:" target="Ady-hI-5gd" id="VwT-WD-YPe"/>
@@ -408,6 +410,72 @@
             </objects>
             <point key="canvasLocation" x="202" y="1313"/>
         </scene>
+        <!--Window Controller-->
+        <scene sceneID="6dJ-19-aZg">
+            <objects>
+                <windowController id="WKh-eM-qL6" sceneMemberID="viewController">
+                    <window key="window" title="Control Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" appearanceType="darkAqua" frameAutosaveName="" animationBehavior="default" id="psv-gL-LlI">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+                        <connections>
+                            <outlet property="delegate" destination="WKh-eM-qL6" id="Qvl-YE-aKN"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="xZm-LT-EsT" kind="relationship" relationship="window.shadowedContentViewController" id="7yn-oI-Eny"/>
+                    </connections>
+                </windowController>
+                <customObject id="Mx3-Qe-QGm" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-568" y="-149"/>
+        </scene>
+        <!--Control Preferences Controller-->
+        <scene sceneID="zjq-R4-Cni">
+            <objects>
+                <viewController id="xZm-LT-EsT" customClass="ControlPreferencesController" customModule="Netrek" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" appearanceType="darkAqua" id="01K-XN-Msg">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="allowed" translatesAutoresizingMaskIntoConstraints="NO" id="f2N-nA-q6M" customClass="FlipScrollView" customModule="Netrek" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                                <clipView key="contentView" id="fn0-gr-rPK">
+                                    <rect key="frame" x="1" y="1" width="463" height="268"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <view fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vSe-2E-wNu" customClass="FlipView" customModule="Netrek" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="448" height="253"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </view>
+                                    </subviews>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="WBg-oQ-SZc">
+                                    <rect key="frame" x="-100" y="-100" width="166" height="15"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="de4-Mj-rKf">
+                                    <rect key="frame" x="464" y="1" width="15" height="268"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="f2N-nA-q6M" firstAttribute="top" secondItem="01K-XN-Msg" secondAttribute="top" id="D45-Ev-wyr"/>
+                            <constraint firstAttribute="bottom" secondItem="f2N-nA-q6M" secondAttribute="bottom" id="HjX-0X-vCa"/>
+                            <constraint firstItem="f2N-nA-q6M" firstAttribute="leading" secondItem="01K-XN-Msg" secondAttribute="leading" id="cPR-2S-yHo"/>
+                            <constraint firstAttribute="trailing" secondItem="f2N-nA-q6M" secondAttribute="trailing" id="pC8-Ju-grb"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="scrollView" destination="f2N-nA-q6M" id="U0L-zf-zLd"/>
+                    </connections>
+                </viewController>
+                <customObject id="Ayu-DP-FLr" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1097" y="-166"/>
+        </scene>
         <!--Tactical View Controller-->
         <scene sceneID="cV4-Zt-N4h">
             <objects>
@@ -425,7 +493,7 @@
         <scene sceneID="WCl-WF-gbZ">
             <objects>
                 <windowController id="ozP-Vi-sda" sceneMemberID="viewController">
-                    <window key="window" title="Swift Netrek Client Credits" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="auY-u6-jbY">
+                    <window key="window" title="Swift Netrek Client Credits" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" appearanceType="darkAqua" frameAutosaveName="" animationBehavior="default" id="auY-u6-jbY">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
@@ -446,7 +514,7 @@
         <scene sceneID="ggW-bB-eLc">
             <objects>
                 <viewController id="qNZ-ND-dt9" customClass="CreditsViewController" customModule="Netrek" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="mgo-45-QSo">
+                    <view key="view" appearanceType="darkAqua" id="mgo-45-QSo">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>

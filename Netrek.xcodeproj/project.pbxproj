@@ -52,6 +52,10 @@
 		2FA666052239862100F0CA76 /* 175266__jonccox__gun-spark.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2FA665FF2239862100F0CA76 /* 175266__jonccox__gun-spark.wav */; };
 		2FA666062239862100F0CA76 /* 175262__jonccox__gun-cannon.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2FA666002239862100F0CA76 /* 175262__jonccox__gun-cannon.wav */; };
 		2FA666082239987400F0CA76 /* 71852__ludvique__digital-whoosh-soft.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2FA666072239987400F0CA76 /* 71852__ludvique__digital-whoosh-soft.wav */; };
+		2FA6660A2239A4F500F0CA76 /* ControlPreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA666092239A4F500F0CA76 /* ControlPreferencesController.swift */; };
+		2FA6660C2239A5CA00F0CA76 /* FlipScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA6660B2239A5CA00F0CA76 /* FlipScrollView.swift */; };
+		2FA6660E2239A8C300F0CA76 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA6660D2239A8C300F0CA76 /* Label.swift */; };
+		2FA666102239ABFD00F0CA76 /* FlipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA6660F2239ABFD00F0CA76 /* FlipView.swift */; };
 		2FD8567422335770005165C1 /* PlayerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD8567322335770005165C1 /* PlayerListViewController.swift */; };
 		2FD8569422337CFC005165C1 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD8569322337CFC005165C1 /* PlayerView.swift */; };
 		2FD856962234222D005165C1 /* StrategicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD856952234222D005165C1 /* StrategicView.swift */; };
@@ -112,6 +116,10 @@
 		2FA665FF2239862100F0CA76 /* 175266__jonccox__gun-spark.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "175266__jonccox__gun-spark.wav"; sourceTree = "<group>"; };
 		2FA666002239862100F0CA76 /* 175262__jonccox__gun-cannon.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "175262__jonccox__gun-cannon.wav"; sourceTree = "<group>"; };
 		2FA666072239987400F0CA76 /* 71852__ludvique__digital-whoosh-soft.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "71852__ludvique__digital-whoosh-soft.wav"; sourceTree = "<group>"; };
+		2FA666092239A4F500F0CA76 /* ControlPreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlPreferencesController.swift; sourceTree = "<group>"; };
+		2FA6660B2239A5CA00F0CA76 /* FlipScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FlipScrollView.swift; path = Netrek/Views/FlipScrollView.swift; sourceTree = SOURCE_ROOT; };
+		2FA6660D2239A8C300F0CA76 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		2FA6660F2239ABFD00F0CA76 /* FlipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipView.swift; sourceTree = "<group>"; };
 		2FD8567322335770005165C1 /* PlayerListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListViewController.swift; sourceTree = "<group>"; };
 		2FD8569322337CFC005165C1 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		2FD856952234222D005165C1 /* StrategicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategicView.swift; sourceTree = "<group>"; };
@@ -194,6 +202,7 @@
 		2F750172222A41C8002040A7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2FA666092239A4F500F0CA76 /* ControlPreferencesController.swift */,
 				2FD8569722346743005165C1 /* HUDViewController.swift */,
 				2F75015A22299E55002040A7 /* OverallViewController.swift */,
 				2F750188222B4532002040A7 /* MessageViewController.swift */,
@@ -261,6 +270,9 @@
 				2FD8569322337CFC005165C1 /* PlayerView.swift */,
 				2F7501B4222F5BD7002040A7 /* TacticalView.swift */,
 				2FA665EE2238A67800F0CA76 /* ShieldFactory.swift */,
+				2FA6660B2239A5CA00F0CA76 /* FlipScrollView.swift */,
+				2FA6660F2239ABFD00F0CA76 /* FlipView.swift */,
+				2FA6660D2239A8C300F0CA76 /* Label.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -382,6 +394,7 @@
 				2F7501A2222C930B002040A7 /* packets-extensions.swift in Sources */,
 				2F75016C2229FA22002040A7 /* MetaServerEntry.swift in Sources */,
 				2FA665F722397B1B00F0CA76 /* SoundController.swift in Sources */,
+				2FA6660A2239A4F500F0CA76 /* ControlPreferencesController.swift in Sources */,
 				2F750185222B2476002040A7 /* PacketAnalyzer.swift in Sources */,
 				2FA665EF2238A67800F0CA76 /* ShieldFactory.swift in Sources */,
 				2F94A83322324C2600FAAF39 /* SKView-extensions.swift in Sources */,
@@ -403,11 +416,14 @@
 				2FD8569C22347566005165C1 /* ShipInfo.swift in Sources */,
 				2FD8569822346743005165C1 /* HUDViewController.swift in Sources */,
 				2F7501A4222CA33C002040A7 /* packets.swift in Sources */,
+				2FA6660E2239A8C300F0CA76 /* Label.swift in Sources */,
 				2F7501B5222F5BD7002040A7 /* TacticalView.swift in Sources */,
 				2F750198222B66AF002040A7 /* Data-extensions.swift in Sources */,
+				2FA666102239ABFD00F0CA76 /* FlipView.swift in Sources */,
 				2F750180222AEC8B002040A7 /* MakePacket.swift in Sources */,
 				2F94A8312231AEA800FAAF39 /* NetrekMath.swift in Sources */,
 				2F750183222AF698002040A7 /* enumerations.swift in Sources */,
+				2FA6660C2239A5CA00F0CA76 /* FlipScrollView.swift in Sources */,
 				2F75019A222C33D6002040A7 /* Planet.swift in Sources */,
 				2F94A8352233009600FAAF39 /* KeymapController.swift in Sources */,
 				2F94A82F2230DA3B00FAAF39 /* TacticalScene.swift in Sources */,
