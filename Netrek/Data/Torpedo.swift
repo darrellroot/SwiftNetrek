@@ -21,6 +21,7 @@ class Torpedo {
     var direction: Double = 0.0 // in radians
     var positionX: Int = 0
     var positionY: Int = 0
+    private var soundPlayed = false
     var torpedoNode = SKSpriteNode(color: .red,
                                    size: CGSize(width: NetrekMath.torpedoSize, height: NetrekMath.torpedoSize))
 
@@ -34,6 +35,9 @@ class Torpedo {
             }
         }
         self.status = status
+        if status == 1 {
+            soundPlayed = false
+        }
     }
     func update(directionNetrek: Int, positionX: Int, positionY: Int) {
         if self.status == 0 {
@@ -41,5 +45,17 @@ class Torpedo {
         }
         self.positionX = positionX
         self.positionY = positionY
+        if soundPlayed == false {
+            if let me = appDelegate.universe.me {
+                let taxiDistance = abs(me.positionX - self.positionX) + abs(me.positionY - self.positionY)
+                if taxiDistance < NetrekMath.displayDistance / 4 {
+                    let volume = 1.0 - (4.0 * Float(taxiDistance) / (NetrekMath.displayDistanceFloat))
+                    
+                    appDelegate.soundController.play(sound: .torpedo, volume: volume)
+                    debugPrint("playing torpedo sound volume \(volume)")
+                    soundPlayed = true
+                }
+            }
+        }
     }
 }

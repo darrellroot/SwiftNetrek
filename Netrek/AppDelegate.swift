@@ -22,6 +22,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let timerInterval = 1.0 / Double(UPDATE_RATE)
     var timer: Timer?
     var timerCount = 0
+    let soundController = SoundController()
     // The following are initialized by the child controllers via the appdelegate
     var messageViewController: MessageViewController?
     

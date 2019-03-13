@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.WebKit2IBPlugin" version="14460.31"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -221,6 +222,13 @@
                                                 <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="rpQ-Tb-gSn"/>
+                                        <menuItem title="Netrek Credits" id="q32-ka-FvE">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <segue destination="ozP-Vi-sda" kind="show" id="fDk-jR-M0k"/>
+                                            </connections>
+                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>
@@ -304,7 +312,7 @@
                                 <gridCells>
                                     <gridCell row="xD4-I5-dAT" column="HqZ-jq-B7p" id="zzP-nL-UHk">
                                         <containerView key="contentView" translatesAutoresizingMaskIntoConstraints="NO" id="FcW-AB-Ga8" userLabel="Tactical Container View">
-                                            <rect key="frame" x="0.0" y="462" width="100" height="60"/>
+                                            <rect key="frame" x="316" y="274" width="100" height="60"/>
                                             <connections>
                                                 <segue destination="Zsp-ZK-TcN" kind="embed" id="J7t-RV-edc"/>
                                             </connections>
@@ -312,7 +320,7 @@
                                     </gridCell>
                                     <gridCell row="xD4-I5-dAT" column="Ste-nP-qmP" id="854-EW-b4p">
                                         <containerView key="contentView" translatesAutoresizingMaskIntoConstraints="NO" id="Oyb-z0-Kxg" userLabel="Strategic Container View">
-                                            <rect key="frame" x="418" y="462" width="100" height="60"/>
+                                            <rect key="frame" x="733" y="274" width="100" height="60"/>
                                             <connections>
                                                 <segue destination="tQA-Kk-hUK" kind="embed" id="5wW-Pj-N78"/>
                                             </connections>
@@ -320,7 +328,7 @@
                                     </gridCell>
                                     <gridCell row="DFd-Lc-dFB" column="HqZ-jq-B7p" id="cqu-Y4-MOE">
                                         <containerView key="contentView" translatesAutoresizingMaskIntoConstraints="NO" id="Rg3-kK-gBt" userLabel="HUD Container View">
-                                            <rect key="frame" x="0.0" y="409" width="100" height="50"/>
+                                            <rect key="frame" x="316" y="33" width="100" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="Dwk-7u-wId"/>
                                             </constraints>
@@ -331,7 +339,7 @@
                                     </gridCell>
                                     <gridCell row="DFd-Lc-dFB" column="Ste-nP-qmP" id="MBY-Rk-0rZ">
                                         <containerView key="contentView" translatesAutoresizingMaskIntoConstraints="NO" id="SpF-99-HOD" userLabel="Send Message Container View">
-                                            <rect key="frame" x="418" y="419" width="100" height="30"/>
+                                            <rect key="frame" x="733" y="43" width="100" height="30"/>
                                             <connections>
                                                 <segue destination="tDw-iQ-NwS" kind="embed" id="qae-eC-cj9"/>
                                             </connections>
@@ -339,7 +347,7 @@
                                     </gridCell>
                                     <gridCell row="FIg-v0-FBh" column="HqZ-jq-B7p" id="zRl-Zo-2jc">
                                         <containerView key="contentView" translatesAutoresizingMaskIntoConstraints="NO" id="o2q-es-GCi" userLabel="Player List View">
-                                            <rect key="frame" x="0.0" y="188" width="100" height="30"/>
+                                            <rect key="frame" x="316" y="0.0" width="100" height="30"/>
                                             <connections>
                                                 <segue destination="lyJ-BP-EQ1" kind="embed" id="7j5-2W-vDk"/>
                                             </connections>
@@ -347,7 +355,7 @@
                                     </gridCell>
                                     <gridCell row="FIg-v0-FBh" column="Ste-nP-qmP" id="nr4-oW-AZK">
                                         <containerView key="contentView" translatesAutoresizingMaskIntoConstraints="NO" id="0Ew-YM-Th3" userLabel="Message Container View">
-                                            <rect key="frame" x="418" y="188" width="100" height="30"/>
+                                            <rect key="frame" x="733" y="0.0" width="100" height="30"/>
                                             <connections>
                                                 <segue destination="1yz-XC-MLA" kind="embed" id="AAa-T3-ir2"/>
                                             </connections>
@@ -412,6 +420,58 @@
                 <customObject id="XzW-3P-xSJ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-648" y="293"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="WCl-WF-gbZ">
+            <objects>
+                <windowController id="ozP-Vi-sda" sceneMemberID="viewController">
+                    <window key="window" title="Swift Netrek Client Credits" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="auY-u6-jbY">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+                        <connections>
+                            <outlet property="delegate" destination="ozP-Vi-sda" id="8p4-Xs-bUV"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="qNZ-ND-dt9" kind="relationship" relationship="window.shadowedContentViewController" id="y8b-V8-gNY"/>
+                    </connections>
+                </windowController>
+                <customObject id="3FP-UB-vD8" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="645" y="-166"/>
+        </scene>
+        <!--Credits View Controller-->
+        <scene sceneID="ggW-bB-eLc">
+            <objects>
+                <viewController id="qNZ-ND-dt9" customClass="CreditsViewController" customModule="Netrek" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="mgo-45-QSo">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <wkWebView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="APc-0P-rTj">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="APc-0P-rTj" firstAttribute="leading" secondItem="mgo-45-QSo" secondAttribute="leading" id="00e-G6-vl6"/>
+                            <constraint firstItem="APc-0P-rTj" firstAttribute="top" secondItem="mgo-45-QSo" secondAttribute="top" id="7QE-lx-9i0"/>
+                            <constraint firstAttribute="bottom" secondItem="APc-0P-rTj" secondAttribute="bottom" id="Hyd-CT-qHP"/>
+                            <constraint firstAttribute="trailing" secondItem="APc-0P-rTj" secondAttribute="trailing" id="W1E-D5-vWv"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="creditsWebView" destination="APc-0P-rTj" id="Mi2-SP-EFV"/>
+                    </connections>
+                </viewController>
+                <customObject id="hcX-1I-KSB" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1174" y="-262"/>
         </scene>
         <!--Strategic View Controller-->
         <scene sceneID="NQt-FY-33X">

@@ -42,7 +42,9 @@ class Laser {
         guard let source = appDelegate.universe.players[self.laserID] else { return }
         guard let me = appDelegate.universe.me else { return }
         let taxiDistance = abs(me.positionX - source.positionX) + abs(me.positionY - source.positionY)
-        guard taxiDistance < NetrekMath.displayDistance else { return }
+        guard taxiDistance < NetrekMath.displayDistance / 2 else { return }
+        let volume = 1.0 - (2.0 * Float(taxiDistance) / (NetrekMath.displayDistanceFloat))
+        appDelegate.soundController.play(sound: .laser, volume: volume)
         switch self.status{
             
         case 1: // hit

@@ -40,6 +40,18 @@
 		2F94A83322324C2600FAAF39 /* SKView-extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F94A83222324C2600FAAF39 /* SKView-extensions.swift */; };
 		2F94A8352233009600FAAF39 /* KeymapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F94A8342233009600FAAF39 /* KeymapController.swift */; };
 		2FA665EF2238A67800F0CA76 /* ShieldFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA665EE2238A67800F0CA76 /* ShieldFactory.swift */; };
+		2FA665F12239727A00F0CA76 /* CreditsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA665F02239727A00F0CA76 /* CreditsViewController.swift */; };
+		2FA665F32239743400F0CA76 /* FullCredits.html in Resources */ = {isa = PBXBuildFile; fileRef = 2FA665F22239743400F0CA76 /* FullCredits.html */; };
+		2FA665F52239770200F0CA76 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2FA665F42239770200F0CA76 /* Credits.rtf */; };
+		2FA665F722397B1B00F0CA76 /* SoundController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA665F622397B1B00F0CA76 /* SoundController.swift */; };
+		2FA665FA22397E1300F0CA76 /* 399303__deleted-user-5405837__explosion-012.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2FA665F922397E1300F0CA76 /* 399303__deleted-user-5405837__explosion-012.mp3 */; };
+		2FA666012239862100F0CA76 /* 175269__jonccox__gun-zap2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2FA665FB2239862000F0CA76 /* 175269__jonccox__gun-zap2.wav */; };
+		2FA666022239862100F0CA76 /* 175270__jonccox__gun-zap.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2FA665FC2239862000F0CA76 /* 175270__jonccox__gun-zap.wav */; };
+		2FA666032239862100F0CA76 /* 175267__jonccox__gun-plasma.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2FA665FD2239862000F0CA76 /* 175267__jonccox__gun-plasma.wav */; };
+		2FA666042239862100F0CA76 /* 175265__jonccox__gun-thumper.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2FA665FE2239862100F0CA76 /* 175265__jonccox__gun-thumper.wav */; };
+		2FA666052239862100F0CA76 /* 175266__jonccox__gun-spark.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2FA665FF2239862100F0CA76 /* 175266__jonccox__gun-spark.wav */; };
+		2FA666062239862100F0CA76 /* 175262__jonccox__gun-cannon.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2FA666002239862100F0CA76 /* 175262__jonccox__gun-cannon.wav */; };
+		2FA666082239987400F0CA76 /* 71852__ludvique__digital-whoosh-soft.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2FA666072239987400F0CA76 /* 71852__ludvique__digital-whoosh-soft.wav */; };
 		2FD8567422335770005165C1 /* PlayerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD8567322335770005165C1 /* PlayerListViewController.swift */; };
 		2FD8569422337CFC005165C1 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD8569322337CFC005165C1 /* PlayerView.swift */; };
 		2FD856962234222D005165C1 /* StrategicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD856952234222D005165C1 /* StrategicView.swift */; };
@@ -88,6 +100,18 @@
 		2F94A83222324C2600FAAF39 /* SKView-extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKView-extensions.swift"; sourceTree = "<group>"; };
 		2F94A8342233009600FAAF39 /* KeymapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeymapController.swift; sourceTree = "<group>"; };
 		2FA665EE2238A67800F0CA76 /* ShieldFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldFactory.swift; sourceTree = "<group>"; };
+		2FA665F02239727A00F0CA76 /* CreditsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsViewController.swift; sourceTree = "<group>"; };
+		2FA665F22239743400F0CA76 /* FullCredits.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = FullCredits.html; sourceTree = "<group>"; };
+		2FA665F42239770200F0CA76 /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
+		2FA665F622397B1B00F0CA76 /* SoundController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundController.swift; sourceTree = "<group>"; };
+		2FA665F922397E1300F0CA76 /* 399303__deleted-user-5405837__explosion-012.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "399303__deleted-user-5405837__explosion-012.mp3"; sourceTree = "<group>"; };
+		2FA665FB2239862000F0CA76 /* 175269__jonccox__gun-zap2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "175269__jonccox__gun-zap2.wav"; sourceTree = "<group>"; };
+		2FA665FC2239862000F0CA76 /* 175270__jonccox__gun-zap.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "175270__jonccox__gun-zap.wav"; sourceTree = "<group>"; };
+		2FA665FD2239862000F0CA76 /* 175267__jonccox__gun-plasma.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "175267__jonccox__gun-plasma.wav"; sourceTree = "<group>"; };
+		2FA665FE2239862100F0CA76 /* 175265__jonccox__gun-thumper.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "175265__jonccox__gun-thumper.wav"; sourceTree = "<group>"; };
+		2FA665FF2239862100F0CA76 /* 175266__jonccox__gun-spark.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "175266__jonccox__gun-spark.wav"; sourceTree = "<group>"; };
+		2FA666002239862100F0CA76 /* 175262__jonccox__gun-cannon.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "175262__jonccox__gun-cannon.wav"; sourceTree = "<group>"; };
+		2FA666072239987400F0CA76 /* 71852__ludvique__digital-whoosh-soft.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "71852__ludvique__digital-whoosh-soft.wav"; sourceTree = "<group>"; };
 		2FD8567322335770005165C1 /* PlayerListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListViewController.swift; sourceTree = "<group>"; };
 		2FD8569322337CFC005165C1 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		2FD856952234222D005165C1 /* StrategicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategicView.swift; sourceTree = "<group>"; };
@@ -135,6 +159,7 @@
 				2F75016822299F2C002040A7 /* license.txt */,
 				2F75015822299E55002040A7 /* AppDelegate.swift */,
 				2F750175222A4296002040A7 /* Communication */,
+				2FA665F822397B8800F0CA76 /* Sounds */,
 				2F750172222A41C8002040A7 /* Controllers */,
 				2F75016A2229F9F1002040A7 /* DataTypes */,
 				2F7501B6222F6B28002040A7 /* Resources */,
@@ -178,6 +203,8 @@
 				2F94A82E2230DA3B00FAAF39 /* TacticalScene.swift */,
 				2F94A8342233009600FAAF39 /* KeymapController.swift */,
 				2FD8567322335770005165C1 /* PlayerListViewController.swift */,
+				2FA665F02239727A00F0CA76 /* CreditsViewController.swift */,
+				2FA665F622397B1B00F0CA76 /* SoundController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -242,9 +269,26 @@
 			isa = PBXGroup;
 			children = (
 				2F75015E22299E55002040A7 /* Main.storyboard */,
+				2FA665F22239743400F0CA76 /* FullCredits.html */,
+				2FA665F42239770200F0CA76 /* Credits.rtf */,
 				2F75015C22299E55002040A7 /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		2FA665F822397B8800F0CA76 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				2FA666002239862100F0CA76 /* 175262__jonccox__gun-cannon.wav */,
+				2FA665FE2239862100F0CA76 /* 175265__jonccox__gun-thumper.wav */,
+				2FA665FF2239862100F0CA76 /* 175266__jonccox__gun-spark.wav */,
+				2FA665FD2239862000F0CA76 /* 175267__jonccox__gun-plasma.wav */,
+				2FA665FB2239862000F0CA76 /* 175269__jonccox__gun-zap2.wav */,
+				2FA665FC2239862000F0CA76 /* 175270__jonccox__gun-zap.wav */,
+				2FA666072239987400F0CA76 /* 71852__ludvique__digital-whoosh-soft.wav */,
+				2FA665F922397E1300F0CA76 /* 399303__deleted-user-5405837__explosion-012.mp3 */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,8 +355,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FA666052239862100F0CA76 /* 175266__jonccox__gun-spark.wav in Resources */,
+				2FA666022239862100F0CA76 /* 175270__jonccox__gun-zap.wav in Resources */,
+				2FA665F52239770200F0CA76 /* Credits.rtf in Resources */,
+				2FA666082239987400F0CA76 /* 71852__ludvique__digital-whoosh-soft.wav in Resources */,
+				2FA665FA22397E1300F0CA76 /* 399303__deleted-user-5405837__explosion-012.mp3 in Resources */,
 				2F75016922299F2C002040A7 /* license.txt in Resources */,
+				2FA665F32239743400F0CA76 /* FullCredits.html in Resources */,
+				2FA666012239862100F0CA76 /* 175269__jonccox__gun-zap2.wav in Resources */,
 				2F75015D22299E55002040A7 /* Assets.xcassets in Resources */,
+				2FA666032239862100F0CA76 /* 175267__jonccox__gun-plasma.wav in Resources */,
+				2FA666042239862100F0CA76 /* 175265__jonccox__gun-thumper.wav in Resources */,
+				2FA666062239862100F0CA76 /* 175262__jonccox__gun-cannon.wav in Resources */,
 				2F75016022299E55002040A7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -327,6 +381,7 @@
 				2F7501A0222C8E59002040A7 /* Tuple16.swift in Sources */,
 				2F7501A2222C930B002040A7 /* packets-extensions.swift in Sources */,
 				2F75016C2229FA22002040A7 /* MetaServerEntry.swift in Sources */,
+				2FA665F722397B1B00F0CA76 /* SoundController.swift in Sources */,
 				2F750185222B2476002040A7 /* PacketAnalyzer.swift in Sources */,
 				2FA665EF2238A67800F0CA76 /* ShieldFactory.swift in Sources */,
 				2F94A83322324C2600FAAF39 /* SKView-extensions.swift in Sources */,
@@ -359,6 +414,7 @@
 				2F750171222A21BE002040A7 /* Collection-extensions.swift in Sources */,
 				2F750189222B4532002040A7 /* MessageViewController.swift in Sources */,
 				2F750194222B6019002040A7 /* Universe.swift in Sources */,
+				2FA665F12239727A00F0CA76 /* CreditsViewController.swift in Sources */,
 				2F75017B222A4956002040A7 /* Globals.swift in Sources */,
 				2FD8569422337CFC005165C1 /* PlayerView.swift in Sources */,
 			);
