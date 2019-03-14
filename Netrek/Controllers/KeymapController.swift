@@ -186,7 +186,7 @@ class KeymapController {
                 if let cloakState = appDelegate.universe.me?.cloak {
                     let cpCloak = MakePacket.cpCloak(state: !cloakState )
                     appDelegate.reader?.send(content: cpCloak)
-                    appDelegate.soundController.play(sound: .shield, volume: 1.0)
+                    appDelegate.soundController?.play(sound: .shield, volume: 1.0)
                 }
 
             case .coup:
@@ -196,7 +196,7 @@ class KeymapController {
             case .detEnemy:
                 let cpDetTorps = MakePacket.cpDetTorps()
                 appDelegate.reader?.send(content: cpDetTorps)
-            appDelegate.soundController.play(sound: .detonate, volume: 0.5)
+            appDelegate.soundController?.play(sound: .detonate, volume: 0.5)
 
             case .detOwn:
                 guard let me = appDelegate.universe.me else { return }
@@ -205,7 +205,7 @@ class KeymapController {
                     let cpDetMyTorps = MakePacket.cpDetMyTorps(torpNum: myTorpNum)
                     appDelegate.reader?.send(content: cpDetMyTorps)
                 }
-                appDelegate.soundController.play(sound: .detonate, volume: 0.5)
+                appDelegate.soundController?.play(sound: .detonate, volume: 0.5)
             case .refit:
                 appDelegate.messageViewController?.gotMessage("To refit, orbit home planet and select LAUNCH SHIP menu item")
                 break
@@ -230,7 +230,7 @@ class KeymapController {
                         let cpShield = MakePacket.cpShield(up: true)
                         appDelegate.reader?.send(content: cpShield)
                     }
-                    appDelegate.soundController.play(sound: .shield, volume: 1.0)
+                    appDelegate.soundController?.play(sound: .shield, volume: 1.0)
                 }
             case .tractorBeam:
                 debugPrint("TractorBeam location \(String(describing: location))")
@@ -274,7 +274,7 @@ class KeymapController {
             case .raiseShields:
                 let cpShield = MakePacket.cpShield(up: true)
                 appDelegate.reader?.send(content: cpShield)
-                appDelegate.soundController.play(sound: .shield, volume: 1.0)
+                appDelegate.soundController?.play(sound: .shield, volume: 1.0)
             
             case .repair:
                 if let repairState = appDelegate.universe.me?.repair {

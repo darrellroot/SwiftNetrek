@@ -105,7 +105,7 @@ class TacticalScene: SKScene {
             } else {
                 detonate(player: player)
                 let volume = 1 - (Float(taxiDistance) / NetrekMath.displayDistanceFloat)
-                appDelegate.soundController.play(sound: .explosion, volume: volume)
+                appDelegate.soundController?.play(sound: .explosion, volume: volume)
 
             player.playerTacticalNode.removeFromParent()
                 return

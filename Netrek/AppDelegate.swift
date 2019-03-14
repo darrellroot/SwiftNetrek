@@ -23,7 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let timerInterval = 1.0 / Double(UPDATE_RATE)
     var timer: Timer?
     var timerCount = 0
-    let soundController = SoundController()
+    var soundController: SoundController?
     // The following are initialized by the child controllers via the appdelegate
     var messageViewController: MessageViewController?
     
@@ -59,6 +59,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var selectShipAttackCruiser: NSMenuItem!
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        soundController = SoundController()
         keymapController = KeymapController()
         // Insert code here to initialize your application
         metaServer = MetaServer(hostname: "metaserver.netrek.org", port: 3521)

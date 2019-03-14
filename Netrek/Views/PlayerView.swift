@@ -8,10 +8,14 @@
 
 import Cocoa
 
+let playerListFontKey = "playerListFont"
+
 class PlayerView: NSScrollView {
     
     let appDelegate = NSApplication.shared.delegate as! AppDelegate
 
+    var fontSize = 10.0
+    var font = NSFont(name: "Courier", size: 10.0)!
 
     let rows = 33
     //let columns = 2  two columns hardcoded in logic
@@ -20,6 +24,14 @@ class PlayerView: NSScrollView {
     
     //let columnWidth = [3,3,10,13,5] //characters in each column
     let totalCharacterWidth = 70
+    func setFontSize(newSize: CGFloat) {
+        if let font = NSFont(name: "Courier", size: newSize) {
+            self.font = font
+            appDelegate.defaults.set(Float(newSize), forKey: playerListFontKey)
+        }
+        self.needsLayout = true
+        self.needsDisplay = true
+    }
 
     override var isFlipped: Bool {
         return true
@@ -65,7 +77,7 @@ class PlayerView: NSScrollView {
         let verticalPosition = 0
         let horizontalInterval = Int(self.bounds.width) / totalCharacterWidth
 
-        let attribute: [NSAttributedString.Key: Any]? = [ NSAttributedString.Key.foregroundColor: NSColor.white, NSAttributedString.Key.font: NSFont(name: "Courier",size: 10.0) as Any]
+        let attribute: [NSAttributedString.Key: Any]? = [ NSAttributedString.Key.foregroundColor: NSColor.white, NSAttributedString.Key.font: font as Any]
 
         var attString = NSAttributedString(string: "Team", attributes: attribute)
         var point = CGPoint(x: inset + 3 * horizontalInterval, y: verticalPosition)
@@ -94,7 +106,7 @@ class PlayerView: NSScrollView {
             debugPrint("playerView.displayColumn verticalInterval \(verticalInterval)")
             let horizontalInterval = Int(self.bounds.width) / totalCharacterWidth
             let playerColor = NetrekMath.color(team: player.team)
-            let attribute: [NSAttributedString.Key: Any]? = [ NSAttributedString.Key.foregroundColor: playerColor, NSAttributedString.Key.font: NSFont(name: "Courier",size: 10.0) as Any]
+            let attribute: [NSAttributedString.Key: Any]? = [ NSAttributedString.Key.foregroundColor: playerColor, NSAttributedString.Key.font: font as Any]
 
             // player code
             let verticalPosition = (index + 1) * verticalInterval
@@ -127,12 +139,8 @@ class PlayerView: NSScrollView {
             attString = NSAttributedString(string: player.name, attributes: attribute)
             attString.draw(at: point)
             
-            var kills: String
-            if player.kills != nil {
-                kills = String(player.kills)
-            } else {
-                kills = "??.??"
-            }
+            let kills = String(player.kills)
+            
             point = CGPoint(x: (inset + 32 * horizontalInterval), y: verticalPosition)
             attString = NSAttributedString(string: kills, attributes: attribute)
             attString.draw(at: point)

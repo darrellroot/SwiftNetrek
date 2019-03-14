@@ -8,12 +8,28 @@
 
 import Cocoa
 
+let strategicFontKey = "strategicFont"
+
 class StrategicView: NSView {
     
     let appDelegate = NSApplication.shared.delegate as! AppDelegate
 
+    var fontSize = 9.0
+    var font = NSFont(name: "Courier", size: 9.0)!
+    var largeFont = NSFont(name: "Courier", size: 11.0)!
+    func setFontSize(newSize: CGFloat) {
+        if let font = NSFont(name: "Courier", size: newSize) {
+            self.font = font
+            appDelegate.defaults.set(Float(newSize), forKey: strategicFontKey)
+        }
+        if let largeFont = NSFont(name: "Courier-Bold", size: newSize + 2.0) {
+            self.largeFont = largeFont
+        }
+        self.needsLayout = true
+        self.needsDisplay = true
+    }
     
-     override func draw(_ dirtyRect: NSRect) {
+    override func draw(_ dirtyRect: NSRect) {
         //super.draw(dirtyRect)
         debugPrint("StrategicView.draw)")
         
@@ -22,13 +38,16 @@ class StrategicView: NSView {
         self.bounds.fill()
 
         for planet in appDelegate.universe.planets.values {
+            if planet.name == "Romulus" {
+                let y = 1
+            }
             let stratPosition = CGPoint(x: galXstratX(planet.positionX),y: galYstratY(planet.positionY))
             let prefix = String(planet.name.prefix(3))
             var attributes: [NSAttributedString.Key : NSObject]
             if planet.armies > 4 {
-                attributes = [NSAttributedString.Key.font: NSFont(name: "Courier-Bold", size: 10.0)!,NSAttributedString.Key.baselineOffset: NSNumber(value: 4)]
+                attributes = [NSAttributedString.Key.font: largeFont,NSAttributedString.Key.baselineOffset: NSNumber(value: 4)]
             } else {
-                attributes = [NSAttributedString.Key.font: NSFont(name: "Courier", size: 9.0)!,NSAttributedString.Key.baselineOffset: NSNumber(value: 4)]
+                attributes = [NSAttributedString.Key.font: font,NSAttributedString.Key.baselineOffset: NSNumber(value: 4)]
             }
             // select color
             /*if planet.armies > 4 {
@@ -57,7 +76,7 @@ class StrategicView: NSView {
         if player.slotStatus != .alive {
             return
         }
-        var attributes = [NSAttributedString.Key.font: NSFont(name: "Courier", size: 9.0)!,NSAttributedString.Key.baselineOffset: NSNumber(value: 4)]
+        var attributes = [NSAttributedString.Key.font: font,NSAttributedString.Key.baselineOffset: NSNumber(value: 4)]
         let color: NSColor
         let playerString: String
         if player.cloak == true {
@@ -74,9 +93,9 @@ class StrategicView: NSView {
     }
     
     func galXstratX(_ galacticX: Int) -> Int {
-        return (galacticX * Int(self.bounds.width)) / NetrekMath.galacticSize
+        return (galacticX * Int(self.visibleRect.width)) / NetrekMath.galacticSize
     }
     func galYstratY(_ galacticY: Int) -> Int {
-        return (galacticY * Int(self.bounds.height)) / NetrekMath.galacticSize
+        return (galacticY * Int(self.visibleRect.height)) / (NetrekMath.galacticSize + 300)
     }
 }

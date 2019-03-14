@@ -51,7 +51,7 @@ class Torpedo {
                 if taxiDistance < NetrekMath.displayDistance / 4 {
                     let volume = 1.0 - (4.0 * Float(taxiDistance) / (NetrekMath.displayDistanceFloat))
                     
-                    appDelegate.soundController.play(sound: .torpedo, volume: volume)
+                    appDelegate.soundController?.play(sound: .torpedo, volume: volume)
                     debugPrint("playing torpedo sound volume \(volume)")
                     soundPlayed = true
                 }

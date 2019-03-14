@@ -6,6 +6,174 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Window Controller-->
+        <scene sceneID="gRe-Ur-LWG">
+            <objects>
+                <windowController id="oCs-Kh-2ox" sceneMemberID="viewController">
+                    <window key="window" title="Other Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" appearanceType="darkAqua" frameAutosaveName="" animationBehavior="default" id="Gy1-EZ-ZFo">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+                        <connections>
+                            <outlet property="delegate" destination="oCs-Kh-2ox" id="t8P-Qt-LSK"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="rDi-pP-SQY" kind="relationship" relationship="window.shadowedContentViewController" id="n9k-Tc-xd0"/>
+                    </connections>
+                </windowController>
+                <customObject id="VYQ-rB-X3F" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="62" y="-344"/>
+        </scene>
+        <!--Other Preferences Controller-->
+        <scene sceneID="gBE-Wy-pCs">
+            <objects>
+                <viewController id="rDi-pP-SQY" customClass="OtherPreferencesController" customModule="Netrek" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="BAu-VR-IA9" customClass="FlipView" customModule="Netrek" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="108"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <gridView horizontalHuggingPriority="600" verticalHuggingPriority="600" xPlacement="leading" yPlacement="top" rowAlignment="none" translatesAutoresizingMaskIntoConstraints="NO" id="CQF-e9-iTr">
+                                <rect key="frame" x="20" y="20" width="440" height="68"/>
+                                <rows>
+                                    <gridRow id="cQm-RQ-y79"/>
+                                    <gridRow id="5Ho-9J-hUJ"/>
+                                    <gridRow id="ZxC-q2-cbr"/>
+                                </rows>
+                                <columns>
+                                    <gridColumn id="0xP-Xn-mWx"/>
+                                    <gridColumn id="SJj-j5-dRB"/>
+                                </columns>
+                                <gridCells>
+                                    <gridCell row="cQm-RQ-y79" column="0xP-Xn-mWx" id="yvX-tk-4UA">
+                                        <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CEL-jC-Jh7">
+                                            <rect key="frame" x="-2" y="52" width="149" height="18"/>
+                                            <buttonCell key="cell" type="check" title="Enable Sound" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="yIL-Ih-NH7">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="enableSoundAction:" target="rDi-pP-SQY" id="ORX-k7-SQo"/>
+                                            </connections>
+                                        </button>
+                                    </gridCell>
+                                    <gridCell row="cQm-RQ-y79" column="SJj-j5-dRB" id="q4r-Zb-TyO"/>
+                                    <gridCell row="5Ho-9J-hUJ" column="0xP-Xn-mWx" id="zLi-NT-71A">
+                                        <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vO4-aT-9g8">
+                                            <rect key="frame" x="-2" y="31" width="149" height="17"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Player List Font Size" id="13w-St-ITY">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                    </gridCell>
+                                    <gridCell row="5Ho-9J-hUJ" column="SJj-j5-dRB" id="xoY-MN-j0H">
+                                        <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2ql-QB-Ls6">
+                                            <rect key="frame" x="149" y="24" width="294" height="25"/>
+                                            <popUpButtonCell key="cell" type="push" title="8" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Jg2-Sf-sPL" id="Oa4-1w-2yS">
+                                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="menu"/>
+                                                <menu key="menu" id="HHw-8Q-oSh">
+                                                    <items>
+                                                        <menuItem title="8" state="on" id="Jg2-Sf-sPL">
+                                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                                        </menuItem>
+                                                        <menuItem title="9" id="Jti-4o-73s">
+                                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                                        </menuItem>
+                                                        <menuItem title="10" id="xrd-2J-BJx">
+                                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                                        </menuItem>
+                                                        <menuItem title="11" id="hLp-NB-5ge" userLabel="11">
+                                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                                        </menuItem>
+                                                        <menuItem title="12" id="Zob-Vx-2wM">
+                                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                                        </menuItem>
+                                                        <menuItem title="13" id="Auz-LK-kuH">
+                                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                                        </menuItem>
+                                                        <menuItem title="14" id="l1I-jk-CuN">
+                                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                                        </menuItem>
+                                                    </items>
+                                                </menu>
+                                            </popUpButtonCell>
+                                            <connections>
+                                                <action selector="playerListFontSelected:" target="rDi-pP-SQY" id="PUT-qB-Slq"/>
+                                            </connections>
+                                        </popUpButton>
+                                    </gridCell>
+                                    <gridCell row="ZxC-q2-cbr" column="0xP-Xn-mWx" id="6C7-5M-TAh">
+                                        <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="soX-fr-Wu7">
+                                            <rect key="frame" x="-2" y="4" width="149" height="17"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Strategic Map Font Size" id="SSe-s2-wL0">
+                                                <font key="font" usesAppearanceFont="YES"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                    </gridCell>
+                                    <gridCell row="ZxC-q2-cbr" column="SJj-j5-dRB" id="2wp-jH-egn">
+                                        <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IfF-qj-9Oa">
+                                            <rect key="frame" x="149" y="-3" width="294" height="25"/>
+                                            <popUpButtonCell key="cell" type="push" title="8" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="q8t-eG-oxw" id="UFt-Zj-k0x">
+                                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="menu"/>
+                                                <menu key="menu" id="eQ1-3r-a19">
+                                                    <items>
+                                                        <menuItem title="8" state="on" id="q8t-eG-oxw">
+                                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                                        </menuItem>
+                                                        <menuItem title="9" id="xlq-XR-efG">
+                                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                                        </menuItem>
+                                                        <menuItem title="10" id="0mo-kQ-Z12">
+                                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                                        </menuItem>
+                                                        <menuItem title="11" id="GNr-FG-jQe" userLabel="11">
+                                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                                        </menuItem>
+                                                        <menuItem title="12" id="3by-oU-rPD">
+                                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                                        </menuItem>
+                                                        <menuItem title="13" id="zlX-Qz-iXV">
+                                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                                        </menuItem>
+                                                        <menuItem title="14" id="k08-u5-0nc">
+                                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                                        </menuItem>
+                                                    </items>
+                                                </menu>
+                                            </popUpButtonCell>
+                                            <connections>
+                                                <action selector="strategicMapFontSelected:" target="rDi-pP-SQY" id="aG5-N6-QVd"/>
+                                            </connections>
+                                        </popUpButton>
+                                    </gridCell>
+                                </gridCells>
+                            </gridView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="CQF-e9-iTr" firstAttribute="leading" secondItem="BAu-VR-IA9" secondAttribute="leading" constant="20" symbolic="YES" id="1ro-B3-RqG"/>
+                            <constraint firstAttribute="trailing" secondItem="CQF-e9-iTr" secondAttribute="trailing" constant="20" symbolic="YES" id="6AF-SB-Kp5"/>
+                            <constraint firstAttribute="bottom" secondItem="CQF-e9-iTr" secondAttribute="bottom" constant="20" symbolic="YES" id="94C-GC-GnG"/>
+                            <constraint firstAttribute="trailing" secondItem="CQF-e9-iTr" secondAttribute="trailing" constant="20" symbolic="YES" id="FKA-p3-XfI"/>
+                            <constraint firstItem="CQF-e9-iTr" firstAttribute="top" secondItem="BAu-VR-IA9" secondAttribute="top" constant="20" symbolic="YES" id="SjD-n7-4lV"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="enableSoundAction" destination="yvX-tk-4UA" id="I8a-1n-KgQ"/>
+                        <outlet property="enableSoundButton" destination="CEL-jC-Jh7" id="p6i-N5-asb"/>
+                    </connections>
+                </viewController>
+                <customObject id="k9Q-kG-cCX" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="657" y="-484"/>
+        </scene>
         <!--Application-->
         <scene sceneID="JPo-4y-FX3">
             <objects>
@@ -31,6 +199,9 @@
                                         </menuItem>
                                         <menuItem title="Other Preferences" id="2U8-of-EG5">
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <segue destination="oCs-Kh-2ox" kind="show" id="mx6-2s-KZP"/>
+                                            </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
                                         <menuItem title="Services" id="NMo-om-nkz">
@@ -290,74 +461,87 @@
             <objects>
                 <viewController id="Yf6-2s-0ES" customClass="OverallViewController" customModule="Netrek" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Zma-0P-ZGo">
-                        <rect key="frame" x="0.0" y="0.0" width="833" height="522"/>
+                        <rect key="frame" x="0.0" y="0.0" width="212" height="280"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <gridView xPlacement="center" yPlacement="center" rowAlignment="none" rowSpacing="3" columnSpacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Gnq-EQ-kcS">
-                                <rect key="frame" x="0.0" y="0.0" width="833" height="522"/>
+                            <gridView xPlacement="center" yPlacement="center" rowAlignment="none" translatesAutoresizingMaskIntoConstraints="NO" id="H0H-FG-fLq">
+                                <rect key="frame" x="0.0" y="0.0" width="212" height="260"/>
                                 <constraints>
-                                    <constraint firstItem="o2q-es-GCi" firstAttribute="height" secondItem="0Ew-YM-Th3" secondAttribute="height" id="4Kr-ZI-cS4"/>
-                                    <constraint firstItem="FcW-AB-Ga8" firstAttribute="height" secondItem="Oyb-z0-Kxg" secondAttribute="height" id="Z2h-ig-dKd"/>
-                                    <constraint firstItem="o2q-es-GCi" firstAttribute="width" secondItem="0Ew-YM-Th3" secondAttribute="width" id="fQk-1P-FS5"/>
-                                    <constraint firstItem="FcW-AB-Ga8" firstAttribute="width" secondItem="Oyb-z0-Kxg" secondAttribute="width" id="kWW-WU-E1M"/>
-                                    <constraint firstItem="FcW-AB-Ga8" firstAttribute="height" secondItem="o2q-es-GCi" secondAttribute="height" multiplier="2" id="vV2-RW-cUB"/>
+                                    <constraint firstItem="FcW-AB-Ga8" firstAttribute="leading" secondItem="Rg3-kK-gBt" secondAttribute="leading" id="0CJ-k0-XV8"/>
+                                    <constraint firstItem="FcW-AB-Ga8" firstAttribute="width" secondItem="Oyb-z0-Kxg" secondAttribute="width" id="3C7-oK-DmQ"/>
+                                    <constraint firstItem="Oyb-z0-Kxg" firstAttribute="leading" secondItem="SpF-99-HOD" secondAttribute="leading" id="AJj-Gy-0UJ"/>
+                                    <constraint firstItem="Oyb-z0-Kxg" firstAttribute="leading" secondItem="0Ew-YM-Th3" secondAttribute="leading" id="IIL-89-A8P"/>
+                                    <constraint firstItem="FcW-AB-Ga8" firstAttribute="height" secondItem="o2q-es-GCi" secondAttribute="height" multiplier="2" id="LhJ-Zq-hLH"/>
+                                    <constraint firstItem="o2q-es-GCi" firstAttribute="height" secondItem="0Ew-YM-Th3" secondAttribute="height" id="ZHo-Zp-A6o"/>
+                                    <constraint firstItem="Rg3-kK-gBt" firstAttribute="leading" secondItem="H0H-FG-fLq" secondAttribute="leading" id="blM-wa-yAx"/>
+                                    <constraint firstItem="FcW-AB-Ga8" firstAttribute="top" secondItem="H0H-FG-fLq" secondAttribute="top" constant="18" id="jap-Ur-Wbg"/>
+                                    <constraint firstItem="Rg3-kK-gBt" firstAttribute="top" secondItem="FcW-AB-Ga8" secondAttribute="bottom" constant="27" id="upm-ac-Htw"/>
                                 </constraints>
                                 <rows>
-                                    <gridRow id="xD4-I5-dAT"/>
-                                    <gridRow id="DFd-Lc-dFB"/>
-                                    <gridRow id="FIg-v0-FBh"/>
+                                    <gridRow id="c5s-FB-gAD"/>
+                                    <gridRow id="kPP-q5-y13"/>
+                                    <gridRow id="3TR-yh-ujx"/>
                                 </rows>
                                 <columns>
-                                    <gridColumn id="HqZ-jq-B7p"/>
-                                    <gridColumn id="Ste-nP-qmP"/>
+                                    <gridColumn xPlacement="trailing" id="H66-bd-gMq"/>
+                                    <gridColumn xPlacement="leading" id="9FH-33-oXf"/>
                                 </columns>
                                 <gridCells>
-                                    <gridCell row="xD4-I5-dAT" column="HqZ-jq-B7p" id="zzP-nL-UHk">
+                                    <gridCell row="c5s-FB-gAD" column="H66-bd-gMq" id="rfX-VX-iw9">
                                         <containerView key="contentView" translatesAutoresizingMaskIntoConstraints="NO" id="FcW-AB-Ga8" userLabel="Tactical Container View">
-                                            <rect key="frame" x="316" y="274" width="100" height="60"/>
+                                            <rect key="frame" x="0.0" y="142" width="100" height="100"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="FcW-AB-Ga8" secondAttribute="height" multiplier="1:1" id="HEC-R6-0e7"/>
+                                            </constraints>
                                             <connections>
                                                 <segue destination="Zsp-ZK-TcN" kind="embed" id="J7t-RV-edc"/>
                                             </connections>
                                         </containerView>
                                     </gridCell>
-                                    <gridCell row="xD4-I5-dAT" column="Ste-nP-qmP" id="854-EW-b4p">
-                                        <containerView key="contentView" translatesAutoresizingMaskIntoConstraints="NO" id="Oyb-z0-Kxg" userLabel="Strategic Container View">
-                                            <rect key="frame" x="733" y="274" width="100" height="60"/>
+                                    <gridCell row="c5s-FB-gAD" column="9FH-33-oXf" id="RaR-DU-aG1">
+                                        <containerView key="contentView" horizontalCompressionResistancePriority="700" verticalCompressionResistancePriority="700" translatesAutoresizingMaskIntoConstraints="NO" id="Oyb-z0-Kxg" userLabel="Strategic Container View">
+                                            <rect key="frame" x="106" y="142" width="100" height="100"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="Oyb-z0-Kxg" secondAttribute="height" multiplier="1:1" id="0db-jJ-wRK"/>
+                                            </constraints>
                                             <connections>
                                                 <segue destination="tQA-Kk-hUK" kind="embed" id="5wW-Pj-N78"/>
                                             </connections>
                                         </containerView>
                                     </gridCell>
-                                    <gridCell row="DFd-Lc-dFB" column="HqZ-jq-B7p" id="cqu-Y4-MOE">
+                                    <gridCell row="kPP-q5-y13" column="H66-bd-gMq" id="0oX-RE-LM9">
                                         <containerView key="contentView" translatesAutoresizingMaskIntoConstraints="NO" id="Rg3-kK-gBt" userLabel="HUD Container View">
-                                            <rect key="frame" x="316" y="33" width="100" height="50"/>
+                                            <rect key="frame" x="0.0" y="65" width="100" height="50"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="50" id="Dwk-7u-wId"/>
+                                                <constraint firstAttribute="height" constant="50" id="AEG-8F-1mf"/>
                                             </constraints>
                                             <connections>
                                                 <segue destination="Ixy-Os-X9f" kind="embed" id="Kpq-Bl-Yj5"/>
                                             </connections>
                                         </containerView>
                                     </gridCell>
-                                    <gridCell row="DFd-Lc-dFB" column="Ste-nP-qmP" id="MBY-Rk-0rZ">
+                                    <gridCell row="kPP-q5-y13" column="9FH-33-oXf" id="VsQ-u2-NKK">
                                         <containerView key="contentView" translatesAutoresizingMaskIntoConstraints="NO" id="SpF-99-HOD" userLabel="Send Message Container View">
-                                            <rect key="frame" x="733" y="43" width="100" height="30"/>
+                                            <rect key="frame" x="106" y="65" width="100" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="Hlx-97-Eu0"/>
+                                            </constraints>
                                             <connections>
                                                 <segue destination="tDw-iQ-NwS" kind="embed" id="qae-eC-cj9"/>
                                             </connections>
                                         </containerView>
                                     </gridCell>
-                                    <gridCell row="FIg-v0-FBh" column="HqZ-jq-B7p" id="zRl-Zo-2jc">
-                                        <containerView key="contentView" translatesAutoresizingMaskIntoConstraints="NO" id="o2q-es-GCi" userLabel="Player List View">
-                                            <rect key="frame" x="316" y="0.0" width="100" height="30"/>
+                                    <gridCell row="3TR-yh-ujx" column="H66-bd-gMq" id="Feo-yh-tvc">
+                                        <containerView key="contentView" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="o2q-es-GCi" userLabel="Player List View">
+                                            <rect key="frame" x="0.0" y="3" width="100" height="50"/>
                                             <connections>
                                                 <segue destination="lyJ-BP-EQ1" kind="embed" id="7j5-2W-vDk"/>
                                             </connections>
                                         </containerView>
                                     </gridCell>
-                                    <gridCell row="FIg-v0-FBh" column="Ste-nP-qmP" id="nr4-oW-AZK">
-                                        <containerView key="contentView" translatesAutoresizingMaskIntoConstraints="NO" id="0Ew-YM-Th3" userLabel="Message Container View">
-                                            <rect key="frame" x="733" y="0.0" width="100" height="30"/>
+                                    <gridCell row="3TR-yh-ujx" column="9FH-33-oXf" id="9Ii-4L-ceN">
+                                        <containerView key="contentView" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="0Ew-YM-Th3" userLabel="Message Container View">
+                                            <rect key="frame" x="106" y="3" width="100" height="50"/>
                                             <connections>
                                                 <segue destination="1yz-XC-MLA" kind="embed" id="AAa-T3-ir2"/>
                                             </connections>
@@ -367,16 +551,16 @@
                             </gridView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="Gnq-EQ-kcS" firstAttribute="leading" secondItem="Zma-0P-ZGo" secondAttribute="leading" id="2nU-dG-hXn"/>
-                            <constraint firstAttribute="bottom" secondItem="Gnq-EQ-kcS" secondAttribute="bottom" id="JDq-BJ-MVn"/>
-                            <constraint firstItem="Gnq-EQ-kcS" firstAttribute="top" secondItem="Zma-0P-ZGo" secondAttribute="top" id="Kyv-wh-Q4N"/>
-                            <constraint firstAttribute="trailing" secondItem="Gnq-EQ-kcS" secondAttribute="trailing" id="MUT-4h-Swj"/>
+                            <constraint firstItem="H0H-FG-fLq" firstAttribute="leading" secondItem="Zma-0P-ZGo" secondAttribute="leading" id="5yX-2Z-YDT"/>
+                            <constraint firstItem="H0H-FG-fLq" firstAttribute="top" secondItem="Zma-0P-ZGo" secondAttribute="top" constant="20" symbolic="YES" id="OCl-7H-19Q"/>
+                            <constraint firstAttribute="bottom" secondItem="H0H-FG-fLq" secondAttribute="bottom" id="byN-Ij-ioD"/>
+                            <constraint firstAttribute="trailing" secondItem="H0H-FG-fLq" secondAttribute="trailing" id="xqi-NT-seO"/>
                         </constraints>
                     </view>
                 </viewController>
                 <customObject id="Ngl-3X-Tsl" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-238.5" y="822"/>
+            <point key="canvasLocation" x="-266" y="952"/>
         </scene>
         <!--Message View Controller-->
         <scene sceneID="tjC-8G-zwd">
@@ -482,7 +666,7 @@
                 <viewController id="Zsp-ZK-TcN" customClass="TacticalViewController" customModule="Netrek" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="XS0-Rx-Fxg" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
                 </viewController>
                 <customObject id="XzW-3P-xSJ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -547,12 +731,15 @@
                 <viewController title="Strategic View Controller" id="tQA-Kk-hUK" customClass="StrategicViewController" customModule="Netrek" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Rxy-pd-ix6" customClass="StrategicView" customModule="Netrek" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
+                    <connections>
+                        <outlet property="strategicView" destination="Rxy-pd-ix6" id="LK2-pf-IWo"/>
+                    </connections>
                 </viewController>
                 <customObject id="oYE-g6-NE3" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="452" y="314"/>
+            <point key="canvasLocation" x="630" y="345"/>
         </scene>
         <!--Player List View Controller-->
         <scene sceneID="fo9-AW-ilh">
@@ -562,6 +749,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </view>
+                    <connections>
+                        <outlet property="playerView" destination="1NG-h9-mic" id="OFe-Pt-IyA"/>
+                    </connections>
                 </viewController>
                 <customObject id="ymo-8H-9ZX" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Cocoa
 import AVFoundation
 
 enum Sound: String, CaseIterable {
@@ -18,10 +19,18 @@ enum Sound: String, CaseIterable {
     case shield = "71852__ludvique__digital-whoosh-soft.wav"
 }
 class SoundController {
+    
+    let appDelegate: AppDelegate
+    let soundDisabledKey = "soundDisabled"
+    private(set) var soundDisabled = false
     let soundThreads = 8
+    
     //private var audioList: [AVAudioPlayer] = []
     private var soundList: [Sound:[AVAudioPlayer]] = [:]
     init() {
+        appDelegate = NSApplication.shared.delegate as! AppDelegate
+        self.soundDisabled = appDelegate.defaults.bool(forKey: soundDisabledKey)
+        
         for soundCandidate in Sound.allCases {
             if let pathToSound = Bundle.main.url(forResource: soundCandidate.rawValue, withExtension: "") {
                 var audioList: [AVAudioPlayer] = []
@@ -36,7 +45,17 @@ class SoundController {
             }
         }
     }
-    func play(sound: Sound, volume: Float) {
+    public func enableSound() {
+        self.soundDisabled = false
+        appDelegate.defaults.set(false,forKey: soundDisabledKey)
+    }
+    public func disableSound() {
+        self.soundDisabled = true
+        appDelegate.defaults.set(true,forKey: soundDisabledKey)
+    }
+    
+    public func play(sound: Sound, volume: Float) {
+        if soundDisabled { return }
         if let audioList = soundList[sound] {
             for soundNumber in 0 ..< soundThreads {
                 if !audioList[soundNumber].isPlaying {
