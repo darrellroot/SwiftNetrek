@@ -8,9 +8,19 @@
     <body>
         <h2>Swift Netrek Client Credits</h2>
         <p>
-        <h3>Programmer</h3>
-        The swift netrek client is written by Darrell Root for Network Mom LLC.  Check out https://networkmom.net/netrek for more information.
+        <h3>Open Source Software</h3>
+        The Swift Netrek Client is built on the shoulders of giants.  Prior versions of Netrek, Jtrek, and Xtrek go back to the 1986 timeframe.  I personally enjoyed playing Netrek on DecStation 3100's and NeXt workstations at CMU in 1990-1991.  Without these prior implementations (as well as the servers, which the client uses) the Swift Netrek Client would not exist.
         <p>
+        In accordance with the debt to open source software, using the Swift Netrek Client is free.  In addition the source code will be made publically available on GitHub as soon as Apple approves the client for the MacOS App Store.
+        <h3>Programmer</h3>
+        The Swift Netrek client is written by Darrell Root for Network Mom LLC.  Check out https://networkmom.net/netrek for more information.
+        <p>
+        <h3>Programming Language and environment</h3>
+        The Swift Netrek client is written in.......Swift!  The new programming language from Apple.  Chris Lattner, formerly of Apple, was the originator and leader of the Swift project.  We are eternally grateful.
+        <p>
+        Netrek uses the new "Network" framework from Apple.  This is a new API to originate TCP and UDP sockets.  It is noticably easier to use than the old BSD socket API.
+        <p>
+        Netrek uses SpriteKit for displaying graphics in the tactical map.
         <h3>Sounds</h3>
         Our main sound collection is the "Dartoxian Space Weapons" sounds by jonccox from freesound.org under the Creative Commons Attribution License:
         <ul>
@@ -28,4 +38,48 @@
             <dt>Shield sound from ludvique</dt>
             <dd>71852__ludvique__digital-whoosh-soft.wav
         </dl>
+        <h3>Graphics</h3>
+        The planet icons were made by Darrell Root based on screenshots of the original COW client from the 1990's
+        <p>
+        The Kleptonian (greenfleet) and Orion (blueFleet) ship icons came originally came from Artist Pascal Gagnon via the Gytha Netrek Client under the Creative Commons Attribution License.
+        <p>
+        The Roman (redfleet), Federation(outlineFleet), and Independent (also outlineFleet) ship icons came from the MacTrek 1.5 client (written in Objective C in 2006) by Chris and Judith Lukassen.  It is possible that some of these fleets (redfleet in particular) may also have originated from artist Pascal Gagnon.
+        <p>
+        <h3>Prior Netrek Client: Mac Trek</h3>
+        Chris and Judith Lukassen wrote Mac Trek in Objective C around 2006.  While we did not directly use any of their source code in our final product, we read their code in detail.  We learned much about both Netrek and programming from their code, and thank them.
+        <h3>Prior Netrek Client: Gytha</h3>
+        James Cameron (aka Quozl) wrote the Gytha netrek client in 2012.  Implemented in Python, we used the code as a resource during our development.  James Cameron helpfully answered several questions during our development.
+        <h3>Prior Netrek Client: BRMH</h3>
+        Developed in C in the 1990's we also used this client as a resource during development.  There are too many developers of BRMH so we refer you to http://www.netrek.org/files/archive/BRMH/BRMH.html for more information.
+        <h3>Netrek Vanilla Server</h3>
+        We used the Netrek Vanilla Server (written in C, maintained by James Cameron) as a reference during development.  We used packets.h from this distribution to specify a few Struct formats we could not specify in Swift.  See https://github.com/quozl/netrek-server for more information.
+        <h3>Original 1986 Netrek Copyright Notice</h3>
+        <pre>
+/*
+* Copyright (c) 1986   Chris Guthrie
+*
+* Permission to use, copy, modify, and distribute this software and its
+* documentation for any purpose and without fee is hereby granted, provided
+* that the above copyright notice appear in all copies and that both that
+* copyright notice and this permission notice appear in supporting
+* documentation.  No representations are made about the suitability of this
+* software for any purpose.  It is provided "as is" without express or
+* implied warranty.
+*
+* Copyright 1989               Kevin P. Smith Scott Silvey
+*
+* ditto.
+*/
+        </pre>
+        <h3>1989 Netrek Copyright Notice (which covers packets.h)</h3>
+            <pre>
+/*
+* Copyright 1989               Kevin P. Smith Scott Silvey
+*
+* Permission to use, copy, modify, and distribute this software and its
+* documentation for any purpose and without fee is hereby granted, provided
+* that the above copyright notice appear in all copies.
+*/
+            </pre>
+
 </body>

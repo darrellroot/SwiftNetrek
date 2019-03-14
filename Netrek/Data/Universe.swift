@@ -120,7 +120,7 @@ class Universe {
             return
         }
         if self.torpedoes[torpedoNumber] == nil {
-            let newTorpedo = Torpedo()
+            let newTorpedo = Torpedo(torpedoID: torpedoNumber)
             self.torpedoes[torpedoNumber] = newTorpedo
         }
         self.torpedoes[torpedoNumber]?.update(war: war, status: status)
@@ -131,7 +131,7 @@ class Universe {
             return
         }
         if self.torpedoes[torpedoNumber] == nil {
-            let newTorpedo = Torpedo()
+            let newTorpedo = Torpedo(torpedoID: torpedoNumber)
             self.torpedoes[torpedoNumber] = newTorpedo
         }
         self.torpedoes[torpedoNumber]?.update(directionNetrek: directionNetrek, positionX: positionX, positionY: positionY)

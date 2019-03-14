@@ -25,7 +25,9 @@ class Torpedo {
     var torpedoNode = SKSpriteNode(color: .red,
                                    size: CGSize(width: NetrekMath.torpedoSize, height: NetrekMath.torpedoSize))
 
-    
+    init(torpedoID: Int) {
+        self.torpedoNumber = torpedoID
+    }
     func update(war: UInt8, status: UInt8) {
         for team in Team.allCases {
             if UInt8(team.rawValue) & war != 0 {

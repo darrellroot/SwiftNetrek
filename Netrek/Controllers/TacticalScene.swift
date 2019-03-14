@@ -178,11 +178,15 @@ class TacticalScene: SKScene {
             }
             return
         }
-        let torpedoCorrectColor: NSColor
-        if (torpedo.war[me.team] ?? false) {
-            torpedoCorrectColor = NSColor.red
+        var torpedoCorrectColor: NSColor
+        if let suspectedTorpOwner = appDelegate.universe.players[torpedo.torpedoNumber / 8] {
+            torpedoCorrectColor = NetrekMath.color(team: suspectedTorpOwner.team)
         } else {
-            torpedoCorrectColor = NSColor.green
+            if (torpedo.war[me.team] ?? false) {
+                torpedoCorrectColor = NSColor.red
+            } else {
+                torpedoCorrectColor = NSColor.green
+            }
         }
         if torpedo.torpedoNode.color != torpedoCorrectColor {
             // remake node
