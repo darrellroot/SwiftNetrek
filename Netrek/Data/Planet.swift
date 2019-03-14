@@ -9,6 +9,12 @@
 import Foundation
 import SpriteKit
 
+enum PlanetFlags: UInt16 {
+    case repair = 0x010
+    case fuel = 0x020
+    case agri = 0x040
+}
+
 class Planet: CustomStringConvertible {
     private(set) var planetID: Int
     private(set) var name: String
@@ -16,9 +22,21 @@ class Planet: CustomStringConvertible {
     private(set) var positionY: Int
     private(set) var owner: Team = .independent
     private(set) var info: Int = 0
-    private(set) var flags: Int = 0
+    private(set) var flags: UInt16 = 0
+    private(set) var agri: Bool = false
+    private(set) var fuel: Bool = false
+    private(set) var repair: Bool = false
+    static let planetEmptyTexture = SKTexture(imageNamed: "planet-empty")
+    static let planetArmyTexture = SKTexture(imageNamed: "planet-army")
+    static let planetFuelTexture = SKTexture(imageNamed: "planet-fuel")
+    static let planetFuelArmyTexture = SKTexture(imageNamed: "planet-fuel-army")
+    static let planetRepairTexture = SKTexture(imageNamed: "planet-repair")
+    static let planetRepairArmyTexture = SKTexture(imageNamed: "planet-repair-army")
+    static let planetRepairFuelTexture = SKTexture(imageNamed: "planet-repair-fuel")
+    static let planetRepairFuelArmyTexture = SKTexture(imageNamed: "planet-repair-fuel-army")
+    
     var armies: Int = 0
-    var planetTacticalNode = SKSpriteNode(imageNamed: "planet-ind")
+    var planetTacticalNode = SKSpriteNode(imageNamed: "planet-unknown")
     let planetTacticalLabel = SKLabelNode()
     
     let appDelegate = NSApplication.shared.delegate as! AppDelegate
@@ -38,45 +56,34 @@ class Planet: CustomStringConvertible {
         planetTacticalLabel.removeFromParent()
         planetTacticalNode.removeFromParent()
         // no need to re-add after: scene controller will handle it after any packet arrives
-        let teamSuffix: String
-        switch self.owner {
-        case .federation:
-            teamSuffix = "fed"
-        case .independent:
-            teamSuffix = "ind"
-        case .roman:
-            teamSuffix = "rom"
-        case .kleptocrat:
-            teamSuffix = "kle"
-        case .orion:
-            teamSuffix = "ori"
-        case .ogg:
-            teamSuffix = "ind"
+        switch (repair,fuel,armies > 4) {
+        case (false, false, false):
+            planetTacticalNode = SKSpriteNode(texture: Planet.planetEmptyTexture, color: NetrekMath.color(team: self.owner), size: CGSize(width: NetrekMath.planetDiameter, height: NetrekMath.planetDiameter))
+        case (false, false, true):
+            planetTacticalNode = SKSpriteNode(texture: Planet.planetArmyTexture, color: NetrekMath.color(team: self.owner), size: CGSize(width: NetrekMath.planetDiameter, height: NetrekMath.planetDiameter))
+        case (false, true, false):
+            planetTacticalNode = SKSpriteNode(texture: Planet.planetFuelTexture, color: NetrekMath.color(team: self.owner), size: CGSize(width: NetrekMath.planetDiameter, height: NetrekMath.planetDiameter))
+        case (false, true, true):
+            planetTacticalNode = SKSpriteNode(texture: Planet.planetFuelArmyTexture, color: NetrekMath.color(team: self.owner), size: CGSize(width: NetrekMath.planetDiameter, height: NetrekMath.planetDiameter))
+        case (true, false, false):
+            planetTacticalNode = SKSpriteNode(texture: Planet.planetRepairTexture, color: NetrekMath.color(team: self.owner), size: CGSize(width: NetrekMath.planetDiameter, height: NetrekMath.planetDiameter))
+        case (true, false, true):
+            planetTacticalNode = SKSpriteNode(texture: Planet.planetRepairArmyTexture, color: NetrekMath.color(team: self.owner), size: CGSize(width: NetrekMath.planetDiameter, height: NetrekMath.planetDiameter))
+        case (true, true, false):
+            planetTacticalNode = SKSpriteNode(texture: Planet.planetRepairFuelTexture, color: NetrekMath.color(team: self.owner), size: CGSize(width: NetrekMath.planetDiameter, height: NetrekMath.planetDiameter))
+        case (true, true, true):
+            planetTacticalNode = SKSpriteNode(texture: Planet.planetRepairFuelArmyTexture, color: NetrekMath.color(team: self.owner), size: CGSize(width: NetrekMath.planetDiameter, height: NetrekMath.planetDiameter))
         }
-        let planetImage = "planet-\(teamSuffix)"
-        planetTacticalNode = SKSpriteNode(imageNamed: planetImage)
+        planetTacticalNode.colorBlendFactor = 1.0
+        //planetTacticalNode.color = NetrekMath.color(team: self.owner)
         planetTacticalNode.name = self.name
-        planetTacticalNode.size = CGSize(width: NetrekMath.planetDiameter, height: NetrekMath.planetDiameter)
+        //planetTacticalNode.size = CGSize(width: NetrekMath.planetDiameter, height: NetrekMath.planetDiameter)
         planetTacticalLabel.fontSize = NetrekMath.planetFontSize
         planetTacticalLabel.fontName = "Courier"
         planetTacticalLabel.position = CGPoint(x: 0, y: -2 * NetrekMath.planetDiameter)
         planetTacticalLabel.zPosition = ZPosition.planet.rawValue
-        switch self.owner {
-        case .independent:
-            planetTacticalLabel.fontColor = NSColor.gray
-        case .federation:
-            planetTacticalLabel.fontColor = NSColor.yellow
-        case .roman:
-            planetTacticalLabel.fontColor = NSColor.red
-        case .kleptocrat:
-            planetTacticalLabel.fontColor = NSColor.green
-        case .orion:
-            planetTacticalLabel.fontColor = NSColor.blue
-        case .ogg:
-            planetTacticalLabel.fontColor = NSColor.gray
-        }
+        planetTacticalLabel.color = NetrekMath.color(team: self.owner)
         planetTacticalNode.position = CGPoint(x: self.positionX, y: self.positionY)
-
         planetTacticalNode.zPosition = ZPosition.planet.rawValue
         planetTacticalLabel.text = self.name
         planetTacticalNode.addChild(planetTacticalLabel)
@@ -91,7 +98,10 @@ class Planet: CustomStringConvertible {
         self.remakeNode()
     }
     public func update(owner: Int, info: Int, flags: UInt16, armies: Int) {
-        self.flags = Int(flags)
+        self.agri = flags & PlanetFlags.agri.rawValue != 0
+        self.fuel = flags & PlanetFlags.fuel.rawValue != 0
+        self.repair = flags & PlanetFlags.repair.rawValue != 0
+        self.flags = flags
         self.info = info
         self.armies = armies
         for team in Team.allCases {
@@ -101,5 +111,6 @@ class Planet: CustomStringConvertible {
                 return
             }
         }
+        self.remakeNode()
     }
 }
