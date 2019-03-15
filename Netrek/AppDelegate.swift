@@ -46,7 +46,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var selectTeamKleptocrat: NSMenuItem!
     @IBOutlet weak var selectTeamOrion: NSMenuItem!
     
-    
+    var loginName: String?
+    var loginPassword: String?
+    var loginUserName: String?
+    var playAsGuest = true
     
     @IBOutlet weak var selectShipAny: NSMenuItem!
     @IBOutlet weak var selectShipScout: NSMenuItem!
@@ -59,9 +62,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var selectShipAttackCruiser: NSMenuItem!
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        NSApp.appearance = NSAppearance(named: .darkAqua)
+        
+        if let loginName = defaults.string(forKey: LoginDefault.loginName.rawValue) {
+            self.loginName = loginName
+        }
+        if let loginUserName = defaults.string(forKey: LoginDefault.loginUserName.rawValue) {
+            self.loginUserName = loginUserName
+        }
         soundController = SoundController()
         keymapController = KeymapController()
-        // Insert code here to initialize your application
         metaServer = MetaServer(hostname: "metaserver.netrek.org", port: 3521)
         if let metaServer = metaServer {
             metaServer.update()
@@ -219,7 +229,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             disableServerMenu()
             self.gameState = newState
             debugPrint("AppDelegate.newGameState: .serverSlotFound")
-            let cpLogin = MakePacket.cpLogin(name: "guest", password: "", login: "")
+            let cpLogin: Data
+            if playAsGuest == false, let loginName = self.loginName, let loginPassword = self.loginPassword, let loginUserName = self.loginUserName {
+                cpLogin = MakePacket.cpLogin(name: loginName, password: loginPassword, login: loginUserName)
+            } else {
+                cpLogin = MakePacket.cpLogin(name: "guest", password: "", login: "")
+            }
             if let reader = reader {
                 DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 0.2) {
 

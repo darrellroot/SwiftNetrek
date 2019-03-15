@@ -333,6 +333,9 @@ class PacketAnalyzer {
             if state == 1 {
                 appDelegate.newGameState(.gameActive)
             }
+            if state == 0 {
+                appDelegate.messageViewController?.gotMessage("Server rejected that choice, pick a different fleet or ship")
+            }
 
         case 17:
             debugPrint("Received SP_LOGIN 17")
