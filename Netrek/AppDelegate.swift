@@ -49,7 +49,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var loginName: String?
     var loginPassword: String?
     var loginUserName: String?
-    var playAsGuest = true
+    var loginAuthenticated = false
     
     @IBOutlet weak var selectShipAny: NSMenuItem!
     @IBOutlet weak var selectShipScout: NSMenuItem!
@@ -69,6 +69,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         if let loginUserName = defaults.string(forKey: LoginDefault.loginUserName.rawValue) {
             self.loginUserName = loginUserName
+        }
+        self.loginAuthenticated = defaults.bool(forKey: LoginDefault.loginAuthenticated.rawValue)
+            
+        if let loginPassword = LoginInformationController.getPasswordKeychain() {
+            self.loginPassword = loginPassword
         }
         soundController = SoundController()
         keymapController = KeymapController()
@@ -230,7 +235,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.gameState = newState
             debugPrint("AppDelegate.newGameState: .serverSlotFound")
             let cpLogin: Data
-            if playAsGuest == false, let loginName = self.loginName, let loginPassword = self.loginPassword, let loginUserName = self.loginUserName {
+            if loginAuthenticated == true, let loginName = self.loginName, let loginPassword = self.loginPassword, let loginUserName = self.loginUserName {
                 cpLogin = MakePacket.cpLogin(name: loginName, password: loginPassword, login: loginUserName)
             } else {
                 cpLogin = MakePacket.cpLogin(name: "guest", password: "", login: "")

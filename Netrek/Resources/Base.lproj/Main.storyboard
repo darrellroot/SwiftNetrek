@@ -466,14 +466,14 @@
                 </windowController>
                 <customObject id="143-Ms-sir" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="296" y="177"/>
+            <point key="canvasLocation" x="366" y="194"/>
         </scene>
         <!--Login Information-->
         <scene sceneID="nlo-2D-qc4">
             <objects>
                 <viewController title="Login Information" id="pBH-qP-V9N" customClass="LoginInformationController" customModule="Netrek" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" misplaced="YES" id="TYs-ve-Zbu">
-                        <rect key="frame" x="0.0" y="0.0" width="616" height="262"/>
+                        <rect key="frame" x="0.0" y="0.0" width="616" height="296"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="600" verticalStackHuggingPriority="800" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e2m-dc-SGs">
@@ -719,12 +719,14 @@
                     </view>
                     <connections>
                         <outlet property="nameOutlet" destination="uk7-SH-g1T" id="GRO-gQ-qUO"/>
+                        <outlet property="passwordOutlet" destination="WQl-e9-rTG" id="kMB-RR-ODb"/>
+                        <outlet property="segmentedControlOutlet" destination="baa-Cc-smD" id="tgM-J0-zBF"/>
                         <outlet property="userNameOutlet" destination="ete-oK-0CE" id="sHN-29-tPI"/>
                     </connections>
                 </viewController>
                 <customObject id="V8o-CC-EeU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1149" y="289"/>
+            <point key="canvasLocation" x="1161" y="194"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
@@ -919,11 +921,11 @@
                             <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="allowed" translatesAutoresizingMaskIntoConstraints="NO" id="f2N-nA-q6M" customClass="FlipScrollView" customModule="Netrek" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                                 <clipView key="contentView" id="fn0-gr-rPK">
-                                    <rect key="frame" x="1" y="1" width="463" height="268"/>
+                                    <rect key="frame" x="1" y="1" width="478" height="268"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <view fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vSe-2E-wNu" customClass="FlipView" customModule="Netrek" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="448" height="253"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="463" height="253"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </view>
                                     </subviews>
@@ -933,7 +935,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="de4-Mj-rKf">
-                                    <rect key="frame" x="464" y="1" width="15" height="268"/>
+                                    <rect key="frame" x="463" y="1" width="16" height="268"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
