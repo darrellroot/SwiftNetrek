@@ -28,10 +28,10 @@ class MakePacket {
     }
     
     // CP_MEESSAGE 1
-    static func cpMessage(message: String, team: Team?, individual: Int8) -> Data {
+    static func cpMessage(message: String, team: Team?, individual: UInt8) -> Data {
         let message_length = 80
-        var packet = mesg_cpacket()
-        packet.type = 1
+        var packet = CP_MESSAGE()
+        //packet.type = 1
         if let team = team {
             switch team {
             case .independent: // we'll assume this means all teams
@@ -39,16 +39,16 @@ class MakePacket {
                 packet.indiv = 0
             case .federation, .roman, .kleptocrat, .orion:
                 packet.group = 4 //MTEAM
-                packet.indiv = Int8(team.rawValue)
+                packet.indiv = UInt8(team.rawValue)
             case .ogg:  // meaning all teams
                 packet.group = 8 // MALL
                 packet.indiv = 0
             }
         } else {  // team == nil so this is going to an individual
             packet.group = 2 // MINDIV
-            packet.indiv = Int8(individual)
+            packet.indiv = UInt8(individual)
         }
-        packet.pad1 = 0
+        //packet.pad1 = 0
         withUnsafeMutablePointer(to: &packet.mesg) {
             $0.withMemoryRebound(to: UInt8.self, capacity: message_length) {mesg_ptr in
                 for count in 0 ..< message_length {
@@ -132,8 +132,8 @@ class MakePacket {
         // ugly hack with 16-element tuple and
         // C structure header to get bit boundaries to align
         
-        var packet = login_cpacket()
-        packet.type = 8
+        var packet = CP_LOGIN()
+        //packet.type = 8
         packet.query = 0
         packet.name = make16Tuple(string: name)
         packet.login = make16Tuple(string: login)
@@ -343,12 +343,12 @@ class MakePacket {
     static func cpFeatures(feature: String, arg1: Int8 = 0) -> Data {
         let value = 1
         debugPrint("Sending CP_FEATURE 60 arg1 \(arg1) value \(value) feature \(feature)")
-        var packet = feature_cpacket()
-        packet.type = 60
+        var packet = CP_FEATURE()
+        //packet.type = 60
         packet.feature_type = 83 // S in ascii
-        packet.arg1 = Int8(arg1)
+        packet.arg1 = UInt8(arg1)
         packet.arg2 = 0
-        packet.value = Int32(value).bigEndian
+        packet.value = UInt32(value).bigEndian
         var name = withUnsafeMutableBytes(of: &packet.name) {bytes in
             var count = 0
             let feature = feature.utf8

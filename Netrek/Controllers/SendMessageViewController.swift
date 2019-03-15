@@ -86,7 +86,7 @@ class SendMessageViewController: NSViewController {
                     self.appDelegate.messageViewController?.gotMessage(" \(myTeam.letter)\(NetrekMath.playerLetter(playerID: myNumber)) -> ORI \(message)")
                 }
             case 0..<32: // individual
-                let tag = Int8(tag)
+                let tag = UInt8(tag)
                 let data = MakePacket.cpMessage(message: message, team: nil, individual: tag)
                 self.appDelegate.reader?.send(content: data)
                 if myNumber != tag {

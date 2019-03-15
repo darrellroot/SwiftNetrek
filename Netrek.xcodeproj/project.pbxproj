@@ -92,8 +92,6 @@
 		2F750195222B6048002040A7 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		2F750197222B66AF002040A7 /* Data-extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data-extensions.swift"; sourceTree = "<group>"; };
 		2F750199222C33D6002040A7 /* Planet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planet.swift; sourceTree = "<group>"; };
-		2F75019B222C87DE002040A7 /* packets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = packets.h; sourceTree = "<group>"; };
-		2F75019C222C8992002040A7 /* Netrek-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Netrek-Bridging-Header.h"; sourceTree = "<group>"; };
 		2F75019F222C8E59002040A7 /* Tuple16.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tuple16.swift; sourceTree = "<group>"; };
 		2F7501A1222C930B002040A7 /* packets-extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "packets-extensions.swift"; sourceTree = "<group>"; };
 		2F7501A3222CA33C002040A7 /* packets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = packets.swift; sourceTree = "<group>"; };
@@ -233,13 +231,11 @@
 		2F750175222A4296002040A7 /* Communication */ = {
 			isa = PBXGroup;
 			children = (
-				2F75019B222C87DE002040A7 /* packets.h */,
 				2F7501A3222CA33C002040A7 /* packets.swift */,
 				2F750178222A4461002040A7 /* TcpReader.swift */,
 				2F75017A222A4956002040A7 /* Globals.swift */,
 				2F75017F222AEC8B002040A7 /* MakePacket.swift */,
 				2F750184222B2476002040A7 /* PacketAnalyzer.swift */,
-				2F75019C222C8992002040A7 /* Netrek-Bridging-Header.h */,
 			);
 			path = Communication;
 			sourceTree = "<group>";
