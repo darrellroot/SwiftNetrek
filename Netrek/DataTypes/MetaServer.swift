@@ -38,8 +38,6 @@ class MetaServer {
                 //debugPrint("MetaServer data \(data)")
                 if let dataString = String(data: data, encoding: .utf8) {
                     self.servers = []
-                    let testServer = MetaServerEntry(hostname: "192.168.0.10", port: 2592, age: 0, players: 0, type: .bronco)
-                    self.servers.append(testServer)
                     let lines = dataString.components(separatedBy: self.newlineCharacters)
                     for line in lines {
                         //debugPrint("\(line) length \(line.count)")

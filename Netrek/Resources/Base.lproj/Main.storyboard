@@ -748,22 +748,14 @@
             <objects>
                 <viewController id="Yf6-2s-0ES" customClass="OverallViewController" customModule="Netrek" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Zma-0P-ZGo">
-                        <rect key="frame" x="0.0" y="0.0" width="212" height="280"/>
+                        <rect key="frame" x="0.0" y="0.0" width="212" height="330"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <gridView xPlacement="center" yPlacement="center" rowAlignment="none" translatesAutoresizingMaskIntoConstraints="NO" id="H0H-FG-fLq">
-                                <rect key="frame" x="0.0" y="0.0" width="212" height="260"/>
+                                <rect key="frame" x="0.0" y="0.0" width="212" height="329"/>
                                 <constraints>
-                                    <constraint firstItem="FcW-AB-Ga8" firstAttribute="leading" secondItem="Rg3-kK-gBt" secondAttribute="leading" id="0CJ-k0-XV8"/>
-                                    <constraint firstItem="FcW-AB-Ga8" firstAttribute="width" secondItem="Oyb-z0-Kxg" secondAttribute="width" id="3C7-oK-DmQ"/>
-                                    <constraint firstItem="Oyb-z0-Kxg" firstAttribute="leading" secondItem="SpF-99-HOD" secondAttribute="leading" id="AJj-Gy-0UJ"/>
-                                    <constraint firstItem="Oyb-z0-Kxg" firstAttribute="leading" secondItem="0Ew-YM-Th3" secondAttribute="leading" id="IIL-89-A8P"/>
-                                    <constraint firstItem="FcW-AB-Ga8" firstAttribute="height" secondItem="o2q-es-GCi" secondAttribute="height" multiplier="2" id="LhJ-Zq-hLH"/>
-                                    <constraint firstItem="o2q-es-GCi" firstAttribute="height" secondItem="0Ew-YM-Th3" secondAttribute="height" id="ZHo-Zp-A6o"/>
-                                    <constraint firstItem="Rg3-kK-gBt" firstAttribute="leading" secondItem="H0H-FG-fLq" secondAttribute="leading" id="blM-wa-yAx"/>
-                                    <constraint firstItem="FcW-AB-Ga8" firstAttribute="top" secondItem="H0H-FG-fLq" secondAttribute="top" constant="18" id="jMJ-Zh-bCx"/>
-                                    <constraint firstItem="FcW-AB-Ga8" firstAttribute="top" secondItem="H0H-FG-fLq" secondAttribute="top" constant="18" id="jap-Ur-Wbg"/>
-                                    <constraint firstItem="Rg3-kK-gBt" firstAttribute="top" secondItem="FcW-AB-Ga8" secondAttribute="bottom" constant="27" id="upm-ac-Htw"/>
+                                    <constraint firstItem="o2q-es-GCi" firstAttribute="width" secondItem="0Ew-YM-Th3" secondAttribute="width" id="nRX-L2-bcO"/>
+                                    <constraint firstItem="Rg3-kK-gBt" firstAttribute="width" secondItem="SpF-99-HOD" secondAttribute="width" id="zPr-y8-lJF"/>
                                 </constraints>
                                 <rows>
                                     <gridRow id="c5s-FB-gAD"/>
@@ -777,7 +769,7 @@
                                 <gridCells>
                                     <gridCell row="c5s-FB-gAD" column="H66-bd-gMq" id="rfX-VX-iw9">
                                         <containerView key="contentView" translatesAutoresizingMaskIntoConstraints="NO" id="FcW-AB-Ga8" userLabel="Tactical Container View">
-                                            <rect key="frame" x="0.0" y="142" width="100" height="100"/>
+                                            <rect key="frame" x="0.0" y="226" width="103" height="103"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="FcW-AB-Ga8" secondAttribute="height" multiplier="1:1" id="HEC-R6-0e7"/>
                                             </constraints>
@@ -788,7 +780,7 @@
                                     </gridCell>
                                     <gridCell row="c5s-FB-gAD" column="9FH-33-oXf" id="RaR-DU-aG1">
                                         <containerView key="contentView" horizontalCompressionResistancePriority="700" verticalCompressionResistancePriority="700" translatesAutoresizingMaskIntoConstraints="NO" id="Oyb-z0-Kxg" userLabel="Strategic Container View">
-                                            <rect key="frame" x="106" y="142" width="100" height="100"/>
+                                            <rect key="frame" x="109" y="228" width="100" height="100"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="Oyb-z0-Kxg" secondAttribute="height" multiplier="1:1" id="0db-jJ-wRK"/>
                                             </constraints>
@@ -799,7 +791,7 @@
                                     </gridCell>
                                     <gridCell row="kPP-q5-y13" column="H66-bd-gMq" id="0oX-RE-LM9">
                                         <containerView key="contentView" translatesAutoresizingMaskIntoConstraints="NO" id="Rg3-kK-gBt" userLabel="HUD Container View">
-                                            <rect key="frame" x="0.0" y="65" width="100" height="50"/>
+                                            <rect key="frame" x="0.0" y="103" width="103" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="AEG-8F-1mf"/>
                                             </constraints>
@@ -810,7 +802,7 @@
                                     </gridCell>
                                     <gridCell row="kPP-q5-y13" column="9FH-33-oXf" id="VsQ-u2-NKK">
                                         <containerView key="contentView" translatesAutoresizingMaskIntoConstraints="NO" id="SpF-99-HOD" userLabel="Send Message Container View">
-                                            <rect key="frame" x="106" y="65" width="100" height="50"/>
+                                            <rect key="frame" x="109" y="103" width="103" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="Hlx-97-Eu0"/>
                                             </constraints>
@@ -821,7 +813,7 @@
                                     </gridCell>
                                     <gridCell row="3TR-yh-ujx" column="H66-bd-gMq" id="Feo-yh-tvc">
                                         <containerView key="contentView" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="o2q-es-GCi" userLabel="Player List View">
-                                            <rect key="frame" x="0.0" y="3" width="100" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="103" height="30"/>
                                             <connections>
                                                 <segue destination="lyJ-BP-EQ1" kind="embed" id="7j5-2W-vDk"/>
                                             </connections>
@@ -829,7 +821,7 @@
                                     </gridCell>
                                     <gridCell row="3TR-yh-ujx" column="9FH-33-oXf" id="9Ii-4L-ceN">
                                         <containerView key="contentView" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="0Ew-YM-Th3" userLabel="Message Container View">
-                                            <rect key="frame" x="106" y="3" width="100" height="50"/>
+                                            <rect key="frame" x="109" y="0.0" width="103" height="30"/>
                                             <connections>
                                                 <segue destination="1yz-XC-MLA" kind="embed" id="AAa-T3-ir2"/>
                                             </connections>
@@ -840,7 +832,7 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="H0H-FG-fLq" firstAttribute="leading" secondItem="Zma-0P-ZGo" secondAttribute="leading" id="5yX-2Z-YDT"/>
-                            <constraint firstItem="H0H-FG-fLq" firstAttribute="top" secondItem="Zma-0P-ZGo" secondAttribute="top" constant="20" symbolic="YES" id="OCl-7H-19Q"/>
+                            <constraint firstItem="H0H-FG-fLq" firstAttribute="top" secondItem="Zma-0P-ZGo" secondAttribute="top" constant="1" id="OCl-7H-19Q"/>
                             <constraint firstAttribute="bottom" secondItem="H0H-FG-fLq" secondAttribute="bottom" id="byN-Ij-ioD"/>
                             <constraint firstAttribute="trailing" secondItem="H0H-FG-fLq" secondAttribute="trailing" id="xqi-NT-seO"/>
                         </constraints>

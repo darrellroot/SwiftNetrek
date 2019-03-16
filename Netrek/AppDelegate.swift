@@ -23,6 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let timerInterval = 1.0 / Double(UPDATE_RATE)
     var timer: Timer?
     var timerCount = 0
+    var manualServerController: ManualServerController?
     var soundController: SoundController?
     // The following are initialized by the child controllers via the appdelegate
     var messageViewController: MessageViewController?
@@ -159,9 +160,32 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             for (index,server) in metaServer.servers.enumerated() {
                 let newItem = NSMenuItem(title: server.description, action: #selector(self.selectServer), keyEquivalent: "")
                 newItem.tag = index
-                
                 serverMenu.addItem(newItem)
             }
+            let separator = NSMenuItem.separator()
+            serverMenu.addItem(separator)
+            let customItem = NSMenuItem(title: "Manually choose server by hostname", action: #selector(self.manualServer), keyEquivalent: "")
+            serverMenu.addItem(customItem)
+        }
+    }
+    @objc func manualServer(sender: NSMenuItem) {
+        guard manualServerController == nil else { return }
+        self.manualServerController = ManualServerController()
+        manualServerController?.showWindow(self)
+    }
+    public func connectServer(hostname: String, port: Int) {
+        guard gameState == .noServerSelected else {
+            messageViewController?.gotMessage("Error: cannot connect to server if already connected to a server")
+            return
+        }
+        if reader != nil {
+            self.resetConnection()
+        }
+        if let reader = TcpReader(hostname: hostname, port: port, delegate: self) {
+            self.reader = reader
+            self.newGameState(.serverSelected)
+        } else {
+            debugPrint("AppDelegate failed to start reader")
         }
     }
     @objc func selectServer(sender: NSMenuItem) {
