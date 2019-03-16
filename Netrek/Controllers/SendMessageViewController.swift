@@ -56,6 +56,7 @@ class SendMessageViewController: NSViewController {
         let message = sender.stringValue
         let myTeam = appDelegate.universe.me?.team ?? .independent
         let myNumber = appDelegate.universe.me?.playerID ?? -1
+        sender.stringValue = ""
         DispatchQueue.global(qos: .background).async {
             switch tag {
             case 100:  // all

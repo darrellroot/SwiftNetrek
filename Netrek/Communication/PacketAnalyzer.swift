@@ -429,6 +429,7 @@ class PacketAnalyzer {
             let starbaseMaxKills100 = Int(data.subdata(in: (52..<56)).to(type: UInt32.self).byteSwapped)
             let maxKills = Double(maxKills100) / 100.0
             let starbaseMaxKills = Double(starbaseMaxKills100) / 100.0
+            appDelegate.universe.updatePlayer(playerID: playerID, tournamentKills: tournamentKills, tournamentLosses: tournamentLosses, tournamentTicks: tournamentTicks, tournamentPlanets: tournamentPlanets, tournamentArmies: tournamentArmies)
             debugPrint("Received SP_STATS 23  tkills \(tournamentKills) tlosses \(tournamentLosses) overallKills \(overallKills) overallLosses \(overallLosses) tTicks \(tournamentTicks) tPlanets \(tournamentPlanets) tArmies \(tournamentArmies) sbKills \(starbaseKills) sbLosses \(starbaseLosses) intramuralArmies \(intramuralArmies) intramuralPlanets \(intramuralPlanets) maxKills \(maxKills) starbaseMaxKills \(starbaseMaxKills)")
             //TODO need to process this data
         case 24:

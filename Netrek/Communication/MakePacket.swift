@@ -334,6 +334,18 @@ class MakePacket {
         let data = Data(bytes: &packet, count: packet.size)
         return data
     }
+    
+    static func cpDockperm(state: Bool) -> Data {
+        debugPrint("Sending CP_DOCKPERM 30 \(state)")
+        var packet = CP_DOCKPERM()
+        if state {
+            packet.state = 1
+        } else {
+            packet.state = 0
+        }
+        let data = Data(bytes: &packet, count: packet.size)
+        return data
+    }
     static func cpUpdates() -> Data {
         var packet = CP_UPDATES()
         debugPrint("Sending CP_UPDATE 31 \(packet.usecs.byteSwapped)")

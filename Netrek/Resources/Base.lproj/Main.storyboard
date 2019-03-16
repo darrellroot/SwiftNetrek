@@ -301,12 +301,6 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Preferred Team" id="O0Y-Aa-brW" userLabel="Team">
                                     <items>
-                                        <menuItem title="Any" id="Ovq-TC-iNJ">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="selectTeam:" target="Voe-Tx-rLC" id="7gj-qK-lg7"/>
-                                            </connections>
-                                        </menuItem>
                                         <menuItem title="Federation" tag="1" id="QXd-H4-JIy">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
@@ -434,7 +428,6 @@
                         <outlet property="selectShipDestroyer" destination="RQR-xk-MBV" id="jeB-zk-UkE"/>
                         <outlet property="selectShipScout" destination="K8f-w1-MFk" id="LWv-em-9tK"/>
                         <outlet property="selectShipStarbase" destination="HaN-YX-xIR" id="Whg-fb-Nlu"/>
-                        <outlet property="selectTeamAny" destination="Ovq-TC-iNJ" id="fgI-b1-Jio"/>
                         <outlet property="selectTeamFederation" destination="QXd-H4-JIy" id="cVr-be-xqm"/>
                         <outlet property="selectTeamKleptocrat" destination="eOl-m9-uy5" id="plU-9H-Vxx"/>
                         <outlet property="selectTeamOrion" destination="vkp-EH-W33" id="wYs-aF-AfH"/>
@@ -921,11 +914,11 @@
                             <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="allowed" translatesAutoresizingMaskIntoConstraints="NO" id="f2N-nA-q6M" customClass="FlipScrollView" customModule="Netrek" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                                 <clipView key="contentView" id="fn0-gr-rPK">
-                                    <rect key="frame" x="1" y="1" width="478" height="268"/>
+                                    <rect key="frame" x="1" y="1" width="463" height="268"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <view fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vSe-2E-wNu" customClass="FlipView" customModule="Netrek" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="463" height="253"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="448" height="253"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </view>
                                     </subviews>
@@ -935,7 +928,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="de4-Mj-rKf">
-                                    <rect key="frame" x="463" y="1" width="16" height="268"/>
+                                    <rect key="frame" x="464" y="1" width="15" height="268"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>

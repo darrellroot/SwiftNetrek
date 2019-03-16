@@ -130,11 +130,27 @@ struct CP_LOGIN {
 
 struct CP_OUTFIT {
     let type: UInt8 = 9
-    var team: UInt8 = 1
+    var team: UInt8 = 0
     var ship: UInt8 = 0
     let pad1: UInt8 = 0
     init(team: Team, ship: ShipType) {
-        //self.team = UInt8(team.rawValue)
+        // menu option for independent and ogg does not exist.  Server only accepts 0-3, but it is inconsistent which team you get
+        switch team {
+            
+        case .independent:
+            self.team = 255
+        case .federation:
+            self.team = 3
+        case .roman:
+            self.team = 0
+        case .kleptocrat:
+            self.team = 1
+        case .orion:
+            self.team = 2
+        case .ogg:
+            self.team = 255
+        }
+        self.team = UInt8(team.rawValue)
         self.ship = UInt8(ship.rawValue)
     }
     var size: Int {
@@ -331,6 +347,17 @@ struct CP_SOCKET {
 struct CP_BYE {
     let type: UInt8 = 29
     let pad1: UInt8 = 0
+    let pad2: UInt8 = 0
+    let pad3: UInt8 = 0
+    
+    var size: Int {
+        return 4
+    }
+}
+
+struct CP_DOCKPERM {
+    let type: UInt8 = 30
+    var state: UInt8 = 0
     let pad2: UInt8 = 0
     let pad3: UInt8 = 0
     

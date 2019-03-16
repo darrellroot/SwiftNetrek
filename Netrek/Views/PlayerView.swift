@@ -98,6 +98,30 @@ class PlayerView: NSScrollView {
         point = CGPoint(x: (inset + 32 * horizontalInterval), y: verticalPosition)
         attString = NSAttributedString(string: "Kills", attributes: attribute)
         attString.draw(at: point)
+        
+        point = CGPoint(x: (inset + 38 * horizontalInterval), y: verticalPosition)
+        attString = NSAttributedString(string: "TWins", attributes: attribute)
+        attString.draw(at: point)
+
+        point = CGPoint(x: (inset + 44 * horizontalInterval), y: verticalPosition)
+        attString = NSAttributedString(string: "TLoss", attributes: attribute)
+        attString.draw(at: point)
+        
+        point = CGPoint(x: (inset + 50 * horizontalInterval), y: verticalPosition)
+        attString = NSAttributedString(string: "TRatio", attributes: attribute)
+        attString.draw(at: point)
+
+        point = CGPoint(x: (inset + 56 * horizontalInterval), y: verticalPosition)
+        attString = NSAttributedString(string: "THours", attributes: attribute)
+        attString.draw(at: point)
+        
+        point = CGPoint(x: (inset + 62 * horizontalInterval), y: verticalPosition)
+        attString = NSAttributedString(string: "TPlanets", attributes: attribute)
+        attString.draw(at: point)
+
+        point = CGPoint(x: (inset + 68 * horizontalInterval), y: verticalPosition)
+        attString = NSAttributedString(string: "TArmies", attributes: attribute)
+        attString.draw(at: point)
 
     }
     private func displayColumn(players: [Player], inset: Int) {
@@ -144,6 +168,47 @@ class PlayerView: NSScrollView {
             point = CGPoint(x: (inset + 32 * horizontalInterval), y: verticalPosition)
             attString = NSAttributedString(string: kills, attributes: attribute)
             attString.draw(at: point)
+
+            let wins = String(player.tournamentKills)
+            
+            point = CGPoint(x: (inset + 38 * horizontalInterval), y: verticalPosition)
+            attString = NSAttributedString(string: wins, attributes: attribute)
+            attString.draw(at: point)
+
+            let losses = String(player.tournamentLosses)
+            
+            point = CGPoint(x: (inset + 44 * horizontalInterval), y: verticalPosition)
+            attString = NSAttributedString(string: losses, attributes: attribute)
+            attString.draw(at: point)
+            
+            let ratio: String
+            if player.tournamentLosses > 0 {
+                ratio = String(format: "%2.2f",Double(player.tournamentKills) / Double(player.tournamentLosses))
+            } else {
+                ratio = "NA"
+            }
+            point = CGPoint(x: (inset + 50 * horizontalInterval), y: verticalPosition)
+            attString = NSAttributedString(string: ratio, attributes: attribute)
+            attString.draw(at: point)
+
+            let tHours = String(format: "%4.1f",(player.tournamentTicks / 3600))
+            
+            point = CGPoint(x: (inset + 56 * horizontalInterval), y: verticalPosition)
+            attString = NSAttributedString(string: tHours, attributes: attribute)
+            attString.draw(at: point)
+
+            let tPlanets = String(player.tournamentPlanets)
+            
+            point = CGPoint(x: (inset + 62 * horizontalInterval), y: verticalPosition)
+            attString = NSAttributedString(string: tPlanets, attributes: attribute)
+            attString.draw(at: point)
+
+            let tArmies = String(player.tournamentPlanets)
+            
+            point = CGPoint(x: (inset + 68 * horizontalInterval), y: verticalPosition)
+            attString = NSAttributedString(string: tArmies, attributes: attribute)
+            attString.draw(at: point)
+
         }
     }
 }

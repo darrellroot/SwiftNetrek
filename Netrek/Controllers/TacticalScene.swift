@@ -269,24 +269,78 @@ class TacticalScene: SKScene {
             keymap.execute(.eightKey, location: location)
         case "9":
             keymap.execute(.nineKey, location: location)
+        case ")":
+            keymap.execute(.rightParenKey, location: location)
+        case "!": keymap.execute(.exclamationMarkKey, location: location)
+        case "@": keymap.execute(.atKey, location: location)
+        case "%": keymap.execute(.percentKey,location: location)
+        case "#": keymap.execute(.poundKey,location: location)
+        case "<":
+            keymap.execute(.lessThanKey,location: location)
+        case ">":
+            keymap.execute(.greaterThanKey,location: location)
+        case "]":
+            keymap.execute(.rightBracketKey,location: location)
+        case "[":
+            keymap.execute(.leftBracketKey, location: location)
+        case "{":
+            keymap.execute(.leftCurly, location: location)
+        case "}":
+            keymap.execute(.rightCurly, location: location)
+        case "_":
+            keymap.execute(.underscore, location: location)
+        case "^":
+            keymap.execute(.carrot, location: location)
+        case "$":
+            keymap.execute(.dollar, location: location)
+        case ";":
+            keymap.execute(.semicolon, location: location)
+        case "a":
+            keymap.execute(.aKey, location: location)
         case "b":
             keymap.execute(.bKey, location: location)
         case "c":
             keymap.execute(.cKey, location: location)
         case "d":
             keymap.execute(.dKey, location: location)
+        case "e":
+            keymap.execute(.eKey, location: location)
         case "f":
             keymap.execute(.fKey, location: location)
+        case "g":
+            keymap.execute(.gKey, location: location)
+        case "h":
+            keymap.execute(.hKey, location: location)
+        case "i":
+            keymap.execute(.iKey, location: location)
+        case "j":
+            keymap.execute(.jKey, location: location)
+        case "k":
+            keymap.execute(.kKey, location: location)
         case "l":
             keymap.execute(.lKey, location: location)
+        case "m":
+            keymap.execute(.mKey, location: location)
+        case "n":
+            keymap.execute(.nKey, location: location)
         case "o":
             keymap.execute(.oKey, location: location)
+        case "p":
+            keymap.execute(.pKey, location: location)
+        case "q":
+            keymap.execute(.qKey, location: location)
         case "r":
             keymap.execute(.rKey, location: location)
         case "s":
             keymap.execute(.sKey, location: location)
+        case "t":
+            keymap.execute(.tKey, location: location)
         case "u":
             keymap.execute(.uKey, location: location)
+        case "v":
+            keymap.execute(.vKey, location: location)
+        case "w":
+            keymap.execute(.wKey, location: location)
         case "x":
             keymap.execute(.xKey, location: location)
         case "y":

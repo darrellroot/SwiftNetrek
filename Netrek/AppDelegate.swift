@@ -40,7 +40,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBOutlet weak var serverMenu: NSMenu!
     
-    @IBOutlet weak var selectTeamAny: NSMenuItem!
     @IBOutlet weak var selectTeamFederation: NSMenuItem!
     @IBOutlet weak var selectTeamRoman: NSMenuItem!
     @IBOutlet weak var selectTeamKleptocrat: NSMenuItem!
@@ -92,7 +91,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     private func updateTeamMenu() {
         DispatchQueue.main.async {
-            self.selectTeamAny.state = .off
             self.selectTeamFederation.state = .off
             self.selectTeamFederation.state = .off
             self.selectTeamRoman.state = .off
@@ -108,7 +106,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             case .orion:
                 self.selectTeamOrion.state = .on
             case .independent:
-                self.selectTeamAny.state = .on
+                break
             case .ogg:
                 break
             }
@@ -266,7 +264,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
             self.gameState = newState
             if !clientTypeSent {
-                let data = MakePacket.cpMessage(message: "I am using the Swift Netrek Client v0.1 on MacOS", team: .ogg, individual: 0)
+                let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "unknown"
+                let buildVersion = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "unknown"
+                let data = MakePacket.cpMessage(message: "I am using the Swift Netrek Client version \(appVersion) build \(buildVersion) on MacOS", team: .ogg, individual: 0)
                     clientTypeSent = true
                     self.reader?.send(content: data)
             }

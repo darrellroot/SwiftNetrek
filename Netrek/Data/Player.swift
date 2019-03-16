@@ -89,6 +89,12 @@ class Player: CustomStringConvertible {
     private(set) var whyDead: Int?
     private(set) var whoDead: Int?
     
+    private(set) var tournamentKills: Int = 0
+    private(set) var tournamentLosses: Int = 0
+    private(set) var tournamentTicks: Int = 0
+    private(set) var tournamentPlanets: Int = 0
+    private(set) var tournamentArmies: Int = 0
+    
     private(set) var playing = false
     private(set) var team: Team = .independent
     private(set) var ship: ShipType?
@@ -515,6 +521,15 @@ class Player: CustomStringConvertible {
             debugPrint("player \(String(describing: playerID)) is on team \(self.team) and is war:\(self.war) with team \(team)" )
         }*/
     }
+    // from SP_STATS 23
+    public func updatePlayer(playerID: Int, tournamentKills: Int, tournamentLosses: Int, tournamentTicks: Int, tournamentPlanets: Int, tournamentArmies: Int) {
+        self.tournamentKills = tournamentKills
+        self.tournamentLosses = tournamentLosses
+        self.tournamentTicks = tournamentTicks
+        self.tournamentPlanets = tournamentPlanets
+        self.tournamentArmies = tournamentArmies
+    }
+
     public func update(rank: Int, name: String, login: String) {
         for netrekRank in Rank.allCases {
             if netrekRank.rawValue == rank {

@@ -20,18 +20,47 @@ enum Control: String, CaseIterable {
     case sevenKey = "7 key"
     case eightKey = "8 key"
     case nineKey = "9 key"
+    case rightParenKey = ") key"
+    case exclamationMarkKey = "! key"
+    case atKey = "@ key"
+    case percentKey = "% key"
+    case poundKey = "# key"
+    case lessThanKey = "< key"
+    case greaterThanKey = "> key"
+    case rightBracketKey = "] key"
+    case leftBracketKey = "[ key"
     case leftMouse = "left mouse button"
     case otherMouse = "center mouse button"
     case rightMouse = "right mouse button"
+    case leftCurly = "{ key"
+    case rightCurly = "} key"
+    case underscore = "_ key"
+    case carrot = "^ key"
+    case dollar = "$ key"
+    case semicolon = "; key"
+    case aKey = "a key"
     case bKey = "b key"
     case cKey = "c key"
     case dKey = "d key"
+    case eKey = "e key"
     case fKey = "f key"
+    case gKey = "g key"
+    case hKey = "h key"
+    case iKey = "i key"
+    case jKey = "j key"
+    case kKey = "k key"
     case lKey = "l key"
+    case mKey = "m key"
+    case nKey = "n key"
     case oKey = "o key"
+    case pKey = "p key"
+    case qKey = "q key"
     case rKey = "r key"
     case sKey = "s key"
+    case tKey = "t key"
     case uKey = "u key"
+    case vKey = "v key"
+    case wKey = "w key"
     case xKey = "x key"
     case yKey = "y key"
     case zKey = "z key"
@@ -54,25 +83,41 @@ enum Command: String, CaseIterable {
     case speedSeven = "Set speed 7"
     case speedEight = "Set speed 8"
     case speedNine = "Set speed 9"
+    case speedTen = "Set speed 10"
+    case speedEleven = "Set speed 11"
+    case speedTwelve = "Set speed 12"
+    case speedMax = "Set speed maximum"
+    case speedHalf = "Set speed half"
+    case speedDecrease = "Decrease speed 1"
+    case speedIncrease = "Speed increase 1"
     case setCourse = "Set course"
     case beamUp = "Beam up armies"
     case beamDown = "Beam down armies"
     case bomb = "Bomb"
     case cloak = "Toggle cloak"
+    case cloakUp = "Activate cloak"
+    case cloakDown = "Deactivate cloak"
     case coup = "Coup own home planet"
     case detOwn = "Detonate own torpedoes"
     case detEnemy = "Detonate enemy torpedoes"
+    case dockingPermission = "Docking Permission Toggle"
     case fireTorpedo = "Fire torpedo"
     case firePlasma = "Fire plasma"
     case fireLaser = "Fire laser"
     case lockDestination = "Lock onto Destination"
+    case lockStarbasePlanet = "Lock onto starbase or Planet"
+    case lowerShields = "Lower shields"
+    case nothing = "Nothing"
     case orbit = "Orbit"
-    case pressorBeam = "Pressor beam"
+    case pressorBeam = "Pressor beam toggle"
+    case pressorOn = "Pressor beam on"
     case raiseShields = "Raise shields"
     case refit = "Refit (unused: use launch ship menu)"
     case repair = "Repair"
     case toggleShields = "Toggle shields"
-    case tractorBeam = "Tractor beam"
+    case tractorPressorOff = "Tractor and pressor beams off"
+    case tractorBeam = "Tractor beam toggle"
+    case tractorOn = "Tractor beam on"
     case quitGame = "Self destruct and quit game"
     case practiceRobot = "Send in practice robot"
 }
@@ -88,6 +133,7 @@ class KeymapController {
         self.loadSavedKeymaps()
     }
     
+
     func setDefaults() {
         keymap = [:]
         keymap = [
@@ -101,18 +147,47 @@ class KeymapController {
             .sevenKey:.speedSeven,
             .eightKey:.speedEight,
             .nineKey:.speedNine,
+            .rightParenKey:.speedTen,
+            .exclamationMarkKey:.speedEleven,
+            .atKey:.speedTwelve,
+            .percentKey:.speedMax,
+            .poundKey:.speedHalf,
+            .lessThanKey:.speedDecrease,
+            .greaterThanKey:.speedIncrease,
+            .rightBracketKey:.raiseShields,
+            .leftBracketKey:.lowerShields,
+            .leftCurly:.cloakDown,
+            .rightCurly:.cloakUp,
+            .underscore:.tractorOn,
+            .carrot:.pressorOn,
+            .dollar:.tractorPressorOff,
+            .aKey:.nothing,
             .bKey:.bomb,
             .cKey:.cloak,
             .dKey:.detEnemy,
+            .eKey:.dockingPermission,
             .fKey:.firePlasma,
+            .gKey:.nothing,
+            .hKey:.nothing,
+            .iKey:.nothing,
+            .jKey:.nothing,
+            .kKey:.setCourse,
             .lKey:.lockDestination,
+            .mKey:.nothing,
+            .nKey:.nothing,
             .oKey:.orbit,
+            .pKey:.fireLaser,
+            .qKey:.nothing,
             .rKey:.refit,
             .sKey:.toggleShields,
+            .tKey:.fireTorpedo,
             .uKey:.raiseShields,
+            .vKey:.nothing,
+            .wKey:.nothing,
             .xKey:.beamDown,
             .yKey:.pressorBeam,
             .zKey:.beamUp,
+            .CKey:.coup,
             .DKey:.detOwn,
             .QKey:.quitGame,
             .RKey:.repair,
@@ -151,6 +226,8 @@ class KeymapController {
         if let command = keymap[control] {
             switch command {
                 
+            case .nothing:
+                break
             case .speedZero:
                 self.setSpeed(0)
             case .speedOne:
@@ -171,6 +248,41 @@ class KeymapController {
                 self.setSpeed(8)
             case .speedNine:
                 self.setSpeed(9)
+            case .speedTen:
+                self.setSpeed(10)
+            case .speedEleven:
+                self.setSpeed(11)
+            case .speedTwelve:
+                self.setSpeed(12)
+            case .speedMax:
+                if let myShipType = appDelegate.universe.me?.ship, let myShipInfo = appDelegate.universe.shipInfo[myShipType] {
+                    self.setSpeed(myShipInfo.maxSpeed)
+                }
+            case .speedHalf:
+                if let myShipType = appDelegate.universe.me?.ship, let myShipInfo = appDelegate.universe.shipInfo[myShipType] {
+                    self.setSpeed(myShipInfo.maxSpeed / 2)
+                }
+            case .speedIncrease:
+                if let currentSpeed = appDelegate.universe.me?.speed {
+                    if currentSpeed < 12 {
+                        self.setSpeed(currentSpeed + 1)
+                    }
+                }
+            case .speedDecrease:
+                if let currentSpeed = appDelegate.universe.me?.speed {
+                    if currentSpeed > 0 {
+                        self.setSpeed(currentSpeed + 1)
+                    }
+                }
+
+                
+                /*
+                 case speedMax = "Set speed maximum"
+                 case speedHalf = "Set speed half"
+                 case speedDecrease = "Decrease speed 1"
+                 case speedIncrease = "Speed increase 1"
+                 */
+
             case .beamUp:
                 let cpBeam = MakePacket.cpBeam(state: true)
                 appDelegate.reader?.send(content: cpBeam)
@@ -179,9 +291,18 @@ class KeymapController {
                 appDelegate.reader?.send(content: cpBeam)
             case .bomb:
                 if let bombState = appDelegate.universe.me?.bomb {
-                    let cpBomb = MakePacket.cpRepair(state: !bombState )
+                    let cpBomb = MakePacket.cpBomb(state: !bombState )
                     appDelegate.reader?.send(content: cpBomb)
                 }
+            case .cloakUp:
+                let cpCloak = MakePacket.cpCloak(state: true )
+                appDelegate.reader?.send(content: cpCloak)
+                appDelegate.soundController?.play(sound: .shield, volume: 1.0)
+            case .cloakDown:
+                let cpCloak = MakePacket.cpCloak(state: false )
+                appDelegate.reader?.send(content: cpCloak)
+                appDelegate.soundController?.play(sound: .shield, volume: 1.0)
+
             case .cloak:
                 if let cloakState = appDelegate.universe.me?.cloak {
                     let cpCloak = MakePacket.cpCloak(state: !cloakState )
@@ -206,6 +327,11 @@ class KeymapController {
                     appDelegate.reader?.send(content: cpDetMyTorps)
                 }
                 appDelegate.soundController?.play(sound: .detonate, volume: 0.5)
+            case .dockingPermission:
+                if let me = appDelegate.universe.me {
+                    let cpDockperm = MakePacket.cpDockperm(state: !me.dockok)
+                    appDelegate.reader?.send(content: cpDockperm)
+                }
             case .refit:
                 appDelegate.messageViewController?.gotMessage("To refit, orbit home planet and select LAUNCH SHIP menu item")
                 break
@@ -232,6 +358,28 @@ class KeymapController {
                     }
                     appDelegate.soundController?.play(sound: .shield, volume: 1.0)
                 }
+            case .tractorPressorOff:
+                let cpTractor = MakePacket.cpTractor(on: false, playerID: 0)
+                appDelegate.reader?.send(content: cpTractor)
+                let cpPressor = MakePacket.cpPressor(on: false, playerID: 0)
+                appDelegate.reader?.send(content: cpPressor)
+
+            case .tractorOn:
+                guard let targetLocation = location else {
+                    debugPrint("KeymapController.execute.tractorBeam location is nil...cannot lock onto nothing")
+                    return
+                }
+                guard let target = findClosestPlayer(location: targetLocation) else {
+                    return
+                }
+                guard let me = appDelegate.universe.me else { return }
+                if target.me == true { return }
+                guard target.playerID >= 0 else { return }
+                guard target.playerID < 256 else { return }
+                let playerID = UInt8(target.playerID)
+                let cpTractor = MakePacket.cpTractor(on: true, playerID: playerID)
+                appDelegate.reader?.send(content: cpTractor)
+
             case .tractorBeam:
                 debugPrint("TractorBeam location \(String(describing: location))")
                 guard let targetLocation = location else {
@@ -248,6 +396,23 @@ class KeymapController {
                 let playerID = UInt8(target.playerID)
                 let cpTractor = MakePacket.cpTractor(on: !me.tractorFlag, playerID: playerID)
                     appDelegate.reader?.send(content: cpTractor)
+            case .pressorOn:
+                debugPrint("PressorBeam location \(String(describing: location))")
+                guard let targetLocation = location else {
+                    debugPrint("KeymapController.execute.pressorBeam location is nil...cannot lock onto nothing")
+                    return
+                }
+                guard let target = findClosestPlayer(location: targetLocation) else {
+                    return
+                }
+                guard let me = appDelegate.universe.me else { return }
+                if target.me == true { return }
+                guard target.playerID >= 0 else { return }
+                guard target.playerID < 256 else { return }
+                let playerID = UInt8(target.playerID)
+                let cpPressor = MakePacket.cpPressor(on: true, playerID: playerID)
+                appDelegate.reader?.send(content: cpPressor)
+
             case .pressorBeam:
                 debugPrint("PressorBeam location \(String(describing: location))")
                 guard let targetLocation = location else {
@@ -271,6 +436,11 @@ class KeymapController {
                     appDelegate.reader?.send(content: cpOrbit)
 
                 }
+            case .lowerShields:
+                let cpShield = MakePacket.cpShield(up: false)
+                appDelegate.reader?.send(content: cpShield)
+                appDelegate.soundController?.play(sound: .shield, volume: 1.0)
+
             case .raiseShields:
                 let cpShield = MakePacket.cpShield(up: true)
                 appDelegate.reader?.send(content: cpShield)
@@ -323,6 +493,53 @@ class KeymapController {
                 debugPrint("Requesting practice robot")
                 let cpPractice = MakePacket.cpPractice()
                 appDelegate.reader?.send(content: cpPractice)
+            case .lockStarbasePlanet:
+                guard let lockLocation = location else {
+                    debugPrint("KeymapController.execute.lockDestination location is nil...awaiting instructions")
+                    return
+                }
+                let lockLocationX = Int(lockLocation.x)
+                let lockLocationY = Int(lockLocation.y)
+                var closestPlanetDistance = 10000
+                var closestPlanet: Planet?
+                var closestPlayerDistance = 10000
+                var closestPlayer: Player?
+                
+                for planet in appDelegate.universe.planets.values {
+                    let thisPlanetDistance = abs(planet.positionX - lockLocationX) + abs(planet.positionY - lockLocationY)
+                    if thisPlanetDistance < closestPlanetDistance {
+                        closestPlanetDistance = thisPlanetDistance
+                        closestPlanet = planet
+                    }
+                }
+                for player in appDelegate.universe.players.values {
+                    if player.ship == .starbase && player.me == false {
+                        let thisPlayerDistance = abs(player.positionX - lockLocationX) + abs(player.positionY - lockLocationY)
+                        if thisPlayerDistance < closestPlayerDistance {
+                            closestPlayerDistance = thisPlayerDistance
+                            closestPlayer = player
+                        }
+                    }
+                }
+                if closestPlayerDistance < closestPlanetDistance {
+                    // lock onto player
+                    guard let player = closestPlayer else { return }
+                    guard player.playerID > 0 && player.playerID < 256 else {
+                        debugPrint("keymap.playerlock invalid playerID \(player.playerID)")
+                        return
+                    }
+                    let cpPlayerLock = MakePacket.cpPlayerLock(playerID: UInt8(player.playerID))
+                    appDelegate.reader?.send(content: cpPlayerLock)
+                } else {
+                    guard let planet = closestPlanet else { return }
+                    guard planet.planetID > 0 && planet.planetID < 256 else {
+                        debugPrint("keymap.planetlock invalid planetID \(planet.planetID)")
+                        return
+                    }
+                    let cpPlanetLock = MakePacket.cpPlanetLock(planetID: UInt8(planet.planetID))
+                    appDelegate.reader?.send(content: cpPlanetLock)
+                }
+
             case .lockDestination:
                 guard let lockLocation = location else {
                     debugPrint("KeymapController.execute.lockDestination location is nil...awaiting instructions")
