@@ -24,4 +24,6 @@ class StrategicViewController: NSViewController {
             self.strategicView.setFontSize(newSize: CGFloat(savedFont))
         }
     }
+    override func rightMouseDragged(with event: NSEvent) { print(#function) }
+
 }

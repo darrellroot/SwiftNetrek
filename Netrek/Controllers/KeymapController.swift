@@ -64,11 +64,32 @@ enum Control: String, CaseIterable {
     case xKey = "x key"
     case yKey = "y key"
     case zKey = "z key"
+    case AKey = "A key"
+    case BKey = "B key"
     case CKey = "C key"
     case DKey = "D key"
+    case EKey = "E key"
+    case FKey = "F key"
+    case GKey = "G key"
+    case HKey = "H key"
+    case IKey = "I key"
+    case JKey = "J key"
+    case KKey = "K key"
+    case LKey = "L key"
+    case MKey = "M key"
+    case NKey = "N key"
+    case OKey = "O key"
+    case PKey = "P key"
     case QKey = "Q key"
     case RKey = "R key"
+    case SKey = "S key"
     case TKey = "T key"
+    case UKey = "U key"
+    case VKey = "V key"
+    case WKey = "W key"
+    case XKey = "X key"
+    case YKey = "Y key"
+    case ZKey = "Z key"
     case asteriskKey = "* key"
 }
 
@@ -187,11 +208,32 @@ class KeymapController {
             .xKey:.beamDown,
             .yKey:.pressorBeam,
             .zKey:.beamUp,
+            .AKey:.nothing,
+            .BKey:.nothing,
             .CKey:.coup,
             .DKey:.detOwn,
+            .EKey:.nothing,
+            .FKey:.nothing,
+            .GKey:.nothing,
+            .HKey:.nothing,
+            .IKey:.nothing,
+            .JKey:.nothing,
+            .KKey:.nothing,
+            .LKey:.nothing,
+            .MKey:.nothing,
+            .NKey:.nothing,
+            .OKey:.nothing,
+            .PKey:.nothing,
             .QKey:.quitGame,
             .RKey:.repair,
+            .SKey:.nothing,
             .TKey:.tractorBeam,
+            .UKey:.nothing,
+            .VKey:.nothing,
+            .WKey:.nothing,
+            .XKey:.nothing,
+            .YKey:.nothing,
+            .ZKey:.nothing,
             .leftMouse:.fireTorpedo,
             .otherMouse:.fireLaser,
             .rightMouse:.setCourse,
@@ -464,7 +506,7 @@ class KeymapController {
                 }
 
             case .fireTorpedo:
-                debugPrint("RightMouseDown location \(String(describing: location))")
+                debugPrint("LeftMouseDown location \(String(describing: location))")
                 guard let targetLocation = location else {
                     debugPrint("KeymapController.execute.fireTorpedo location is nil...holding fire")
                     return

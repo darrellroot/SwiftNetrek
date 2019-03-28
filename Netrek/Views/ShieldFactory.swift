@@ -22,6 +22,7 @@ class ShieldFactory: SKView {
         //shieldNode.lineWidth = CGFloat(NetrekMath.playerSize)
         shieldNode.strokeColor = .white
         let shieldTexture = self.texture(from: shieldNode)
+
         return shieldTexture
     }
     

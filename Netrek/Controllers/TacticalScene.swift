@@ -14,8 +14,9 @@ class TacticalScene: SKScene {
     let sceneType: SceneType = .tactical
     //var window: NSWindow?
     var keymapController: KeymapController!
-    
-   
+    var lastRightMouseDraggedTime = Date()
+    var lastLeftMouseDraggedTime = Date()
+    var lastOtherMouseDraggedTime = Date()
     
     override func sceneDidLoad() {
         //self.window = self.view?.window
@@ -24,7 +25,9 @@ class TacticalScene: SKScene {
         border.lineWidth = 10
         border.strokeColor = NSColor.white
         self.addChild(border)
-        
+        debugPrint("tactical scene is user interaction enabled \(isUserInteractionEnabled)")
+        debugPrint("border is user interaction enabled \(border.isUserInteractionEnabled)")
+
     }
     func explosion() -> SKEmitterNode {
         let emitter = SKEmitterNode()
@@ -200,14 +203,50 @@ class TacticalScene: SKScene {
             self.scene?.addChild(torpedo.torpedoNode)
         }
     }
-        
-        
+    override func rightMouseDragged(with event: NSEvent) {
+        self.rightMouseDown(with: event)
+    }
+    //override func rightMouseDragged(with event: NSEvent) { print(#function) }
+
+    /*override func rightMouseDragged(with event: NSEvent) {
+        debugPrint("scene controller right mouse dragged")
+        guard Date().timeIntervalSince(self.lastRightMouseDraggedTime) > 0.1 else {
+            return
+        }
+        self.lastRightMouseDraggedTime = Date()
+        let location = event.location(in: self)
+        debugPrint("RightMouseDragged location \(location)")
+        appDelegate.keymapController.execute(.rightMouse, location: location)
+    }*/
+    override func otherMouseDragged(with event: NSEvent) {
+        debugPrint("scene controller other mouse dragged")
+        guard Date().timeIntervalSince(self.lastOtherMouseDraggedTime) > 0.1 else {
+            return
+        }
+        self.lastOtherMouseDraggedTime = Date()
+        let location = event.location(in: self)
+        debugPrint("OtherMouseDragged location \(location)")
+        appDelegate.keymapController.execute(.otherMouse, location: location)
+    }
+
+    override func mouseDragged(with event: NSEvent) {
+        debugPrint("scene controller left mouse dragged")
+        guard Date().timeIntervalSince(lastLeftMouseDraggedTime) > 0.1 else {
+            return
+        }
+        self.lastLeftMouseDraggedTime = Date()
+        let location = event.location(in: self)
+        debugPrint("LeftMouseDragged location \(location)")
+        appDelegate.keymapController.execute(.leftMouse, location: location)
+    }
+
     override func rightMouseDown(with event: NSEvent) {
         let location = event.location(in: self)
         debugPrint("RightMouseDown location \(location)")
         appDelegate.keymapController.execute(.rightMouse, location: location)
     }
     override func otherMouseDown(with event: NSEvent) {
+        debugPrint(#function)
         // had to catch event in tacticalViewController
         let location = event.location(in: self)
         debugPrint("OtherMouseDown location \(location)")
@@ -215,6 +254,7 @@ class TacticalScene: SKScene {
     }
     
     override func mouseDown(with event: NSEvent) {
+        debugPrint(#function)
         let modifiers = event.modifierFlags
         if modifiers.contains(.control) {
             self.rightMouseDown(with: event)
@@ -227,6 +267,9 @@ class TacticalScene: SKScene {
             appDelegate.keymapController.execute(.leftMouse, location: location)
         case .otherMouseDown: // does not work
             break
+        case .rightMouseDragged:
+            // does not work
+            print(#function)
         case .rightMouseDown:
             // does not work alternative implementation above
             break
@@ -347,16 +390,58 @@ class TacticalScene: SKScene {
             keymap.execute(.yKey, location: location)
         case "z":
             keymap.execute(.zKey, location: location)
+        case "A":
+            keymap.execute(.AKey, location: location)
+        case "B":
+            keymap.execute(.BKey, location: location)
         case "C":
             keymap.execute(.CKey, location: location)
         case "D":
             keymap.execute(.DKey, location: location)
+        case "E":
+            keymap.execute(.EKey, location: location)
+        case "F":
+            keymap.execute(.FKey, location: location)
+        case "G":
+            keymap.execute(.GKey, location: location)
+        case "H":
+            keymap.execute(.HKey, location: location)
+        case "I":
+            keymap.execute(.IKey, location: location)
+        case "J":
+            keymap.execute(.JKey, location: location)
+        case "K":
+            keymap.execute(.KKey, location: location)
+        case "L":
+            keymap.execute(.LKey, location: location)
+        case "M":
+            keymap.execute(.MKey, location: location)
+        case "N":
+            keymap.execute(.NKey, location: location)
+        case "O":
+            keymap.execute(.OKey, location: location)
+        case "P":
+            keymap.execute(.PKey, location: location)
         case "Q":
             keymap.execute(.QKey, location: location)
         case "R":
             keymap.execute(.RKey, location: location)
+        case "S":
+            keymap.execute(.SKey, location: location)
         case "T":
             keymap.execute(.TKey, location: location)
+        case "U":
+            keymap.execute(.UKey, location: location)
+        case "V":
+            keymap.execute(.VKey, location: location)
+        case "W":
+            keymap.execute(.WKey, location: location)
+        case "X":
+            keymap.execute(.XKey, location: location)
+        case "Y":
+            keymap.execute(.YKey, location: location)
+        case "Z":
+            keymap.execute(.ZKey, location: location)
         case "*":
             keymap.execute(.asteriskKey, location: location)
         default:

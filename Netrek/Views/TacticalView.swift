@@ -17,5 +17,9 @@ class TacticalView: SKView {
 
         // Drawing code here.
     }
+    override func rightMouseDragged(with event: NSEvent) {
+        self.scene?.rightMouseDragged(with: event)
+    }
+
     
 }

@@ -21,6 +21,7 @@ class OverallViewController: NSViewController {
         // Update the view, if already loaded.
         }
     }
+    override func rightMouseDragged(with event: NSEvent) { print("overall \(#function)") }
 
 
 }

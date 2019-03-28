@@ -16,5 +16,6 @@ class HUDViewController: NSViewController {
         appDelegate.hudViewController = self
         // Do view setup here.
     }
-    
+    override func rightMouseDragged(with event: NSEvent) { print("hud \(#function)") }
+
 }

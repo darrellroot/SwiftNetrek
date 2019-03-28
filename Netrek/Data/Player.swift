@@ -270,6 +270,7 @@ class Player: CustomStringConvertible {
         //self.playerTacticalNode.size = CGSize(width: NetrekMath.playerSize, height: NetrekMath.playerSize)
         self.shieldNode.color = NetrekMath.color(team: self.team)
         self.playerTacticalNode.addChild(self.shieldNode)
+        debugPrint("player tac node user interaction \(self.playerTacticalNode.isUserInteractionEnabled)")
         self.updateNode()
     //appDelegate.tacticalViewController?.scene.addChild(self.playerTacticalNode)
     }

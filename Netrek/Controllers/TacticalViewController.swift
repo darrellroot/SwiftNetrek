@@ -33,9 +33,13 @@ class TacticalViewController: NSViewController, SKSceneDelegate {
         scene.delegate = self
         scene.addChild(defaultCamera)
         scene.camera = defaultCamera
+        debugPrint("camera user interaction \(defaultCamera.isUserInteractionEnabled)")
+
         //scene.window = self.view.window
         defaultCamera.position = CGPoint(x: 2000, y: 5000)
         skView.presentScene(self.scene)
+        debugPrint("scene user interaction \(self.scene.isUserInteractionEnabled)")
+
     }
     /*public func presentScene(delay: Double) {
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
@@ -55,5 +59,20 @@ class TacticalViewController: NSViewController, SKSceneDelegate {
         self.scene.otherMouseDown(with: event)
         //appDelegate.keymapController.execute(.otherMouse, location: location)
     }
+    override func otherMouseDragged(with event: NSEvent) {
+        debugPrint("tactical view controller other mouse dragged")
+        if event.type == .otherMouseDragged {
+            self.scene.otherMouseDragged(with: event)
+        }
+    }
+    override func rightMouseDragged(with event: NSEvent) { print(#function) }
 
+    /*override func rightMouseDragged(with event: NSEvent) {
+        debugPrint("tactical view controller right mouse dragged")
+        self.scene.rightMouseDragged(with: event)
+    }*/
+    /*override func mouseDragged(with event: NSEvent) {
+        debugPrint("tactical view controller mouse dragged")
+        self.scene.mouseDragged(with: event)
+    }*/
 }

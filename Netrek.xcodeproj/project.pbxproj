@@ -59,6 +59,7 @@
 		2FD339CE223C2A43009AA1E8 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD339CD223C2A43009AA1E8 /* KeychainService.swift */; };
 		2FD339D5223C8EA3009AA1E8 /* ManualServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD339D3223C8EA3009AA1E8 /* ManualServerController.swift */; };
 		2FD339D6223C8EA3009AA1E8 /* ManualServerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FD339D4223C8EA3009AA1E8 /* ManualServerController.xib */; };
+		2FD339FA2242E50C009AA1E8 /* OverallWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD339F92242E50C009AA1E8 /* OverallWindowController.swift */; };
 		2FD8567422335770005165C1 /* PlayerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD8567322335770005165C1 /* PlayerListViewController.swift */; };
 		2FD8569422337CFC005165C1 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD8569322337CFC005165C1 /* PlayerView.swift */; };
 		2FD856962234222D005165C1 /* StrategicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD856952234222D005165C1 /* StrategicView.swift */; };
@@ -127,6 +128,7 @@
 		2FD339CD223C2A43009AA1E8 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = KeychainService.swift; path = Netrek/Extensions/KeychainService.swift; sourceTree = SOURCE_ROOT; };
 		2FD339D3223C8EA3009AA1E8 /* ManualServerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualServerController.swift; sourceTree = "<group>"; };
 		2FD339D4223C8EA3009AA1E8 /* ManualServerController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ManualServerController.xib; sourceTree = "<group>"; };
+		2FD339F92242E50C009AA1E8 /* OverallWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OverallWindowController.swift; path = Netrek/Controllers/OverallWindowController.swift; sourceTree = SOURCE_ROOT; };
 		2FD8567322335770005165C1 /* PlayerListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListViewController.swift; sourceTree = "<group>"; };
 		2FD8569322337CFC005165C1 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		2FD856952234222D005165C1 /* StrategicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategicView.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				2F75017C222A5765002040A7 /* Protocols */,
 				2F75016F222A21A6002040A7 /* Extensions */,
 				2F75016822299F2C002040A7 /* license.txt */,
+				2F75015A22299E55002040A7 /* OverallViewController.swift */,
 				2F75015822299E55002040A7 /* AppDelegate.swift */,
 				2F750175222A4296002040A7 /* Communication */,
 				2FA665F822397B8800F0CA76 /* Sounds */,
@@ -213,6 +216,7 @@
 		2F750172222A41C8002040A7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2FD339F92242E50C009AA1E8 /* OverallWindowController.swift */,
 				2FD339D3223C8EA3009AA1E8 /* ManualServerController.swift */,
 				2FD339D4223C8EA3009AA1E8 /* ManualServerController.xib */,
 				2FDCD3E4223B27FF00C0AE67 /* LoginInformationController.swift */,
@@ -220,7 +224,6 @@
 				2FA666092239A4F500F0CA76 /* ControlPreferencesController.swift */,
 				2FDCD3DE2239C9C300C0AE67 /* OtherPreferencesController.swift */,
 				2FD8569722346743005165C1 /* HUDViewController.swift */,
-				2F75015A22299E55002040A7 /* OverallViewController.swift */,
 				2F750188222B4532002040A7 /* MessageViewController.swift */,
 				2F7501B0222F5AD9002040A7 /* TacticalViewController.swift */,
 				2F7501B2222F5B8F002040A7 /* StrategicViewController.swift */,
@@ -436,6 +439,7 @@
 				2F75015922299E55002040A7 /* AppDelegate.swift in Sources */,
 				2FD8569C22347566005165C1 /* ShipInfo.swift in Sources */,
 				2FD8569822346743005165C1 /* HUDViewController.swift in Sources */,
+				2FD339FA2242E50C009AA1E8 /* OverallWindowController.swift in Sources */,
 				2F7501A4222CA33C002040A7 /* packets.swift in Sources */,
 				2FDCD3E7223B354200C0AE67 /* UserDefaults-extensions.swift in Sources */,
 				2FA6660E2239A8C300F0CA76 /* Label.swift in Sources */,
