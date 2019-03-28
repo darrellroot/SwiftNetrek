@@ -231,11 +231,12 @@ class MakePacket {
     }
     //CP_BEAM 18
     static func cpBeam(state: Bool) -> Data {
+        //state true means beamup, state false means beamdown
         var packet = CP_BEAM()
         if state {
             packet.state = 1
         } else {
-            packet.state = 0
+            packet.state = 2
         }
         let data = Data(bytes: &packet, count: packet.size)
         debugPrint("Sending CP_BEAM state \(packet.state)")

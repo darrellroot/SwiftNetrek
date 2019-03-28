@@ -150,7 +150,7 @@ class PacketAnalyzer {
  
                 appDelegate.messageViewController?.gotMessage(messageString)
                 //debugPrint(messageString)
-                printData(data, success: true)
+                //printData(data, success: true)
             } else {
                 debugPrint("PacketAnalyzer unable to decode message type 1")
                 printData(data, success: false)
@@ -255,7 +255,7 @@ class PacketAnalyzer {
                 messageString.append("\n")
                 appDelegate.messageViewController?.gotMessage(messageString)
                 //debugPrint(messageString)
-                printData(data, success: true)
+                //printData(data, success: true)
             } else {
                 debugPrint("PacketAnalyzer unable to decode message type 11")
                 printData(data, success: false)
@@ -277,6 +277,7 @@ class PacketAnalyzer {
             let whyDead = Int(data.subdata(in: (28..<29)).to(type: UInt16.self).byteSwapped)
             let whoDead = Int(data.subdata(in: (30..<31)).to(type: UInt16.self).byteSwapped)
             debugPrint("Received SP_YOU 12 \(myPlayerID) hostile \(hostile) war \(war) armies \(armies) tractor \(tractor) flags \(flags) damage \(damage) shieldStrength \(shieldStrength) fuel \(fuel) engineTemp \(engineTemp) weaponsTemp \(weaponsTemp) whyDead \(whyDead) whodead \(whoDead)")
+            printFlags(flags: flags)
             universe.updateMe(myPlayerID: myPlayerID, hostile: hostile, war: war, armies: armies, tractor: tractor, flags: flags, damage: damage, shieldStrength: shieldStrength, fuel: fuel, engineTemp: engineTemp, weaponsTemp: weaponsTemp, whyDead: whyDead, whoDead: whoDead)
             if appDelegate.gameState == .serverSelected || appDelegate.gameState == .serverConnected {
                 appDelegate.newGameState(.serverSlotFound)
@@ -289,7 +290,7 @@ class PacketAnalyzer {
             // SP_QUEUE
             let queue = data.subdata(in: (2..<3)).to(type: UInt16.self).byteSwapped
             appDelegate.messageViewController?.gotMessage("Connected to server. Wait queue position \(queue)")
-            printData(data, success: true)
+            //printData(data, success: true)
             
         case 14:
             let tourn = Int(data[1])
@@ -563,6 +564,14 @@ class PacketAnalyzer {
             debugPrint("Default case: Received packet type \(packetType) length \(packetLength)\n")
             printData(data, success: true)
 
+        }
+    }
+    func printFlags(flags: UInt32) {
+        var flags = flags
+        for bit in 0..<32 {
+            let thisFlag = flags & 0x01
+            debugPrint("bit \(bit) flag \(thisFlag)\n")
+            flags = flags >> 1
         }
     }
 }

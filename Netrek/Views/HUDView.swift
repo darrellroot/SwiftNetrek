@@ -33,7 +33,7 @@ class HUDView: NSView {
             return
         }
         NSColor.white.set()
-        let columns = 6
+        let columns = 5
         let rows = 2
                 
         for column in 0..<columns {
@@ -42,29 +42,67 @@ class HUDView: NSView {
                 let yPosition = (Int(self.bounds.height) / rows) * row + 5
                 switch (column,row) {
                 case (0,0):
-                    String("Speed \(me.speed)").draw(at: CGPoint(x: xPosition, y: yPosition), withAttributes: attributes)
+                    String("Speed \(me.speed)/\(myShipInfo.maxSpeed)").draw(at: CGPoint(x: xPosition, y: yPosition), withAttributes: attributes)
                 case (0,1):
-                    String("MaxSpd \(myShipInfo.maxSpeed)").draw(at: CGPoint(x: xPosition, y: yPosition), withAttributes: attributes)
+                    String("Armies \(me.armies)").draw(at: CGPoint(x: xPosition, y: yPosition), withAttributes: attributes)
                 case (1,0):
                     String("Fuel: \(me.fuel)").draw(at: CGPoint(x: xPosition, y: yPosition), withAttributes: attributes)
                 case (1,1):
-                    String("MaxFuel: \(myShipInfo.maxFuel)").draw(at: CGPoint(x: xPosition, y: yPosition), withAttributes: attributes)
+                    var specialStatus: String?
+                    if me.tractorFlag {
+                        specialStatus = "Tractor activated"
+                    }
+                    if me.pressor {
+                        specialStatus = "Pressor Activated"
+                    }
+                    if me.enginesOverheated {
+                        specialStatus = "Engines Out"
+                    }
+                    if me.repair {
+                        specialStatus = "Repairing"
+                    }
+                    if me.bomb {
+                        specialStatus = "Bombing"
+                    }
+                    if me.beamUp {
+                        specialStatus = "Beaming Up"
+                    }
+                    if me.beamDown {
+                        specialStatus = "Beaming Down"
+                    }
+                    if me.weaponsOverheated {
+                        specialStatus = "Weapons Down"
+                    }
+                    if let specialStatus = specialStatus {
+                        debugPrint("SpecialStatus \(specialStatus)")
+                        specialStatus.draw(at: CGPoint(x: xPosition, y: yPosition), withAttributes: attributes)
+                    }
                 case (2,0):
                     String("Shield \(me.shieldStrength)").draw(at: CGPoint(x: xPosition, y: yPosition), withAttributes: attributes)
                 case (2,1):
-                    String("MaxShld \(myShipInfo.maxShield)").draw(at: CGPoint(x: xPosition, y: yPosition), withAttributes: attributes)
+                    switch me.alertCondition {
+                    case .green:
+                        "Scanners Clear".draw(at: CGPoint(x: xPosition, y: yPosition), withAttributes: attributes)
+                    case .yellow:
+                        "Enemy Detected".draw(at: CGPoint(x: xPosition, y: yPosition), withAttributes: attributes)
+                    case .red:
+                        "Battle Stations".draw(at: CGPoint(x: xPosition, y: yPosition), withAttributes: attributes)
+                    }
                 case (3,0):
-                    String("Damage \(me.damage)").draw(at: CGPoint(x: xPosition, y: yPosition), withAttributes: attributes)
+                    String("Damage \(me.damage)/\(myShipInfo.maxDamage)").draw(at: CGPoint(x: xPosition, y: yPosition), withAttributes: attributes)
                 case (3,1):
-                    String("MaxDmg \(myShipInfo.maxDamage)").draw(at: CGPoint(x: xPosition, y: yPosition), withAttributes: attributes)
+                    "Kills: \(me.kills)".draw(at: CGPoint(x: xPosition, y: yPosition), withAttributes: attributes)
                 case (4,0):
-                    String("EngTmp \(me.engineTemp)").draw(at: CGPoint(x: xPosition, y: yPosition), withAttributes: attributes)
+                    String("EngTmp \(me.engineTemp)/\(myShipInfo.maxEngTmp)").draw(at: CGPoint(x: xPosition, y: yPosition), withAttributes: attributes)
                 case (4,1):
-                    String("MaxETmp \(myShipInfo.maxEngTmp)").draw(at: CGPoint(x: xPosition, y: yPosition), withAttributes: attributes)
+                    String("WpnTemp \(me.weaponsTemp)/\(myShipInfo.maxWpnTmp)").draw(at: CGPoint(x: xPosition, y: yPosition), withAttributes: attributes)
                 case (5,0):
-                    String("WpnTemp \(me.weaponsTemp)").draw(at: CGPoint(x: xPosition, y: yPosition), withAttributes: attributes)
+                    // not used, see # columns above
+                    break
                 case (5,1):
-                    String("MaxWTmp \(myShipInfo.maxWpnTmp)").draw(at: CGPoint(x: xPosition, y: yPosition), withAttributes: attributes)
+                    // not used, see # columns above
+                    break
+                    //String("MaxWTmp \(myShipInfo.maxWpnTmp)").draw(at: CGPoint(x: xPosition, y: yPosition), withAttributes: attributes)
                 default:
                     break
                 }

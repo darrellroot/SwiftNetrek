@@ -379,6 +379,27 @@ class Player: CustomStringConvertible {
             self.shieldsUp = false
             self.shieldNode.isHidden = true
         }
+        if flags & PlayerStatus.repair.rawValue != 0 {
+            self.repair = true
+        } else {
+            self.repair = false
+        }
+        if flags & PlayerStatus.bomb.rawValue != 0 {
+            self.bomb = true
+        } else {
+            self.bomb = false
+        }
+        if flags & PlayerStatus.weaponTemp.rawValue != 0 {
+            self.weaponsOverheated = true
+        } else {
+            self.weaponsOverheated = false
+        }
+        if flags & PlayerStatus.engineTemp.rawValue != 0 {
+            self.enginesOverheated = true
+        } else {
+            self.enginesOverheated = false
+        }
+
         if flags & PlayerStatus.tractor.rawValue != 0 {
             self.tractorFlag = true
         } else {
@@ -391,12 +412,12 @@ class Player: CustomStringConvertible {
         }
         //self.flags = flags
 
-        if flags & UInt32(0x0002) != 0 { repair = true } else { repair = false }
-        if flags & UInt32(0x0004) != 0 { bomb = true } else { bomb = false }
+        //if flags & UInt32(0x0002) != 0 { repair = true } else { repair = false }
+        //if flags & UInt32(0x0004) != 0 { bomb = true } else { bomb = false }
         if flags & UInt32(0x0008) != 0 { orbit = true } else { orbit = false }
         if flags & UInt32(0x0010) != 0 { cloak = true } else { cloak = false }
-        if flags & UInt32(0x0020) != 0 { weaponsOverheated = true } else { weaponsOverheated = false }
-        if flags & UInt32(0x0040) != 0 { enginesOverheated = true } else { enginesOverheated = false }
+        //if flags & UInt32(0x0020) != 0 { weaponsOverheated = true } else { weaponsOverheated = false }
+        //if flags & UInt32(0x0040) != 0 { enginesOverheated = true } else { enginesOverheated = false }
         if flags & UInt32(0x0100) != 0 { beamUp = true } else { beamUp = false }
         if flags & UInt32(0x0200) != 0 { beamDown = true } else { beamDown = false }
         if flags & UInt32(0x0400) != 0 { selfDestruct = true } else { selfDestruct = false }

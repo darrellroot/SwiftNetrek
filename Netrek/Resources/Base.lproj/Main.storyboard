@@ -748,11 +748,11 @@
             <objects>
                 <viewController id="Yf6-2s-0ES" customClass="OverallViewController" customModule="Netrek" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Zma-0P-ZGo">
-                        <rect key="frame" x="0.0" y="0.0" width="212" height="330"/>
+                        <rect key="frame" x="0.0" y="0.0" width="412" height="330"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <gridView xPlacement="center" yPlacement="center" rowAlignment="none" translatesAutoresizingMaskIntoConstraints="NO" id="H0H-FG-fLq">
-                                <rect key="frame" x="0.0" y="0.0" width="212" height="329"/>
+                                <rect key="frame" x="0.0" y="0.0" width="412" height="329"/>
                                 <constraints>
                                     <constraint firstItem="o2q-es-GCi" firstAttribute="width" secondItem="0Ew-YM-Th3" secondAttribute="width" id="nRX-L2-bcO"/>
                                     <constraint firstItem="Rg3-kK-gBt" firstAttribute="width" secondItem="SpF-99-HOD" secondAttribute="width" id="zPr-y8-lJF"/>
@@ -769,9 +769,11 @@
                                 <gridCells>
                                     <gridCell row="c5s-FB-gAD" column="H66-bd-gMq" id="rfX-VX-iw9">
                                         <containerView key="contentView" translatesAutoresizingMaskIntoConstraints="NO" id="FcW-AB-Ga8" userLabel="Tactical Container View">
-                                            <rect key="frame" x="0.0" y="161" width="100" height="100"/>
+                                            <rect key="frame" x="0.0" y="129" width="200" height="200"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="FcW-AB-Ga8" secondAttribute="height" multiplier="1:1" id="HEC-R6-0e7"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="lxg-k7-37E"/>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="xrI-Om-aBj"/>
                                             </constraints>
                                             <connections>
                                                 <segue destination="Zsp-ZK-TcN" kind="embed" id="J7t-RV-edc"/>
@@ -780,9 +782,11 @@
                                     </gridCell>
                                     <gridCell row="c5s-FB-gAD" column="9FH-33-oXf" id="RaR-DU-aG1">
                                         <containerView key="contentView" horizontalCompressionResistancePriority="700" verticalCompressionResistancePriority="700" translatesAutoresizingMaskIntoConstraints="NO" id="Oyb-z0-Kxg" userLabel="Strategic Container View">
-                                            <rect key="frame" x="106" y="161" width="100" height="100"/>
+                                            <rect key="frame" x="206" y="129" width="200" height="200"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="Oyb-z0-Kxg" secondAttribute="height" multiplier="1:1" id="0db-jJ-wRK"/>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="NOY-on-WzC"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="UvO-be-dkO"/>
                                             </constraints>
                                             <connections>
                                                 <segue destination="tQA-Kk-hUK" kind="embed" id="5wW-Pj-N78"/>
@@ -791,7 +795,7 @@
                                     </gridCell>
                                     <gridCell row="kPP-q5-y13" column="H66-bd-gMq" id="0oX-RE-LM9">
                                         <containerView key="contentView" translatesAutoresizingMaskIntoConstraints="NO" id="Rg3-kK-gBt" userLabel="HUD Container View">
-                                            <rect key="frame" x="0.0" y="36" width="100" height="50"/>
+                                            <rect key="frame" x="100" y="55" width="100" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="AEG-8F-1mf"/>
                                             </constraints>
@@ -802,7 +806,7 @@
                                     </gridCell>
                                     <gridCell row="kPP-q5-y13" column="9FH-33-oXf" id="VsQ-u2-NKK">
                                         <containerView key="contentView" translatesAutoresizingMaskIntoConstraints="NO" id="SpF-99-HOD" userLabel="Send Message Container View">
-                                            <rect key="frame" x="106" y="36" width="100" height="50"/>
+                                            <rect key="frame" x="206" y="55" width="100" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="Hlx-97-Eu0"/>
                                             </constraints>
@@ -813,7 +817,7 @@
                                     </gridCell>
                                     <gridCell row="3TR-yh-ujx" column="H66-bd-gMq" id="Feo-yh-tvc">
                                         <containerView key="contentView" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="o2q-es-GCi" userLabel="Player List View">
-                                            <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
+                                            <rect key="frame" x="100" y="0.0" width="100" height="30"/>
                                             <connections>
                                                 <segue destination="lyJ-BP-EQ1" kind="embed" id="7j5-2W-vDk"/>
                                             </connections>
@@ -821,7 +825,7 @@
                                     </gridCell>
                                     <gridCell row="3TR-yh-ujx" column="9FH-33-oXf" id="9Ii-4L-ceN">
                                         <containerView key="contentView" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="0Ew-YM-Th3" userLabel="Message Container View">
-                                            <rect key="frame" x="106" y="0.0" width="100" height="30"/>
+                                            <rect key="frame" x="206" y="0.0" width="100" height="30"/>
                                             <connections>
                                                 <segue destination="1yz-XC-MLA" kind="embed" id="AAa-T3-ir2"/>
                                             </connections>
