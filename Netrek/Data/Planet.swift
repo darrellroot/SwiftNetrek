@@ -38,6 +38,10 @@ class Planet: CustomStringConvertible {
     var armies: Int = 0
     var planetTacticalNode = SKSpriteNode(imageNamed: "planet-unknown")
     let planetTacticalLabel = SKLabelNode()
+    //var planetInfoLabel = SKLabelNode()
+    //let planetInfoFade = SKAction.fadeOut(withDuration: 3.0)
+    //let planetInfoRemove = SKAction.removeFromParent()
+    let planetInfoAction = SKAction.sequence([SKAction.fadeOut(withDuration: 3.0),SKAction.removeFromParent()])
     
     let appDelegate = NSApplication.shared.delegate as! AppDelegate
 
@@ -51,6 +55,37 @@ class Planet: CustomStringConvertible {
         self.name = "unknown"
         self.positionX = 0
         self.positionY = 0
+    }
+    public func showInfo() {
+        let infoString: String
+        switch (self.agri, self.fuel, self.repair) {
+            
+        case (false, false, false):
+            infoString = "\(armies) armies"
+        case (false, false, true):
+            infoString = "REPAIR \(armies) armies"
+        case (false, true, false):
+            infoString = "FUEL \(armies) armies"
+        case (false, true, true):
+            infoString = "FUEL REPAIR \(armies) armies"
+        case (true, false, false):
+            infoString = "AGRI \(armies) armies"
+        case (true, false, true):
+            infoString = "AGRI REPAIR \(armies) armies"
+        case (true, true, false):
+            infoString = "AGRI FUEL \(armies) armies"
+        case (true, true, true):
+            infoString = "AGRI FUEL REPAIR\(armies) armies"
+        }
+        let planetInfoLabel = SKLabelNode(text: infoString)
+        planetInfoLabel.fontSize = NetrekMath.planetFontSize
+        planetInfoLabel.fontName = "Courier"
+        planetInfoLabel.position = CGPoint(x: 0, y: -3 * NetrekMath.planetDiameter)
+        planetInfoLabel.zPosition = ZPosition.planet.rawValue
+        planetInfoLabel.fontColor = NetrekMath.color(team: self.owner)
+        planetTacticalNode.addChild(planetInfoLabel)
+        //this action includes fading and removing from parent
+        planetInfoLabel.run(planetInfoAction)
     }
     private func remakeNode() {
         planetTacticalLabel.removeFromParent()
@@ -75,14 +110,12 @@ class Planet: CustomStringConvertible {
             planetTacticalNode = SKSpriteNode(texture: Planet.planetRepairFuelArmyTexture, color: NetrekMath.color(team: self.owner), size: CGSize(width: NetrekMath.planetDiameter, height: NetrekMath.planetDiameter))
         }
         planetTacticalNode.colorBlendFactor = 1.0
-        //planetTacticalNode.color = NetrekMath.color(team: self.owner)
         planetTacticalNode.name = self.name
-        //planetTacticalNode.size = CGSize(width: NetrekMath.planetDiameter, height: NetrekMath.planetDiameter)
         planetTacticalLabel.fontSize = NetrekMath.planetFontSize
         planetTacticalLabel.fontName = "Courier"
         planetTacticalLabel.position = CGPoint(x: 0, y: -2 * NetrekMath.planetDiameter)
         planetTacticalLabel.zPosition = ZPosition.planet.rawValue
-        planetTacticalLabel.color = NetrekMath.color(team: self.owner)
+        planetTacticalLabel.fontColor = NetrekMath.color(team: self.owner)
         planetTacticalNode.position = CGPoint(x: self.positionX, y: self.positionY)
         planetTacticalNode.zPosition = ZPosition.planet.rawValue
         planetTacticalLabel.text = self.name

@@ -76,9 +76,9 @@ class TcpReader {
             debugPrint("TCPReader.receive: connection state \(self.connection.state) no trying to receive")
             return
         }
-        debugPrint("TCPReader.receive: initiating receive count \(receiveCount)")
+        //debugPrint("TCPReader.receive: initiating receive count \(receiveCount)")
         connection.receive(minimumIncompleteLength: 1, maximumLength: 16384) { (content, context, isComplete, error) in
-            debugPrint("In receive closure count \(self.receiveCount)")
+            //debugPrint("In receive closure count \(self.receiveCount)")
             if (content?.count ?? 0) > 0 {
                 debugPrint("\(Date()) TcpReader: got a message \(String(describing: content?.count)) bytes")
             }

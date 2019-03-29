@@ -33,7 +33,7 @@ class StrategicView: NSView {
         //super.draw(dirtyRect)
         debugPrint("StrategicView.draw)")
         
-        let myTeam = appDelegate.universe.me?.team ?? .independent
+        //let myTeam = appDelegate.universe.me?.team ?? .independent
         NSColor.black.set()
         self.bounds.fill()
 

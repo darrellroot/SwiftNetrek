@@ -79,28 +79,28 @@ class PlayerView: NSScrollView {
 
         let attribute: [NSAttributedString.Key: Any]? = [ NSAttributedString.Key.foregroundColor: NSColor.white, NSAttributedString.Key.font: font as Any]
 
-        var attString = NSAttributedString(string: "Team", attributes: attribute)
+        var attString = NSAttributedString(string: "ID", attributes: attribute)
         var point = CGPoint(x: inset + 3 * horizontalInterval, y: verticalPosition)
         attString.draw(at: point)
         
         point = CGPoint(x: (inset + 6 * horizontalInterval), y: verticalPosition)
-        attString = NSAttributedString(string: "Ship", attributes: attribute)
+        attString = NSAttributedString(string: "Shp", attributes: attribute)
         attString.draw(at: point)
         
         point = CGPoint(x: (inset + 9 * horizontalInterval), y: verticalPosition)
-        attString = NSAttributedString(string: "Rank", attributes: attribute)
+        attString = NSAttributedString(string: " Rank", attributes: attribute)
         attString.draw(at: point)
         
         point = CGPoint(x: (inset + 19 * horizontalInterval), y: verticalPosition)
-        attString = NSAttributedString(string: "Player Name", attributes: attribute)
+        attString = NSAttributedString(string: "Name", attributes: attribute)
         attString.draw(at: point)
         
         point = CGPoint(x: (inset + 32 * horizontalInterval), y: verticalPosition)
-        attString = NSAttributedString(string: "Kills", attributes: attribute)
+        attString = NSAttributedString(string: "Kill", attributes: attribute)
         attString.draw(at: point)
         
         point = CGPoint(x: (inset + 38 * horizontalInterval), y: verticalPosition)
-        attString = NSAttributedString(string: "TWins", attributes: attribute)
+        attString = NSAttributedString(string: "TWin", attributes: attribute)
         attString.draw(at: point)
 
         point = CGPoint(x: (inset + 44 * horizontalInterval), y: verticalPosition)
@@ -108,19 +108,19 @@ class PlayerView: NSScrollView {
         attString.draw(at: point)
         
         point = CGPoint(x: (inset + 50 * horizontalInterval), y: verticalPosition)
-        attString = NSAttributedString(string: "TRatio", attributes: attribute)
+        attString = NSAttributedString(string: "Ratio", attributes: attribute)
         attString.draw(at: point)
 
         point = CGPoint(x: (inset + 56 * horizontalInterval), y: verticalPosition)
-        attString = NSAttributedString(string: "THours", attributes: attribute)
+        attString = NSAttributedString(string: "THour", attributes: attribute)
         attString.draw(at: point)
         
         point = CGPoint(x: (inset + 62 * horizontalInterval), y: verticalPosition)
-        attString = NSAttributedString(string: "TPlanets", attributes: attribute)
+        attString = NSAttributedString(string: "TPlanet", attributes: attribute)
         attString.draw(at: point)
 
         point = CGPoint(x: (inset + 68 * horizontalInterval), y: verticalPosition)
-        attString = NSAttributedString(string: "TArmies", attributes: attribute)
+        attString = NSAttributedString(string: "TArmy", attributes: attribute)
         attString.draw(at: point)
 
     }

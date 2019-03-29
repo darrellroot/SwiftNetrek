@@ -32,7 +32,7 @@ class TacticalScene: SKScene {
     func explosion() -> SKEmitterNode {
         let emitter = SKEmitterNode()
         let particleTexture = SKTexture(imageNamed: "spark")
-        var emitterAction = SKAction.sequence([SKAction.wait(forDuration: 1.0),SKAction.removeFromParent()])
+        let emitterAction = SKAction.sequence([SKAction.wait(forDuration: 1.0),SKAction.removeFromParent()])
         emitter.zPosition = ZPosition.explosion.rawValue
         emitter.particleTexture = particleTexture
         emitter.particleBirthRate = 1000

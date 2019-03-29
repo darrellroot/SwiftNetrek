@@ -125,6 +125,7 @@ enum Command: String, CaseIterable {
     case fireTorpedo = "Fire torpedo"
     case firePlasma = "Fire plasma"
     case fireLaser = "Fire laser"
+    case information = "Information"
     case lockDestination = "Lock onto Destination"
     case lockStarbasePlanet = "Lock onto starbase or Planet"
     case lowerShields = "Lower shields"
@@ -190,7 +191,7 @@ class KeymapController {
             .fKey:.firePlasma,
             .gKey:.nothing,
             .hKey:.nothing,
-            .iKey:.nothing,
+            .iKey:.information,
             .jKey:.nothing,
             .kKey:.setCourse,
             .lKey:.lockDestination,
@@ -374,6 +375,25 @@ class KeymapController {
                     let cpDockperm = MakePacket.cpDockperm(state: !me.dockok)
                     appDelegate.reader?.send(content: cpDockperm)
                 }
+            case .information:
+                guard let location = location else {
+                    debugPrint("KeymapController.execute.information location is nil...no information")
+                    return
+                }
+                let (closestPlayerOptional,closestPlayerDistance) = findClosestPlayer(location: location)
+                let (closestPlanetOptional,closestPlanetDistance) = findClosestPlanet(location: location)
+                if closestPlayerDistance < closestPlanetDistance {
+                    // player is closer
+                    guard let closestPlayer = closestPlayerOptional else { return }
+                    closestPlayer.showInfo()
+                } else {
+                    // planet is closer
+                    guard let closestPlanet = closestPlanetOptional else { return }
+                    DispatchQueue.main.async {
+                        closestPlanet.showInfo()
+                    }
+                }
+                
             case .refit:
                 appDelegate.messageViewController?.gotMessage("To refit, orbit home planet and select LAUNCH SHIP menu item")
                 break
@@ -411,10 +431,11 @@ class KeymapController {
                     debugPrint("KeymapController.execute.tractorBeam location is nil...cannot lock onto nothing")
                     return
                 }
-                guard let target = findClosestPlayer(location: targetLocation) else {
+                let (closestPlayerOptional,_) = findClosestPlayer(location: targetLocation)
+                guard let target = closestPlayerOptional else {
                     return
                 }
-                guard let me = appDelegate.universe.me else { return }
+                //guard let me = appDelegate.universe.me else { return }
                 if target.me == true { return }
                 guard target.playerID >= 0 else { return }
                 guard target.playerID < 256 else { return }
@@ -428,7 +449,8 @@ class KeymapController {
                     debugPrint("KeymapController.execute.tractorBeam location is nil...cannot lock onto nothing")
                     return
                 }
-                guard let target = findClosestPlayer(location: targetLocation) else {
+                let (closestPlayerOptional,_) = findClosestPlayer(location: targetLocation)
+                guard let target = closestPlayerOptional else {
                     return
                 }
                 guard let me = appDelegate.universe.me else { return }
@@ -444,10 +466,11 @@ class KeymapController {
                     debugPrint("KeymapController.execute.pressorBeam location is nil...cannot lock onto nothing")
                     return
                 }
-                guard let target = findClosestPlayer(location: targetLocation) else {
+                let (closestPlayerOptional,_) = findClosestPlayer(location: targetLocation)
+                guard let target = closestPlayerOptional else {
                     return
                 }
-                guard let me = appDelegate.universe.me else { return }
+                //guard let me = appDelegate.universe.me else { return }
                 if target.me == true { return }
                 guard target.playerID >= 0 else { return }
                 guard target.playerID < 256 else { return }
@@ -461,14 +484,15 @@ class KeymapController {
                     debugPrint("KeymapController.execute.pressorBeam location is nil...cannot lock onto nothing")
                     return
                 }
-                guard let target = findClosestPlayer(location: targetLocation) else {
+                let (closestPlayerOptional,_) = findClosestPlayer(location: targetLocation)
+                guard let closestPlayer = closestPlayerOptional else {
                     return
                 }
                 guard let me = appDelegate.universe.me else { return }
-                if target.me == true { return }
-                guard target.playerID >= 0 else { return }
-                guard target.playerID < 256 else { return }
-                let playerID = UInt8(target.playerID)
+                if closestPlayer.me == true { return }
+                guard closestPlayer.playerID >= 0 else { return }
+                guard closestPlayer.playerID < 256 else { return }
+                let playerID = UInt8(closestPlayer.playerID)
                 let cpPressor = MakePacket.cpPressor(on: !me.pressor, playerID: playerID)
                 appDelegate.reader?.send(content: cpPressor)
 
@@ -631,7 +655,19 @@ class KeymapController {
             }
         }
     }
-    private func findClosestPlayer(location: CGPoint) -> Player? {
+    private func findClosestPlanet(location: CGPoint) -> (planet: Planet?,distance: Int) {
+        var closestPlanetDistance = 10000
+        var closestPlanet: Planet?
+        for planet in appDelegate.universe.planets.values {
+            let thisPlanetDistance = abs(planet.positionX - Int(location.x)) + abs(planet.positionY - Int(location.y))
+            if thisPlanetDistance < closestPlanetDistance {
+                closestPlanetDistance = thisPlanetDistance
+                closestPlanet = planet
+            }
+        }
+        return (closestPlanet,closestPlanetDistance)
+    }
+    private func findClosestPlayer(location: CGPoint) -> (player: Player?, distance: Int) {
         var closestPlayerDistance = 10000
         var closestPlayer: Player?
         for player in appDelegate.universe.players.values {
@@ -643,7 +679,7 @@ class KeymapController {
                 }
             }
         }
-        return closestPlayer
+        return (closestPlayer, closestPlayerDistance)
     }
     func setSpeed(_ speed: Int) {
         if let cpSpeed = MakePacket.cpSpeed(speed: speed) {

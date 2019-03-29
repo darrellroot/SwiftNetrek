@@ -28,7 +28,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // The following are initialized by the child controllers via the appdelegate
     var messageViewController: MessageViewController?
     
-    var preferredTeam: Team = .independent
+    var preferredTeam: Team = .federation
     var preferredShip: ShipType = .cruiser
     var keymapController: KeymapController!
 
@@ -88,6 +88,28 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         self.updateTeamMenu()
         self.disableShipMenu()
+    }
+    public func updateTeamMenu(mask: UInt8) {
+        if mask & UInt8(Team.federation.rawValue) != 0 {
+            self.selectTeamFederation.indentationLevel = 0
+        } else {
+            self.selectTeamFederation.indentationLevel = 1
+        }
+        if mask & UInt8(Team.roman.rawValue) != 0 {
+            self.selectTeamRoman.indentationLevel = 0
+        } else {
+            self.selectTeamRoman.indentationLevel = 1
+        }
+        if mask & UInt8(Team.kleptocrat.rawValue) != 0 {
+            self.selectTeamKleptocrat.indentationLevel = 0
+        } else {
+            self.selectTeamKleptocrat.indentationLevel = 1
+        }
+        if mask & UInt8(Team.orion.rawValue) != 0 {
+            self.selectTeamOrion.indentationLevel = 0
+        } else {
+            self.selectTeamOrion.indentationLevel = 1
+        }
     }
     
     private func updateTeamMenu() {
@@ -400,6 +422,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 DispatchQueue.main.async {
                     self.playerListViewController?.view.needsDisplay = true
                 }
+                // send cpUpdate once every 10 seconds to prevent ghostbust
+                let cpUpdates = MakePacket.cpUpdates()
+                reader?.send(content: cpUpdates)
             }
             if (timerCount % 10) == 0 {
                 DispatchQueue.main.async {

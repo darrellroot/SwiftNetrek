@@ -43,13 +43,13 @@ class PacketAnalyzer {
             //debugPrint("incomingData startIndex \(incomingData.startIndex) endIndex \(incomingData.endIndex)\n")
 
             //data.append(incomingData)
-            debugPrint("three")
+            //debugPrint("three")
             self.leftOverData = nil
         } else {
-            debugPrint("four")
+            //debugPrint("four")
             data = incomingData
         }
-        debugPrint("done copying data")
+        //debugPrint("done copying data")
         repeat {
             guard let packetType: UInt8 = data.first else {
                 debugPrint("PacketAnalyzer.analyze is done, should not have gotten here")
@@ -105,13 +105,13 @@ class PacketAnalyzer {
         }
     }
     func analyzeOnePacket(data: Data) {
-        debugPrint("in analyze one packet")
+        //debugPrint("in analyze one packet")
         guard data.count > 0 else {
             debugPrint("PacketAnalyer.analyzeOnePacket data length 0")
             return
         }
         let packetType: UInt8 = data[0]
-        debugPrint("in analyze one packet packetType \(packetType)")
+        //debugPrint("in analyze one packet packetType \(packetType)")
         guard let packetLength = PACKET_SIZES[safe: Int(packetType)] else {
             debugPrint("Warning: PacketAnalyzer.analyzeOnePacket received invalid packet type \(packetType)")
             printData(data, success: false)
@@ -277,7 +277,7 @@ class PacketAnalyzer {
             let whyDead = Int(data.subdata(in: (28..<29)).to(type: UInt16.self).byteSwapped)
             let whoDead = Int(data.subdata(in: (30..<31)).to(type: UInt16.self).byteSwapped)
             debugPrint("Received SP_YOU 12 \(myPlayerID) hostile \(hostile) war \(war) armies \(armies) tractor \(tractor) flags \(flags) damage \(damage) shieldStrength \(shieldStrength) fuel \(fuel) engineTemp \(engineTemp) weaponsTemp \(weaponsTemp) whyDead \(whyDead) whodead \(whoDead)")
-            printFlags(flags: flags)
+            //printFlags(flags: flags)
             universe.updateMe(myPlayerID: myPlayerID, hostile: hostile, war: war, armies: armies, tractor: tractor, flags: flags, damage: damage, shieldStrength: shieldStrength, fuel: fuel, engineTemp: engineTemp, weaponsTemp: weaponsTemp, whyDead: whyDead, whoDead: whoDead)
             if appDelegate.gameState == .serverSelected || appDelegate.gameState == .serverConnected {
                 appDelegate.newGameState(.serverSlotFound)
@@ -381,6 +381,9 @@ class PacketAnalyzer {
             //TODO process mask  Tournament mode mask
             //SP_MASK
             let mask = UInt8(data[1])
+            DispatchQueue.main.async {
+                self.appDelegate.updateTeamMenu(mask: mask)
+            }
             // pad2
             // pad3
             debugPrint("Received SP_MASK 19 mask \(mask)")
@@ -470,9 +473,9 @@ class PacketAnalyzer {
                 name = nameStringWithNulls.filter { $0 != "\0" }
             }
             universe.createPlanet(planetID: planetID, positionX: positionX, positionY: positionY, name: name)
-            if let planet = universe.planets[planetID] {
+            /*if let planet = universe.planets[planetID] {
                 //debugPrint(planet)
-            }
+            }*/
             debugPrint("Received SP_PLANET_LOC 26 name \(name) planetID \(planetID) positionX \(positionX) positionY \(positionY)")
             //printData(data, success: true)
 

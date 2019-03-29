@@ -33,12 +33,12 @@ class Player: CustomStringConvertible {
     static let textureKleAs = SKTexture(imageNamed: "kli-as")
     static let textureKleSb = SKTexture(imageNamed: "kli-sb")
 
-    static let textureOriSc = SKTexture(imageNamed: "kli-sc")
-    static let textureOriDd = SKTexture(imageNamed: "kli-dd")
-    static let textureOriCa = SKTexture(imageNamed: "kli-ca")
-    static let textureOriBb = SKTexture(imageNamed: "kli-bb")
-    static let textureOriAs = SKTexture(imageNamed: "kli-as")
-    static let textureOriSb = SKTexture(imageNamed: "kli-sb")
+    static let textureOriSc = SKTexture(imageNamed: "ori-sc")
+    static let textureOriDd = SKTexture(imageNamed: "ori-dd")
+    static let textureOriCa = SKTexture(imageNamed: "ori-ca")
+    static let textureOriBb = SKTexture(imageNamed: "ori-bb")
+    static let textureOriAs = SKTexture(imageNamed: "ori-as")
+    static let textureOriSb = SKTexture(imageNamed: "ori-sb")
 
     static let textureIndSc = SKTexture(imageNamed: "mactrek-outlinefleet-sc")
     static let textureIndDd = SKTexture(imageNamed: "mactrek-outlinefleet-dd")
@@ -157,6 +157,7 @@ class Player: CustomStringConvertible {
     private(set) var direction: CGFloat = 0.0 // 2 * Double.pi = 360 degrees
     private(set) var speed = 0
     var playerTacticalNode = SKSpriteNode()
+    let playerInfoAction = SKAction.sequence([SKAction.fadeOut(withDuration: 3.0),SKAction.removeFromParent()])
     let shieldTexture = Player.shieldFactory.shieldTexture()
     var shieldNode = SKSpriteNode()
     //var shieldNode = SKShapeNode(circleOfRadius: CGFloat(NetrekMath.playerSize)/1.8)
@@ -175,7 +176,19 @@ class Player: CustomStringConvertible {
             return "Player \(String(describing: playerID)) name \(name) armies \(armies) damage \(damage) shield \(shieldStrength) fuel \(fuel) eTmp \(engineTemp) ship \(String(describing: ship)) team \(String(describing: team)) wTmp \(weaponsTemp) playing \(playing) positionX \(positionX) positionY \(positionY) login \(login) rank \(rank)"
         }
     }
-    
+    public func showInfo() {
+        let infoString: String = "\(self.name) \(self.ship?.description ?? "??") \(self.kills) kills"
+        let playerInfoLabel = SKLabelNode(text: infoString)
+        playerInfoLabel.fontSize = NetrekMath.planetFontSize
+        playerInfoLabel.fontName = "Courier"
+        playerInfoLabel.position = CGPoint(x: self.positionX, y: self.positionY - 2 * NetrekMath.playerSize)
+        playerInfoLabel.zPosition = ZPosition.ship.rawValue
+        playerInfoLabel.fontColor = NetrekMath.color(team: self.team)
+        //playerTacticalNode.addChild(playerInfoLabel)
+    appDelegate.tacticalViewController?.scene.addChild(playerInfoLabel)
+        //this action includes fading and removing from parent
+        playerInfoLabel.run(playerInfoAction)
+    }
     public func remakeNode() {
         //private(set) var status = 0  //free=0 outfit=1 alive=2 explode=3 dead=4 observe=5
         if self.shieldNode.parent != nil {
@@ -270,7 +283,7 @@ class Player: CustomStringConvertible {
         //self.playerTacticalNode.size = CGSize(width: NetrekMath.playerSize, height: NetrekMath.playerSize)
         self.shieldNode.color = NetrekMath.color(team: self.team)
         self.playerTacticalNode.addChild(self.shieldNode)
-        debugPrint("player tac node user interaction \(self.playerTacticalNode.isUserInteractionEnabled)")
+        //debugPrint("player tac node user interaction \(self.playerTacticalNode.isUserInteractionEnabled)")
         self.updateNode()
     //appDelegate.tacticalViewController?.scene.addChild(self.playerTacticalNode)
     }
