@@ -24,6 +24,22 @@ class Universe {
     
     init() {
     }
+    public func reset() {
+        //called when we disconnect from server
+        for player in players.values {
+            player.reset()
+        }
+        players = [:]
+        for planet in planets.values {
+            planet.reset()
+        }
+        planets = [:]
+        torpedoes = [:]
+        lasers = [:]
+        plasmas = [:]
+        shipInfo = [:]
+        me = nil
+    }
     public func createPlanet(planetID: Int, positionX: Int, positionY: Int, name: String) {
         guard planetID >= 0 else {
             debugPrint("ERROR: Universe.updatePlanet invalid planetID \(planetID)")

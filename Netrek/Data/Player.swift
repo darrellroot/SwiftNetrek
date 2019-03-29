@@ -171,6 +171,17 @@ class Player: CustomStringConvertible {
         //shieldNode.lineWidth = CGFloat(NetrekMath.playerSize) / 10.0
         //shieldNode.strokeColor = .green
     }
+    
+    deinit {
+        debugPrint("player ID \(playerID) deinit")
+    }
+    public func reset() {
+        if playerTacticalNode.parent != nil {
+            playerTacticalNode.removeAllActions()
+            playerTacticalNode.removeFromParent()
+        }
+    }
+
     public var description: String {
         get {
             return "Player \(String(describing: playerID)) name \(name) armies \(armies) damage \(damage) shield \(shieldStrength) fuel \(fuel) eTmp \(engineTemp) ship \(String(describing: ship)) team \(String(describing: team)) wTmp \(weaponsTemp) playing \(playing) positionX \(positionX) positionY \(positionY) login \(login) rank \(rank)"

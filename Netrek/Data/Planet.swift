@@ -56,6 +56,18 @@ class Planet: CustomStringConvertible {
         self.positionX = 0
         self.positionY = 0
     }
+    deinit {
+        debugPrint("planet ID \(planetID) deinit")
+    }
+
+    public func reset() {
+        if planetTacticalLabel.parent != nil {
+            planetTacticalLabel.removeFromParent()
+        }
+        if planetTacticalNode.parent != nil {
+            planetTacticalNode.removeFromParent()
+        }
+    }
     public func showInfo() {
         let infoString: String
         switch (self.agri, self.fuel, self.repair) {

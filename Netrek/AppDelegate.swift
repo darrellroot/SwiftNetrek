@@ -232,6 +232,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         switch newState {
         case .noServerSelected:
             self.resetConnection()
+            universe.reset()
             enableServerMenu()
             disableShipMenu()
             self.gameState = newState
