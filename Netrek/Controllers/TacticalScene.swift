@@ -28,6 +28,7 @@ class TacticalScene: SKScene {
         debugPrint("tactical scene is user interaction enabled \(isUserInteractionEnabled)")
         debugPrint("border is user interaction enabled \(border.isUserInteractionEnabled)")
 
+
     }
     func explosion() -> SKEmitterNode {
         let emitter = SKEmitterNode()

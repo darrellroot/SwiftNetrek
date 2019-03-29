@@ -169,6 +169,7 @@ enum ZPosition: CGFloat {
     case ship = 3.0
     case torpedo = 4.0
     case explosion = 5.0
+    case hint = 6.0
 }
 enum SlotStatus: Int {
     case free = 0

@@ -16,6 +16,7 @@ class NetrekMath {
     static let actionThreshold = 100
     static let planetDiameter = 112
     static let planetFontSize: CGFloat = 80.0
+    static let hintFontSize: CGFloat = 200.0
     static let playerSize = 80
     static let torpedoSize = 10
     static let appDelegate = NSApplication.shared.delegate as! AppDelegate

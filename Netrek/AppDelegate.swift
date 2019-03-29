@@ -389,7 +389,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if self.gameState == .gameActive {
             if let reader = self.reader {
                 let cpRefit = MakePacket.cpRefit(newShip: self.preferredShip)
-                self.reader?.send(content: cpRefit)
+                reader.send(content: cpRefit)
             }
         }
     }
@@ -398,6 +398,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @objc func timerFired() {
         timerCount = timerCount + 1
         //debugPrint("AppDelegate.timerFired \(Date())")
+        if timerCount % 50 == 0 {
+            self.tacticalViewController?.updateHint()
+        }
         switch self.gameState {
             
         case .noServerSelected:
