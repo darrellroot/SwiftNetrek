@@ -195,4 +195,10 @@ enum SceneType {
     case welcome
 }
 
+enum DefaultKey: String {
+    case basicTipsDisabled = "basicTipsDisabled"
+    case advancedTipsDisabled = "advancedTipsDisabled"
+
+}
+
 // see KeymapController.swift for "control" and "command" enumerations

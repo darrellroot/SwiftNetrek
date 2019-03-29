@@ -86,13 +86,20 @@ class TacticalViewController: NSViewController, SKSceneDelegate {
 
     }
     func updateHint() {
-        debugPrint("Updating hint")
         if appDelegate.gameState == .gameActive {
             basicHintNode.isHidden = true
             advancedHintNode.isHidden = true
         } else {
-            basicHintNode.isHidden = false
-            advancedHintNode.isHidden = false
+            if UserDefaults.standard.bool(forKey: DefaultKey.basicTipsDisabled.rawValue) {
+                basicHintNode.isHidden = true
+            } else {
+                basicHintNode.isHidden = false
+            }
+            if UserDefaults.standard.bool(forKey: DefaultKey.advancedTipsDisabled.rawValue) {
+                advancedHintNode.isHidden = true
+            } else {
+                advancedHintNode.isHidden = false
+            }
             self.basicHintCount = self.basicHintCount + 1
             if self.basicHintCount >= self.basicHints.count {
                 self.basicHintCount = 0

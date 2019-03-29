@@ -148,13 +148,15 @@ class PacketAnalyzer {
                     }
                 }
  
-                appDelegate.messageViewController?.gotMessage(messageString)
+                messageString = NetrekMath.sanitizeString(messageString)
+            appDelegate.messageViewController?.gotMessage(messageString)
                 //debugPrint(messageString)
                 //printData(data, success: true)
             } else {
                 debugPrint("PacketAnalyzer unable to decode message type 1")
                 printData(data, success: false)
             }
+            messageString = NetrekMath.sanitizeString(messageString)
             debugPrint("Received SP_MESSAGE 1 from \(m_from) message \(messageString)")
 
         case 2:
@@ -236,6 +238,7 @@ class PacketAnalyzer {
                 var messageString = messageStringWithNulls.filter { $0 != "\0" }
                 
                 messageString.append("\n")
+                messageString = NetrekMath.sanitizeString(messageString)
                 debugPrint("Received SP_WARNING 10 sent to messages")
                 appDelegate.messageViewController?.gotMessage(messageString)
                 //debugPrint(messageString)
@@ -253,6 +256,7 @@ class PacketAnalyzer {
             if let messageStringWithNulls = String(data: messageData, encoding: .utf8) {
                 var messageString = messageStringWithNulls.filter { $0 != "\0" }
                 messageString.append("\n")
+                messageString = NetrekMath.sanitizeString(messageString)
                 appDelegate.messageViewController?.gotMessage(messageString)
                 //debugPrint(messageString)
                 //printData(data, success: true)
@@ -320,10 +324,6 @@ class PacketAnalyzer {
                 return
             }
             planet.update(owner: owner, info: info, flags: flags, armies: armies)
-            //planet.setOwner(newOwnerInt: owner)
-            //planet.setInfo(newInfoInt: info)
-            //planet.setFlags(newFlagsInt: Int(flags))
-            //planet.armies = Int(armies)
             
         case 16:
             // SP_PICKOK
@@ -471,6 +471,15 @@ class PacketAnalyzer {
             var name = "unknown"
             if let nameStringWithNulls = String(data: nameData, encoding: .utf8) {
                 name = nameStringWithNulls.filter { $0 != "\0" }
+            }
+            if name == "Romulus" {
+                name = "Rome"
+            }
+            if name == "Klingus" {
+                name = "Klept"
+            }
+            if name == "Praxis" {
+                name = "Prague"
             }
             universe.createPlanet(planetID: planetID, positionX: positionX, positionY: positionY, name: name)
             /*if let planet = universe.planets[planetID] {

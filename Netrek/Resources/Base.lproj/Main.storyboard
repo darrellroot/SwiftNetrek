@@ -31,12 +31,12 @@
         <scene sceneID="gBE-Wy-pCs">
             <objects>
                 <viewController id="rDi-pP-SQY" customClass="OtherPreferencesController" customModule="Netrek" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="BAu-VR-IA9" customClass="FlipView" customModule="Netrek" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="108"/>
+                    <view key="view" misplaced="YES" id="BAu-VR-IA9" customClass="FlipView" customModule="Netrek" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="395" height="118"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <gridView horizontalHuggingPriority="600" verticalHuggingPriority="600" xPlacement="leading" yPlacement="top" rowAlignment="none" translatesAutoresizingMaskIntoConstraints="NO" id="CQF-e9-iTr">
-                                <rect key="frame" x="20" y="20" width="440" height="68"/>
+                            <gridView horizontalHuggingPriority="1000" verticalHuggingPriority="1000" xPlacement="leading" yPlacement="top" rowAlignment="none" rowSpacing="11" columnSpacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="CQF-e9-iTr">
+                                <rect key="frame" x="20" y="20" width="355" height="78"/>
                                 <rows>
                                     <gridRow id="cQm-RQ-y79"/>
                                     <gridRow id="5Ho-9J-hUJ"/>
@@ -45,11 +45,12 @@
                                 <columns>
                                     <gridColumn id="0xP-Xn-mWx"/>
                                     <gridColumn id="SJj-j5-dRB"/>
+                                    <gridColumn id="Dgp-V5-M72"/>
                                 </columns>
                                 <gridCells>
                                     <gridCell row="cQm-RQ-y79" column="0xP-Xn-mWx" id="yvX-tk-4UA">
                                         <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CEL-jC-Jh7">
-                                            <rect key="frame" x="-2" y="52" width="149" height="18"/>
+                                            <rect key="frame" x="-2" y="62" width="149" height="18"/>
                                             <buttonCell key="cell" type="check" title="Enable Sound" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="yIL-Ih-NH7">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -59,10 +60,33 @@
                                             </connections>
                                         </button>
                                     </gridCell>
-                                    <gridCell row="cQm-RQ-y79" column="SJj-j5-dRB" id="q4r-Zb-TyO"/>
+                                    <gridCell row="cQm-RQ-y79" column="SJj-j5-dRB" id="q4r-Zb-TyO">
+                                        <button key="contentView" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WGJ-Lh-etR">
+                                            <rect key="frame" x="154" y="62" width="84" height="18"/>
+                                            <buttonCell key="cell" type="check" title="Basic Tips" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="n46-XV-mh5">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="basicTipsButton:" target="rDi-pP-SQY" id="8n6-6l-ete"/>
+                                            </connections>
+                                        </button>
+                                    </gridCell>
+                                    <gridCell row="cQm-RQ-y79" column="Dgp-V5-M72" id="Qf0-Ec-fBv">
+                                        <button key="contentView" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8yb-Vp-cGQ">
+                                            <rect key="frame" x="245" y="62" width="112" height="18"/>
+                                            <buttonCell key="cell" type="check" title="Advanced Tips" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="8uj-a2-4ea">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="advancedTipsButton:" target="rDi-pP-SQY" id="VKp-3a-ZFN"/>
+                                            </connections>
+                                        </button>
+                                    </gridCell>
                                     <gridCell row="5Ho-9J-hUJ" column="0xP-Xn-mWx" id="zLi-NT-71A">
                                         <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vO4-aT-9g8">
-                                            <rect key="frame" x="-2" y="31" width="149" height="17"/>
+                                            <rect key="frame" x="-2" y="32" width="149" height="21"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Player List Font Size" id="13w-St-ITY">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -72,7 +96,7 @@
                                     </gridCell>
                                     <gridCell row="5Ho-9J-hUJ" column="SJj-j5-dRB" id="xoY-MN-j0H">
                                         <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2ql-QB-Ls6">
-                                            <rect key="frame" x="149" y="24" width="294" height="25"/>
+                                            <rect key="frame" x="154" y="29" width="85" height="25"/>
                                             <popUpButtonCell key="cell" type="push" title="8" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Jg2-Sf-sPL" id="Oa4-1w-2yS">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="menu"/>
@@ -107,9 +131,10 @@
                                             </connections>
                                         </popUpButton>
                                     </gridCell>
+                                    <gridCell row="5Ho-9J-hUJ" column="Dgp-V5-M72" id="JK1-0h-Zua"/>
                                     <gridCell row="ZxC-q2-cbr" column="0xP-Xn-mWx" id="6C7-5M-TAh">
-                                        <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="soX-fr-Wu7">
-                                            <rect key="frame" x="-2" y="4" width="149" height="17"/>
+                                        <textField key="contentView" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="soX-fr-Wu7">
+                                            <rect key="frame" x="-2" y="0.0" width="149" height="21"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Strategic Map Font Size" id="SSe-s2-wL0">
                                                 <font key="font" usesAppearanceFont="YES"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -119,7 +144,7 @@
                                     </gridCell>
                                     <gridCell row="ZxC-q2-cbr" column="SJj-j5-dRB" id="2wp-jH-egn">
                                         <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IfF-qj-9Oa">
-                                            <rect key="frame" x="149" y="-3" width="294" height="25"/>
+                                            <rect key="frame" x="154" y="-3" width="85" height="25"/>
                                             <popUpButtonCell key="cell" type="push" title="8" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="q8t-eG-oxw" id="UFt-Zj-k0x">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="menu"/>
@@ -154,6 +179,7 @@
                                             </connections>
                                         </popUpButton>
                                     </gridCell>
+                                    <gridCell row="ZxC-q2-cbr" column="Dgp-V5-M72" id="bIN-BI-nEm"/>
                                 </gridCells>
                             </gridView>
                         </subviews>
@@ -161,13 +187,16 @@
                             <constraint firstItem="CQF-e9-iTr" firstAttribute="leading" secondItem="BAu-VR-IA9" secondAttribute="leading" constant="20" symbolic="YES" id="1ro-B3-RqG"/>
                             <constraint firstAttribute="trailing" secondItem="CQF-e9-iTr" secondAttribute="trailing" constant="20" symbolic="YES" id="6AF-SB-Kp5"/>
                             <constraint firstAttribute="bottom" secondItem="CQF-e9-iTr" secondAttribute="bottom" constant="20" symbolic="YES" id="94C-GC-GnG"/>
-                            <constraint firstAttribute="trailing" secondItem="CQF-e9-iTr" secondAttribute="trailing" constant="20" symbolic="YES" id="FKA-p3-XfI"/>
                             <constraint firstItem="CQF-e9-iTr" firstAttribute="top" secondItem="BAu-VR-IA9" secondAttribute="top" constant="20" symbolic="YES" id="SjD-n7-4lV"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="advancedTipsButton" destination="8yb-Vp-cGQ" id="Shj-G7-YAW"/>
+                        <outlet property="basicTipsButton" destination="WGJ-Lh-etR" id="arX-gv-T4Y"/>
                         <outlet property="enableSoundAction" destination="yvX-tk-4UA" id="I8a-1n-KgQ"/>
                         <outlet property="enableSoundButton" destination="CEL-jC-Jh7" id="p6i-N5-asb"/>
+                        <outlet property="playerListFontMenu" destination="HHw-8Q-oSh" id="00c-6d-JM5"/>
+                        <outlet property="strategicMapFontMenu" destination="eQ1-3r-a19" id="iDn-h5-0dq"/>
                     </connections>
                 </viewController>
                 <customObject id="k9Q-kG-cCX" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

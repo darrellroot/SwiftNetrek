@@ -82,11 +82,11 @@ class HUDView: NSView {
                 case (2,1):
                     switch me.alertCondition {
                     case .green:
-                        "Scanners Clear".draw(at: CGPoint(x: xPosition, y: yPosition), withAttributes: attributes)
+                        "Scan Clear".draw(at: CGPoint(x: xPosition, y: yPosition), withAttributes: attributes)
                     case .yellow:
-                        "Enemy Detected".draw(at: CGPoint(x: xPosition, y: yPosition), withAttributes: attributes)
+                        "EnemyDetected".draw(at: CGPoint(x: xPosition, y: yPosition), withAttributes: attributes)
                     case .red:
-                        "Battle Stations".draw(at: CGPoint(x: xPosition, y: yPosition), withAttributes: attributes)
+                        "BattleStations".draw(at: CGPoint(x: xPosition, y: yPosition), withAttributes: attributes)
                     }
                 case (3,0):
                     String("Damage \(me.damage)/\(myShipInfo.maxDamage)").draw(at: CGPoint(x: xPosition, y: yPosition), withAttributes: attributes)

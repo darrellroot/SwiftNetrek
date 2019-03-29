@@ -21,6 +21,17 @@ class NetrekMath {
     static let torpedoSize = 10
     static let appDelegate = NSApplication.shared.delegate as! AppDelegate
 
+    static func sanitizeString(_ input: String) -> String {
+        var outputString = input.replacingOccurrences(of: "Romulus", with: "Rome")
+        outputString = outputString.replacingOccurrences(of: "Klingus", with: "Klept")
+        outputString = outputString.replacingOccurrences(of: "Praxis", with: "Prague")
+        outputString = outputString.replacingOccurrences(of: "phaser", with: "laser")
+        outputString = outputString.replacingOccurrences(of: "Phaser", with: "Laser")
+        outputString = outputString.replacingOccurrences(of: "KLI", with: "KLE")
+
+
+        return outputString
+    }
     static func directionNetrek2radian(_ directionNetrek: UInt8) -> Double {
         let answer = Double.pi * ((Double(directionNetrek) / -128.0) + 0.5)
         if answer > 0 {
