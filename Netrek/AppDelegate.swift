@@ -43,7 +43,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBOutlet weak var selectTeamFederation: NSMenuItem!
     @IBOutlet weak var selectTeamRoman: NSMenuItem!
-    @IBOutlet weak var selectTeamKleptocrat: NSMenuItem!
+    @IBOutlet weak var selectTeamKazari: NSMenuItem!
     @IBOutlet weak var selectTeamOrion: NSMenuItem!
     
     var loginName: String?
@@ -100,10 +100,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         } else {
             self.selectTeamRoman.indentationLevel = 1
         }
-        if mask & UInt8(Team.kleptocrat.rawValue) != 0 {
-            self.selectTeamKleptocrat.indentationLevel = 0
+        if mask & UInt8(Team.kazari.rawValue) != 0 {
+            self.selectTeamKazari.indentationLevel = 0
         } else {
-            self.selectTeamKleptocrat.indentationLevel = 1
+            self.selectTeamKazari.indentationLevel = 1
         }
         if mask & UInt8(Team.orion.rawValue) != 0 {
             self.selectTeamOrion.indentationLevel = 0
@@ -117,15 +117,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.selectTeamFederation.state = .off
             self.selectTeamFederation.state = .off
             self.selectTeamRoman.state = .off
-            self.selectTeamKleptocrat.state = .off
+            self.selectTeamKazari.state = .off
             self.selectTeamOrion.state = .off
             switch self.preferredTeam {
             case .federation:
                 self.selectTeamFederation.state = .on
             case .roman:
                 self.selectTeamRoman.state = .on
-            case .kleptocrat:
-                self.selectTeamKleptocrat.state = .on
+            case .kazari:
+                self.selectTeamKazari.state = .on
             case .orion:
                 self.selectTeamOrion.state = .on
             case .independent:

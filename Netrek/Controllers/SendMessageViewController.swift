@@ -74,11 +74,11 @@ class SendMessageViewController: NSViewController {
                 if myTeam != .roman {
                     self.appDelegate.messageViewController?.gotMessage(" \(myTeam.letter)\(NetrekMath.playerLetter(playerID: myNumber)) -> ROM \(message)")
                 }
-            case 104: // Kleptocrat
-                let data = MakePacket.cpMessage(message: message, team: .kleptocrat, individual: 0)
+            case 104: // Kazari
+                let data = MakePacket.cpMessage(message: message, team: .kazari, individual: 0)
                 self.appDelegate.reader?.send(content: data)
-                if myTeam != .kleptocrat {
-                    self.appDelegate.messageViewController?.gotMessage(" \(myTeam.letter)\(NetrekMath.playerLetter(playerID: myNumber)) -> KLE \(message)")
+                if myTeam != .kazari {
+                    self.appDelegate.messageViewController?.gotMessage(" \(myTeam.letter)\(NetrekMath.playerLetter(playerID: myNumber)) -> KAZ \(message)")
                 }
             case 108: // orion
                 let data = MakePacket.cpMessage(message: message, team: .orion, individual: 0)

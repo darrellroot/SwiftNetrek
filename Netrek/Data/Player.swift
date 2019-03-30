@@ -26,12 +26,12 @@ class Player: CustomStringConvertible {
     static let textureRomAs = SKTexture(imageNamed: "mactrek-redfleet-as")
     static let textureRomSb = SKTexture(imageNamed: "mactrek-redfleet-sb")
     
-    static let textureKleSc = SKTexture(imageNamed: "kli-sc")
-    static let textureKleDd = SKTexture(imageNamed: "kli-dd")
-    static let textureKleCa = SKTexture(imageNamed: "kli-ca")
-    static let textureKleBb = SKTexture(imageNamed: "kli-bb")
-    static let textureKleAs = SKTexture(imageNamed: "kli-as")
-    static let textureKleSb = SKTexture(imageNamed: "kli-sb")
+    static let textureKazSc = SKTexture(imageNamed: "kli-sc")
+    static let textureKazDd = SKTexture(imageNamed: "kli-dd")
+    static let textureKazCa = SKTexture(imageNamed: "kli-ca")
+    static let textureKazBb = SKTexture(imageNamed: "kli-bb")
+    static let textureKazAs = SKTexture(imageNamed: "kli-as")
+    static let textureKazSb = SKTexture(imageNamed: "kli-sb")
 
     static let textureOriSc = SKTexture(imageNamed: "ori-sc")
     static let textureOriDd = SKTexture(imageNamed: "ori-dd")
@@ -243,20 +243,20 @@ class Player: CustomStringConvertible {
         case (.roman,.battlecruiser):
             self.playerTacticalNode = SKSpriteNode(texture: Player.textureRomCa, color: playerColor, size: playerSize)
 
-        case (.kleptocrat,.scout):
-            self.playerTacticalNode = SKSpriteNode(texture: Player.textureKleSc, color: playerColor, size: playerSize)
-        case (.kleptocrat,.destroyer):
-            self.playerTacticalNode = SKSpriteNode(texture: Player.textureKleDd, color: playerColor, size: playerSize)
-        case (.kleptocrat,.cruiser):
-            self.playerTacticalNode = SKSpriteNode(texture: Player.textureKleCa, color: playerColor, size: playerSize)
-        case (.kleptocrat,.battleship):
-            self.playerTacticalNode = SKSpriteNode(texture: Player.textureKleBb, color: playerColor, size: playerSize)
-        case (.kleptocrat,.assault):
-            self.playerTacticalNode = SKSpriteNode(texture: Player.textureKleAs, color: playerColor, size: playerSize)
-        case (.kleptocrat,.starbase):
-            self.playerTacticalNode = SKSpriteNode(texture: Player.textureKleSb, color: playerColor, size: playerSize)
-        case (.kleptocrat,.battlecruiser):
-            self.playerTacticalNode = SKSpriteNode(texture: Player.textureKleCa, color: playerColor, size: playerSize)
+        case (.kazari,.scout):
+            self.playerTacticalNode = SKSpriteNode(texture: Player.textureKazSc, color: playerColor, size: playerSize)
+        case (.kazari,.destroyer):
+            self.playerTacticalNode = SKSpriteNode(texture: Player.textureKazDd, color: playerColor, size: playerSize)
+        case (.kazari,.cruiser):
+            self.playerTacticalNode = SKSpriteNode(texture: Player.textureKazCa, color: playerColor, size: playerSize)
+        case (.kazari,.battleship):
+            self.playerTacticalNode = SKSpriteNode(texture: Player.textureKlazBb, color: playerColor, size: playerSize)
+        case (.kazari,.assault):
+            self.playerTacticalNode = SKSpriteNode(texture: Player.textureKazAs, color: playerColor, size: playerSize)
+        case (.kazari,.starbase):
+            self.playerTacticalNode = SKSpriteNode(texture: Player.textureKazSb, color: playerColor, size: playerSize)
+        case (.kazari,.battlecruiser):
+            self.playerTacticalNode = SKSpriteNode(texture: Player.textureKazCa, color: playerColor, size: playerSize)
 
         case (.orion,.scout):
             self.playerTacticalNode = SKSpriteNode(texture: Player.textureOriSc, color: playerColor, size: playerSize)

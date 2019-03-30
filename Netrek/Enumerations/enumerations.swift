@@ -58,7 +58,7 @@ enum Team: Int, CaseIterable {
     case independent = 0
     case federation = 1
     case roman = 2
-    case kleptocrat = 4
+    case kazari = 4
     case orion = 8
     case ogg = 15
     
@@ -71,8 +71,8 @@ enum Team: Int, CaseIterable {
             return "Federation"
         case .roman:
             return "Roman"
-        case .kleptocrat:
-            return "Kleptocrat"
+        case .kazari:
+            return "Kazari"
         case .orion:
             return "Orion"
         case .ogg:
@@ -87,7 +87,7 @@ enum Team: Int, CaseIterable {
             return "F"
         case .roman:
             return "R"
-        case .kleptocrat:
+        case .kazari:
             return "K"
         case .orion:
             return "O"

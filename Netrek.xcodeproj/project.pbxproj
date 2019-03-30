@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F03C7F822500D370029B190 /* Hint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F03C7F722500D370029B190 /* Hint.swift */; };
 		2F75015922299E55002040A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F75015822299E55002040A7 /* AppDelegate.swift */; };
 		2F75015B22299E55002040A7 /* OverallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F75015A22299E55002040A7 /* OverallViewController.swift */; };
 		2F75015D22299E55002040A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F75015C22299E55002040A7 /* Assets.xcassets */; };
@@ -73,6 +74,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F03C7F722500D370029B190 /* Hint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hint.swift; sourceTree = "<group>"; };
 		2F75015522299E55002040A7 /* Netrek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Netrek.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F75015822299E55002040A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2F75015A22299E55002040A7 /* OverallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverallViewController.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				2F75016D2229FFE8002040A7 /* MetaServer.swift */,
 				2F75019F222C8E59002040A7 /* Tuple16.swift */,
 				2F94A8302231AEA800FAAF39 /* NetrekMath.swift */,
+				2F03C7F722500D370029B190 /* Hint.swift */,
 			);
 			path = DataTypes;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 				2F94A8312231AEA800FAAF39 /* NetrekMath.swift in Sources */,
 				2F750183222AF698002040A7 /* enumerations.swift in Sources */,
 				2FA6660C2239A5CA00F0CA76 /* FlipScrollView.swift in Sources */,
+				2F03C7F822500D370029B190 /* Hint.swift in Sources */,
 				2F75019A222C33D6002040A7 /* Planet.swift in Sources */,
 				2F94A8352233009600FAAF39 /* KeymapController.swift in Sources */,
 				2F94A82F2230DA3B00FAAF39 /* TacticalScene.swift in Sources */,

@@ -143,7 +143,7 @@ struct CP_OUTFIT {
             self.team = 3
         case .roman:
             self.team = 0
-        case .kleptocrat:
+        case .kazari:
             self.team = 1
         case .orion:
             self.team = 2

@@ -232,11 +232,6 @@
                                                 <segue destination="oCs-Kh-2ox" kind="show" id="mx6-2s-KZP"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
-                                        <menuItem title="Services" id="NMo-om-nkz">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
-                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
                                         <menuItem title="Hide Netrek" keyEquivalent="h" id="Olw-nP-bQN">
                                             <connections>
@@ -342,10 +337,10 @@
                                                 <action selector="selectTeam:" target="Voe-Tx-rLC" id="gWr-j0-Rce"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Kleptocrat" tag="4" id="eOl-m9-uy5">
+                                        <menuItem title="Kazari" tag="4" id="eOl-m9-uy5">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="selectTeam:" target="Voe-Tx-rLC" id="1U5-jR-hi6"/>
+                                                <action selector="selectTeam:" target="Voe-Tx-rLC" id="OLQ-U7-AJK"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Orion" tag="8" id="vkp-EH-W33">
@@ -458,7 +453,7 @@
                         <outlet property="selectShipScout" destination="K8f-w1-MFk" id="LWv-em-9tK"/>
                         <outlet property="selectShipStarbase" destination="HaN-YX-xIR" id="Whg-fb-Nlu"/>
                         <outlet property="selectTeamFederation" destination="QXd-H4-JIy" id="cVr-be-xqm"/>
-                        <outlet property="selectTeamKleptocrat" destination="eOl-m9-uy5" id="plU-9H-Vxx"/>
+                        <outlet property="selectTeamKazari" destination="eOl-m9-uy5" id="8JI-k3-nTG"/>
                         <outlet property="selectTeamOrion" destination="vkp-EH-W33" id="wYs-aF-AfH"/>
                         <outlet property="selectTeamRoman" destination="kba-Sn-YPK" id="Z0o-tS-9J3"/>
                         <outlet property="serverMenu" destination="fh8-Tz-54x" id="NRY-WO-pko"/>
@@ -519,7 +514,7 @@
                                         <subviews>
                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="wAS-jX-1Ji">
                                                 <rect key="frame" x="-2" y="0.0" width="276" height="51"/>
-                                                <textFieldCell key="cell" selectable="YES" title="We recommend new players play as guest.  Yiour Name and Username will be visible to other players." id="o5y-tu-wAd">
+                                                <textFieldCell key="cell" selectable="YES" title="We recommend new players play as guest.  Your Name and Username will be visible to other players." id="o5y-tu-wAd">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -578,16 +573,16 @@
                                                 <rect key="frame" x="-2" y="0.0" width="276" height="102"/>
                                                 <textFieldCell key="cell" selectable="YES" id="Wvf-G8-ucB">
                                                     <font key="font" metaFont="system"/>
-                                                    <string key="title">If you don't already have an account on the server, one will be created for you (assuming your name and username are unique).  Make sure to remember your password.  This netrek client does not save your password when the client is exited.</string>
+                                                    <string key="title">If you don't already have an account on the server, one will be created for you (assuming your name and username are unique).  Make sure to remember your password.  This netrek client saves your netrek password in your keychain.</string>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="jXU-bd-MCA">
-                                                <rect key="frame" x="278" y="17" width="300" height="68"/>
+                                                <rect key="frame" x="278" y="9" width="300" height="85"/>
                                                 <textFieldCell key="cell" selectable="YES" id="GoR-Vu-I5Y">
                                                     <font key="font" metaFont="system"/>
-                                                    <string key="title">Warning: Netrek servers use an old network protocol.  The password is not encrypted on the network.  We recommend you use a different/unique password for your netrek login.</string>
+                                                    <string key="title">Warning: Netrek servers use an old network protocol which is out of our control.  The password is not encrypted on the network.  We recommend you use a different/unique password for your netrek login.</string>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>

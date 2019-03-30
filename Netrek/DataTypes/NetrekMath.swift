@@ -23,11 +23,11 @@ class NetrekMath {
 
     static func sanitizeString(_ input: String) -> String {
         var outputString = input.replacingOccurrences(of: "Romulus", with: "Rome")
-        outputString = outputString.replacingOccurrences(of: "Klingus", with: "Klept")
+        outputString = outputString.replacingOccurrences(of: "Klingus", with: "Kazari")
         outputString = outputString.replacingOccurrences(of: "Praxis", with: "Prague")
         outputString = outputString.replacingOccurrences(of: "phaser", with: "laser")
         outputString = outputString.replacingOccurrences(of: "Phaser", with: "Laser")
-        outputString = outputString.replacingOccurrences(of: "KLI", with: "KLE")
+        outputString = outputString.replacingOccurrences(of: "KLI", with: "KAZ")
 
 
         return outputString
@@ -76,7 +76,7 @@ class NetrekMath {
             return "F"
         case .roman:
             return "R"
-        case .kleptocrat:
+        case .kazari:
             return "K"
         case .orion:
             return "O"
@@ -137,7 +137,7 @@ class NetrekMath {
             return NSColor.yellow
         case .roman:
             return NSColor.red
-        case .kleptocrat:
+        case .kazari:
             return NSColor.green
         case .orion:
             return NSColor.blue

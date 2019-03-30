@@ -476,7 +476,7 @@ class PacketAnalyzer {
                 name = "Rome"
             }
             if name == "Klingus" {
-                name = "Klept"
+                name = "Kazari"
             }
             if name == "Praxis" {
                 name = "Prague"

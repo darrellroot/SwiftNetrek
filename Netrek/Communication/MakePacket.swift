@@ -37,7 +37,7 @@ class MakePacket {
             case .independent: // we'll assume this means all teams
                 packet.group = 8 // MALL
                 packet.indiv = 0
-            case .federation, .roman, .kleptocrat, .orion:
+            case .federation, .roman, .kazari, .orion:
                 packet.group = 4 //MTEAM
                 packet.indiv = UInt8(team.rawValue)
             case .ogg:  // meaning all teams

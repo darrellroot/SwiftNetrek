@@ -43,7 +43,7 @@ class PlayerView: NSScrollView {
         var fedPlayer: [Player] = []
         var oriPlayer: [Player] = []
         var romPlayer: [Player] = []
-        var klePlayer: [Player] = []
+        var kazPlayer: [Player] = []
         var indPlayer: [Player] = []
 
         let players = appDelegate.universe.players.values
@@ -59,8 +59,8 @@ class PlayerView: NSScrollView {
                     fedPlayer.append(player)
                 case .roman:
                     romPlayer.append(player)
-                case .kleptocrat:
-                    klePlayer.append(player)
+                case .kazari:
+                    kazPlayer.append(player)
                 case .orion:
                     oriPlayer.append(player)
                 case .ogg:
@@ -68,7 +68,7 @@ class PlayerView: NSScrollView {
                 }
             }
         }
-        let column1Player = romPlayer + fedPlayer + klePlayer + oriPlayer + indPlayer
+        let column1Player = romPlayer + fedPlayer + kazPlayer + oriPlayer + indPlayer
         displayHeader(inset: 4)
         displayColumn(players: column1Player, inset: 4)
     
@@ -231,8 +231,8 @@ class PlayerView: NSScrollView {
                 fedString.append(playerString)
             case .roman:
                 romString.append(playerString)
-            case .kleptocrat:
-                kleString.append(playerString)
+            case .kazari:
+                kazString.append(playerString)
             case .orion:
                 oriString.append(playerString)
             case .ogg:
