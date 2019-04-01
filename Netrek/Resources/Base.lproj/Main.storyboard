@@ -233,6 +233,13 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
+                                        <menuItem title="Tip the Developer" id="ZHn-TV-iTI">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <segue destination="IKC-db-VFL" kind="show" id="GDq-Jr-q1r"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="WkQ-nj-1zt"/>
                                         <menuItem title="Hide Netrek" keyEquivalent="h" id="Olw-nP-bQN">
                                             <connections>
                                                 <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
@@ -369,35 +376,27 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Launch Ship" autoenablesItems="NO" id="Erg-2x-DFO">
                                     <items>
-                                        <menuItem title="Any" tag="15" id="hLS-ZR-SU0">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                        <menuItem title="Scout" id="K8f-w1-MFk" userLabel="Scout">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        <menuItem title="Scout" keyEquivalent="s" id="K8f-w1-MFk" userLabel="Scout">
                                             <connections>
                                                 <action selector="selectShip:" target="Voe-Tx-rLC" id="9ck-P3-72Q"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Destroyer" tag="1" id="RQR-xk-MBV">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        <menuItem title="Destroyer" tag="1" keyEquivalent="d" id="RQR-xk-MBV">
                                             <connections>
                                                 <action selector="selectShip:" target="Voe-Tx-rLC" id="Ueq-XL-B5Z"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Cruiser" tag="2" id="OK2-1b-QZf">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        <menuItem title="Cruiser" tag="2" keyEquivalent="c" id="OK2-1b-QZf">
                                             <connections>
                                                 <action selector="selectShip:" target="Voe-Tx-rLC" id="erF-Mb-zIv"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Battleship" tag="3" id="IRe-hJ-dlA">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        <menuItem title="Battleship" tag="3" keyEquivalent="b" id="IRe-hJ-dlA">
                                             <connections>
                                                 <action selector="selectShip:" target="Voe-Tx-rLC" id="RUw-8p-Ff5"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Assault" tag="4" id="Eac-fh-7uH">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        <menuItem title="Assault" tag="4" keyEquivalent="a" id="Eac-fh-7uH">
                                             <connections>
                                                 <action selector="selectShip:" target="Voe-Tx-rLC" id="f1n-XZ-Z7d"/>
                                             </connections>
@@ -444,7 +443,6 @@
                 </application>
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Netrek" customModuleProvider="target">
                     <connections>
-                        <outlet property="selectShipAny" destination="hLS-ZR-SU0" id="tah-Uy-m0z"/>
                         <outlet property="selectShipAssault" destination="Eac-fh-7uH" id="g10-ZF-u1S"/>
                         <outlet property="selectShipBattlecruiser" destination="0nc-GY-vqF" id="vEr-4u-LuE"/>
                         <outlet property="selectShipBattleship" destination="IRe-hJ-dlA" id="xQy-su-IbW"/>
@@ -968,6 +966,104 @@
             </objects>
             <point key="canvasLocation" x="-1097" y="-166"/>
         </scene>
+        <!--Window Controller-->
+        <scene sceneID="bwA-dm-MAe">
+            <objects>
+                <windowController id="IKC-db-VFL" sceneMemberID="viewController">
+                    <window key="window" title="Tip The Developer" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Ogt-Zp-fpC">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+                        <connections>
+                            <outlet property="delegate" destination="IKC-db-VFL" id="Pgy-Aq-GDd"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="twe-S3-ssu" kind="relationship" relationship="window.shadowedContentViewController" id="iWJ-rB-qWW"/>
+                    </connections>
+                </windowController>
+                <customObject id="0oJ-QG-xVf" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1201" y="203"/>
+        </scene>
+        <!--Tip Controller-->
+        <scene sceneID="lgG-70-WzJ">
+            <objects>
+                <viewController id="twe-S3-ssu" customClass="TipController" customModule="Netrek" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="rIN-7f-hPu">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="416"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uc5-w2-hap">
+                                <rect key="frame" x="20" y="20" width="440" height="376"/>
+                                <subviews>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7OW-UA-bVM">
+                                        <rect key="frame" x="166" y="351" width="108" height="25"/>
+                                        <buttonCell key="cell" type="square" title="Restore prior tip" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="I7I-Ri-5U7">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="restoreButton:" target="twe-S3-ssu" id="QMc-ww-Twt"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ddu-Sr-YtC">
+                                        <rect key="frame" x="75" y="282" width="290" height="59"/>
+                                        <buttonCell key="cell" type="square" title="Tip the developer Thank the developer for the Netrek Mac Client $4.99" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="S7Z-Hx-yBh">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="tipButton:" target="twe-S3-ssu" id="4M5-qC-uOm"/>
+                                        </connections>
+                                    </button>
+                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="00m-fs-41I">
+                                        <rect key="frame" x="-2" y="0.0" width="444" height="272"/>
+                                        <textFieldCell key="cell" selectable="YES" id="Zbu-sW-zhM">
+                                            <font key="font" metaFont="system"/>
+                                            <mutableString key="title">Payment will be charged to iTunes Account at confirmation of purchase.  This is a one-time in-app purchase. 
+This Netrek client is free to play.  The author made the Swift source code public on GitHub.  You can thank the developer by leaving a positive review in the MacOS App Store, or by purchasing a "tip" via the in-app purchase above. 
+Privacy policy: https://networkmom.net/netrek/privacy.html
+
+feedback@networkmom.net
+
+Link to source code: https://networkmom.net/netrek
+
+Apple Licensed Application End User License Agreement:
+https://www.apple.com/legal/macapps/stdeula/</mutableString>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="uc5-w2-hap" firstAttribute="leading" secondItem="rIN-7f-hPu" secondAttribute="leading" constant="20" symbolic="YES" id="EMp-xH-pQ2"/>
+                            <constraint firstAttribute="bottom" secondItem="uc5-w2-hap" secondAttribute="bottom" constant="20" symbolic="YES" id="HDR-I4-j7i"/>
+                            <constraint firstItem="uc5-w2-hap" firstAttribute="top" secondItem="rIN-7f-hPu" secondAttribute="top" constant="20" symbolic="YES" id="glk-sm-UJj"/>
+                            <constraint firstAttribute="trailing" secondItem="uc5-w2-hap" secondAttribute="trailing" constant="20" symbolic="YES" id="lDO-b0-BNg"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tipButtonOutlet" destination="ddu-Sr-YtC" id="Ikz-Jh-Xtr"/>
+                    </connections>
+                </viewController>
+                <customObject id="LBJ-cF-s1A" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1741" y="194"/>
+        </scene>
         <!--Tactical View Controller-->
         <scene sceneID="cV4-Zt-N4h">
             <objects>
@@ -1047,7 +1143,7 @@
                 </viewController>
                 <customObject id="oYE-g6-NE3" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="630" y="345"/>
+            <point key="canvasLocation" x="762" y="531"/>
         </scene>
         <!--Player List View Controller-->
         <scene sceneID="fo9-AW-ilh">

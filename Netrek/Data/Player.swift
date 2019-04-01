@@ -250,7 +250,7 @@ class Player: CustomStringConvertible {
         case (.kazari,.cruiser):
             self.playerTacticalNode = SKSpriteNode(texture: Player.textureKazCa, color: playerColor, size: playerSize)
         case (.kazari,.battleship):
-            self.playerTacticalNode = SKSpriteNode(texture: Player.textureKlazBb, color: playerColor, size: playerSize)
+            self.playerTacticalNode = SKSpriteNode(texture: Player.textureKazBb, color: playerColor, size: playerSize)
         case (.kazari,.assault):
             self.playerTacticalNode = SKSpriteNode(texture: Player.textureKazAs, color: playerColor, size: playerSize)
         case (.kazari,.starbase):

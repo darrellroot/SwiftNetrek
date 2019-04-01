@@ -38,6 +38,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var hudViewController: HUDViewController?
     var sendMessageViewController: SendMessageViewController?
     var clientTypeSent = false
+    var supportMessageSent = false
     
     @IBOutlet weak var serverMenu: NSMenu!
     
@@ -51,7 +52,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var loginUserName: String?
     var loginAuthenticated = false
     
-    @IBOutlet weak var selectShipAny: NSMenuItem!
     @IBOutlet weak var selectShipScout: NSMenuItem!
     @IBOutlet weak var selectShipDestroyer: NSMenuItem!
     @IBOutlet weak var selectShipCruiser: NSMenuItem!
@@ -317,6 +317,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     clientTypeSent = true
                     self.reader?.send(content: data)
             }
+            if !supportMessageSent && UserDefaults.standard.bool(forKey: productIdentifiers.tip5.rawValue) {
+                    let data = MakePacket.cpMessage(message: "I supported the development of the MacOS Swift Netrek Client", team: .ogg, individual: 0)
+                    clientTypeSent = true
+                    self.reader?.send(content: data)
+                    supportMessageSent = true
+            }
         }
     }
     private func disableServerMenu() {
@@ -340,7 +346,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private func disableShipMenu() {
         DispatchQueue.main.async {
             debugPrint("disable ship menu")
-            self.selectShipAny.isEnabled = false
             self.selectShipScout.isEnabled = false
             self.selectShipDestroyer.isEnabled = false
             self.selectShipCruiser.isEnabled = false
@@ -353,7 +358,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private func enableShipMenu() {
         DispatchQueue.main.async {
             debugPrint("enable ship menu")
-            self.selectShipAny.isEnabled = true
             self.selectShipScout.isEnabled = true
             self.selectShipDestroyer.isEnabled = true
             self.selectShipCruiser.isEnabled = true

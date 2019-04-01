@@ -145,19 +145,5 @@ class NetrekMath {
             return NSColor.gray
         }
         
-        /*if let me = appDelegate.universe.me {
-            if team == me.team {
-                return NSColor.green
-            }
-            if me.war[team] ?? false {
-                return NSColor.red
-            }
-            if me.hostile[team] ?? false {
-                return NSColor.orange
-            }
-            return NSColor.gray
-        } else {
-            return NSColor.gray
-        }*/
     }
 }
