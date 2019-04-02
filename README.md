@@ -11,17 +11,21 @@ This project is a Netrek client reimplementation using Swift for MacOS.  It does
 Credits:
 
 Netrek Servers
+
 This client is only part of Netrek.  Playing the game would not be possible without the Netrek servers which are still running on the Internet.  As of April 2019, this includes pickled.netrek.org, continuum.us.netrek.org, and netrek.beesenterprises.com.
 
 Programmer
+
 This Swift Netrek Client is written by Darrell Root for Network Mom LLC.  Check out https://networkmom.net/netrek for more information.  While the client and source code are free, please considering thanking the developer with a positive review in the MacOS App Store or by leaving “tipping the developer” via in-app purchase.
 
 Programming Language and Environment
+
 This Swift Netrek client is written in……Swift!  The new programming language from Apple.  Chris Lattner was the originator and leader of the Swift project.  Thank you Chris!  We love this language.
 Netrek uses the new “Network” framework from Apple.  This is a new API for handling TCP and UDP sockets.  It is noticeably easier to use than the old BSD socket API.
 Netrek uses SpriteKit for displaying graphics in the tactical map.
 
 Sounds
+
 Our main sound collection is the “Dartoxian Space Weapons” sounds by jonccox from freesound.org under the Creative Commons Attribution License:
 
 • 175262__jonccox__gun-cannon.wav
@@ -43,6 +47,7 @@ The following other sounds were used from freesound.org under the Creative Commo
 • Shield sound from ludvique   71852__ludvique__digital-whoosh-soft.wav
 
 Graphics
+
 The planet icons were made by Darrell Root (Network Mom LLC) based on screenshots of the original COW Netrek Client from the 1990’s.
 
 The Roman (red fleet), Kazari (green fleet), and Orion (blue fleet) ship icons came original from the artist Pascal Gagnon via the Gytha Netrek Client under the Creative Commons Attribution License.
