@@ -1182,18 +1182,16 @@ https://www.apple.com/legal/macapps/stdeula/</mutableString>
                         <rect key="frame" x="0.0" y="0.0" width="450" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HcA-0e-BaE">
-                                <rect key="frame" x="-2" y="20" width="218" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <popUpButton horizontalHuggingPriority="248" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HcA-0e-BaE">
+                                <rect key="frame" x="-1" y="20" width="166" height="25"/>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="NNL-11-NyY">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="fh0-b3-Gl2"/>
                                 </popUpButtonCell>
                             </popUpButton>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2aB-sK-4qw">
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2aB-sK-4qw">
                                 <rect key="frame" x="0.0" y="0.0" width="450" height="22"/>
-                                <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="obR-XO-82y">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -1203,7 +1201,42 @@ https://www.apple.com/legal/macapps/stdeula/</mutableString>
                                     <action selector="sendMessageTextAction:" target="tDw-iQ-NwS" id="pPe-SY-FrS"/>
                                 </connections>
                             </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gNX-ho-3XS">
+                                <rect key="frame" x="164" y="16" width="136" height="32"/>
+                                <buttonCell key="cell" type="push" title="Mayday!" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="omi-ux-RZg">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="sendMayday:" target="tDw-iQ-NwS" id="iSL-Fb-nO3"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ohy-sR-EbP">
+                                <rect key="frame" x="300" y="16" width="136" height="32"/>
+                                <buttonCell key="cell" type="push" title="Request escort!" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="TPD-kL-Aur">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="requestEscort:" target="tDw-iQ-NwS" id="W6Z-sJ-MwT"/>
+                                </connections>
+                            </button>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="gNX-ho-3XS" firstAttribute="width" secondItem="Ohy-sR-EbP" secondAttribute="width" id="16W-SK-T7L"/>
+                            <constraint firstItem="2aB-sK-4qw" firstAttribute="top" secondItem="gNX-ho-3XS" secondAttribute="bottom" constant="1" id="7o1-ui-HEX"/>
+                            <constraint firstItem="2aB-sK-4qw" firstAttribute="leading" secondItem="NHS-70-dLE" secondAttribute="leading" id="B4d-b7-P2w"/>
+                            <constraint firstItem="HcA-0e-BaE" firstAttribute="top" secondItem="NHS-70-dLE" secondAttribute="top" id="BWe-Kj-u5C"/>
+                            <constraint firstItem="gNX-ho-3XS" firstAttribute="top" secondItem="NHS-70-dLE" secondAttribute="top" id="C8V-PU-lux"/>
+                            <constraint firstItem="HcA-0e-BaE" firstAttribute="leading" secondItem="NHS-70-dLE" secondAttribute="leading" constant="1" id="Fd6-S4-qQ9"/>
+                            <constraint firstItem="2aB-sK-4qw" firstAttribute="top" secondItem="Ohy-sR-EbP" secondAttribute="bottom" constant="1" id="Ko7-j4-Jlc"/>
+                            <constraint firstItem="Ohy-sR-EbP" firstAttribute="top" secondItem="NHS-70-dLE" secondAttribute="top" id="NyU-1Q-cE6"/>
+                            <constraint firstAttribute="trailing" secondItem="2aB-sK-4qw" secondAttribute="trailing" id="RO0-S8-2ip"/>
+                            <constraint firstItem="2aB-sK-4qw" firstAttribute="top" secondItem="HcA-0e-BaE" secondAttribute="bottom" constant="1" id="YSy-A2-0hd"/>
+                            <constraint firstItem="gNX-ho-3XS" firstAttribute="leading" secondItem="HcA-0e-BaE" secondAttribute="trailing" constant="8" symbolic="YES" id="bUm-ZZ-yhq"/>
+                            <constraint firstItem="Ohy-sR-EbP" firstAttribute="leading" secondItem="gNX-ho-3XS" secondAttribute="trailing" constant="12" symbolic="YES" id="eXs-wb-4Zd"/>
+                            <constraint firstAttribute="trailing" secondItem="Ohy-sR-EbP" secondAttribute="trailing" constant="20" symbolic="YES" id="eZu-Ry-xk1"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="messageOutlet" destination="2aB-sK-4qw" id="0wH-uT-Prs"/>

@@ -16,6 +16,7 @@
 		2F03C87522504B250029B190 /* pkcs7_union_accessors.c in Sources */ = {isa = PBXBuildFile; fileRef = 2F03C87222504B250029B190 /* pkcs7_union_accessors.c */; };
 		2F03C87622504B250029B190 /* SwiftyLocalReceiptValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F03C87322504B250029B190 /* SwiftyLocalReceiptValidator.swift */; };
 		2F03C8792251BFA70029B190 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F03C8782251BFA70029B190 /* StoreKit.framework */; };
+		2F03C9652252ED510029B190 /* Netrek.help in Resources */ = {isa = PBXBuildFile; fileRef = 2F03C9642252ED510029B190 /* Netrek.help */; };
 		2F75015922299E55002040A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F75015822299E55002040A7 /* AppDelegate.swift */; };
 		2F75015B22299E55002040A7 /* OverallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F75015A22299E55002040A7 /* OverallViewController.swift */; };
 		2F75015D22299E55002040A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F75015C22299E55002040A7 /* Assets.xcassets */; };
@@ -198,6 +199,7 @@
 		2F03C87322504B250029B190 /* SwiftyLocalReceiptValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyLocalReceiptValidator.swift; sourceTree = "<group>"; };
 		2F03C87422504B250029B190 /* pkcs7_union_accessors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pkcs7_union_accessors.h; sourceTree = "<group>"; };
 		2F03C8782251BFA70029B190 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		2F03C9642252ED510029B190 /* Netrek.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Netrek.help; sourceTree = "<group>"; };
 		2F75015522299E55002040A7 /* Netrek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Netrek.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F75015822299E55002040A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2F75015A22299E55002040A7 /* OverallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverallViewController.swift; sourceTree = "<group>"; };
@@ -588,6 +590,7 @@
 		2F7501B6222F6B28002040A7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2F03C9642252ED510029B190 /* Netrek.help */,
 				2F03C8702250485F0029B190 /* Netrek-Bridging-Header.h */,
 				2F75015E22299E55002040A7 /* Main.storyboard */,
 				2FA665F22239743400F0CA76 /* FullCredits.html */,
@@ -666,6 +669,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"en-US",
 			);
 			mainGroup = 2F75014C22299E55002040A7;
 			productRefGroup = 2F75015622299E55002040A7 /* Products */;
@@ -684,6 +688,7 @@
 			files = (
 				2FA666052239862100F0CA76 /* 175266__jonccox__gun-spark.wav in Resources */,
 				2F03C86D225046110029B190 /* opensslconf.h.orig in Resources */,
+				2F03C9652252ED510029B190 /* Netrek.help in Resources */,
 				2FA666022239862100F0CA76 /* 175270__jonccox__gun-zap.wav in Resources */,
 				2FA665F52239770200F0CA76 /* Credits.rtf in Resources */,
 				2F03C86C225046110029B190 /* version-1.1.1a in Resources */,

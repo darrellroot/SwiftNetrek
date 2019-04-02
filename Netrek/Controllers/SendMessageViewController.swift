@@ -51,6 +51,71 @@ class SendMessageViewController: NSViewController {
         }
     }
 
+    private func findClosestPlanet(location: CGPoint) -> (planet: Planet?,distance: Int) {
+        var closestPlanetDistance = 10000
+        var closestPlanet: Planet?
+        for planet in appDelegate.universe.planets.values {
+            let thisPlanetDistance = abs(planet.positionX - Int(location.x)) + abs(planet.positionY - Int(location.y))
+            if thisPlanetDistance < closestPlanetDistance {
+                closestPlanetDistance = thisPlanetDistance
+                closestPlanet = planet
+            }
+        }
+        return (closestPlanet,closestPlanetDistance)
+    }
+
+    @IBAction func sendMayday(_ sender: NSButton) {
+        debugPrint("SendMessageController.sendMayday")
+        guard appDelegate.gameState == .gameActive else { return }
+        guard let me = appDelegate.universe.me else { return }
+        let (planetOptional,_) = findClosestPlanet(location: CGPoint(x: me.positionX,y: me.positionY))
+        guard let planet = planetOptional else { return }
+        
+        let message = "MAYDAY near \(planet.name) shields \(me.shieldStrength) damage \(me.damage) armies \(me.armies)"
+        let data: Data
+        switch me.team {
+        case .independent:
+            return
+        case .federation:
+            data = MakePacket.cpMessage(message: message, team: .federation, individual: 0)
+        case .roman:
+            data = MakePacket.cpMessage(message: message, team: .roman, individual: 0)
+        case .kazari:
+            data = MakePacket.cpMessage(message: message, team: .kazari, individual: 0)
+        case .orion:
+            data = MakePacket.cpMessage(message: message, team: .orion, individual: 0)
+        case .ogg:
+            return
+        }
+        self.appDelegate.reader?.send(content: data)
+    }
+    
+    @IBAction func requestEscort(_ sender: NSButton) {
+        debugPrint("SendMessageController.requestEscort")
+        guard appDelegate.gameState == .gameActive else { return }
+        guard let me = appDelegate.universe.me else { return }
+        let (planetOptional,_) = findClosestPlanet(location: CGPoint(x: me.positionX,y: me.positionY))
+        guard let planet = planetOptional else { return }
+        
+        let message = "REQEST ESCORT near \(planet.name) shields \(me.shieldStrength) damage \(me.damage) armies \(me.armies)"
+        let data: Data
+        switch me.team {
+        case .independent:
+            return
+        case .federation:
+            data = MakePacket.cpMessage(message: message, team: .federation, individual: 0)
+        case .roman:
+            data = MakePacket.cpMessage(message: message, team: .roman, individual: 0)
+        case .kazari:
+            data = MakePacket.cpMessage(message: message, team: .kazari, individual: 0)
+        case .orion:
+            data = MakePacket.cpMessage(message: message, team: .orion, individual: 0)
+        case .ogg:
+            return
+        }
+        self.appDelegate.reader?.send(content: data)
+
+    }
     @IBAction func sendMessageTextAction(_ sender: NSTextField) {
         let tag = sendMessageTeamOutlet.selectedTag()
         let message = sender.stringValue
