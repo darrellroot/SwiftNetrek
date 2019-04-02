@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page0" pageName="Netrek Overview" title="">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Normal">Netrek is the original Internet team game.  First implemented in 1989, Netrek pits two teams against each other for control of the galaxy.  Each team can have up to 16 human-controlled players.  Each team starts with 10 planets.  The universe has 40 planets (2 teams are not involved in the current war).  Command your ship!  Destroy enemy ships.  Bomb enemy armies.  Carry armies from your planets to enemy planets to capture them.  Wipe the enemy team from the universe!</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">This application is a “Netrek client”.  It is written in Swift and runs on MacOS.  It connects to a “Netrek Metaserver” to find a list of “Netrek servers”.  Then it connects to a “Netrek Server” to play the game.  Other humans with other clients connect to the servers to create a multiplayer game.  If insufficient humans are playing on the server, robots automatically fill up enough slots to make the game interesting.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">To start playing:</content>
+        </line>
+        <list ListStyle="listDecimalRP">
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Select a server</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <image height="100.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="451.0" topMargin="0.0" imageId="select-server.png"></image>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Select “Launch ship -&gt; Cruiser”</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <image height="165.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="141.0" topMargin="0.0" imageId="select-cruiser.png"></image>
+                </line>
+            </listItem>
+        </list>
+        <line Align="Left">
+            <content style="Normal">If no servers are listed, you can select “Select server -&gt; manually choose server” and type in pickled.netrek.org for the server name.  The default port of 2592 is fine.</content>
+            <image height="100.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="456.0" topMargin="0.0" imageId="manually-choose-server.png"></image>
+            <image height="142.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="480.0" topMargin="0.0" imageId="manual-server-entry.png"></image>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Basic ship controls:</content>
+        </line>
+        <list ListStyle="listDisc">
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Left mouse button fires torpedoes</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Right mouse button changes course (also control-click with left mouse)</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Middle mouse button fires lasers</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Number keys select speed</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">s key toggles shields</content>
+                </line>
+            </listItem>
+        </list>
+        <line Align="Left">
+            <content style="Normal">The top left window is the “tactical map”.  Your ship is always in the center of the tactical map.  Each team has a color.  Shooting at your own team will not hurt them, but will use up fuel.  Torpedoes are small dots.  Lasers are lines.  Shields are circles around each ship.</content>
+        </line>
+        <line Align="Left">
+            <image height="462.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="488.0" topMargin="0.0" imageId="tactical-map.png"></image>
+        </line>
+        <line Align="Left">
+            <content style="Normal">The top right window is the “strategic map”.  It shows the entire universe.  If you are on the red team, and the opposing team is green, your goal is to capture all the green planets and turn them red.</content>
+        </line>
+        <line Align="Left">
+            <image height="440.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="500.0" topMargin="0.0" imageId="strategic-map.png"></image>
+        </line>
+    </contents>
+</page>

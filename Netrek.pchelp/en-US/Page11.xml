@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page11" pageName="Tournament Mode" title="">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Normal">Tournament Mode is when there are enough humans (as opposed to robots) playing that the game “counts”.  Usually this is 4 or more humans per side.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Once you are in tournament mode, you will earn “Damage Inflicted” with every ship killed, every army bombed, and every planet captured.  Sufficient damage inflicted, plus a high enough offense rating (damage inflicted per hour) will result in “promotions” to higher rank.  If you are not playing as a guest, these promotions will persist to future games on the same server.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal"></content>
+        </line>
+    </contents>
+</page>

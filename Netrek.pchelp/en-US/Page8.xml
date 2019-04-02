@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page8" pageName="Other commands" title="">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Heading2">Information</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">The i key will show information about the planet or player closest to the mouse location.  This information will show up on the tactical map for 2 seconds, plus in the message window in the bottom right (this is useful when getting information for a far away planet or player on the strategic map).</content>
+        </line>
+        <line Align="Left">
+            <content style="Heading2">Repair</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">R will stop your ship, lower your shields, and start repairs.  This increases the normal repair rate.  Orbiting a friendly planet with a repair icon, or being docked with a friendly starbase, will also increase the repair rate.  Any movement or weapon command will cancel repairs.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Even while not using the full R repair mode, your ship automatically repairs shields at a slow pace.  If your shields are down then your ship automatically repairs damage at a slow pace.</content>
+        </line>
+        <line Align="Left">
+            <content style="Heading2">Docking permission toggle</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">A starbase can permit or deny permission for friendly ships to dock with it.  This is to prevent a starbase at the front lines from being crippled by friendly ships exploding on top of it.  Some netrek clients support a “transwarp to the starbase”, which this also denies.  This client does not currently support transwarping to the starbase.</content>
+        </line>
+    </contents>
+</page>

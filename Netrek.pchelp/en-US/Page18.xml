@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page18" pageName="Original Netrek Copyright Notice" title="">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Custom1">/*</content>
+        </line>
+        <line Align="Left">
+            <content style="Custom1">* Copyright 1989               Kevin P. Smith Scott Silvey</content>
+        </line>
+        <line Align="Left">
+            <content style="Custom1">*</content>
+        </line>
+        <line Align="Left">
+            <content style="Custom1">* Permission to use, copy, modify, and distribute this software and its</content>
+        </line>
+        <line Align="Left">
+            <content style="Custom1">* documentation for any purpose and without fee is hereby granted, provided</content>
+        </line>
+        <line Align="Left">
+            <content style="Custom1">* that the above copyright notice appear in all copies.</content>
+        </line>
+        <line Align="Left">
+            <content style="Custom1">*/</content>
+        </line>
+    </contents>
+</page>

@@ -50,8 +50,6 @@
 		2F94A83322324C2600FAAF39 /* SKView-extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F94A83222324C2600FAAF39 /* SKView-extensions.swift */; };
 		2F94A8352233009600FAAF39 /* KeymapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F94A8342233009600FAAF39 /* KeymapController.swift */; };
 		2FA665EF2238A67800F0CA76 /* ShieldFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA665EE2238A67800F0CA76 /* ShieldFactory.swift */; };
-		2FA665F12239727A00F0CA76 /* CreditsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA665F02239727A00F0CA76 /* CreditsViewController.swift */; };
-		2FA665F32239743400F0CA76 /* FullCredits.html in Resources */ = {isa = PBXBuildFile; fileRef = 2FA665F22239743400F0CA76 /* FullCredits.html */; };
 		2FA665F52239770200F0CA76 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2FA665F42239770200F0CA76 /* Credits.rtf */; };
 		2FA665F722397B1B00F0CA76 /* SoundController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA665F622397B1B00F0CA76 /* SoundController.swift */; };
 		2FA665FA22397E1300F0CA76 /* 399303__deleted-user-5405837__explosion-012.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2FA665F922397E1300F0CA76 /* 399303__deleted-user-5405837__explosion-012.mp3 */; };
@@ -236,8 +234,6 @@
 		2F94A83222324C2600FAAF39 /* SKView-extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKView-extensions.swift"; sourceTree = "<group>"; };
 		2F94A8342233009600FAAF39 /* KeymapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeymapController.swift; sourceTree = "<group>"; };
 		2FA665EE2238A67800F0CA76 /* ShieldFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldFactory.swift; sourceTree = "<group>"; };
-		2FA665F02239727A00F0CA76 /* CreditsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsViewController.swift; sourceTree = "<group>"; };
-		2FA665F22239743400F0CA76 /* FullCredits.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = FullCredits.html; sourceTree = "<group>"; };
 		2FA665F42239770200F0CA76 /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		2FA665F622397B1B00F0CA76 /* SoundController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundController.swift; sourceTree = "<group>"; };
 		2FA665F922397E1300F0CA76 /* 399303__deleted-user-5405837__explosion-012.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "399303__deleted-user-5405837__explosion-012.mp3"; sourceTree = "<group>"; };
@@ -523,7 +519,6 @@
 				2F94A8342233009600FAAF39 /* KeymapController.swift */,
 				2FD8569D2234C660005165C1 /* SendMessageViewController.swift */,
 				2FD8567322335770005165C1 /* PlayerListViewController.swift */,
-				2FA665F02239727A00F0CA76 /* CreditsViewController.swift */,
 				2FA665F622397B1B00F0CA76 /* SoundController.swift */,
 				2F03C7F9225035570029B190 /* TipController.swift */,
 			);
@@ -593,7 +588,6 @@
 				2F03C9642252ED510029B190 /* Netrek.help */,
 				2F03C8702250485F0029B190 /* Netrek-Bridging-Header.h */,
 				2F75015E22299E55002040A7 /* Main.storyboard */,
-				2FA665F22239743400F0CA76 /* FullCredits.html */,
 				2FA665F42239770200F0CA76 /* Credits.rtf */,
 				2F75015C22299E55002040A7 /* Assets.xcassets */,
 			);
@@ -696,7 +690,6 @@
 				2FD339D6223C8EA3009AA1E8 /* ManualServerController.xib in Resources */,
 				2FA665FA22397E1300F0CA76 /* 399303__deleted-user-5405837__explosion-012.mp3 in Resources */,
 				2F75016922299F2C002040A7 /* license.txt in Resources */,
-				2FA665F32239743400F0CA76 /* FullCredits.html in Resources */,
 				2FA666012239862100F0CA76 /* 175269__jonccox__gun-zap2.wav in Resources */,
 				2F75015D22299E55002040A7 /* Assets.xcassets in Resources */,
 				2FA666032239862100F0CA76 /* 175267__jonccox__gun-plasma.wav in Resources */,
@@ -763,7 +756,6 @@
 				2F750171222A21BE002040A7 /* Collection-extensions.swift in Sources */,
 				2F750189222B4532002040A7 /* MessageViewController.swift in Sources */,
 				2F750194222B6019002040A7 /* Universe.swift in Sources */,
-				2FA665F12239727A00F0CA76 /* CreditsViewController.swift in Sources */,
 				2F75017B222A4956002040A7 /* Globals.swift in Sources */,
 				2FD8569422337CFC005165C1 /* PlayerView.swift in Sources */,
 			);

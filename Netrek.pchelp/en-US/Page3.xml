@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page3" pageName="Teams" title="">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Heading2">Federation</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">The Federation are in the bottom left quadrant of the strategic map and have Earth as their homeworld.  Their planets are yellow and their ships are white with yellow shields.</content>
+        </line>
+        <line Align="Left">
+            <content style="Heading2">Romans</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">The Romans are in the top left quadrant and have Rome as their homeworld.  Their planets and ships are red.</content>
+        </line>
+        <line Align="Left">
+            <content style="Heading2">Kazari</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">The Kazari are in the top right quadrant and have Kazari as their homeworld.  Their planets and ships are green.</content>
+        </line>
+        <line Align="Left">
+            <content style="Heading2">Orions</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">The Orions are in the bottom right quadrant and have Orion as their homeworld.  Their planets and ships are blue.</content>
+        </line>
+        <line Align="Left">
+            <content style="Heading2">Indi</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Occasionally an “independent” robot will spawn on the map to “discourage” players who attack neutral planets.  Indi are white or gray.</content>
+        </line>
+    </contents>
+</page>

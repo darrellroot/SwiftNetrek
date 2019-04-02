@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page10" pageName="Strategy and tactics" title="">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Normal">The goal of the game is to genocide the enemy team by capturing all 10 of their planets (while preventing them from capturing yours).  Here are ways to help this:</content>
+        </line>
+        <list ListStyle="listDecimalRP">
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Bomb their excess armies (more than 4 on a planet).  This way they use them cannot capture your planets.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Prevent them from bombing your armies.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Use your excess armies to capture their planets.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Control your space, preventing them from capturing your planets.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Kill their players with kills.  Only players with kills can carry armies and capture planets.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Work as a team to destroy ships.  2 ships usually kill 1 ship in a dogfight.  This includes coordinating with your team by reading and writing on your team message board (bottom right).</content>
+                </line>
+            </listItem>
+        </list>
+        <line Align="Left">
+            <content style="Normal">Many Netrek strategy guides exist.  Check out </content>
+            <content style="Custom" linkTarget="http://www.netrek.org">http://www.netrek.org</content>
+            <content style="Custom">  In particular check out Dante’s dogfighting guide at </content>
+            <content style="Custom" linkTarget="http://www.netrek.org/clueguides/dantesdogfightguide.php">http://www.netrek.org/clueguides/dantesdogfightguide.php</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal"></content>
+        </line>
+    </contents>
+</page>

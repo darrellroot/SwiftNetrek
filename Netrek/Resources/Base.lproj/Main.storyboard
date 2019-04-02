@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
-        <plugIn identifier="com.apple.WebKit2IBPlugin" version="14460.31"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -420,16 +419,9 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
                                     <items>
-                                        <menuItem title="Netrek Help" keyEquivalent="?" id="FKE-Sm-Kum">
+                                        <menuItem title="Netrek Help and Credits" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>
                                                 <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="rpQ-Tb-gSn"/>
-                                        <menuItem title="Netrek Credits" id="q32-ka-FvE">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <segue destination="ozP-Vi-sda" kind="show" id="fDk-jR-M0k"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -1090,44 +1082,10 @@ https://www.apple.com/legal/macapps/stdeula/</mutableString>
                             <outlet property="delegate" destination="ozP-Vi-sda" id="8p4-Xs-bUV"/>
                         </connections>
                     </window>
-                    <connections>
-                        <segue destination="qNZ-ND-dt9" kind="relationship" relationship="window.shadowedContentViewController" id="y8b-V8-gNY"/>
-                    </connections>
                 </windowController>
                 <customObject id="3FP-UB-vD8" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="645" y="-166"/>
-        </scene>
-        <!--Credits View Controller-->
-        <scene sceneID="ggW-bB-eLc">
-            <objects>
-                <viewController id="qNZ-ND-dt9" customClass="CreditsViewController" customModule="Netrek" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" appearanceType="darkAqua" id="mgo-45-QSo">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <wkWebView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="APc-0P-rTj">
-                                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="APc-0P-rTj" firstAttribute="leading" secondItem="mgo-45-QSo" secondAttribute="leading" id="00e-G6-vl6"/>
-                            <constraint firstItem="APc-0P-rTj" firstAttribute="top" secondItem="mgo-45-QSo" secondAttribute="top" id="7QE-lx-9i0"/>
-                            <constraint firstAttribute="bottom" secondItem="APc-0P-rTj" secondAttribute="bottom" id="Hyd-CT-qHP"/>
-                            <constraint firstAttribute="trailing" secondItem="APc-0P-rTj" secondAttribute="trailing" id="W1E-D5-vWv"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="creditsWebView" destination="APc-0P-rTj" id="Mi2-SP-EFV"/>
-                    </connections>
-                </viewController>
-                <customObject id="hcX-1I-KSB" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1174" y="-262"/>
         </scene>
         <!--Strategic View Controller-->
         <scene sceneID="NQt-FY-33X">

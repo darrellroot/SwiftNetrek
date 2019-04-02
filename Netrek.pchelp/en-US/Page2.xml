@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page2" pageName="Netrek Websites" title="">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Normal">In addition to this manual, there are many websites which provide additional information and help for learning Netrek.</content>
+        </line>
+        <line Align="Left">
+            <content style="Custom" linkTarget="https://networkmom.net/netrek">https://networkmom.net/netrek</content>
+            <content style="Custom">  The dedicated website for this client, including an HTML version of this manual and a link to the Swift source code for this client.</content>
+        </line>
+        <line Align="Left">
+            <content style="Custom" linkTarget="http://www.netrek.org">http://www.netrek.org</content>
+            <content style="Custom">  Primary Netrek website, including clients for other platforms, manuals, information for developers, and history.  Check out the “clue guides” section!</content>
+        </line>
+        <line Align="Left">
+            <content style="Custom" linkTarget="http://www.netrek.org/clueguides/dantesdogfightguide.php">http://www.netrek.org/clueguides/dantesdogfightguide.php</content>
+            <content style="Custom">  A very good Netrek dogfighting manual</content>
+        </line>
+        <line Align="Left">
+            <content style="Custom" linkTarget="https://playnetrek.org">https://playnetrek.org</content>
+            <content style="Custom"> Another Netrek website from the Windows Netrek Client author</content>
+        </line>
+        <line Align="Left">
+            <content style="Custom" linkTarget="http://metaserver.us.netrek.org:1080">http://metaserver.us.netrek.org:1080</content>
+            <content style="Custom">  Web version of the Netrek Metaserver</content>
+        </line>
+        <line Align="Left">
+            <content style="Custom" linkTarget="https://groups.google.com/forum/#!forum/netrek-forever">https://groups.google.com/forum/#!forum/netrek-forever</content>
+            <content style="Custom">  Google group for Netrek players.</content>
+        </line>
+        <line Align="Left">
+            <content style="Custom" linkTarget="http://mailman.us.netrek.org/mailman/listinfo/netrek-dev">http://mailman.us.netrek.org/mailman/listinfo/netrek-dev</content>
+            <content style="Custom">  Netrek developer mailing list, including archives.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal"></content>
+        </line>
+    </contents>
+</page>

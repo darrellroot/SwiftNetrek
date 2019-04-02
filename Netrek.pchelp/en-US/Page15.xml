@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page15" pageName="Netrek Server Types" title="">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Heading2">Bronco</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Bronco Netrek servers are “standard” Netrek servers with 6 ship types and standard weapons and gameplay.  pickled.netrek.org and continuum.uc.netrek.org are Bronco servers.</content>
+        </line>
+        <line Align="Left">
+            <content style="Heading2">Sturgeon</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Sturgeon servers add some special weapons (missiles for example) and ships (this client calls it the battlecruiser for legal reasons).  This client does not support all Sturgeon features but is playable on Sturgeon servers.  netrek.beesenterprises.com is a Sturgeon server.</content>
+        </line>
+        <line Align="Left">
+            <content style="Heading2">Paradise</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Paradise was a Netrek variant including larger numbers of ships, large map, star clusters, and more strategic gameplay.  Paradise required a custom client.  This client does not support Paradise mode.  There are no known operational Paradise Netrek servers at this time.</content>
+        </line>
+        <line Align="Left">
+            <content style="Heading2">Hockey</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Netrek Hockey was a silly but fun Netrek variant where you use improved tractor and pressor beams to move a “puck” into the “enemy goal” to score.  Standard Bronco clients should work with Netrek Hockey, but there are no known operational Netrek Hockey servers online at this time.</content>
+        </line>
+        <line Align="Left">
+            <content style="Heading2">Other variants</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">There were other Netrek server types, including “Chaos”, “Base Practice”, “International Netrek League”.</content>
+        </line>
+    </contents>
+</page>
