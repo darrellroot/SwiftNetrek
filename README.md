@@ -23,34 +23,50 @@ Netrek uses SpriteKit for displaying graphics in the tactical map.
 
 Sounds
 Our main sound collection is the “Dartoxian Space Weapons” sounds by jonccox from freesound.org under the Creative Commons Attribution License:
-175262__jonccox__gun-cannon.wav
-175265__jonccox__gun-thumper.wav (used for laser)
-175266__jonccox__gun-spark.wav
-175267__jonccox__gun-plasma.wav (used for plasma)
-175269__jonccox__gun-zap2.wav (used for torpedo)
-175270__jonccox__gun-zap.wav (used for detonate)
+• 175262__jonccox__gun-cannon.wav
+• 175265__jonccox__gun-thumper.wav (used for laser)
+• 175266__jonccox__gun-spark.wav
+• 175267__jonccox__gun-plasma.wav (used for plasma)
+• 175269__jonccox__gun-zap2.wav (used for torpedo)
+• 175270__jonccox__gun-zap.wav (used for detonate)
 
 The following other sounds were used from freesound.org under the Creative Commons Attribution License or the Creative Commons 0 License:
-Explosion from deleted user  399303__deleted-user-5405837__explosion-012.mp3
-Shield sound from ludvique   71852__ludvique__digital-whoosh-soft.wav
+• Explosion from deleted user  399303__deleted-user-5405837__explosion-012.mp3
+• Shield sound from ludvique   71852__ludvique__digital-whoosh-soft.wav
 
 Graphics
 The planet icons were made by Darrell Root (Network Mom LLC) based on screenshots of the original COW Netrek Client from the 1990’s.
+
 The Roman (red fleet), Kazari (green fleet), and Orion (blue fleet) ship icons came original from the artist Pascal Gagnon via the Gytha Netrek Client under the Creative Commons Attribution License.
+
 The Federation (outline fleet) and Independent (also outline fleet) ship icons came from the MacTrek 1.5 client (written in Objective C in 2006) by Chris and Judith Lukassen.  Judith did the artwork.
+
 Prior Netrek Client: MacTrek
+
 Chris and Judith Lukassen wrote Mac Trek in Objective C around 2006.  While the Swift Netrek Client does not use any of their source code, I learned much about both Netrek and programming from their code. 
+
 Prior Netrek Client: Gytha
+
 James Cameron (aka Quozl) wrote the Gytha netrek client in 2012.  Implemented in Python, we used the code as a resource during our development.  James Cameron helpfully answered several questions during our development.
+
 Prior Netrek Client: BRMH
+
 Developed in c in the 1990’s we also used this client as a resource during development.  There are too many developers of BRMH so we refer you to http://www.netrek.org/files/archive/BRMH/BRMH.html for more information.
+
 Netrek Vanilla Server
+
 We used the Netrek Vanilla Server (written in C, maintained by James Cameron) as a reference during development.  See https://github.com/quozl/netrek-server for more information.
+
 Swift Local Receipt Validator
+
 We used SwiftyLocalReceiptValidator by Andrew Bancroft for in-app purchase processing.  It is licensed under the MIT license.  Copyright message in next section.
+
 OpenSSL
+
 We use OpenSSL for in-app purchase receipt validation, which requires the following message: “This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit (http://www.openssl.org/)”
+
 Netrek Hints
+
 Many of the advanced hints on the tactical screen came from the Windows netrek client courtesy of Bill Balcerski.
 
 Historic copyright notices, although no source code from the original Netrek implementation is included in this project.
