@@ -89,6 +89,8 @@ class Planet: CustomStringConvertible {
         case (true, true, true):
             infoString = "AGRI FUEL REPAIR\(armies) armies"
         }
+        appDelegate.messageViewController?.gotMessage("\(self.name) \(infoString)")
+
         let planetInfoLabel = SKLabelNode(text: infoString)
         planetInfoLabel.fontSize = NetrekMath.planetFontSize
         planetInfoLabel.fontName = "Courier"

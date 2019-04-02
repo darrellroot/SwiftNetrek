@@ -188,7 +188,10 @@ class Player: CustomStringConvertible {
         }
     }
     public func showInfo() {
+        if self.cloak == true { return }
         let infoString: String = "\(self.name) \(self.ship?.description ?? "??") \(self.kills) kills"
+        let playerLetter = NetrekMath.playerLetter(playerID: self.playerID)
+        appDelegate.messageViewController?.gotMessage("\(self.team.letter)\(playerLetter) \(infoString)")
         let playerInfoLabel = SKLabelNode(text: infoString)
         playerInfoLabel.fontSize = NetrekMath.planetFontSize
         playerInfoLabel.fontName = "Courier"

@@ -24,6 +24,9 @@ class StrategicView: NSView {
     override var acceptsFirstResponder: Bool {
         return true
     }
+    override func acceptsFirstMouse(for event: NSEvent?) -> Bool {
+        return true
+    }
     override func otherMouseDown(with event: NSEvent) {
         let viewLocation = self.convert(event.locationInWindow, to: self)
         let galacticLocation = view2Galactic(location: viewLocation)

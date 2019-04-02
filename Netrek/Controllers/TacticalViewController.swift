@@ -24,10 +24,10 @@ class TacticalViewController: NSViewController, SKSceneDelegate {
         super.viewDidLoad()
         appDelegate.tacticalViewController = self
         let skView = self.view as! SKView
-        skView.showsFPS = true
-        skView.showsNodeCount = true
-        skView.showsDrawCount = true
-        skView.showsQuadCount = true
+        //skView.showsFPS = true
+        //skView.showsNodeCount = true
+        //skView.showsDrawCount = true
+        //skView.showsQuadCount = true
         skView.ignoresSiblingOrder = true
         skView.preferredFramesPerSecond = 30
         defaultCamera.xScale = 0.23

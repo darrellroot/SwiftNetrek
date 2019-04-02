@@ -338,15 +338,18 @@ class KeymapController {
                     appDelegate.reader?.send(content: cpBomb)
                 }
             case .cloakUp:
+                guard appDelegate.gameState == .gameActive else { return }
                 let cpCloak = MakePacket.cpCloak(state: true )
                 appDelegate.reader?.send(content: cpCloak)
                 appDelegate.soundController?.play(sound: .shield, volume: 1.0)
             case .cloakDown:
+                guard appDelegate.gameState == .gameActive else { return }
                 let cpCloak = MakePacket.cpCloak(state: false )
                 appDelegate.reader?.send(content: cpCloak)
                 appDelegate.soundController?.play(sound: .shield, volume: 1.0)
 
             case .cloak:
+                guard appDelegate.gameState == .gameActive else { return }
                 if let cloakState = appDelegate.universe.me?.cloak {
                     let cpCloak = MakePacket.cpCloak(state: !cloakState )
                     appDelegate.reader?.send(content: cpCloak)
@@ -358,12 +361,14 @@ class KeymapController {
                 appDelegate.reader?.send(content: cpCoup)
                 
             case .detEnemy:
+                guard appDelegate.gameState == .gameActive else { return }
                 let cpDetTorps = MakePacket.cpDetTorps()
                 appDelegate.reader?.send(content: cpDetTorps)
-            appDelegate.soundController?.play(sound: .detonate, volume: 0.5)
+                appDelegate.soundController?.play(sound: .detonate, volume: 0.5)
 
             case .detOwn:
                 guard let me = appDelegate.universe.me else { return }
+                guard appDelegate.gameState == .gameActive else { return }
                 for count in 0..<8 {
                     let myTorpNum = UInt8(me.playerID * 8 + count)
                     let cpDetMyTorps = MakePacket.cpDetMyTorps(torpNum: myTorpNum)
@@ -410,6 +415,8 @@ class KeymapController {
                 }
 
             case .toggleShields:
+                guard appDelegate.gameState == .gameActive else { return }
+
                 if let shieldsUp = appDelegate.universe.me?.shieldsUp {
                     if shieldsUp {
                         let cpShield = MakePacket.cpShield(up: false)
@@ -503,21 +510,29 @@ class KeymapController {
 
                 }
             case .lowerShields:
+                guard appDelegate.gameState == .gameActive else { return }
+
                 let cpShield = MakePacket.cpShield(up: false)
                 appDelegate.reader?.send(content: cpShield)
                 appDelegate.soundController?.play(sound: .shield, volume: 1.0)
 
             case .raiseShields:
+                guard appDelegate.gameState == .gameActive else { return }
+
                 let cpShield = MakePacket.cpShield(up: true)
                 appDelegate.reader?.send(content: cpShield)
                 appDelegate.soundController?.play(sound: .shield, volume: 1.0)
             
             case .repair:
+                guard appDelegate.gameState == .gameActive else { return }
+
                 if let repairState = appDelegate.universe.me?.repair {
                     let cpRepair = MakePacket.cpRepair(state: !repairState )
                     appDelegate.reader?.send(content: cpRepair)
                 }
             case .fireLaser:
+                guard appDelegate.gameState == .gameActive else { return }
+
                 debugPrint("FireLaser location \(String(describing: location))")
                 guard let targetLocation = location else {
                     debugPrint("KeymapController.execute.fireLaser location is nil...holding fire")
@@ -530,6 +545,8 @@ class KeymapController {
                 }
 
             case .fireTorpedo:
+                guard appDelegate.gameState == .gameActive else { return }
+
                 debugPrint("LeftMouseDown location \(String(describing: location))")
                 guard let targetLocation = location else {
                     debugPrint("KeymapController.execute.fireTorpedo location is nil...holding fire")
@@ -541,6 +558,8 @@ class KeymapController {
                     appDelegate.reader?.send(content: cpTorp)
                  }
             case .firePlasma:
+                guard appDelegate.gameState == .gameActive else { return }
+
                 debugPrint("firePlasma location \(String(describing: location))")
                 guard let targetLocation = location else {
                     debugPrint("KeymapController.execute.firePlasma location is nil...holding fire")
