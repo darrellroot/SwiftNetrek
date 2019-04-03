@@ -1,4 +1,4 @@
-Credits:
+Swift Netrek Client for MacOS credits:
 
 Programmer
 
