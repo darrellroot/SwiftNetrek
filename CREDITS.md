@@ -1,12 +1,12 @@
 Credits:
 
-Netrek Servers
-
-This client is only part of Netrek. Playing the game would not be possible without the Netrek servers which are still running on the Internet. As of April 2019, this includes pickled.netrek.org, continuum.us.netrek.org, and netrek.beesenterprises.com.
-
 Programmer
 
 This Swift Netrek Client is written by Darrell Root for Network Mom LLC. Check out https://networkmom.net/netrek for more information. While the client and source code are free, please considering thanking the developer with a positive review in the MacOS App Store or by leaving “tipping the developer” via in-app purchase.
+
+Netrek Servers
+
+This client is only part of Netrek. Playing the game would not be possible without the Netrek servers which are still running on the Internet. As of April 2019, this includes pickled.netrek.org, continuum.us.netrek.org, and netrek.beesenterprises.com.  The automated robots also help with playing the game given the current rarity of human players.
 
 Programming Language and Environment
 
