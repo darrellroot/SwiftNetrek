@@ -63,6 +63,75 @@
 		2FA6660C2239A5CA00F0CA76 /* FlipScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA6660B2239A5CA00F0CA76 /* FlipScrollView.swift */; };
 		2FA6660E2239A8C300F0CA76 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA6660D2239A8C300F0CA76 /* Label.swift */; };
 		2FA666102239ABFD00F0CA76 /* FlipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA6660F2239ABFD00F0CA76 /* FlipView.swift */; };
+		2FC2EED42257FEF5002EF792 /* Tuple16.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F75019F222C8E59002040A7 /* Tuple16.swift */; };
+		2FC2EED52257FEF5002EF792 /* packets-extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7501A1222C930B002040A7 /* packets-extensions.swift */; };
+		2FC2EED62257FEF5002EF792 /* MetaServerEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F75016B2229FA22002040A7 /* MetaServerEntry.swift */; };
+		2FC2EED72257FEF5002EF792 /* SoundController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA665F622397B1B00F0CA76 /* SoundController.swift */; };
+		2FC2EED82257FEF5002EF792 /* ControlPreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA666092239A4F500F0CA76 /* ControlPreferencesController.swift */; };
+		2FC2EED92257FEF5002EF792 /* PacketAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F750184222B2476002040A7 /* PacketAnalyzer.swift */; };
+		2FC2EEDA2257FEF5002EF792 /* ShieldFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA665EE2238A67800F0CA76 /* ShieldFactory.swift */; };
+		2FC2EEDB2257FEF5002EF792 /* SKView-extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F94A83222324C2600FAAF39 /* SKView-extensions.swift */; };
+		2FC2EEDC2257FEF5002EF792 /* TacticalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7501B0222F5AD9002040A7 /* TacticalViewController.swift */; };
+		2FC2EEDD2257FEF5002EF792 /* LoginInformationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDCD3E4223B27FF00C0AE67 /* LoginInformationController.swift */; };
+		2FC2EEDE2257FEF5002EF792 /* Laser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7501A9222F2CBE002040A7 /* Laser.swift */; };
+		2FC2EEE02257FEF5002EF792 /* OtherPreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDCD3DE2239C9C300C0AE67 /* OtherPreferencesController.swift */; };
+		2FC2EEE12257FEF5002EF792 /* PlayerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD8567322335770005165C1 /* PlayerListViewController.swift */; };
+		2FC2EEE22257FEF5002EF792 /* HUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD8569922346760005165C1 /* HUDView.swift */; };
+		2FC2EEE32257FEF5002EF792 /* NetworkDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F75017D222A57EC002040A7 /* NetworkDelegate.swift */; };
+		2FC2EEE42257FEF5002EF792 /* MetaServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F75016D2229FFE8002040A7 /* MetaServer.swift */; };
+		2FC2EEE52257FEF5002EF792 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F750195222B6048002040A7 /* Player.swift */; };
+		2FC2EEE62257FEF5002EF792 /* OverallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F75015A22299E55002040A7 /* OverallViewController.swift */; };
+		2FC2EEE72257FEF5002EF792 /* TcpReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F750178222A4461002040A7 /* TcpReader.swift */; };
+		2FC2EEE82257FEF5002EF792 /* Torpedo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7501A7222F251B002040A7 /* Torpedo.swift */; };
+		2FC2EEE92257FEF5002EF792 /* Plasma.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7501AB222F42E0002040A7 /* Plasma.swift */; };
+		2FC2EEEA2257FEF5002EF792 /* SendMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD8569D2234C660005165C1 /* SendMessageViewController.swift */; };
+		2FC2EEEB2257FEF5002EF792 /* StrategicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD856952234222D005165C1 /* StrategicView.swift */; };
+		2FC2EEEC2257FEF5002EF792 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD339CD223C2A43009AA1E8 /* KeychainService.swift */; };
+		2FC2EEED2257FEF5002EF792 /* StrategicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7501B2222F5B8F002040A7 /* StrategicViewController.swift */; };
+		2FC2EEEE2257FEF5002EF792 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F75015822299E55002040A7 /* AppDelegate.swift */; };
+		2FC2EEEF2257FEF5002EF792 /* ShipInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD8569B22347566005165C1 /* ShipInfo.swift */; };
+		2FC2EEF02257FEF5002EF792 /* HUDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD8569722346743005165C1 /* HUDViewController.swift */; };
+		2FC2EEF12257FEF5002EF792 /* OverallWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD339F92242E50C009AA1E8 /* OverallWindowController.swift */; };
+		2FC2EEF22257FEF5002EF792 /* packets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7501A3222CA33C002040A7 /* packets.swift */; };
+		2FC2EEF32257FEF5002EF792 /* UserDefaults-extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDCD3E6223B354200C0AE67 /* UserDefaults-extensions.swift */; };
+		2FC2EEF42257FEF5002EF792 /* SwiftyLocalReceiptValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F03C87322504B250029B190 /* SwiftyLocalReceiptValidator.swift */; };
+		2FC2EEF52257FEF5002EF792 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA6660D2239A8C300F0CA76 /* Label.swift */; };
+		2FC2EEF62257FEF5002EF792 /* TacticalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7501B4222F5BD7002040A7 /* TacticalView.swift */; };
+		2FC2EEF72257FEF5002EF792 /* ManualServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD339D3223C8EA3009AA1E8 /* ManualServerController.swift */; };
+		2FC2EEF82257FEF5002EF792 /* Data-extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F750197222B66AF002040A7 /* Data-extensions.swift */; };
+		2FC2EEF92257FEF5002EF792 /* FlipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA6660F2239ABFD00F0CA76 /* FlipView.swift */; };
+		2FC2EEFA2257FEF5002EF792 /* MakePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F75017F222AEC8B002040A7 /* MakePacket.swift */; };
+		2FC2EEFB2257FEF5002EF792 /* NetrekMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F94A8302231AEA800FAAF39 /* NetrekMath.swift */; };
+		2FC2EEFC2257FEF5002EF792 /* enumerations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F750182222AF698002040A7 /* enumerations.swift */; };
+		2FC2EEFD2257FEF5002EF792 /* FlipScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA6660B2239A5CA00F0CA76 /* FlipScrollView.swift */; };
+		2FC2EEFE2257FEF5002EF792 /* pkcs7_union_accessors.c in Sources */ = {isa = PBXBuildFile; fileRef = 2F03C87222504B250029B190 /* pkcs7_union_accessors.c */; };
+		2FC2EEFF2257FEF5002EF792 /* Hint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F03C7F722500D370029B190 /* Hint.swift */; };
+		2FC2EF002257FEF5002EF792 /* Planet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F750199222C33D6002040A7 /* Planet.swift */; };
+		2FC2EF012257FEF5002EF792 /* KeymapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F94A8342233009600FAAF39 /* KeymapController.swift */; };
+		2FC2EF022257FEF5002EF792 /* TacticalScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F94A82E2230DA3B00FAAF39 /* TacticalScene.swift */; };
+		2FC2EF032257FEF5002EF792 /* Collection-extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F750170222A21BE002040A7 /* Collection-extensions.swift */; };
+		2FC2EF042257FEF5002EF792 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F750188222B4532002040A7 /* MessageViewController.swift */; };
+		2FC2EF052257FEF5002EF792 /* Universe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F750193222B6019002040A7 /* Universe.swift */; };
+		2FC2EF062257FEF5002EF792 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F75017A222A4956002040A7 /* Globals.swift */; };
+		2FC2EF072257FEF5002EF792 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD8569322337CFC005165C1 /* PlayerView.swift */; };
+		2FC2EF0A2257FEF5002EF792 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F03C86B225046100029B190 /* libssl.a */; };
+		2FC2EF0B2257FEF5002EF792 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F03C86A225046100029B190 /* libcrypto.a */; };
+		2FC2EF0D2257FEF5002EF792 /* 175266__jonccox__gun-spark.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2FA665FF2239862100F0CA76 /* 175266__jonccox__gun-spark.wav */; };
+		2FC2EF0E2257FEF5002EF792 /* opensslconf.h.orig in Resources */ = {isa = PBXBuildFile; fileRef = 2F03C812225046100029B190 /* opensslconf.h.orig */; };
+		2FC2EF0F2257FEF5002EF792 /* Netrek.help in Resources */ = {isa = PBXBuildFile; fileRef = 2F03C9642252ED510029B190 /* Netrek.help */; };
+		2FC2EF102257FEF5002EF792 /* 175270__jonccox__gun-zap.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2FA665FC2239862000F0CA76 /* 175270__jonccox__gun-zap.wav */; };
+		2FC2EF112257FEF5002EF792 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2FA665F42239770200F0CA76 /* Credits.rtf */; };
+		2FC2EF122257FEF5002EF792 /* version-1.1.1a in Resources */ = {isa = PBXBuildFile; fileRef = 2F03C7FC225046100029B190 /* version-1.1.1a */; };
+		2FC2EF132257FEF5002EF792 /* 71852__ludvique__digital-whoosh-soft.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2FA666072239987400F0CA76 /* 71852__ludvique__digital-whoosh-soft.wav */; };
+		2FC2EF142257FEF5002EF792 /* ManualServerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FD339D4223C8EA3009AA1E8 /* ManualServerController.xib */; };
+		2FC2EF152257FEF5002EF792 /* 399303__deleted-user-5405837__explosion-012.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2FA665F922397E1300F0CA76 /* 399303__deleted-user-5405837__explosion-012.mp3 */; };
+		2FC2EF162257FEF5002EF792 /* 175269__jonccox__gun-zap2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2FA665FB2239862000F0CA76 /* 175269__jonccox__gun-zap2.wav */; };
+		2FC2EF172257FEF5002EF792 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F75015C22299E55002040A7 /* Assets.xcassets */; };
+		2FC2EF182257FEF5002EF792 /* 175267__jonccox__gun-plasma.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2FA665FD2239862000F0CA76 /* 175267__jonccox__gun-plasma.wav */; };
+		2FC2EF192257FEF5002EF792 /* 175265__jonccox__gun-thumper.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2FA665FE2239862100F0CA76 /* 175265__jonccox__gun-thumper.wav */; };
+		2FC2EF1A2257FEF5002EF792 /* 175262__jonccox__gun-cannon.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2FA666002239862100F0CA76 /* 175262__jonccox__gun-cannon.wav */; };
+		2FC2EF1B2257FEF5002EF792 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F75015E22299E55002040A7 /* Main.storyboard */; };
+		2FC2EF222257FF66002EF792 /* TipController-public-domain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC2EF212257FF66002EF792 /* TipController-public-domain.swift */; };
 		2FD339CE223C2A43009AA1E8 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD339CD223C2A43009AA1E8 /* KeychainService.swift */; };
 		2FD339D5223C8EA3009AA1E8 /* ManualServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD339D3223C8EA3009AA1E8 /* ManualServerController.swift */; };
 		2FD339D6223C8EA3009AA1E8 /* ManualServerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FD339D4223C8EA3009AA1E8 /* ManualServerController.xib */; };
@@ -246,6 +315,9 @@
 		2FA6660B2239A5CA00F0CA76 /* FlipScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FlipScrollView.swift; path = Netrek/Views/FlipScrollView.swift; sourceTree = SOURCE_ROOT; };
 		2FA6660D2239A8C300F0CA76 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		2FA6660F2239ABFD00F0CA76 /* FlipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipView.swift; sourceTree = "<group>"; };
+		2FC2EF1F2257FEF5002EF792 /* Netrek-public-domain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Netrek-public-domain.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2FC2EF202257FEF5002EF792 /* Netrek copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Netrek copy-Info.plist"; path = "/Users/droot/Dropbox/Netrek/Netrek copy-Info.plist"; sourceTree = "<absolute>"; };
+		2FC2EF212257FF66002EF792 /* TipController-public-domain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TipController-public-domain.swift"; sourceTree = "<group>"; };
 		2FD339CD223C2A43009AA1E8 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = KeychainService.swift; path = Netrek/Extensions/KeychainService.swift; sourceTree = SOURCE_ROOT; };
 		2FD339D3223C8EA3009AA1E8 /* ManualServerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualServerController.swift; sourceTree = "<group>"; };
 		2FD339D4223C8EA3009AA1E8 /* ManualServerController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ManualServerController.xib; sourceTree = "<group>"; };
@@ -270,6 +342,15 @@
 				2F03C8792251BFA70029B190 /* StoreKit.framework in Frameworks */,
 				2F03C86F225046110029B190 /* libssl.a in Frameworks */,
 				2F03C86E225046110029B190 /* libcrypto.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2FC2EF082257FEF5002EF792 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FC2EF0A2257FEF5002EF792 /* libssl.a in Frameworks */,
+				2FC2EF0B2257FEF5002EF792 /* libcrypto.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +521,7 @@
 				2F75015722299E55002040A7 /* Netrek */,
 				2F75015622299E55002040A7 /* Products */,
 				2F03C8772251BFA70029B190 /* Frameworks */,
+				2FC2EF202257FEF5002EF792 /* Netrek copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -447,6 +529,7 @@
 			isa = PBXGroup;
 			children = (
 				2F75015522299E55002040A7 /* Netrek.app */,
+				2FC2EF1F2257FEF5002EF792 /* Netrek-public-domain.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -518,6 +601,7 @@
 				2FD8567322335770005165C1 /* PlayerListViewController.swift */,
 				2FA665F622397B1B00F0CA76 /* SoundController.swift */,
 				2F03C7F9225035570029B190 /* TipController.swift */,
+				2FC2EF212257FF66002EF792 /* TipController-public-domain.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -626,6 +710,23 @@
 			productReference = 2F75015522299E55002040A7 /* Netrek.app */;
 			productType = "com.apple.product-type.application";
 		};
+		2FC2EED22257FEF5002EF792 /* Netrek-public-domain */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2FC2EF1C2257FEF5002EF792 /* Build configuration list for PBXNativeTarget "Netrek-public-domain" */;
+			buildPhases = (
+				2FC2EED32257FEF5002EF792 /* Sources */,
+				2FC2EF082257FEF5002EF792 /* Frameworks */,
+				2FC2EF0C2257FEF5002EF792 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Netrek-public-domain";
+			productName = Netrek;
+			productReference = 2FC2EF1F2257FEF5002EF792 /* Netrek-public-domain.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -633,7 +734,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Network Mom LLC";
 				TargetAttributes = {
 					2F75015422299E55002040A7 = {
@@ -651,6 +752,16 @@
 							};
 						};
 					};
+					2FC2EED22257FEF5002EF792 = {
+						SystemCapabilities = {
+							com.apple.HardenedRuntime = {
+								enabled = 0;
+							};
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
+					};
 				};
 			};
 			buildConfigurationList = 2F75015022299E55002040A7 /* Build configuration list for PBXProject "Netrek" */;
@@ -658,6 +769,7 @@
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				en,
 				Base,
 				"en-US",
 			);
@@ -667,6 +779,7 @@
 			projectRoot = "";
 			targets = (
 				2F75015422299E55002040A7 /* Netrek */,
+				2FC2EED22257FEF5002EF792 /* Netrek-public-domain */,
 			);
 		};
 /* End PBXProject section */
@@ -691,6 +804,28 @@
 				2FA666042239862100F0CA76 /* 175265__jonccox__gun-thumper.wav in Resources */,
 				2FA666062239862100F0CA76 /* 175262__jonccox__gun-cannon.wav in Resources */,
 				2F75016022299E55002040A7 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2FC2EF0C2257FEF5002EF792 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FC2EF0D2257FEF5002EF792 /* 175266__jonccox__gun-spark.wav in Resources */,
+				2FC2EF0E2257FEF5002EF792 /* opensslconf.h.orig in Resources */,
+				2FC2EF0F2257FEF5002EF792 /* Netrek.help in Resources */,
+				2FC2EF102257FEF5002EF792 /* 175270__jonccox__gun-zap.wav in Resources */,
+				2FC2EF112257FEF5002EF792 /* Credits.rtf in Resources */,
+				2FC2EF122257FEF5002EF792 /* version-1.1.1a in Resources */,
+				2FC2EF132257FEF5002EF792 /* 71852__ludvique__digital-whoosh-soft.wav in Resources */,
+				2FC2EF142257FEF5002EF792 /* ManualServerController.xib in Resources */,
+				2FC2EF152257FEF5002EF792 /* 399303__deleted-user-5405837__explosion-012.mp3 in Resources */,
+				2FC2EF162257FEF5002EF792 /* 175269__jonccox__gun-zap2.wav in Resources */,
+				2FC2EF172257FEF5002EF792 /* Assets.xcassets in Resources */,
+				2FC2EF182257FEF5002EF792 /* 175267__jonccox__gun-plasma.wav in Resources */,
+				2FC2EF192257FEF5002EF792 /* 175265__jonccox__gun-thumper.wav in Resources */,
+				2FC2EF1A2257FEF5002EF792 /* 175262__jonccox__gun-cannon.wav in Resources */,
+				2FC2EF1B2257FEF5002EF792 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -756,6 +891,65 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2FC2EED32257FEF5002EF792 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FC2EED42257FEF5002EF792 /* Tuple16.swift in Sources */,
+				2FC2EED52257FEF5002EF792 /* packets-extensions.swift in Sources */,
+				2FC2EED62257FEF5002EF792 /* MetaServerEntry.swift in Sources */,
+				2FC2EED72257FEF5002EF792 /* SoundController.swift in Sources */,
+				2FC2EED82257FEF5002EF792 /* ControlPreferencesController.swift in Sources */,
+				2FC2EED92257FEF5002EF792 /* PacketAnalyzer.swift in Sources */,
+				2FC2EEDA2257FEF5002EF792 /* ShieldFactory.swift in Sources */,
+				2FC2EEDB2257FEF5002EF792 /* SKView-extensions.swift in Sources */,
+				2FC2EEDC2257FEF5002EF792 /* TacticalViewController.swift in Sources */,
+				2FC2EEDD2257FEF5002EF792 /* LoginInformationController.swift in Sources */,
+				2FC2EEDE2257FEF5002EF792 /* Laser.swift in Sources */,
+				2FC2EEE02257FEF5002EF792 /* OtherPreferencesController.swift in Sources */,
+				2FC2EEE12257FEF5002EF792 /* PlayerListViewController.swift in Sources */,
+				2FC2EEE22257FEF5002EF792 /* HUDView.swift in Sources */,
+				2FC2EEE32257FEF5002EF792 /* NetworkDelegate.swift in Sources */,
+				2FC2EEE42257FEF5002EF792 /* MetaServer.swift in Sources */,
+				2FC2EEE52257FEF5002EF792 /* Player.swift in Sources */,
+				2FC2EEE62257FEF5002EF792 /* OverallViewController.swift in Sources */,
+				2FC2EEE72257FEF5002EF792 /* TcpReader.swift in Sources */,
+				2FC2EEE82257FEF5002EF792 /* Torpedo.swift in Sources */,
+				2FC2EEE92257FEF5002EF792 /* Plasma.swift in Sources */,
+				2FC2EEEA2257FEF5002EF792 /* SendMessageViewController.swift in Sources */,
+				2FC2EEEB2257FEF5002EF792 /* StrategicView.swift in Sources */,
+				2FC2EEEC2257FEF5002EF792 /* KeychainService.swift in Sources */,
+				2FC2EEED2257FEF5002EF792 /* StrategicViewController.swift in Sources */,
+				2FC2EEEE2257FEF5002EF792 /* AppDelegate.swift in Sources */,
+				2FC2EEEF2257FEF5002EF792 /* ShipInfo.swift in Sources */,
+				2FC2EEF02257FEF5002EF792 /* HUDViewController.swift in Sources */,
+				2FC2EEF12257FEF5002EF792 /* OverallWindowController.swift in Sources */,
+				2FC2EEF22257FEF5002EF792 /* packets.swift in Sources */,
+				2FC2EEF32257FEF5002EF792 /* UserDefaults-extensions.swift in Sources */,
+				2FC2EEF42257FEF5002EF792 /* SwiftyLocalReceiptValidator.swift in Sources */,
+				2FC2EEF52257FEF5002EF792 /* Label.swift in Sources */,
+				2FC2EEF62257FEF5002EF792 /* TacticalView.swift in Sources */,
+				2FC2EEF72257FEF5002EF792 /* ManualServerController.swift in Sources */,
+				2FC2EEF82257FEF5002EF792 /* Data-extensions.swift in Sources */,
+				2FC2EEF92257FEF5002EF792 /* FlipView.swift in Sources */,
+				2FC2EEFA2257FEF5002EF792 /* MakePacket.swift in Sources */,
+				2FC2EEFB2257FEF5002EF792 /* NetrekMath.swift in Sources */,
+				2FC2EEFC2257FEF5002EF792 /* enumerations.swift in Sources */,
+				2FC2EEFD2257FEF5002EF792 /* FlipScrollView.swift in Sources */,
+				2FC2EEFE2257FEF5002EF792 /* pkcs7_union_accessors.c in Sources */,
+				2FC2EEFF2257FEF5002EF792 /* Hint.swift in Sources */,
+				2FC2EF002257FEF5002EF792 /* Planet.swift in Sources */,
+				2FC2EF222257FF66002EF792 /* TipController-public-domain.swift in Sources */,
+				2FC2EF012257FEF5002EF792 /* KeymapController.swift in Sources */,
+				2FC2EF022257FEF5002EF792 /* TacticalScene.swift in Sources */,
+				2FC2EF032257FEF5002EF792 /* Collection-extensions.swift in Sources */,
+				2FC2EF042257FEF5002EF792 /* MessageViewController.swift in Sources */,
+				2FC2EF052257FEF5002EF792 /* Universe.swift in Sources */,
+				2FC2EF062257FEF5002EF792 /* Globals.swift in Sources */,
+				2FC2EF072257FEF5002EF792 /* PlayerView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -774,6 +968,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -802,7 +997,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -835,6 +1030,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -863,7 +1059,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -940,6 +1136,59 @@
 			};
 			name = Release;
 		};
+		2FC2EF1D2257FEF5002EF792 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				HEADER_SEARCH_PATHS = /Users/droot/Dropbox/Netrek/Netrek/OpenSSL/include/;
+				INFOPLIST_FILE = "Netrek copy-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Netrek/OpenSSL/lib",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.networkmom.netrek;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Netrek/Resources/Netrek-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		2FC2EF1E2257FEF5002EF792 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				HEADER_SEARCH_PATHS = /Users/droot/Dropbox/Netrek/Netrek/OpenSSL/include/;
+				INFOPLIST_FILE = "Netrek copy-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Netrek/OpenSSL/lib",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.networkmom.netrek;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Netrek/Resources/Netrek-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -957,6 +1206,15 @@
 			buildConfigurations = (
 				2F75016622299E55002040A7 /* Debug */,
 				2F75016722299E55002040A7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2FC2EF1C2257FEF5002EF792 /* Build configuration list for PBXNativeTarget "Netrek-public-domain" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2FC2EF1D2257FEF5002EF792 /* Debug */,
+				2FC2EF1E2257FEF5002EF792 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
