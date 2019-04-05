@@ -191,14 +191,14 @@ class PacketAnalyzer {
             let war = UInt8(data[1])  //mask of teams torp is hostile to
             let status = UInt8(data[2]) // new status of torp, TFREE, TDET, etc
             // pad
-            let torpedoNumber = Int(data.subdata(in: (4..<5)).to(type: UInt16.self).byteSwapped)
+            let torpedoNumber = Int(data.subdata(in: (4..<6)).to(type: UInt16.self).byteSwapped)
             universe.updateTorpedo(torpedoNumber: torpedoNumber, war: war, status: status)
             debugPrint("Received SP_TORP_INFO 5 torpedoNumber \(torpedoNumber) war \(war) status \(status) ")
         
         case 6:
             // SP_TORP
             let directionNetrek = Int(UInt8(data[1]))
-            let torpedoNumber = Int(data.subdata(in: (2..<3)).to(type: UInt16.self).byteSwapped)
+            let torpedoNumber = Int(data.subdata(in: (2..<4)).to(type: UInt16.self).byteSwapped)
             let positionX = NetrekMath.netrekX2GameX(Int(data.subdata(in: (4..<8)).to(type: UInt32.self).byteSwapped))
             let positionY = NetrekMath.netrekY2GameY((Int(data.subdata(in: (8..<12)).to(type: UInt32.self).byteSwapped)))
             debugPrint("Received SP_TORP 6 torpedoNumber \(torpedoNumber) directionNetrek \(directionNetrek) positionX \(positionX) positionY \(positionY)")
@@ -218,13 +218,13 @@ class PacketAnalyzer {
             //SP_PLASMA_INFO
             let war = UInt8(data[1])
             let status = Int(data[2])
-            let plasmaID = Int(data.subdata(in: (4..<5)).to(type: UInt16.self).byteSwapped)
+            let plasmaID = Int(data.subdata(in: (4..<6)).to(type: UInt16.self).byteSwapped)
             universe.updatePlasma(plasmaID: plasmaID, war: war, status: status)
             debugPrint("Received SP_PLASMA 8 plasmaID \(plasmaID) war \(war) status \(status)")
 
         case 9:
             //SP_PLASMA
-            let plasmaID = Int(data.subdata(in: (2..<3)).to(type: UInt16.self).byteSwapped)
+            let plasmaID = Int(data.subdata(in: (2..<4)).to(type: UInt16.self).byteSwapped)
             let positionX = NetrekMath.netrekX2GameX(Int(data.subdata(in: (4..<8)).to(type: UInt32.self).byteSwapped))
             let positionY = NetrekMath.netrekY2GameY(Int(data.subdata(in: (8..<12)).to(type: UInt32.self).byteSwapped))
             debugPrint("Received SP_PLASMA 9 plasmaID \(plasmaID) positionX \(positionX) positionY \(positionY)")
@@ -276,10 +276,10 @@ class PacketAnalyzer {
             let damage = Int(data.subdata(in: (12..<16)).to(type: UInt32.self).byteSwapped)
             let shieldStrength = Int(data.subdata(in: (16..<20)).to(type: UInt32.self).byteSwapped)
             let fuel = Int(data.subdata(in: (20..<24)).to(type: UInt32.self).byteSwapped)
-            let engineTemp = Int(data.subdata(in: (24..<25)).to(type: UInt16.self).byteSwapped)
-            let weaponsTemp = Int(data.subdata(in: (26..<27)).to(type: UInt16.self).byteSwapped)
-            let whyDead = Int(data.subdata(in: (28..<29)).to(type: UInt16.self).byteSwapped)
-            let whoDead = Int(data.subdata(in: (30..<31)).to(type: UInt16.self).byteSwapped)
+            let engineTemp = Int(data.subdata(in: (24..<26)).to(type: UInt16.self).byteSwapped)
+            let weaponsTemp = Int(data.subdata(in: (26..<28)).to(type: UInt16.self).byteSwapped)
+            let whyDead = Int(data.subdata(in: (28..<30)).to(type: UInt16.self).byteSwapped)
+            let whoDead = Int(data.subdata(in: (30..<32)).to(type: UInt16.self).byteSwapped)
             debugPrint("Received SP_YOU 12 \(myPlayerID) hostile \(hostile) war \(war) armies \(armies) tractor \(tractor) flags \(flags) damage \(damage) shieldStrength \(shieldStrength) fuel \(fuel) engineTemp \(engineTemp) weaponsTemp \(weaponsTemp) whyDead \(whyDead) whodead \(whoDead)")
             //printFlags(flags: flags)
             universe.updateMe(myPlayerID: myPlayerID, hostile: hostile, war: war, armies: armies, tractor: tractor, flags: flags, damage: damage, shieldStrength: shieldStrength, fuel: fuel, engineTemp: engineTemp, weaponsTemp: weaponsTemp, whyDead: whyDead, whoDead: whoDead)
@@ -292,7 +292,7 @@ class PacketAnalyzer {
         case 13:
             debugPrint("Received SP_QUEUE 13")
             // SP_QUEUE
-            let queue = data.subdata(in: (2..<3)).to(type: UInt16.self).byteSwapped
+            let queue = data.subdata(in: (2..<4)).to(type: UInt16.self).byteSwapped
             appDelegate.messageViewController?.gotMessage("Connected to server. Wait queue position \(queue)")
             //printData(data, success: true)
             
@@ -314,7 +314,7 @@ class PacketAnalyzer {
             let planetID = Int(data[1])
             let owner = Int(data[2])
             let info = Int(data[3])
-            let flags = data.subdata(in: (4..<5)).to(type: UInt16.self).byteSwapped
+            let flags = data.subdata(in: (4..<6)).to(type: UInt16.self).byteSwapped
             // pad
             // pad
             let armies = Int(data.subdata(in: (8..<12)).to(type: UInt32.self).byteSwapped)
@@ -494,9 +494,9 @@ class PacketAnalyzer {
                 debugPrint("Received SPGeneric 32 version \(version) discarding)")
                 return
             }
-            let repairTime = (data.subdata(in: (2..<3)).to(type: UInt16.self).byteSwapped)
+            let repairTime = (data.subdata(in: (2..<4)).to(type: UInt16.self).byteSwapped)
             let pl_orbit = Int8(data[3])
-            let gameup = (data.subdata(in: (4..<5)).to(type: UInt16.self).byteSwapped)
+            let gameup = (data.subdata(in: (4..<6)).to(type: UInt16.self).byteSwapped)
             let tournamentTeams = UInt8(data[6])
             let tournamentAge = UInt8(data[7])
             let tournamentUnits = UInt8(data[8])
@@ -510,28 +510,28 @@ class PacketAnalyzer {
         case 39:
             // SP_SHIP_CAP
             let operation = UInt8(data[1])  // /* 0 = add/change a ship, 1 = remove a ship */
-            let shipType = Int(data.subdata(in: (2..<3)).to(type: UInt16.self).byteSwapped)
-            let torpSpeed = Int(data.subdata(in: (4..<5)).to(type: UInt16.self).byteSwapped)
-            let phaserRange = Int(data.subdata(in: (6..<7)).to(type: UInt16.self).byteSwapped)
-            let maxSpeed = Int(data.subdata(in: (8..<11)).to(type: UInt32.self).byteSwapped)
-            let maxFuel = Int(data.subdata(in: (12..<15)).to(type: UInt32.self).byteSwapped)
-            let maxShield = Int(data.subdata(in: (16..<19)).to(type: UInt32.self).byteSwapped)
-            let maxDamage = Int(data.subdata(in: (20..<23)).to(type: UInt32.self).byteSwapped)
-            let maxWpnTmp = Int(data.subdata(in: (24..<27)).to(type: Int32.self).byteSwapped)
-            let maxEngTmp = Int(data.subdata(in: (28..<31)).to(type: Int32.self).byteSwapped)
-            let width = Int(data.subdata(in: (32..<33)).to(type: UInt16.self).byteSwapped)
-            let height = Int(data.subdata(in: (34..<35)).to(type: UInt16.self).byteSwapped)
-            let maxArmies = Int(data.subdata(in: (36..<37)).to(type: UInt16.self).byteSwapped)
+            let shipType = Int(data.subdata(in: (2..<4)).to(type: UInt16.self).byteSwapped)
+            let torpSpeed = Int(data.subdata(in: (4..<6)).to(type: UInt16.self).byteSwapped)
+            let phaserRange = Int(data.subdata(in: (6..<8)).to(type: UInt16.self).byteSwapped)
+            let maxSpeed = Int(data.subdata(in: (8..<12)).to(type: UInt32.self).byteSwapped)
+            let maxFuel = Int(data.subdata(in: (12..<16)).to(type: UInt32.self).byteSwapped)
+            let maxShield = Int(data.subdata(in: (16..<20)).to(type: UInt32.self).byteSwapped)
+            let maxDamage = Int(data.subdata(in: (20..<24)).to(type: UInt32.self).byteSwapped)
+            let maxWpnTmp = Int(data.subdata(in: (24..<28)).to(type: Int32.self).byteSwapped)
+            let maxEngTmp = Int(data.subdata(in: (28..<32)).to(type: Int32.self).byteSwapped)
+            let width = Int(data.subdata(in: (32..<34)).to(type: UInt16.self).byteSwapped)
+            let height = Int(data.subdata(in: (34..<36)).to(type: UInt16.self).byteSwapped)
+            let maxArmies = Int(data.subdata(in: (36..<38)).to(type: UInt16.self).byteSwapped)
             let letter = Character(UnicodeScalar(Int(data[38])) ?? "U")
             // pad 39
-            let nameData = data.subdata(in: (40..<55))
+            let nameData = data.subdata(in: (40..<56))
             var shipName = "unknown"
             if let nameStringWithNulls = String(data: nameData, encoding: .utf8) {
                 shipName = nameStringWithNulls.filter { $0 != "\0" }
             }
             let s_desig1 = UInt8(data[56])
             let s_desig2 = UInt8(data[57])
-            let bitmap = (data.subdata(in: (58..<59)).to(type: UInt16.self).byteSwapped)
+            let bitmap = (data.subdata(in: (58..<60)).to(type: UInt16.self).byteSwapped)
             debugPrint("Received SP_SHIP_CAP 39 operation \(operation) shipType \(shipType) torpSpeed \(torpSpeed) phaserRange \(phaserRange) maxSpeed \(maxSpeed) maxFuel \(maxFuel) maxShield \(maxShield) maxDamage \(maxDamage) maxWpnTmp \(maxWpnTmp) maxEngTmp \(maxEngTmp) width \(width) height \(height) maxArmies \(maxArmies) letter \(letter) shipName \(shipName) s_desig1 \(s_desig1) s_desig2 \(s_desig2) bitmap \(bitmap)")
             for ship in ShipType.allCases {
                 if ship.rawValue == shipType {
