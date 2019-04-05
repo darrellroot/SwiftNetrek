@@ -21,7 +21,6 @@
 		2F75015B22299E55002040A7 /* OverallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F75015A22299E55002040A7 /* OverallViewController.swift */; };
 		2F75015D22299E55002040A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F75015C22299E55002040A7 /* Assets.xcassets */; };
 		2F75016022299E55002040A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F75015E22299E55002040A7 /* Main.storyboard */; };
-		2F75016922299F2C002040A7 /* license.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2F75016822299F2C002040A7 /* license.txt */; };
 		2F75016C2229FA22002040A7 /* MetaServerEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F75016B2229FA22002040A7 /* MetaServerEntry.swift */; };
 		2F75016E2229FFE8002040A7 /* MetaServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F75016D2229FFE8002040A7 /* MetaServer.swift */; };
 		2F750171222A21BE002040A7 /* Collection-extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F750170222A21BE002040A7 /* Collection-extensions.swift */; };
@@ -205,7 +204,6 @@
 		2F75015F22299E55002040A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2F75016122299E55002040A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F75016222299E55002040A7 /* Netrek.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Netrek.entitlements; sourceTree = "<group>"; };
-		2F75016822299F2C002040A7 /* license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = license.txt; sourceTree = "<group>"; };
 		2F75016B2229FA22002040A7 /* MetaServerEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaServerEntry.swift; sourceTree = "<group>"; };
 		2F75016D2229FFE8002040A7 /* MetaServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaServer.swift; sourceTree = "<group>"; };
 		2F750170222A21BE002040A7 /* Collection-extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection-extensions.swift"; sourceTree = "<group>"; };
@@ -461,7 +459,6 @@
 				2F750181222AF683002040A7 /* Enumerations */,
 				2F75017C222A5765002040A7 /* Protocols */,
 				2F75016F222A21A6002040A7 /* Extensions */,
-				2F75016822299F2C002040A7 /* license.txt */,
 				2F75015A22299E55002040A7 /* OverallViewController.swift */,
 				2F75015822299E55002040A7 /* AppDelegate.swift */,
 				2F750175222A4296002040A7 /* Communication */,
@@ -689,7 +686,6 @@
 				2FA666082239987400F0CA76 /* 71852__ludvique__digital-whoosh-soft.wav in Resources */,
 				2FD339D6223C8EA3009AA1E8 /* ManualServerController.xib in Resources */,
 				2FA665FA22397E1300F0CA76 /* 399303__deleted-user-5405837__explosion-012.mp3 in Resources */,
-				2F75016922299F2C002040A7 /* license.txt in Resources */,
 				2FA666012239862100F0CA76 /* 175269__jonccox__gun-zap2.wav in Resources */,
 				2F75015D22299E55002040A7 /* Assets.xcassets in Resources */,
 				2FA666032239862100F0CA76 /* 175267__jonccox__gun-plasma.wav in Resources */,
