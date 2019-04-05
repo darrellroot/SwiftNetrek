@@ -315,6 +315,7 @@
 		2FA6660B2239A5CA00F0CA76 /* FlipScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FlipScrollView.swift; path = Netrek/Views/FlipScrollView.swift; sourceTree = SOURCE_ROOT; };
 		2FA6660D2239A8C300F0CA76 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		2FA6660F2239ABFD00F0CA76 /* FlipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipView.swift; sourceTree = "<group>"; };
+		2FA81AB622580FA6008357BD /* Netrek-public-domain.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Netrek-public-domain.entitlements"; sourceTree = "<group>"; };
 		2FC2EF1F2257FEF5002EF792 /* Netrek-public-domain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Netrek-public-domain.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FC2EF202257FEF5002EF792 /* Netrek copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Netrek copy-Info.plist"; path = "/Users/droot/Dropbox/Netrek/Netrek copy-Info.plist"; sourceTree = "<absolute>"; };
 		2FC2EF212257FF66002EF792 /* TipController-public-domain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TipController-public-domain.swift"; sourceTree = "<group>"; };
@@ -518,6 +519,7 @@
 		2F75014C22299E55002040A7 = {
 			isa = PBXGroup;
 			children = (
+				2FA81AB622580FA6008357BD /* Netrek-public-domain.entitlements */,
 				2F75015722299E55002040A7 /* Netrek */,
 				2F75015622299E55002040A7 /* Products */,
 				2F03C8772251BFA70029B190 /* Frameworks */,
@@ -742,7 +744,7 @@
 						LastSwiftMigration = 1020;
 						SystemCapabilities = {
 							com.apple.HardenedRuntime = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.InAppPurchase = {
 								enabled = 1;
@@ -758,7 +760,7 @@
 								enabled = 0;
 							};
 							com.apple.Sandbox = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -1090,7 +1092,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 8DU2Q8ABKY;
-				ENABLE_HARDENED_RUNTIME = YES;
 				HEADER_SEARCH_PATHS = /Users/droot/Dropbox/Netrek/Netrek/OpenSSL/include/;
 				INFOPLIST_FILE = Netrek/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1118,7 +1119,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 8DU2Q8ABKY;
-				ENABLE_HARDENED_RUNTIME = YES;
 				HEADER_SEARCH_PATHS = /Users/droot/Dropbox/Netrek/Netrek/OpenSSL/include/;
 				INFOPLIST_FILE = Netrek/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1141,6 +1141,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Netrek-public-domain.entitlements";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
@@ -1168,6 +1169,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Netrek-public-domain.entitlements";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
