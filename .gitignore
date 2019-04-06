@@ -7,6 +7,5 @@ build/
 DerivedData/
 build
 #
-*.help
 DerivedData
 xcuserdata

@@ -1092,7 +1092,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 8DU2Q8ABKY;
-				HEADER_SEARCH_PATHS = /Users/droot/Dropbox/Netrek/Netrek/OpenSSL/include/;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Netrek/OpenSSL/include";
 				INFOPLIST_FILE = Netrek/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1119,7 +1119,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 8DU2Q8ABKY;
-				HEADER_SEARCH_PATHS = /Users/droot/Dropbox/Netrek/Netrek/OpenSSL/include/;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Netrek/OpenSSL/include";
 				INFOPLIST_FILE = Netrek/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1145,7 +1145,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
-				HEADER_SEARCH_PATHS = /Users/droot/Dropbox/Netrek/Netrek/OpenSSL/include/;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Netrek/OpenSSL/include";
 				INFOPLIST_FILE = "Netrek copy-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1173,7 +1173,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
-				HEADER_SEARCH_PATHS = /Users/droot/Dropbox/Netrek/Netrek/OpenSSL/include/;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Netrek/OpenSSL/include";
 				INFOPLIST_FILE = "Netrek copy-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
