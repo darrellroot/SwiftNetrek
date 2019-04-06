@@ -1158,6 +1158,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.networkmom.netrek;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"SWIFT_INCLUDE_PATHS[arch=*]" = Netrek/OpenSSL/include/;
 				SWIFT_OBJC_BRIDGING_HEADER = "Netrek/Resources/Netrek-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
