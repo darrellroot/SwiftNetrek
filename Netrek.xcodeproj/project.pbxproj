@@ -1145,7 +1145,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
-				HEADER_SEARCH_PATHS = /Users/droot/Dropbox/Netrek/Netrek/OpenSSL/include/;
+				HEADER_SEARCH_PATHS = Netrek/OpenSSL/include/;
 				INFOPLIST_FILE = "Netrek copy-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1158,7 +1158,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.networkmom.netrek;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"SWIFT_INCLUDE_PATHS[arch=*]" = Netrek/OpenSSL/include/;
+				"SWIFT_INCLUDE_PATHS[arch=*]" = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Netrek/Resources/Netrek-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1174,7 +1174,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
-				HEADER_SEARCH_PATHS = /Users/droot/Dropbox/Netrek/Netrek/OpenSSL/include/;
+				HEADER_SEARCH_PATHS = Netrek/OpenSSL/include/;
 				INFOPLIST_FILE = "Netrek copy-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1187,6 +1187,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.networkmom.netrek;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"SWIFT_INCLUDE_PATHS[arch=*]" = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Netrek/Resources/Netrek-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
