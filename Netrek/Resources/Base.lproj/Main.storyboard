@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -31,11 +32,11 @@
             <objects>
                 <viewController id="rDi-pP-SQY" customClass="OtherPreferencesController" customModule="Netrek" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" misplaced="YES" id="BAu-VR-IA9" customClass="FlipView" customModule="Netrek" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="395" height="118"/>
+                        <rect key="frame" x="0.0" y="0.0" width="396" height="118"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <gridView horizontalHuggingPriority="1000" verticalHuggingPriority="1000" xPlacement="leading" yPlacement="top" rowAlignment="none" rowSpacing="11" columnSpacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="CQF-e9-iTr">
-                                <rect key="frame" x="20" y="20" width="355" height="78"/>
+                                <rect key="frame" x="20" y="20" width="356" height="78"/>
                                 <rows>
                                     <gridRow id="cQm-RQ-y79"/>
                                     <gridRow id="5Ho-9J-hUJ"/>
@@ -61,7 +62,7 @@
                                     </gridCell>
                                     <gridCell row="cQm-RQ-y79" column="SJj-j5-dRB" id="q4r-Zb-TyO">
                                         <button key="contentView" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WGJ-Lh-etR">
-                                            <rect key="frame" x="154" y="62" width="84" height="18"/>
+                                            <rect key="frame" x="154" y="62" width="85" height="18"/>
                                             <buttonCell key="cell" type="check" title="Basic Tips" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="n46-XV-mh5">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -73,7 +74,7 @@
                                     </gridCell>
                                     <gridCell row="cQm-RQ-y79" column="Dgp-V5-M72" id="Qf0-Ec-fBv">
                                         <button key="contentView" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8yb-Vp-cGQ">
-                                            <rect key="frame" x="245" y="62" width="112" height="18"/>
+                                            <rect key="frame" x="246" y="62" width="112" height="18"/>
                                             <buttonCell key="cell" type="check" title="Advanced Tips" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="8uj-a2-4ea">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -95,10 +96,10 @@
                                     </gridCell>
                                     <gridCell row="5Ho-9J-hUJ" column="SJj-j5-dRB" id="xoY-MN-j0H">
                                         <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2ql-QB-Ls6">
-                                            <rect key="frame" x="154" y="29" width="85" height="25"/>
+                                            <rect key="frame" x="154" y="29" width="86" height="25"/>
                                             <popUpButtonCell key="cell" type="push" title="8" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Jg2-Sf-sPL" id="Oa4-1w-2yS">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="menu"/>
+                                                <font key="font" metaFont="system"/>
                                                 <menu key="menu" id="HHw-8Q-oSh">
                                                     <items>
                                                         <menuItem title="8" state="on" id="Jg2-Sf-sPL">
@@ -143,10 +144,10 @@
                                     </gridCell>
                                     <gridCell row="ZxC-q2-cbr" column="SJj-j5-dRB" id="2wp-jH-egn">
                                         <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IfF-qj-9Oa">
-                                            <rect key="frame" x="154" y="-3" width="85" height="25"/>
+                                            <rect key="frame" x="154" y="-3" width="86" height="25"/>
                                             <popUpButtonCell key="cell" type="push" title="8" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="q8t-eG-oxw" id="UFt-Zj-k0x">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="menu"/>
+                                                <font key="font" metaFont="system"/>
                                                 <menu key="menu" id="eQ1-3r-a19">
                                                     <items>
                                                         <menuItem title="8" state="on" id="q8t-eG-oxw">
@@ -232,13 +233,6 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
-                                        <menuItem title="Tip the Developer" id="ZHn-TV-iTI">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <segue destination="IKC-db-VFL" kind="show" id="GDq-Jr-q1r"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="WkQ-nj-1zt"/>
                                         <menuItem title="Hide Netrek" keyEquivalent="h" id="Olw-nP-bQN">
                                             <connections>
                                                 <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
@@ -500,10 +494,10 @@
                                         </connections>
                                     </segmentedControl>
                                     <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="600" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sBl-Bj-HVD">
-                                        <rect key="frame" x="0.0" y="170" width="576" height="57"/>
+                                        <rect key="frame" x="0.0" y="162" width="576" height="65"/>
                                         <subviews>
                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="wAS-jX-1Ji">
-                                                <rect key="frame" x="-2" y="0.0" width="276" height="51"/>
+                                                <rect key="frame" x="-2" y="0.0" width="276" height="48"/>
                                                 <textFieldCell key="cell" selectable="YES" title="We recommend new players play as guest.  Your Name and Username will be visible to other players." id="o5y-tu-wAd">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -511,10 +505,10 @@
                                                 </textFieldCell>
                                             </textField>
                                             <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RBu-e0-ULT">
-                                                <rect key="frame" x="280" y="14" width="296" height="23"/>
+                                                <rect key="frame" x="280" y="3" width="296" height="42"/>
                                                 <subviews>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FL0-f0-RzH">
-                                                        <rect key="frame" x="-2" y="6" width="66" height="17"/>
+                                                        <rect key="frame" x="-2" y="26" width="66" height="16"/>
                                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Name" id="DiU-o3-kwB">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -522,7 +516,7 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uk7-SH-g1T">
-                                                        <rect key="frame" x="70" y="1" width="226" height="22"/>
+                                                        <rect key="frame" x="70" y="21" width="226" height="21"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="b2r-x0-ntQ">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -557,10 +551,10 @@
                                         </customSpacing>
                                     </stackView>
                                     <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="600" verticalHuggingPriority="600" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KL7-7l-V9z">
-                                        <rect key="frame" x="0.0" y="60" width="576" height="102"/>
+                                        <rect key="frame" x="0.0" y="58" width="576" height="96"/>
                                         <subviews>
                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="qcT-pq-8CK">
-                                                <rect key="frame" x="-2" y="0.0" width="276" height="102"/>
+                                                <rect key="frame" x="-2" y="0.0" width="276" height="96"/>
                                                 <textFieldCell key="cell" selectable="YES" id="Wvf-G8-ucB">
                                                     <font key="font" metaFont="system"/>
                                                     <string key="title">If you don't already have an account on the server, one will be created for you (assuming your name and username are unique).  Make sure to remember your password.  This netrek client saves your netrek password in your keychain.</string>
@@ -569,7 +563,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="jXU-bd-MCA">
-                                                <rect key="frame" x="278" y="9" width="300" height="85"/>
+                                                <rect key="frame" x="278" y="8" width="300" height="80"/>
                                                 <textFieldCell key="cell" selectable="YES" id="GoR-Vu-I5Y">
                                                     <font key="font" metaFont="system"/>
                                                     <string key="title">Warning: Netrek servers use an old network protocol which is out of our control.  The password is not encrypted on the network.  We recommend you use a different/unique password for your netrek login.</string>
@@ -588,7 +582,7 @@
                                         </customSpacing>
                                     </stackView>
                                     <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="600" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Ww-2g-bju">
-                                        <rect key="frame" x="0.0" y="30" width="576" height="22"/>
+                                        <rect key="frame" x="0.0" y="29" width="576" height="21"/>
                                         <subviews>
                                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="7qx-vC-Hxv">
                                                 <rect key="frame" x="0.0" y="1" width="272" height="20"/>
@@ -597,10 +591,10 @@
                                                 </constraints>
                                             </customView>
                                             <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="56F-oK-da6">
-                                                <rect key="frame" x="280" y="0.0" width="296" height="22"/>
+                                                <rect key="frame" x="280" y="0.0" width="296" height="21"/>
                                                 <subviews>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XN8-Zi-fY7">
-                                                        <rect key="frame" x="-2" y="5" width="66" height="17"/>
+                                                        <rect key="frame" x="-2" y="5" width="66" height="16"/>
                                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Password" id="20k-tH-N1l">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -608,7 +602,7 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <secureTextField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WQl-e9-rTG">
-                                                        <rect key="frame" x="70" y="0.0" width="226" height="22"/>
+                                                        <rect key="frame" x="70" y="0.0" width="226" height="21"/>
                                                         <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="YQM-xu-UMQ">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -642,7 +636,7 @@
                                         </customSpacing>
                                     </stackView>
                                     <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="600" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SAA-H7-eTA">
-                                        <rect key="frame" x="0.0" y="0.0" width="576" height="22"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="576" height="21"/>
                                         <subviews>
                                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="Ypy-jg-JxQ">
                                                 <rect key="frame" x="0.0" y="1" width="272" height="20"/>
@@ -651,10 +645,10 @@
                                                 </constraints>
                                             </customView>
                                             <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hRz-4n-lam">
-                                                <rect key="frame" x="280" y="0.0" width="296" height="22"/>
+                                                <rect key="frame" x="280" y="0.0" width="296" height="21"/>
                                                 <subviews>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MyX-gV-exI">
-                                                        <rect key="frame" x="-2" y="3" width="66" height="17"/>
+                                                        <rect key="frame" x="-2" y="3" width="66" height="16"/>
                                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Username" id="fkh-4y-f6l">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -662,7 +656,7 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ete-oK-0CE">
-                                                        <rect key="frame" x="70" y="0.0" width="226" height="22"/>
+                                                        <rect key="frame" x="70" y="0.0" width="226" height="21"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="Bhr-td-sC8">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -958,104 +952,6 @@
             </objects>
             <point key="canvasLocation" x="-1097" y="-166"/>
         </scene>
-        <!--Window Controller-->
-        <scene sceneID="bwA-dm-MAe">
-            <objects>
-                <windowController id="IKC-db-VFL" sceneMemberID="viewController">
-                    <window key="window" title="Tip The Developer" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Ogt-Zp-fpC">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
-                        <connections>
-                            <outlet property="delegate" destination="IKC-db-VFL" id="Pgy-Aq-GDd"/>
-                        </connections>
-                    </window>
-                    <connections>
-                        <segue destination="twe-S3-ssu" kind="relationship" relationship="window.shadowedContentViewController" id="iWJ-rB-qWW"/>
-                    </connections>
-                </windowController>
-                <customObject id="0oJ-QG-xVf" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1201" y="203"/>
-        </scene>
-        <!--Tip Controller-->
-        <scene sceneID="lgG-70-WzJ">
-            <objects>
-                <viewController id="twe-S3-ssu" customClass="TipController" customModule="Netrek" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="rIN-7f-hPu">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="416"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uc5-w2-hap">
-                                <rect key="frame" x="20" y="20" width="440" height="376"/>
-                                <subviews>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7OW-UA-bVM">
-                                        <rect key="frame" x="166" y="351" width="108" height="25"/>
-                                        <buttonCell key="cell" type="square" title="Restore prior tip" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="I7I-Ri-5U7">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="restoreButton:" target="twe-S3-ssu" id="QMc-ww-Twt"/>
-                                        </connections>
-                                    </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ddu-Sr-YtC">
-                                        <rect key="frame" x="75" y="282" width="290" height="59"/>
-                                        <buttonCell key="cell" type="square" title="Tip the developer Thank the developer for the Netrek Mac Client $4.99" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="S7Z-Hx-yBh">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="tipButton:" target="twe-S3-ssu" id="4M5-qC-uOm"/>
-                                        </connections>
-                                    </button>
-                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="00m-fs-41I">
-                                        <rect key="frame" x="-2" y="0.0" width="444" height="272"/>
-                                        <textFieldCell key="cell" selectable="YES" id="Zbu-sW-zhM">
-                                            <font key="font" metaFont="system"/>
-                                            <mutableString key="title">Payment will be charged to iTunes Account at confirmation of purchase.  This is a one-time in-app purchase. 
-This Netrek client is free to play.  The author made the Swift source code public on GitHub.  You can thank the developer by leaving a positive review in the MacOS App Store, or by purchasing a "tip" via the in-app purchase above. 
-Privacy policy: https://networkmom.net/netrek/privacy.html
-
-feedback@networkmom.net
-
-Link to source code: https://networkmom.net/netrek
-
-Apple Licensed Application End User License Agreement:
-https://www.apple.com/legal/macapps/stdeula/</mutableString>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                </subviews>
-                                <visibilityPriorities>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                </visibilityPriorities>
-                                <customSpacing>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                </customSpacing>
-                            </stackView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="uc5-w2-hap" firstAttribute="leading" secondItem="rIN-7f-hPu" secondAttribute="leading" constant="20" symbolic="YES" id="EMp-xH-pQ2"/>
-                            <constraint firstAttribute="bottom" secondItem="uc5-w2-hap" secondAttribute="bottom" constant="20" symbolic="YES" id="HDR-I4-j7i"/>
-                            <constraint firstItem="uc5-w2-hap" firstAttribute="top" secondItem="rIN-7f-hPu" secondAttribute="top" constant="20" symbolic="YES" id="glk-sm-UJj"/>
-                            <constraint firstAttribute="trailing" secondItem="uc5-w2-hap" secondAttribute="trailing" constant="20" symbolic="YES" id="lDO-b0-BNg"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="tipButtonOutlet" destination="ddu-Sr-YtC" id="Ikz-Jh-Xtr"/>
-                    </connections>
-                </viewController>
-                <customObject id="LBJ-cF-s1A" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1741" y="194"/>
-        </scene>
         <!--Tactical View Controller-->
         <scene sceneID="cV4-Zt-N4h">
             <objects>
@@ -1068,24 +964,6 @@ https://www.apple.com/legal/macapps/stdeula/</mutableString>
                 <customObject id="XzW-3P-xSJ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-648" y="293"/>
-        </scene>
-        <!--Window Controller-->
-        <scene sceneID="WCl-WF-gbZ">
-            <objects>
-                <windowController id="ozP-Vi-sda" sceneMemberID="viewController">
-                    <window key="window" title="Swift Netrek Client Credits" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" appearanceType="darkAqua" frameAutosaveName="" animationBehavior="default" id="auY-u6-jbY">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
-                        <connections>
-                            <outlet property="delegate" destination="ozP-Vi-sda" id="8p4-Xs-bUV"/>
-                        </connections>
-                    </window>
-                </windowController>
-                <customObject id="3FP-UB-vD8" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="645" y="-166"/>
         </scene>
         <!--Strategic View Controller-->
         <scene sceneID="NQt-FY-33X">
@@ -1144,12 +1022,12 @@ https://www.apple.com/legal/macapps/stdeula/</mutableString>
                                 <rect key="frame" x="-1" y="20" width="166" height="25"/>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="NNL-11-NyY">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="menu"/>
+                                    <font key="font" metaFont="system"/>
                                     <menu key="menu" id="fh0-b3-Gl2"/>
                                 </popUpButtonCell>
                             </popUpButton>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2aB-sK-4qw">
-                                <rect key="frame" x="0.0" y="0.0" width="450" height="22"/>
+                                <rect key="frame" x="0.0" y="1" width="450" height="21"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="obR-XO-82y">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>

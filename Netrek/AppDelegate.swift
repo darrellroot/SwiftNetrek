@@ -317,12 +317,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     clientTypeSent = true
                     self.reader?.send(content: data)
             }
-            if !supportMessageSent && UserDefaults.standard.bool(forKey: productIdentifiers.tip5.rawValue) {
-                    let data = MakePacket.cpMessage(message: "I supported the development of the MacOS Swift Netrek Client", team: .ogg, individual: 0)
-                    clientTypeSent = true
-                    self.reader?.send(content: data)
-                    supportMessageSent = true
-            }
         }
     }
     private func disableServerMenu() {
