@@ -140,18 +140,19 @@ struct CP_OUTFIT {
         case .independent:
             self.team = 255
         case .federation:
-            self.team = 3
-        case .roman:
             self.team = 0
-        case .kazari:
+        case .roman:
             self.team = 1
-        case .orion:
+        case .kazari:
             self.team = 2
+        case .orion:
+            self.team = 3
         case .ogg:
             self.team = 255
         }
-        self.team = UInt8(team.rawValue)
+        //self.team = UInt8(team.rawValue)
         self.ship = UInt8(ship.rawValue)
+        debugPrint("CP_OUTFIT \(self.type) \(self.team) \(self.ship) \(self.pad1)")
     }
     var size: Int {
         get {
