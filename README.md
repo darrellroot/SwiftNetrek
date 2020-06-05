@@ -2,7 +2,7 @@
 
 SwiftNetrek - 2 April 2019 - Updated 4 May 2020
 
-This is an OBSOLETE VERSION using SpriteKit.  Compatible with MacOS 10.14.  For the latest MacOS 10.15 SpriteKit version, go to https://github.com/darrellroot/Netrek-SwiftUI/blob/master/README
+This is an OBSOLETE VERSION using SpriteKit.  Compatible with MacOS 10.14.  For the latest MacOS 10.15 SpriteKit version, go to https://github.com/darrellroot/Netrek-SwiftUI/
 
 If you just want to grab a MacOS 10.15 SwiftUI binary to play Netrek, download "Netrek" from the MacOS App Store.  Free download.
 
