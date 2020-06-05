@@ -2,7 +2,11 @@
 
 SwiftNetrek - 2 April 2019 - Updated 4 May 2020
 
-If you just want to grab a MacOS 10.14 or later binary to play Netrek, download "Netrek" from the MacOS App Store.  Free download.
+This is an OBSOLETE VERSION using SpriteKit.  Compatible with MacOS 10.14.  For the latest MacOS 10.15 SpriteKit version, go to https://github.com/darrellroot/Netrek-SwiftUI/blob/master/README
+
+If you just want to grab a MacOS 10.15 SwiftUI binary to play Netrek, download "Netrek" from the MacOS App Store.  Free download.
+
+For a MacOS 10.14 binary (of this version), go to http://networkmom.net/netrek/
 
 Netrek is the original Internet team game, originally implemented in C in 1989 by Kevin Smith and Scott Silvey for UNIX Workstations running X-windows.  Netrek was based on XTrek, written by Chris Guthrie in 1986.  XTrek used XWindow remote displays to allow one host to run several clients on a LAN.  Netrek was open sourced with very lenient copyright notices.
 
